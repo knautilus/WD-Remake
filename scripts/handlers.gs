@@ -403,8 +403,8 @@ func HandlerDrawHud()
 	HudColor( 0xffffffff );
 	
 	// cover
-	if(GameGet(G_COVER))
-		HudDrawTile( menuid, 0,0,240,144, 0,0,240,144, 0, 0 );
+	//if(GameGet(G_COVER))
+	//	HudDrawTile( menuid, 0,0,240,144, 0,0,240,144, 0, 0 );
 
 	// dialogs
 	for(i=0;i<DlgCount();i++) 
@@ -413,10 +413,7 @@ func HandlerDrawHud()
 	// menu
 	HudShader( 0 );
 	HudColor( 0xffffffff );
-	HudDrawTile( menuid, 0,144,256,48, 		0,144,256,48, 0, 0 );
-	//HudDrawTile( menuid, 0,48,8,136, 		0,48,8,136, 0, 0 );
-	//HudDrawTile( menuid, 248,48,8,136, 		248,48,8,136, 0, 0 );
-	//HudDrawTile( menuid, 0,184,256,8, 		0,184,256,8, 0, 0 );
+	HudDrawTile( menuid, 0,144,256,48, 		0,0,256,48, 0, 0 );
 	
 	// lifebar
 	lifeid = 2; // life tile
@@ -425,7 +422,7 @@ func HandlerDrawHud()
 	HudDrawTile( lifeid, 48, 177, w, h, 0, 0, w, h, 0, 0 );
 
 	// credits
-	HudColor( 0xffffff00 );
+	HudColor( 0xffffffff );
 	credits = PlayerGet(P_CREDITS);
 	if(credits>3) credits=3;
 	for(i=0;i<credits;i++) 
@@ -434,7 +431,7 @@ func HandlerDrawHud()
 	// coins
 	text = (str "%02i")PlayerGet(P_COINS);
 	w = HudGetTextWidth( text );
-	HudDrawText( fontid, 192-w/2,168,w,8, text, 0 );
+	HudDrawText( fontid, 193-w/2,168,w,8, text, 0 );
 	
 	// title
 	rx = GameGet(G_ROOMX);
