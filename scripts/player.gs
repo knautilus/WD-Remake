@@ -261,7 +261,7 @@ func PlayerPlayAnimFrames( tile, frames, breakdead )
 	PlayerSet( P_TILE, tile );
 	PlayerSet( P_ANIM, 0 );
 	idx = TileFind( tile );
-	delay = PlayerGet( P_DELAY );
+	delay = PlayerGet(P_DELAY);
 	for(i=0;i<sizeof(frames);i++)
 	{
 		if(breakdead && PlayerGet(P_LIFE)==0) break;
@@ -424,7 +424,7 @@ func PlayerUpdateWaterPlay()
 		}
 		
 		// NO SWIM
-		PlayerSet(P_DELAY,3);
+		PlayerSet(P_DELAY,2);
 		PlayerSet(P_TILEUP,PTILE_UP);
 		PlayerSet(P_TILEJUMP,PTILE_JUMP);
 		// quick restore from swimming tiles (when jumping out of the water)

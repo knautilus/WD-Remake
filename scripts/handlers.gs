@@ -66,6 +66,7 @@ func HandlerGameStart()
 
 	// player cfg
 	PlayerSet(P_LAYER, PLAYER_LAYER);
+	PlayerSet(P_DELAY,2);
 
 	// inventory
 	InventoryClear();
@@ -351,8 +352,8 @@ func HandlerPlayerUpdate()
 	}
 	
 	// Custom movement test
-	// PlayerSet(P_CUSTOMMOVE,1);
-	// CM_Update();
+	PlayerSet(P_CUSTOMMOVE,1);
+	CM_Update();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
