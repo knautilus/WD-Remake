@@ -239,6 +239,8 @@ func CM_UpdateWalk()
 
 func CM_UpdateJump()
 {
+	CM_UpdateFrame();
+
 	if( CM_CheckJumpX() )
 		PlayerSet(P_X, PlayerGet(P_X) + PlayerGet(P_DIR) * CM_STEPX);
 
@@ -247,10 +249,9 @@ func CM_UpdateJump()
 	step = CM_CheckJumpY(step);
 
 	PlayerSet(P_Y, PlayerGet(P_Y)-step);
+
 	pow--;
 	PlayerSet(P_POW,pow);
-
-	CM_UpdateFrame();
 
 	if( pow<0 ) // done jumping - see where to go idle or fall
 	{

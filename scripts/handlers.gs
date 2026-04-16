@@ -44,7 +44,7 @@ func HandlerGameInit()
 // This handler is called each time the game starts (or restarts).
 // Users should reset game and player variables, stop sounds, and request loading.
 // By default, the game is paused (G_PAUSE=1) and player has folowing data set:
-// P_LAYER=7, P_DELAY=3, P_X=0, P_Y=0, P_DISABLE=1, P_LIFE=100, P_CREDUTS=3 etc.
+// P_LAYER=7, P_DELAY=3, P_X=0, P_Y=0, P_DISABLE=1, P_LIFE=100, P_CREDITS=3 etc.
 // The load sequence can be latent to allow drawing of a loading screen. See GameStartLoad().
 // Usually the tiles are loaded only once (check the G_RESTART static variable)
 // Map should be loaded on each restart, to reset objects and brushes properties.
@@ -60,7 +60,7 @@ func HandlerGameStart()
 	GameSet(G_VIEWY,0);
 	GameSet(G_MAPCOLOR,0xff000000);
 	GameSet(G_BORDERCOLOR,0xff000000);
-	GameSet(G_FPS,36);
+	GameSet(G_FPS,48);
 	GameSet(G_FFPERIOD,50);
 	GameSet(G_PAUSE,1); // start paused
 
