@@ -414,7 +414,7 @@ func HandlerDrawHud()
 	// menu
 	HudShader( 0 );
 	HudColor( 0xffffffff );
-	HudDrawTile( menuid, 0,144,256,48, 		0,0,256,48, 0, 0 );
+	HudDrawTile( menuid, 0,144,256,48, 0,0,256,48, 0, 0 );
 	
 	// lifebar
 	lifeid = 2; // life tile
@@ -428,6 +428,38 @@ func HandlerDrawHud()
 	if(credits>3) credits=3;
 	for(i=0;i<credits;i++) 
 		HudDrawText( fontid, 56+i*8,168,8,8, "@", 0 );
+
+	// inventory
+	emptyId = 7; // empty inventory slot
+	for(i=0;i<3;i++)
+	{
+		w = 16;
+		h = 16;
+		x = 96+(i*24);
+		y = 168;
+
+		invItemId = InventoryGet(i);
+		
+		if(invItemId < 0)
+		{
+			HudDrawTile( emptyId, x, y, w, h, 0, 0, w, h, 0, 0 );
+		}
+		else
+		{
+			itemTileId=ObjGet(invItemId,O_TILE);
+
+			x1=ObjGet(invItemId,O_MAP);
+			y1=ObjGet(invItemId,O_MAP+1);
+			x2=ObjGet(invItemId,O_MAP+2);
+			y2=ObjGet(invItemId,O_MAP+3);
+			flip=ObjGet(invItemId,O_FLIP);
+
+			w2 = x2-x1;
+			h2 = y2-y1;
+
+			HudDrawTile(itemTileId, x, y, w, h, x1, y1, w2, h2, flip, 0 );
+		}
+	}
 
 	// coins
 	text = (str "%02i")PlayerGet(P_COINS);

@@ -441,7 +441,7 @@ func OpenDialogInventory( defaultexit )
 	DialogPopAll();
 	GamePause(0);
 	if( select==count || select==-1 ) return -1; // no selection
-	idx = InventoryGet(count-1-select); // item selected
+	idx = InventoryGet(select); // item selected
 	return idx;
 }
 
@@ -456,16 +456,16 @@ func DialogInventory( select )
 	// construct text
 	text = "{a:center}YOU ARE CARRYING\n\n{c:0xff0000}";
 	
-	// push elements names in reverse order (last is first)
+	// push elements names
 	count = InventoryCount();
 	if(count>0)
 	{
-		for(i=count-1;i>=0;i--)
+		for(i=0;i<count;i++)
 		{
 			idx = InventoryGet(i);
-			if(select==count-1-i) text += "{f:1}";
+			if(select==i) text += "{f:1}";
 			text += ObjGetName(idx);
-			if(select==count-1-i) text += "{f:0}";
+			if(select==i) text += "{f:0}";
 			text += "\n";
 		}
 		height = 5+count;

@@ -10,7 +10,7 @@
 #def GAME_ID			"DT080127"							// game's id text, used in saved games - change this when you release a new version, to prevent old saved games to be loaded.
 
 #def MAXCREDITS			3		// max number of credits
-#def MAXCOINS			4		// max number of coins or diamonds to find (set it to the number of coins you added in your map)
+#def MAXCOINS			99		// max number of coins or diamonds to find (set it to the number of coins you added in your map)
 #def MAXINVENTORY		3		// max number of inventory items ( max 10 items )
 #def LOADINGTIME		1		// minimum number of seconds to wait on the loading page
 #def MUSIC_DEFAULT		3		// id of the default music, for more details see the sound.gs file
