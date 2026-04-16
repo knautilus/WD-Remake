@@ -66,7 +66,7 @@ func HandlerGameStart()
 
 	// player cfg
 	PlayerSet(P_LAYER, PLAYER_LAYER);
-	PlayerSet(P_DELAY,2);
+	PlayerSet(P_DELAY,4);
 
 	// inventory
 	InventoryClear();

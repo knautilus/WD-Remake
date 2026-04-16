@@ -3,9 +3,9 @@
 // Custom player movement
 /////////////////////////////////////////////////////////////////////////////////
 
-#def CM_STEPX			2			// move step x
-#def CM_STEPY			2			// move step y; used in adjustments
-#def CM_STEPYMAX		3			// move step y; used in jumps and falls
+#def CM_STEPX			4			// move step x
+#def CM_STEPY			4			// move step y; used in adjustments
+#def CM_STEPYMAX		7			// move step y; used in jumps and falls
 #def CM_BOXW			16			// collision box width
 #def CM_BOXH			20			// collision box height
 
@@ -66,21 +66,6 @@ func CM_Update()
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // ENTER STATES
 //////////////////////////////////////////////////////////////////////////////////////////////////
-
-func CM_UpdateFrame()
-{
-	G_FRAME++;
-	if(G_FRAME > 12)
-	{
-		G_FRAME = 1;
-	}
-
-	if (G_FRAME % 2 == 0)
-	{
-		PlayerSet(P_FRAME, PlayerGet(P_FRAME) + 1);
-	}
-	return G_FRAME;
-}
 
 func CM_EnterIdle()
 {
@@ -226,7 +211,7 @@ func CM_EnterKeyState()
 
 func CM_UpdateIdle()
 {
-	CM_UpdateFrame();
+	PlayerSet(P_FRAME,PlayerGet(P_FRAME)+1);
 }
 
 func CM_UpdateWalk()
@@ -234,26 +219,25 @@ func CM_UpdateWalk()
 	if( CM_CheckWalkX() )
 		PlayerSet(P_X, PlayerGet(P_X) + PlayerGet(P_DIR)*CM_STEPX);
 
-	CM_UpdateFrame();
+	PlayerSet(P_FRAME,PlayerGet(P_FRAME)+1);
 }
 
 func CM_UpdateJump()
 {
-	CM_UpdateFrame();
-
 	if( CM_CheckJumpX() )
 		PlayerSet(P_X, PlayerGet(P_X) + PlayerGet(P_DIR) * CM_STEPX);
 
 	pow = PlayerGet(P_POW);
-	step = MIN(pow,CM_STEPYMAX);
+	step = MIN(pow+1,CM_STEPYMAX);
 	step = CM_CheckJumpY(step);
 
 	PlayerSet(P_Y, PlayerGet(P_Y)-step);
-
 	pow--;
 	PlayerSet(P_POW,pow);
 
-	if( pow<0 ) // done jumping - see where to go idle or fall
+	PlayerSet(P_FRAME,PlayerGet(P_FRAME)+1);
+
+	if( pow< 0 ) // done jumping - see where to go idle or fall
 	{
 		under = CM_CheckFallY(1);
 		if(under==0)
@@ -269,11 +253,11 @@ func CM_UpdateFall()
 		PlayerSet(P_X, PlayerGet(P_X) + PlayerGet(P_DIR)*CM_STEPX);
 
 	pow = PlayerGet(P_POW);
-	step = MIN(pow,CM_STEPYMAX);
+	step = MIN(pow+1,CM_STEPYMAX);
 	step2 = CM_CheckFallY(step);
 	PlayerSet(P_Y, PlayerGet(P_Y)+step2);
 
-	CM_UpdateFrame(); // keep last tile
+	PlayerSet(P_FRAME, PlayerGet(P_FRAME)+1); // keep last tile
 	PlayerSet(P_STUNLEVEL, PlayerGet(P_STUNLEVEL)+1);
 
 	// stopping fall if fall step was reduced
@@ -296,7 +280,7 @@ func CM_UpdateFall()
 func CM_UpdateScripted()
 {
 	if(PlayerGet(P_ANIM)!=0) 
-		CM_UpdateFrame();
+		PlayerSet(P_FRAME, PlayerGet(P_FRAME)+1);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
