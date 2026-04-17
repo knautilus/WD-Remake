@@ -146,6 +146,7 @@ func DialogMainMenu( select )
 	if(select==3) text += "{f:1}CREDITS{f:0}\n"; 	else text += "CREDITS\n";
 	if(select==4) text += "{f:1}EXIT{f:0}"; 		else text += "EXIT";
 	DialogPush();
+	DialogSetCaption("");
 	DialogSetText(text);
 	DialogSetColor(COLOR_DIALOG);
 	DialogFitCenter();
@@ -202,6 +203,7 @@ func DialogGameMenu( select )
 	if(select==4) text += "{f:1}RESTART{f:0}\n"; 	else text += "RESTART\n";
 	if(select==5) text += "{f:1}EXIT{f:0}"; 		else text += "EXIT";
 	DialogPush();
+	DialogSetCaption("");
 	DialogSetText(text);
 	DialogSetColor(COLOR_DIALOG);
 	DialogFitCenter();
@@ -275,6 +277,7 @@ func DialogOptions( select )
 	if(select==3) text += "{f:1}RETURN{f:0}"; 		else text += "RETURN";
 
 	DialogPush();
+	DialogSetCaption("");
 	DialogSetText(text);
 	DialogSetColor(COLOR_DIALOG);
 	w = 18*8; // keep large and fixed
@@ -377,6 +380,7 @@ func DialogFiles( select )
 	text += "\n";
 	if(select==3) text += "{f:1}RETURN{f:0}"; else text += "RETURN";
 	DialogPush();
+	DialogSetCaption("");
 	DialogSetText(text);
 	DialogSetColor(COLOR_DIALOG);
 	DialogFitCenter();
@@ -418,6 +422,7 @@ func DialogFinish( select )
 	if(select==1) text += "{f:1}RESTART{f:0}\n"; 	else text += "RESTART\n";
 	if(select==2) text += "{f:1}EXIT{f:0}"; 		else text += "EXIT";
 	DialogPush();
+	DialogSetCaption("");
 	DialogSetText(text);
 	DialogSetColor(COLOR_DIALOG);
 	DialogFitCenter();
@@ -484,6 +489,7 @@ func DialogInventory( select )
 	
 	// construct dialog
 	DialogPush();
+	DialogSetCaption("");
 	DialogSetText(text);
 	DialogSetColor(COLOR_CYAN);
 	// compute position considering the tooltip dialog
@@ -493,13 +499,7 @@ func DialogInventory( select )
 	x = (GameGet(G_ROOMW)-w)/2;
 	y = (GameGet(G_ROOMH)-h)/2;
 	DialogSetPos(x,y);
-	DialogType(1);
-}
-
-func DialogType( id )
-{
-	idx=DlgCount()-1;
-	DlgSet(idx,DLG_TYPE,id);
+	DialogSetType(1);
 }
 
 /////////////////////////////////////////////////////////////////////////////////

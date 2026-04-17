@@ -9,6 +9,7 @@ int g_msglastx; 	// position x of the last message
 int g_msglasty; 	// position y of the last message
 int g_msglastink; 	// ink color of the last message
 int g_msglastborder;// border color of the last message
+str g_msglastcaption;
 
 /////////////////////////////////////////////////////////////////////////////////
 // IN: int; x; horizontal coordinate in characters, multiple of 8 pixels [0,30)
@@ -19,16 +20,18 @@ int g_msglastborder;// border color of the last message
 // Stores x, y, and colors, for use with the MessageNext() function.
 // This does not closes the dialog. Needs DialogPop(), DialogPopAll(), or usually MessagePop().
 /////////////////////////////////////////////////////////////////////////////////
-func Message( x, y, text, colorink, colorborder )
+func Message( x, y, text, colorink, colorborder, caption)
 {
 	g_msglastx = x;
 	g_msglasty = y;
 	g_msglastink = colorink;
 	g_msglastborder = colorborder;
+	g_msglastcaption = caption;
 
 	x*=8; y*=8;
 	GamePause(1);
 	DialogPush();
+	DialogSetCaption(caption);
 	DialogSetText("{c:0x"+(str "%x")colorink+"}"+text);
 	DialogSetColor(colorborder);
 	DialogFitAt(x,y);
@@ -47,7 +50,7 @@ func MessageNext( text, stepx, stepy )
 {
 	if(!?stepx) stepx = 1;
 	if(!?stepy) stepy = 1;
-	Message( g_msglastx+stepx, g_msglasty+stepy, text, g_msglastink, g_msglastborder );
+	Message( g_msglastx+stepx, g_msglasty+stepy, text, g_msglastink, g_msglastborder, g_msglastcaption );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -66,7 +69,7 @@ func MessagePop()
 /////////////////////////////////////////////////////////////////////////////////
 func Message0( x, y, text )
 {
-	Message( x, y, text, COLOR_WHITE, COLOR_RED );
+	Message( x, y, text, COLOR_WHITE, COLOR_RED, "" );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +80,7 @@ func Message0( x, y, text )
 /////////////////////////////////////////////////////////////////////////////////
 func Message1( x, y, text )
 {
-	Message( x, y, text, COLOR_MAGENTA, COLOR_GREEN );
+	Message( x, y, text, COLOR_WHITE, COLOR_GREEN, "Dizzy" );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -90,7 +93,7 @@ func Message1( x, y, text )
 func Message2( x, y, text, color )
 {
 	if(!?color) color = COLOR_WHITE;
-	Message( x, y, text, color, COLOR_GREEN );
+	Message( x, y, text, color, COLOR_GREEN, "" );
 }
 
 /////////////////////////////////////////////////////////////////////////////////

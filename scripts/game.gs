@@ -139,7 +139,7 @@ func BeginNewGame()
 	MusicPlay(MUSIC_DEFAULT);					// play default music
 
 	// just a hello message
-	Message(14,6,"HELLO WORLD!",COLOR_MAGENTA,COLOR_GREEN);
+	Message1(14,6,"HELLO WORLD!");
 	MessagePop();
 }
 

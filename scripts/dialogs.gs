@@ -3,6 +3,8 @@
 // Deals with basic dialog functions
 /////////////////////////////////////////////////////////////////////////////////
 
+str DLG_Caption;
+
 /////////////////////////////////////////////////////////////////////////////////
 // These dialog functions are used for easy work with the top dialog
 /////////////////////////////////////////////////////////////////////////////////
@@ -88,7 +90,26 @@ func DialogDraw( idx )
 	boxid = 3; // border tile
 
 	HudDrawTile( boxid, x-8,y-8,8,8, 	0,0,8,8, 0, 0 );
-	HudDrawTile( boxid, x,y-8,w,8, 		8,0,8,8, 0, 0 );
+
+	caption = "";
+	captionWidth = 0;
+	w1 = 0;
+	if (DLG_Caption!="")
+	{
+		caption = " " + DLG_Caption + " ";
+		captionWidth = HudGetTextWidth(caption);
+		w1 = (w - captionWidth)/2;
+		HudDrawTile( boxid, x,y-8,w1-8,8,   8,0,8,8, 0, 0 );
+		HudDrawTile( boxid, x+w1-8,y-8,8,8,   16,0,8,8, 0, 0 );
+		HudDrawTile( boxid, x+w1,y-8,captionWidth,8,   8,8,8,8, 0, 0 );
+		HudDrawTile( boxid, x+w-w1,y-8,8,8,   0,0,8,8, 0, 0 );
+		HudDrawTile( boxid, x+w-w1+8,y-8,w1,8,   8,0,8,8, 0, 0 );
+	}
+	else
+	{
+		HudDrawTile( boxid, x,y-8,w,8, 		8,0,8,8, 0, 0 );
+	}
+
 	HudDrawTile( boxid, x+w,y-8,8,8, 	16,0,8,8, 0, 0 );
 
 	HudDrawTile( boxid, x-8,y,8,h, 		0,8,8,8, 0, 0 );
@@ -101,10 +122,16 @@ func DialogDraw( idx )
 
 	fontid = DlgGet(idx,DLG_FONT);
 	HudFont(fontid);
+	HudColor( COLOR_WHITE );
+	if (DLG_Caption!="")
+	{
+		HudDrawText( fontid, x+w1, y-8, captionWidth, 8, caption, 0 );
+	}
 	HudDrawText( fontid, x, y+4, w, h, DlgGetText(idx), 0 );
 
 	dialogtype = DlgGet(idx,DLG_TYPE);
-	if (dialogtype == 1)
+
+	if (dialogtype == 1) // inventory
 	{
 		count = InventoryCount();
 		if(count>0)
@@ -287,9 +314,22 @@ func DialogQuestion( select )
 	if(select==0) 	text += "{f:1}YES{f:0}   NO";
 	else			text += "YES   {f:1}NO{f:0}";
 	DialogPush();
+	DialogSetCaption("");
 	DialogSetText(text);
 	DialogSetColor(COLOR_DIALOG);
 	DialogFitCenter();
+}
+
+func DialogSetType( id )
+{
+	idx=DlgCount()-1;
+	DlgSet(idx,DLG_TYPE,id);
+}
+
+func DialogSetCaption( caption )
+{
+	idx=DlgCount()-1;
+	DLG_Caption=caption;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
