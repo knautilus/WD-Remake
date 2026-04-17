@@ -114,6 +114,7 @@ func DialogDraw( idx )
 				dlg_idx = InventoryGet(i);
 
 				invid=ObjGet(dlg_idx,O_TILE);
+				invcol=ObjGet(dlg_idx,O_COLOR);
 				x1=ObjGet(dlg_idx,O_MAP);
 				y1=ObjGet(dlg_idx,O_MAP+1);
 				x2=ObjGet(dlg_idx,O_MAP+2);
@@ -124,6 +125,8 @@ func DialogDraw( idx )
 				h = 16;
 				w2 = x2-x1;
 				h2 = y2-y1;
+
+				HudColor(invcol);
 
 				HudDrawTile( invid, x+8, y+24+(i*24), w, h, x1, y1, w2, h2, flip, 0 );
 			}
