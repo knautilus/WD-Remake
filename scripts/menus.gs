@@ -454,56 +454,52 @@ func DialogInventory( select )
 	DialogPopAll(); // close all old dialogs (RunDialogSelect can handle only one)
 	
 	// construct text
-	text = "{a:center}YOU ARE CARRYING\n\n{c:0xff0000}";
+	text = "{c:0xffffffff}{a:center}YOU ARE CARRYING\n\n";
 	
 	// push elements names
 	count = InventoryCount();
 	if(count>0)
 	{
+		text += "{a:left}";
 		for(i=0;i<count;i++)
 		{
 			idx = InventoryGet(i);
+			text += "\n    ";
 			if(select==i) text += "{f:1}";
 			text += ObjGetName(idx);
 			if(select==i) text += "{f:0}";
-			text += "\n";
+			text += "\n\n";
 		}
 		height = 5+count;
 	}
 	else	
 	{
-		text += "{c:0xffffffff}N O T H I N G\n";
+		text += "N O T H I N G\n";
 		height = 5+1;
 	}
 	
 	if(select==count) text += "{f:1}";
-	text += "\nEXIT AND DON'T DROP";
+	text += "\n{a:center}EXIT AND DON'T DROP";
 	if(select==count) text += "{f:0}";
 	
 	// construct dialog
 	DialogPush();
 	DialogSetText(text);
-	DialogSetColor(COLOR_DIALOG);
-	//DialogFitCenter();
+	DialogSetColor(COLOR_CYAN);
 	// compute position considering the tooltip dialog
-	border = 16;
 	w = DialogTextW()+8; // add some space
 	h = DialogTextH()+8; // add some space
 	DialogSetSize(w,h);
 	x = (GameGet(G_ROOMW)-w)/2;
-	y = (GameGet(G_ROOMH)-h-40)/2; // tooltip dialog (40)
-	y2 = y+h+border;
+	y = (GameGet(G_ROOMH)-h)/2;
 	DialogSetPos(x,y);
+	DialogType(1);
+}
 
-	// tooltip dialog	
-	DialogPush();
-	DialogSetText("{c:0xff00ffff}CHOOSE ITEM TO\nUSE OR DROP");
-	DialogSetColor(0xffffffff);
-	w = DialogTextW()+8; // add some space
-	h = DialogTextH()+8; // add some space
-	DialogSetSize(w,h);
-	x = (GameGet(G_ROOMW)-w)/2;
-	DialogSetPos(x,y2);
+func DialogType( id )
+{
+	idx=DlgCount()-1;
+	DlgSet(idx,DLG_TYPE,id);
 }
 
 /////////////////////////////////////////////////////////////////////////////////

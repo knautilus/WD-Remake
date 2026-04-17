@@ -86,21 +86,49 @@ func DialogDraw( idx )
 	HudColor( DlgGet(idx,DLG_COLOR) );
 
 	boxid = 3; // border tile
-	HudDrawTile( boxid, x-16,y-16,16,16, 	0,0,16,16, 0, 0 );
-	HudDrawTile( boxid, x,y-16,w,16, 		16,0,8,16, 0, 0 );
-	HudDrawTile( boxid, x+w,y-16,16,16, 	24,0,16,16, 0, 0 );
 
-	HudDrawTile( boxid, x-16,y,16,h, 		0,16,16,8, 0, 0 );
-	HudDrawTile( boxid, x,y,w,h, 			16,16,8,8, 0, 0 );
-	HudDrawTile( boxid, x+w,y,16,h, 		24,16,16,8, 0, 0 );
+	HudDrawTile( boxid, x-8,y-8,8,8, 	0,0,8,8, 0, 0 );
+	HudDrawTile( boxid, x,y-8,w,8, 		8,0,8,8, 0, 0 );
+	HudDrawTile( boxid, x+w,y-8,8,8, 	16,0,8,8, 0, 0 );
+
+	HudDrawTile( boxid, x-8,y,8,h, 		0,8,8,8, 0, 0 );
+	HudDrawTile( boxid, x,y,w,h, 			8,8,8,8, 0, 0 );
+	HudDrawTile( boxid, x+w,y,8,h, 		16,8,8,8, 0, 0 );
 	
-	HudDrawTile( boxid, x-16,y+h,16,16, 	0,24,16,40, 0, 0 );
-	HudDrawTile( boxid, x,y+h,w,16, 		16,24,8,40, 0, 0 );
-	HudDrawTile( boxid, x+w,y+h,16,16, 	24,24,16,40, 0, 0 );
+	HudDrawTile( boxid, x-8,y+h,8,8, 	0,16,8,8, 0, 0 );
+	HudDrawTile( boxid, x,y+h,w,8, 		8,16,8,8, 0, 0 );
+	HudDrawTile( boxid, x+w,y+h,8,8, 	16,16,8,8, 0, 0 );
 
 	fontid = DlgGet(idx,DLG_FONT);
 	HudFont(fontid);
 	HudDrawText( fontid, x, y+4, w, h, DlgGetText(idx), 0 );
+
+	dialogtype = DlgGet(idx,DLG_TYPE);
+	if (dialogtype == 1)
+	{
+		count = InventoryCount();
+		if(count>0)
+		{
+			for(i=0;i<count;i++)
+			{
+				dlg_idx = InventoryGet(i);
+
+				invid=ObjGet(dlg_idx,O_TILE);
+				x1=ObjGet(dlg_idx,O_MAP);
+				y1=ObjGet(dlg_idx,O_MAP+1);
+				x2=ObjGet(dlg_idx,O_MAP+2);
+				y2=ObjGet(dlg_idx,O_MAP+3);
+
+				flip=ObjGet(dlg_idx,O_FLIP);
+				w = 16;
+				h = 16;
+				w2 = x2-x1;
+				h2 = y2-y1;
+
+				HudDrawTile( invid, x+8, y+24+(i*24), w, h, x1, y1, w2, h2, flip, 0 );
+			}
+		}
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////
