@@ -14,15 +14,10 @@
 #def MUSIC_C		3
 // ...
 
-#def FX_SUCCESS		1
-#def FX_STUN		2
-#def FX_DEATH		3
-#def FX_RESPAWN		4
-#def FX_COIN		5
-#def FX_HURT		6
-#def FX_JUMP		7
-#def FX_BEEP1		8
-#def FX_BEEP2		9
+#def FX_LIFEBAR		1
+#def FX_COIN		40
+#def FX_JUMP		41
+#def FX_RESPAWN		42
 // ...
 
 /////////////////////////////////////////////////////////////////////////////////

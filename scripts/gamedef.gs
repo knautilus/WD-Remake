@@ -9,6 +9,7 @@
 #def GAME_WEBSITE 		"http://www.yolkfolk.com/dizzyage"	// game's website (for the final dialog)
 #def GAME_ID			"DT080127"							// game's id text, used in saved games - change this when you release a new version, to prevent old saved games to be loaded.
 
+#def MAXLIFE			120
 #def MAXCREDITS			3		// max number of credits
 #def MAXCOINS			99		// max number of coins or diamonds to find (set it to the number of coins you added in your map)
 #def MAXINVENTORY		3		// max number of inventory items ( max 10 items )

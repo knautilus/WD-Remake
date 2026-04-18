@@ -67,6 +67,9 @@ func HandlerGameStart()
 	// player cfg
 	PlayerSet(P_LAYER, PLAYER_LAYER);
 	PlayerSet(P_DELAY,4);
+	PlayerSet(P_LIFE,1);
+	p_lifebardeduct = 0;
+	p_lifebar = MAXLIFE-1;
 
 	// inventory
 	InventoryClear();
@@ -101,6 +104,8 @@ func HandlerGameUpdate()
 
 	PlayerSet(P_SAFE,1); // suppose player is safe to store safe position
 	
+	PlayerLifeBar();
+
 	// update some particluar object(s) that need to be updated no matter in what room we are
 	// ...
 	
@@ -198,7 +203,7 @@ func HandlerCollision()
 	
 	if(ObjGet(idx,O_CLASS)==CLASS_HURT && mode!=0) // hurt objects
 	{
-		PlayerHurt(5);
+		PlayerHurt(DIZ_HURT);
 		if(PlayerGet(P_LIFE)==0)
 			PlayerSet(P_DEATH, ObjGet(idx,O_DEATH));
 		return;
@@ -418,7 +423,7 @@ func HandlerDrawHud()
 	
 	// lifebar
 	lifeid = 2; // life tile
-	w = 40*PlayerGet(P_LIFE)/100;
+	w = 40*PlayerGet(P_LIFE)/MAXLIFE;
 	h = 6;
 	HudDrawTile( lifeid, 48, 177, w, h, 0, 0, w, h, 0, 0 );
 

@@ -12,6 +12,7 @@
 #include "Data\\Scripts\\files.gs"
 #include "Data\\Scripts\\inventory.gs"
 #include "Data\\Scripts\\dialogs.gs"
+#include "Data\\Scripts\\lifebar.gs"
 #include "Data\\Scripts\\messages.gs"
 #include "Data\\Scripts\\player.gs"
 #include "Data\\Scripts\\movement.gs"

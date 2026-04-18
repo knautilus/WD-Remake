@@ -291,7 +291,6 @@ func PlayerPlayStun()
 /////////////////////////////////////////////////////////////////////////////////
 func PlayerPlayDead()
 {
-	SamplePlay(FX_DEATH);
 	PlayerPlayAnim(PTILE_DEAD);
 	PlayerLoseLife();
 }
@@ -302,7 +301,6 @@ func PlayerPlayDead()
 /////////////////////////////////////////////////////////////////////////////////
 func PlayerPlayDeadWater()
 {
-	SamplePlay(FX_DEATH);
 	PlayerSet( P_STATUS, STATUS_SCRIPTED );
 	PlayerSet( P_TILE, PlayerGet(P_COSTUME)+PTILE_DRAWN );
 	
@@ -358,9 +356,10 @@ func PlayerLoseLife()
 func PlayerRespawn()
 {
 	// respawn
-	SamplePlay(FX_RESPAWN);
 	PlayerSet(P_DEATH, 0);
-	PlayerSet(P_LIFE, 100);
+	PlayerSet(P_LIFE, 1);
+	p_lifebardeduct = 0;
+	p_lifebar = MAXLIFE-1;
 	PlayerSet(P_X, PlayerGet(P_XSAFE));
 	PlayerSet(P_Y, PlayerGet(P_YSAFE));
 	PlayerEnterIdle();
@@ -375,11 +374,16 @@ func PlayerRespawn()
 /////////////////////////////////////////////////////////////////////////////////
 func PlayerHurt( damage )
 {
-	DoRumble(6); // DoShake(2);
-	SamplePlay(FX_HURT);
-	life = PlayerGet(P_LIFE) - damage;
-	if(life<=0) life=0;
-	PlayerSet(P_LIFE,life);
+	DoRumble(6);
+	
+	p_lifebar = p_lifebar - p_lifebardeduct - damage;
+	
+	if (p_lifebar < 0)
+	{
+		p_lifebardeduct = -p_lifebar;
+		p_lifebar = 0;
+	}
+	
 	PlayerSet(P_SAFE,0); // not safe
 }
 

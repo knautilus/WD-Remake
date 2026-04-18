@@ -108,7 +108,6 @@ func DoPickupObject(idx)
 			return;
 		}
 		
-		SamplePlay(FX_BEEP1);
 		ObjSet(idx, O_DISABLE, 1); // disable object (picked up)
 		idx = OpenDialogInventory(1); // open inventory and don't select an item; return selected item or -1
 		if(idx!=-1) UseObject( idx ); // must use/drop something
@@ -134,17 +133,10 @@ func DoPickupObject(idx)
 	
 	if(class==CLASS_FOOD) // food gives energy
 	{
-		life = PlayerGet(P_LIFE);
-		if(life>=100) { OpenDialogMessage("MAYBE LATER..."); return; }
 		ObjSet(idx, O_DISABLE, 1); // make disabled (picked up)
-		SamplePlay(FX_COIN);
-		count = 0;
-		while(life<100 || count<10)
-		{
-			PlayerPlayAnimFrames(PTILE_EAT, {0,1} );
-			life+=10; if(life>100) life=100;
-			PlayerSet(P_LIFE,life);
-			count++;
+		p_lifebar= (MAXLIFE/3);
+		for(i=0;i<6;i++) {
+			PlayerPlayAnimFrames(PTILE_EAT, {0,1});
 		}
 		PlayerEnterIdle();
 	}
@@ -227,7 +219,6 @@ func DropObject( idx )
 /////////////////////////////////////////////////////////////////////////////////
 func DoDropObject( idx )
 {
-	SamplePlay(FX_BEEP2);
 	InventorySub(idx);
 	ObjSet(idx,O_DISABLE,0);
 	ObjSet(idx,O_X, PlayerGet(P_X)-ObjGet(idx,O_W)/2);

@@ -229,7 +229,6 @@ loop:
 		if(vol>100) vol=0;
 		gs_inisetint("dizzy.ini","AUDIO","volfx",vol);
 		SampleVolume(vol);
-		SamplePlay(FX_BEEP2);
 		goto loop;
 	}
 	else
@@ -475,12 +474,10 @@ func DialogInventory( select )
 			if(select==i) text += "{f:0}";
 			text += "\n\n";
 		}
-		height = 5+count;
 	}
 	else	
 	{
 		text += "N O T H I N G\n";
-		height = 5+1;
 	}
 	
 	if(select==count) text += "{f:1}";
