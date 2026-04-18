@@ -132,15 +132,30 @@ func LoadUserData( file )
 /////////////////////////////////////////////////////////////////////////////////
 func BeginNewGame()
 {
+	PlayerSetPos(PLAYER_BEGINX,PLAYER_BEGINY);	// set begin position
+	PlayerSet(P_LIFE,1);
+	PlayerSet(P_LIFEDEC, 0);
+	PlayerSet(P_LIFEINC, MAXLIFE-1);
+	PlayerSet(P_SCORE, 0);
+
 	GameSet(G_PAUSE,0);							// unpause the game
 	PlayerSet(P_DISABLE,0);						// enable player
-	PlayerSetPos(PLAYER_BEGINX,PLAYER_BEGINY);	// set begin position
 	MusicFade(0,1);								// set music fade options
 	MusicPlay(MUSIC_DEFAULT);					// play default music
 
 	// just a hello message
 	Message1(14,6,"HELLO WORLD!");
 	MessagePop();
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+// Add to games score
+/////////////////////////////////////////////////////////////////////////////////
+func AddScore( add )
+{
+	cur = PlayerGet(P_SCORE);
+	cur = cur + add;
+	PlayerSet(P_SCORE,cur);
 }
 
 /////////////////////////////////////////////////////////////////////////////////

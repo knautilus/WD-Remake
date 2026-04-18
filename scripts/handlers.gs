@@ -67,9 +67,6 @@ func HandlerGameStart()
 	// player cfg
 	PlayerSet(P_LAYER, PLAYER_LAYER);
 	PlayerSet(P_DELAY,4);
-	PlayerSet(P_LIFE,1);
-	PlayerSet(P_LIFEDEC, 0);
-	PlayerSet(P_LIFEINC, MAXLIFE-1);
 
 	// inventory
 	InventoryClear();
@@ -150,8 +147,16 @@ func HandlerGameAfterUpdate()
 func HandlerRoomOpen()
 {
 	// println("HANDLER ROOMOPEN");
-	fid = gs_fid( "OpenRoom_"+(str)GameGet(G_ROOMX)+"_"+(str)GameGet(G_ROOMY) );
+	roomx = GameGet(G_ROOMX);
+	roomy = GameGet(G_ROOMY);
+	fid = gs_fid( "OpenRoom_"+(str)roomx+"_"+(str)roomy );
 	if(fid!=-1) call(fid);
+	visited = RoomGet(roomx,roomy,R_VISITED);
+	if (visited == 0)
+	{
+		AddScore(SCORE_ROOM);
+		RoomSet(roomx,roomy,R_VISITED,1);
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -432,7 +437,7 @@ func HandlerDrawHud()
 	credits = PlayerGet(P_CREDITS);
 	if(credits>3) credits=3;
 	for(i=0;i<credits;i++) 
-		HudDrawText( fontid, 56+i*8,168,8,8, "@", 0 );
+		HudDrawText( fontid, 56+i*8,169,8,8, "@", 0 );
 
 	// inventory
 	emptyId = 7; // empty inventory slot
@@ -469,8 +474,13 @@ func HandlerDrawHud()
 	// coins
 	text = (str "%02i")PlayerGet(P_COINS);
 	w = HudGetTextWidth( text );
-	HudDrawText( fontid, 193-w/2,168,w,8, text, 0 );
-	
+	HudDrawText( fontid, 185,169,w,8, text, 0 );
+
+	// score
+	text = (str "%05i")PlayerGet(P_SCORE);
+	w = HudGetTextWidth( text );
+	HudDrawText( fontid, 169,177,w,8, text, 0 );
+
 	// title
 	rx = GameGet(G_ROOMX);
 	ry = GameGet(G_ROOMY);

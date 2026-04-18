@@ -57,11 +57,14 @@
 #def CLASS_LIFE		7			// those objects gives a credit when picked up.
 #def CLASS_WAYPOINT	8			// used for dummy waypoints (no automation implemented)
 
+// scores
+#def SCORE_ROOM		500
+
 // colors
 #def COLOR_BLACK	0xff000000
 #def COLOR_BLUE		0xff0000ff
 #def COLOR_RED		0xffff0000
-#def COLOR_MAGENTA	0xffff00ff	
+#def COLOR_MAGENTA	0xffff00ff
 #def COLOR_GREEN	0xff00ff00
 #def COLOR_CYAN		0xff00ffff
 #def COLOR_YELLOW	0xffffff00
@@ -85,7 +88,10 @@
 // player variables starting from P_USER=64 up to P_MAX=128
 #def P_LIFEINC		64
 #def P_LIFEDEC		65
+#def P_SCORE		66
 
 #def DLG_TYPE		10
 
+// room variables starting from 0 up to R_MAX=128
+#def R_VISITED		0
 /////////////////////////////////////////////////////////////////////////////////
