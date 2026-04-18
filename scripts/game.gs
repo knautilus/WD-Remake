@@ -53,6 +53,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(100),"Boots");
 	ObjSetName(ObjFind(101),"Yellow gate key");
 	ObjSetName(ObjFind(102),"Pair of scissors");
+	ObjSetName(ObjFind(103),"Door handle");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
