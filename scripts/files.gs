@@ -75,7 +75,7 @@ func LoadGame( file )
 	MusicFade(0,3);	
 	MusicPlay(music,musicpos);
 	GameCommand(CMD_REFRESH);
-	ObjPresentGather(); // refresh present list	
+	ObjPresentGather(); // refresh present list
 	SamplePlay(FX_RESPAWN);
 	OpenDialogMessage( "LOAD SUCCESSFUL!", COLOR_YELLOW );
 	return 1;

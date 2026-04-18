@@ -358,8 +358,8 @@ func PlayerRespawn()
 	// respawn
 	PlayerSet(P_DEATH, 0);
 	PlayerSet(P_LIFE, 1);
-	p_lifebardeduct = 0;
-	p_lifebar = MAXLIFE-1;
+	PlayerSet(P_LIFEDEC, 0);
+	PlayerSet(P_LIFEINC, MAXLIFE-1);
 	PlayerSet(P_X, PlayerGet(P_XSAFE));
 	PlayerSet(P_Y, PlayerGet(P_YSAFE));
 	PlayerEnterIdle();
@@ -375,15 +375,20 @@ func PlayerRespawn()
 func PlayerHurt( damage )
 {
 	DoRumble(6);
+
+	lifeinc = PlayerGet(P_LIFEINC);
+	lifedec = PlayerGet(P_LIFEDEC);
+
+	lifeinc = lifeinc - lifedec - damage;
 	
-	p_lifebar = p_lifebar - p_lifebardeduct - damage;
-	
-	if (p_lifebar < 0)
+	if (lifeinc < 0)
 	{
-		p_lifebardeduct = -p_lifebar;
-		p_lifebar = 0;
+		lifedec = -lifeinc;
+		lifeinc = 0;
 	}
 	
+	PlayerSet(P_LIFEINC, lifeinc);
+	PlayerSet(P_LIFEDEC, lifedec);
 	PlayerSet(P_SAFE,0); // not safe
 }
 

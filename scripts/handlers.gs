@@ -68,8 +68,8 @@ func HandlerGameStart()
 	PlayerSet(P_LAYER, PLAYER_LAYER);
 	PlayerSet(P_DELAY,4);
 	PlayerSet(P_LIFE,1);
-	p_lifebardeduct = 0;
-	p_lifebar = MAXLIFE-1;
+	PlayerSet(P_LIFEDEC, 0);
+	PlayerSet(P_LIFEINC, MAXLIFE-1);
 
 	// inventory
 	InventoryClear();
@@ -104,7 +104,7 @@ func HandlerGameUpdate()
 
 	PlayerSet(P_SAFE,1); // suppose player is safe to store safe position
 	
-	PlayerLifeBar();
+	PlayerLifeBarUpdate();
 
 	// update some particluar object(s) that need to be updated no matter in what room we are
 	// ...

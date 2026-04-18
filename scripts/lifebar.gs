@@ -1,53 +1,66 @@
-int p_lifebar
-int p_lifebardeduct
-
 // This function provides animation to the players lifebar
 // when being replenished
-func PlayerLifeBar() 
+func PlayerLifeBarUpdate() 
 {
-  // if the deduct has a value greater than 1 then deduct it from the players lifeforce
-  if (p_lifebardeduct >= 1)
-  	PlayerLifeBarDeduct();
+  lifeinc = PlayerGet(P_LIFEINC);
+  lifedec = PlayerGet(P_LIFEDEC);
 
-  // if the lifebar is set to 0 then no increase is needed so exit.
-  if (p_lifebar == 0)
-  	return;
+  // if the deduct has a value greater than 1 then deduct it from the players lifeforce
+  if (lifedec >= 1)
+  {
+    PlayerLifeBarDeduct();
+  }
+
+  // if the lifeinc is set to 0 then no increase is needed so exit.
+  if (lifeinc == 0)
+  {
+    return;
+  }
 
   l = PlayerGet(P_LIFE);
   if (l >= MAXLIFE)
   {
-  	p_lifebar = 0;
-  	return;
+    lifeinc = 0;
+    PlayerSet(P_LIFEINC, lifeinc);
+    return;
   }
   
   l += 1;
-  p_lifebar -= 1;
+  lifeinc -= 1;
   PlayerSet(P_LIFE,l);
   
-  if (p_lifebar <= 0)
-  	p_lifebar = 0;
-  	
+  if (lifeinc <= 0)
+  {
+    lifeinc = 0;
+  }
+
+  PlayerSet(P_LIFEINC, lifeinc);
   PlayLifeBarFX(l);
 }
 
 func PlayerLifeBarDeduct() 
 {
+  lifedec = PlayerGet(P_LIFEDEC); 
   l = PlayerGet(P_LIFE);
   
   if (l == 0)
   {
-  	p_lifebardeduct = 0;
-  	return;
+    lifedec = 0;
+    PlayerSet(P_LIFEDEC, lifedec);
+    return;
   }
   
   l -= 1;
-  p_lifebardeduct -= 1;
+  lifedec -= 1;
   
   PlayerSet(P_LIFE, l);
 
-  if (p_lifebardeduct <= 0)
-  	p_lifebardeduct=0;
-  	
+  if (lifedec <= 0)
+  {
+    lifedec=0;
+  }
+
+  PlayerSet(P_LIFEDEC, lifedec);
   PlayLifeBarFX(l);
 }
 

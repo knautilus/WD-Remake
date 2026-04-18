@@ -134,7 +134,7 @@ func DoPickupObject(idx)
 	if(class==CLASS_FOOD) // food gives energy
 	{
 		ObjSet(idx, O_DISABLE, 1); // make disabled (picked up)
-		p_lifebar= (MAXLIFE/3);
+		PlayerSet(P_LIFEINC, MAXLIFE/3);
 		for(i=0;i<6;i++) {
 			PlayerPlayAnimFrames(PTILE_EAT, {0,1});
 		}
