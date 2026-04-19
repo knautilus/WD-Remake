@@ -154,22 +154,58 @@ func BeginNewGame()
 /////////////////////////////////////////////////////////////////////////////////
 func AddScore( add )
 {
-	cur = PlayerGet(P_SCORE);
-	cur = cur + add;
-	PlayerSet(P_SCORE,cur);
+	score = PlayerGet(P_SCORE);
+	score += add;
+	PlayerSet(P_SCORE,score);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // Interactions
 /////////////////////////////////////////////////////////////////////////////////
 
+// Inside Dizzy's hut - the door
 func ActionObject_201()
 {
-	for(i=900;i<=954;i++)
+	handleIdx = ObjFind(103);
+	doorIdx = ObjFind(201);
+	doorStatus = ObjGet(doorIdx,O_STATUS);
+	if (doorStatus==1 || InventoryFind(handleIdx)!=-1)
 	{
-		itemIdx = BrushFind(i);
-		BrushSet(itemIdx, B_TILE, 309);
+		PlayerPlayAnimFrames(24,{0,1,2,3});
+		PlayerSetPos(864,1118);
+		PlayerEnterIdle();
+		if (doorStatus==0)
+		{
+			InventorySub(handleIdx);
+			for(i=900;i<=954;i++)
+			{
+				itemIdx = BrushFind(i);
+				BrushSet(itemIdx,B_TILE,309);
+			}
+			ObjSet(doorIdx,O_STATUS, 1);
+		}
 	}
 }
 
+// Outside Dizzy's hut - the door
+func ActionObject_202()
+{
+	PlayerPlayAnimFrames(24,{0,1,2,3});
+	PlayerSetPos(896,982);
+	PlayerEnterIdle();
+}
+
+// Outside Dizzy's hut - first dialog
+func CollideObject_202_1( idx )
+{
+	doorIdx = ObjFind(202);
+	doorStatus = ObjGet(doorIdx,O_STATUS);
+	if (doorStatus==0)
+	{
+		WaitFrames(2);
+		Message1(14,6,"HELLO WORLD!");
+		MessagePop();
+		ObjSet(doorIdx,O_STATUS,1);
+	}
+}
 /////////////////////////////////////////////////////////////////////////////////

@@ -149,14 +149,14 @@ func HandlerRoomOpen()
 	// println("HANDLER ROOMOPEN");
 	roomx = GameGet(G_ROOMX);
 	roomy = GameGet(G_ROOMY);
-	fid = gs_fid( "OpenRoom_"+(str)roomx+"_"+(str)roomy );
-	if(fid!=-1) call(fid);
 	visited = RoomGet(roomx,roomy,R_VISITED);
 	if (visited == 0)
 	{
 		AddScore(SCORE_ROOM);
 		RoomSet(roomx,roomy,R_VISITED,1);
 	}
+	fid = gs_fid( "OpenRoom_"+(str)roomx+"_"+(str)roomy );
+	if(fid!=-1) call(fid);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
