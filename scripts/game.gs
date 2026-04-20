@@ -143,10 +143,6 @@ func BeginNewGame()
 	PlayerSet(P_DISABLE,0);						// enable player
 	MusicFade(0,1);								// set music fade options
 	MusicPlay(MUSIC_DEFAULT);					// play default music
-
-	// just a hello message
-	Message1(14,6,"HELLO WORLD!");
-	MessagePop();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -172,7 +168,7 @@ func ActionObject_201()
 	if (doorStatus==1 || InventoryFind(handleIdx)!=-1)
 	{
 		PlayerPlayAnimFrames(24,{0,1,2,3});
-		PlayerSetPos(864,1118);
+		PlayerSetPos(864,1117);
 		PlayerEnterIdle();
 		if (doorStatus==0)
 		{
@@ -182,8 +178,30 @@ func ActionObject_201()
 				itemIdx = BrushFind(i);
 				BrushSet(itemIdx,B_TILE,309);
 			}
-			ObjSet(doorIdx,O_STATUS, 1);
+			ObjSet(doorIdx,O_STATUS,1);
+			pogieIdx = ObjFind(203);
+			ObjSet(pogieIdx,O_DISABLE,1);
 		}
+	}
+}
+
+// Inside Dizzy's hut - Pogie
+func ActionObject_203()
+{
+	pogieIdx = ObjFind(203);
+	pogieStatus = ObjGet(pogieIdx,O_STATUS);
+	if (pogieStatus==0)
+	{
+		Message1(5,4,"Gosh Pogie,\nthat really shook\nthe hut, are you ok?");
+		MessagePop();
+		Message2(11,6,"Squeak.");
+		MessagePop();
+		ObjSet(pogieIdx,O_STATUS,1);
+	}
+	else
+	{
+		Message2(11,6,"Squeak.");
+		MessagePop();
 	}
 }
 
@@ -203,7 +221,17 @@ func CollideObject_202_1( idx )
 	if (doorStatus==0)
 	{
 		WaitFrames(2);
-		Message1(14,6,"HELLO WORLD!");
+		Message2(5,4,"Oh my! Oh my! You've\nlanded on the wicked\nwitch of the east!");
+		MessagePop();
+		Message1(9,6,"Who are you?");
+		MessagePop();
+		Message2(1,4,"I'm Boq the Munchkin mayor.\nYou appear to have crushed\nthe witch! Who are you?");
+		MessagePop();
+		Message1(8,6,"I'm Dizzy,\nbut where am I?");
+		MessagePop();
+		Message2(1,4,"You are in Munchkin village,\nin the wonderful\nworld of Oz.");
+		MessagePop();
+		Message1(4,5,"Oh... It's sooo colourful,\nin a kind of attributed\nlow resolution, limited\ncolour palette sort\nof style!");
 		MessagePop();
 		ObjSet(doorIdx,O_STATUS,1);
 	}

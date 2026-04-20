@@ -87,13 +87,13 @@ func Message1( x, y, text )
 // IN: int; x; horizontal coordinate in characters, multiple of 8 pixels
 // IN: int; y; vertical coordinate in characters, multiple of 8 pixels
 // IN: str; text; message text
-// [IN]: int; color=COLOR_WHITE; text color
+// [IN]: int; bordercolor=COLOR_WHITE; border color
 // quick call for Message() with other characters color settings
 /////////////////////////////////////////////////////////////////////////////////
-func Message2( x, y, text, color )
+func Message2( x, y, text, bordercolor )
 {
-	if(!?color) color = COLOR_WHITE;
-	Message( x, y, text, color, COLOR_GREEN, "" );
+	if(!?bordercolor) bordercolor = COLOR_CYAN;
+	Message( x, y, text, COLOR_WHITE, bordercolor, "" );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
