@@ -213,14 +213,14 @@ func ActionObject_202()
 	PlayerEnterIdle();
 }
 
-// Outside Dizzy's hut - first dialog
+// Outside Dizzy's hut - Mayor first dialog
 func CollideObject_202_1( idx )
 {
 	doorIdx = ObjFind(202);
 	doorStatus = ObjGet(doorIdx,O_STATUS);
 	if (doorStatus==0)
 	{
-		WaitFrames(2);
+		WaitFrames(8);
 		Message2(5,4,"Oh my! Oh my! You've\nlanded on the wicked\nwitch of the east!");
 		MessagePop();
 		Message1(9,6,"Who are you?");
@@ -235,5 +235,50 @@ func CollideObject_202_1( idx )
 		MessagePop();
 		ObjSet(doorIdx,O_STATUS,1);
 	}
+}
+
+// Outside Dizzy's hut - Daisy dialog
+func CollideObject_202_0( idx )
+{
+	doorIdx = ObjFind(202);
+	doorStatus = ObjGet(doorIdx,O_STATUS);
+	if (doorStatus==1)
+	{
+		daisyIdx = ObjFind(205);
+		smokeIdx = ObjFind(206);
+
+		ObjSet(smokeIdx, O_DISABLE, 0);
+		ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
+		ObjSet(smokeIdx, O_DISABLE, 1);
+
+		ObjSet(daisyIdx, O_DISABLE, 0);
+		ObjPlayAnimFrames( daisyIdx, {0,1,2,3,2,1} );
+		Message2(5,4,"Quickly, take her boots.\nThey'll protect you.");
+		MessagePop();
+
+		ObjSet(smokeIdx, O_DISABLE, 0);
+		ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
+		ObjSet(smokeIdx, O_DISABLE, 1);
+		ObjSet(daisyIdx, O_DISABLE, 1);
+		
+		ObjSet(doorIdx,O_STATUS,2);
+	}
+}
+
+// Boots
+func ActionObject_100()
+{
+	bootsIdx = ObjFind(100);
+	ObjSet(bootsIdx, O_DISABLE, 1);
+	Message1(1,5,"Nice! Strangely they fit\nperfectly. Who kney I had\nsimilar feet to a witch!");
+	MessagePop();
+	Message2(7,4,"And they'll keep\nyou safe too!");
+	MessagePop();
+	Message1(9,5,"Safe?");
+	MessagePop();
+	Message2(0,1,"Oh yes! When her sister,\nthe wicked witch of the west\nfinds out what you did,\nshe'll be furious!");
+	MessagePop();
+	Message1(3,5,"That doesn't sound good!");
+	MessagePop();
 }
 /////////////////////////////////////////////////////////////////////////////////
