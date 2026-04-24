@@ -240,6 +240,11 @@ func CollideObject_202_1( idx )
 // Outside Dizzy's hut - Daisy dialog
 func CollideObject_202_0( idx )
 {
+	if (GameGet(G_ROOMX) != 3 || GameGet(G_ROOMY) != 7)
+	{
+		return;
+	}
+
 	doorIdx = ObjFind(202);
 	doorStatus = ObjGet(doorIdx,O_STATUS);
 	if (doorStatus==1)
@@ -279,6 +284,21 @@ func ActionObject_100()
 	Message2(0,1,"Oh yes! When her sister,\nthe wicked witch of the west\nfinds out what you did,\nshe'll be furious!");
 	MessagePop();
 	Message1(3,5,"That doesn't sound good!");
+	MessagePop();
+}
+
+// Pogie walking
+func UpdateRoom_3_7()
+{
+	AIUpdateTrain(ObjFind(207));
+}
+
+// Outside Dizzy's hut - Pogie
+func ActionObject_207()
+{
+	Message1(6,4,"Don't worry Pogie,\nI'll keep you safe.");
+	MessagePop();
+	Message2(8,6,"Squeak! Squeak...");
 	MessagePop();
 }
 /////////////////////////////////////////////////////////////////////////////////

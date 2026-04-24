@@ -164,7 +164,7 @@ func ObjPlayAnim( idx )
 	ObjSet( idx, O_FRAME, 0 );
 	ObjSet( idx, O_ANIM, 1 );
 	tileidx = TileFind( ObjGet(idx, O_TILE) );
-	frames = TileGet( tileidx, TILE_FRAMES ) * AnimFrameStep; //ObjGet( idx, O_DELAY );
+	frames = TileGet( tileidx, TILE_FRAMES ) * ObjGet( idx, O_DELAY );
 	WaitFrames(frames);
 }
 
@@ -177,7 +177,7 @@ func ObjPlayAnim( idx )
 func ObjPlayAnimFrames( idx, frames )
 {
 	ObjSet( idx, O_ANIM, 0 );
-	delay = AnimFrameStep; //ObjGet( idx, O_DELAY );
+	delay = ObjGet( idx, O_DELAY );
 	for(i=0;i<sizeof(frames);i++)
 	{
 		ObjSet( idx, O_FRAME, frames[i] );

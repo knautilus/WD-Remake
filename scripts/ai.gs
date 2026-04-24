@@ -6,7 +6,7 @@
 // Users can add more AI functions for the characters or devices in their game.
 /////////////////////////////////////////////////////////////////////////////////
 
-#def O_WAYPOINTSPEED	32		// speed value for class waypoint, used in AIUpdateTrain()
+#def O_WAYPOINTMOVEDELAY	32		// speed value for class waypoint, used in AIUpdateTrain()
 #def O_WAYPOINTFLIP		33		// flip value for class waypoint, used in AIUpdateTrain()
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -14,29 +14,28 @@
 // Train AI
 // Those are objects that move from a waypoint to another.
 // Can be used for elevators, moving platforms or a walking creature, like a rat.
-// Uses a target waypoint from where it takes speed (O_WAYPOINTSPEED) and flip (O_WAYPOINTFLIP).
+// Uses a target waypoint from where it takes delay (O_WAYPOINTMOVEDELAY) and flip (O_WAYPOINTFLIP).
 // When target waypoint is reached, it gets a new target from the waypoint.
 // O_TARGET = id of the current target waypoint
 // O_STATUS = enable state, 1=moves, 0=stays
 // Waypoint object:
-// O_USER = speed value (O_WAYPOINTSPEED)
+// O_USER = delay value (O_WAYPOINTMOVEDELAY)
 // O_USER+1 = flip value (O_WAYPOINTFLIP)
 /////////////////////////////////////////////////////////////////////////////////
 func AIUpdateTrain( idx )
 {
 	if(idx==-1) return;
 	if(ObjGet(idx,O_DISABLE)) return;
-	if(!IsUpdate(ObjGet(idx,O_DELAY))) return;
 	if(ObjGet(idx,O_STATUS)!=1) return;
 	id2 = ObjGet(idx,O_TARGET);
 	if(id2==0) return;
 	idx2 = ObjFind(id2);
 	if(idx2==-1) return;
-	speed = ObjGet(idx2,O_WAYPOINTSPEED);
+	if(!IsUpdate(ObjGet(idx2,O_WAYPOINTMOVEDELAY))) return;
+	speed = 1;
 	flip = ObjGet(idx2,O_WAYPOINTFLIP);
 	x2 = ObjGet(idx2,O_X);
 	y2 = ObjGet(idx2,O_Y);
-	
 	x = ObjGet(idx,O_X);
 	y = ObjGet(idx,O_Y);
 	ObjSet(idx,O_FLIP,flip);
@@ -46,9 +45,9 @@ func AIUpdateTrain( idx )
 	if(y<y2) { y+=speed; if(y>y2) y=y2; }
 	if(y>y2) { y-=speed; if(y<y2) y=y2; }
 	if(x==x2 && y==y2) // reached waypoint, change target
-	{		
+	{
 		target = ObjGet(idx2,O_TARGET);
-		ObjSet(idx,O_TARGET,target);		
+		ObjSet(idx,O_TARGET,target);
 	}
 	
 	ObjSet(idx,O_X,x);
