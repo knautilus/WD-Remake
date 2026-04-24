@@ -3,13 +3,13 @@
 // Custom player movement
 /////////////////////////////////////////////////////////////////////////////////
 
-#def CM_STEPX			4			// move step x
-#def CM_STEPY			4			// move step y; used in adjustments
-#def CM_STEPYMAX		7			// move step y; used in jumps and falls
+#def CM_STEPX			1			// move step x
+#def CM_STEPY			2			// move step y; used in adjustments
+#def CM_STEPYMAX		3			// move step y; used in jumps and falls
 #def CM_BOXW			16			// collision box width
 #def CM_BOXH			20			// collision box height
-
-func MIN(a,b) { return (a<b)?a:b; }
+#def CM_DEFPOW			0x0220
+#def CM_POWSTEP			0x12
 
 /////////////////////////////////////////////////////////////////////////////////
 // Custom Move - main update function
@@ -53,7 +53,7 @@ func CM_Update()
 			{
 				CM_EnterFall();
 				PlayerSet(P_Y,PlayerGet(P_Y)+1); 
-				PlayerSet(P_POW,PlayerGet(P_POW)+1); // force one step down (DIZZYMATCH)
+				PlayerSet(P_POW,PlayerGet(P_POW)+CM_POWSTEP); // force one step down (DIZZYMATCH)
 			}
 		}
 		
@@ -102,6 +102,7 @@ func CM_EnterJump( dir, pow )
 	PlayerSet(P_STATUS, STATUS_JUMP); 
 	PlayerSet(P_DIR, dir);
 	PlayerSet(P_POW, pow);
+	PlayerSet(P_FPOW, 0);
 	PlayerSet(P_FLIP, (PlayerGet(P_FLIP) & FLIPY) | (dir==-1));
 
 	costume = PlayerGet(P_COSTUME);
@@ -121,7 +122,7 @@ func CM_EnterJump( dir, pow )
 func CM_EnterFall()
 {
 	PlayerSet(P_STATUS, STATUS_FALL);
-	PlayerSet(P_POW, 1);
+	PlayerSet(P_POW, CM_POWSTEP);
 	// don't change tile and frame
 }
 
@@ -191,7 +192,11 @@ func CM_EnterKeyState()
 		ScrSetHandlerData(0,-1); // send no material
 		ScrSetHandlerData(1,0);  // clean return for safety
 		HandlerJump();
-		pow = ScrGetHandlerData(1); // receive power
+		//pow = ScrGetHandlerData(1); // receive power
+
+		pow = CM_DEFPOW;
+		PlayerSet(P_FRAME_CTR, 0);
+
 		if(pow>0) CM_EnterJump(dir,pow); // 7 would be the default jump power
 	}
 	else
@@ -211,7 +216,7 @@ func CM_EnterKeyState()
 
 func CM_UpdateIdle()
 {
-	PlayerSet(P_FRAME,PlayerGet(P_FRAME)+1);
+	UpdatePlayerFrame();
 }
 
 func CM_UpdateWalk()
@@ -219,7 +224,7 @@ func CM_UpdateWalk()
 	if( CM_CheckWalkX() )
 		PlayerSet(P_X, PlayerGet(P_X) + PlayerGet(P_DIR)*CM_STEPX);
 
-	PlayerSet(P_FRAME,PlayerGet(P_FRAME)+1);
+	UpdatePlayerFrame();
 }
 
 func CM_UpdateJump()
@@ -228,14 +233,25 @@ func CM_UpdateJump()
 		PlayerSet(P_X, PlayerGet(P_X) + PlayerGet(P_DIR) * CM_STEPX);
 
 	pow = PlayerGet(P_POW);
-	step = MIN(pow+1,CM_STEPYMAX);
+	fpow = PlayerGet(P_FPOW);
+
+	step = (pow >> 8) + (fpow >> 8);
+
+	fpow = (pow & 0xFF) + (fpow & 0xFF);
+
+	step = MIN(step, CM_STEPYMAX);
+
 	step = CM_CheckJumpY(step);
 
 	PlayerSet(P_Y, PlayerGet(P_Y)-step);
-	pow--;
-	PlayerSet(P_POW,pow);
 
-	PlayerSet(P_FRAME,PlayerGet(P_FRAME)+1);
+	pow -= CM_POWSTEP;
+	PlayerSet(P_POW,pow);
+	PlayerSet(P_FPOW,fpow);
+
+	//println("Step = ", step, ", Fpow = ", fpow, ", Pow = ", pow);
+
+	UpdatePlayerFrame();
 
 	if( pow< 0 ) // done jumping - see where to go idle or fall
 	{
@@ -252,12 +268,24 @@ func CM_UpdateFall()
 	if( CM_CheckFallX() )
 		PlayerSet(P_X, PlayerGet(P_X) + PlayerGet(P_DIR)*CM_STEPX);
 
+	UpdatePlayerFrame();	
+
 	pow = PlayerGet(P_POW);
-	step = MIN(pow+1,CM_STEPYMAX);
+	fpow = PlayerGet(P_FPOW);
+	dir = PlayerGet(P_DIR);
+	costume = PlayerGet(P_COSTUME);
+
+	step = (pow >> 8) + (fpow >> 8);
+
+	fpow = (pow & 0xFF) + (fpow & 0xFF);
+
+	step = MIN(step, CM_STEPYMAX);
+
 	step2 = CM_CheckFallY(step);
 	PlayerSet(P_Y, PlayerGet(P_Y)+step2);
 
-	PlayerSet(P_FRAME, PlayerGet(P_FRAME)+1); // keep last tile
+	//println("Step = ", step2, ", Fpow = ", fpow, ", Pow = ", pow);
+
 	PlayerSet(P_STUNLEVEL, PlayerGet(P_STUNLEVEL)+1);
 
 	// stopping fall if fall step was reduced
@@ -272,8 +300,9 @@ func CM_UpdateFall()
 	}
 	else
 	{
-		pow++;
-		PlayerSet(P_POW,pow);
+		pow += CM_POWSTEP;
+		PlayerSet(P_POW, pow);
+		PlayerSet(P_FPOW, fpow);
 	}
 }
 
@@ -407,7 +436,7 @@ func CM_CheckCollidersSnap()
 /////////////////////////////////////////////////////////////////////////////////
 
 // return clamped and animated frame
-func  CM_ComputeFrame( frame, framecount, anim )
+func CM_ComputeFrame( frame, framecount, anim )
 {
 	if( anim==1 ) // play
 	{
@@ -426,6 +455,23 @@ func  CM_ComputeFrame( frame, framecount, anim )
 			frame = 0;
 	}
 	return frame;
+}
+
+func UpdatePlayerFrame()
+{
+	frameCounter = PlayerGet(P_FRAME_CTR);
+	frame = PlayerGet(P_FRAME);
+	
+	frameCounter++;
+
+	if (frameCounter >= AnimFrameStep)
+	{
+		frame++;
+		PlayerSet(P_FRAME, frame);
+		frameCounter = 0;
+	}
+
+	PlayerSet(P_FRAME_CTR, frameCounter);
 }
 
 /////////////////////////////////////////////////////////////////////////////////

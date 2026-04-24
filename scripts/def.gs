@@ -5,7 +5,7 @@
 #def GAME_SCRW		256			// screen's width (fixed by engine to Z80 screen size)
 #def GAME_SCRH		192			// screen's height (fixed by engine to Z80 screen size)
 #def AIR_LEVEL		100			// player's air critical level
-#def STUN_LEVEL		20			// player's stun critical level
+#def STUN_LEVEL		200			// player's stun critical level
 #def DIZ_HURT		4			// default hurt level for "hurt" materials
 #def WINDPOW		2			// default wind power
 #def DIZ_POW		7			// player's jump power (for default movement)
@@ -15,6 +15,7 @@
 #def FLIPX			1			// flip x (bit value)
 #def FLIPY			2			// flip y (bit value)
 #def FLIPR			4			// flip rotate (bit value)
+#def AnimFrameStep	4			// update animation every 4th frame
 
 #def PTILE_IDLE		10			// default player's idle tile id
 #def PTILE_WALK		11			// default player's walk tile id
@@ -89,6 +90,9 @@
 #def P_LIFEINC		64
 #def P_LIFEDEC		65
 #def P_SCORE		66
+
+#def P_FRAME_CTR	67
+#def P_FPOW		68
 
 #def DLG_TYPE		10
 

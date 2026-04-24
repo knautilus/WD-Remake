@@ -65,7 +65,17 @@ func DialogSetText( text )		{ idx=DlgCount()-1; DlgSetText(idx,text); }
 // OUT: int; dialog width in pixels
 // Get width of the topmost dialog
 /////////////////////////////////////////////////////////////////////////////////
-func DialogTextW()				{ idx=DlgCount()-1; HudFont(DlgGet(idx,DLG_FONT)); return HudGetTextWidth(DlgGetText(idx)); }
+func DialogTextW()
+{
+	idx=DlgCount()-1;
+	HudFont(DlgGet(idx,DLG_FONT));
+	captionWidth = 0;
+	if (DLG_Caption != "")
+	{
+		captionWidth = HudGetTextWidth(DLG_Caption) + 32;
+	}
+	return MAX(HudGetTextWidth(DlgGetText(idx)), captionWidth);
+}
 
 /////////////////////////////////////////////////////////////////////////////////
 // OUT: int; dialog height in pixels

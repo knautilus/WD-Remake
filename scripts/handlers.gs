@@ -60,13 +60,13 @@ func HandlerGameStart()
 	GameSet(G_VIEWY,0);
 	GameSet(G_MAPCOLOR,0xff000000);
 	GameSet(G_BORDERCOLOR,0xff000000);
-	GameSet(G_FPS,48);
+	GameSet(G_FPS,50);
 	GameSet(G_FFPERIOD,50);
 	GameSet(G_PAUSE,1); // start paused
 
 	// player cfg
 	PlayerSet(P_LAYER, PLAYER_LAYER);
-	PlayerSet(P_DELAY,4);
+	PlayerSet(P_DELAY,1);
 
 	// inventory
 	InventoryClear();

@@ -243,7 +243,7 @@ func PlayerPlayAnim( tile )
 	PlayerSet( P_ANIM, 1 );
 	idx = TileFind( tile );
 	frames = TileGet( idx, TILE_FRAMES ) * PlayerGet( P_DELAY );
-	WaitFrames(frames);
+	WaitFrames(frames * AnimFrameStep);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -266,7 +266,7 @@ func PlayerPlayAnimFrames( tile, frames, breakdead )
 	{
 		if(breakdead && PlayerGet(P_LIFE)==0) break;
 		PlayerSet( P_FRAME, frames[i] );
-		WaitFrames(delay);
+		WaitFrames(delay * AnimFrameStep);
 	}
 }
 
