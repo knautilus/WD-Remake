@@ -301,4 +301,34 @@ func ActionObject_207()
 	Message2(8,6,"Squeak! Squeak...");
 	MessagePop();
 }
+
+// Outside Munchkin hut - the door
+func ActionObject_214()
+{
+	PlayerPlayAnimFrames(24,{0,1,2,3});
+	PlayerSetPos(1182,990);
+	PlayerEnterIdle();
+}
+
+// Inside Munchkin hut - the door
+func ActionObject_215()
+{
+	PlayerPlayAnimFrames(24,{0,1,2,3});
+	PlayerSetPos(1094,1125);
+	PlayerEnterIdle();
+}
+
+// Inside Munchkin hut - villager 1
+func ActionObject_216()
+{
+	Message2(14,6,"Hi!");
+	MessagePop();
+}
+
+// Inside Munchkin hut - villager 2
+func ActionObject_217()
+{
+	Message2(14,6,"Hi!");
+	MessagePop();
+}
 /////////////////////////////////////////////////////////////////////////////////
