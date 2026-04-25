@@ -289,6 +289,7 @@ func OpenDialogMessage( text, color )
 	if(!?color) color = COLOR_DIALOG;
 	GamePause(1);
 	DialogPush();
+	DialogSetCaption("");
 	DialogSetText(text);
 	DialogSetColor(color);
 	DialogFitCenter();

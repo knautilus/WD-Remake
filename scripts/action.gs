@@ -121,20 +121,21 @@ func DoPickupObject(idx)
 		ObjSet(idx, O_DISABLE, 1); // make disabled (picked up)
 		PlayerSet(P_COINS,coins); // store coins counter
 		SamplePlay(FX_COIN);
-		
+		AddScore(SCORE_COIN);
 		// check if found them all - edit these messages
-		if( coins==MAXCOINS )
-			OpenDialogMessage("YOU HAVE FOUND\nALL THE COINS");
-		else
-			OpenDialogMessage("YOU HAVE FOUND\nA COIN");
+		//if( coins==MAXCOINS )
+		//	OpenDialogMessage("YOU HAVE FOUND\nALL THE COINS");
+		//else
+		OpenDialogMessage("{c:0xffff00ff}Well done!\n\n{c:0xffffff00}You found\na coinstar!");
 	}
 	
-	else	
+	else
 	
 	if(class==CLASS_FOOD) // food gives energy
 	{
 		ObjSet(idx, O_DISABLE, 1); // make disabled (picked up)
 		PlayerSet(P_LIFEINC, MAXLIFE/3);
+		AddScore(SCORE_FOOD);
 		for(i=0;i<6;i++) {
 			PlayerPlayAnimFrames(PTILE_EAT, {0,1});
 		}

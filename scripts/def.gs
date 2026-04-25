@@ -60,6 +60,8 @@
 
 // scores
 #def SCORE_ROOM		500
+#def SCORE_COIN		250
+#def SCORE_FOOD		100
 
 // colors
 #def COLOR_BLACK	0xff000000
@@ -70,7 +72,7 @@
 #def COLOR_CYAN		0xff00ffff
 #def COLOR_YELLOW	0xffffff00
 #def COLOR_WHITE	0xffffffff
-#def COLOR_DIALOG	0xff00ff00	// dialog default border color
+#def COLOR_DIALOG	0xff00ffff	// dialog default border color
 
 // global variables starting from G_USER=64 up to G_MAX=256
 #def G_SHAKE		64			// shake frames counter
