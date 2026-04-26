@@ -258,7 +258,7 @@ func HandlerJump()
 	{
 		// if stunned, refuse jump
 		if( PlayerGet(P_STUNLEVEL)>=STUN_LEVEL ) { ScrSetHandlerData(1,0); return; }
-		pow = DIZ_POW; // default jump
+		pow = CM_DEFPOW; // default jump
 	}
 	else
 	if( mat == MAT_JUMPFIX ) // fixed jump

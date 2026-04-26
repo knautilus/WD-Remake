@@ -192,9 +192,8 @@ func CM_EnterKeyState()
 		ScrSetHandlerData(0,-1); // send no material
 		ScrSetHandlerData(1,0);  // clean return for safety
 		HandlerJump();
-		//pow = ScrGetHandlerData(1); // receive power
+		pow = ScrGetHandlerData(1); // receive power
 
-		pow = CM_DEFPOW;
 		PlayerSet(P_FRAME_CTR, 0);
 
 		if(pow>0) CM_EnterJump(dir,pow); // 7 would be the default jump power
