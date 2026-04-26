@@ -167,7 +167,7 @@ func ActionObject_201()
 	doorStatus = ObjGet(doorIdx,O_STATUS);
 	if (doorStatus==1 || InventoryFind(handleIdx)!=-1)
 	{
-		PlayerPlayAnimFrames(24,{0,1,2,3});
+		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
 		PlayerSetPos(864,1117);
 		PlayerEnterIdle();
 		if (doorStatus==0)
@@ -208,7 +208,7 @@ func ActionObject_203()
 // Outside Dizzy's hut - the door
 func ActionObject_202()
 {
-	PlayerPlayAnimFrames(24,{0,1,2,3});
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
 	PlayerSetPos(896,982);
 	PlayerEnterIdle();
 }
@@ -305,7 +305,7 @@ func ActionObject_207()
 // Outside Munchkin hut - the door
 func ActionObject_214()
 {
-	PlayerPlayAnimFrames(24,{0,1,2,3});
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
 	PlayerSetPos(1182,990);
 	PlayerEnterIdle();
 }
@@ -313,7 +313,7 @@ func ActionObject_214()
 // Inside Munchkin hut - the door
 func ActionObject_215()
 {
-	PlayerPlayAnimFrames(24,{0,1,2,3});
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
 	PlayerSetPos(1094,1125);
 	PlayerEnterIdle();
 }
