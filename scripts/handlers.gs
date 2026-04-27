@@ -26,7 +26,6 @@ func HandlerGameInit()
 	MaterialSetDensity( MAT_BLOCK,		MATD_HARD );
 	MaterialSetDensity( MAT_JUMPFIX,	MATD_JUMP );
 	MaterialSetDensity( MAT_JUMPPRO,	MATD_JUMP );
-	MaterialSetDensity( MAT_LADDER,		MATD_VOID );
 	
 	MaterialSetColor( MAT_AIR,			0xFF000000 );
 	MaterialSetColor( MAT_WATER,		0xFF0060FF );
@@ -38,7 +37,6 @@ func HandlerGameInit()
 	MaterialSetColor( MAT_BLOCK,		0xFF006000 );
 	MaterialSetColor( MAT_JUMPFIX,		0xFF008000 );
 	MaterialSetColor( MAT_JUMPPRO,		0xFF00B000 );
-	MaterialSetColor( MAT_LADDER,		0xFFC8C800 );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
