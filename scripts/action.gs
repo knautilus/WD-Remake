@@ -136,9 +136,7 @@ func DoPickupObject(idx)
 		ObjSet(idx, O_DISABLE, 1); // make disabled (picked up)
 		PlayerSet(P_LIFEINC, MAXLIFE/3);
 		AddScore(SCORE_FOOD);
-		for(i=0;i<6;i++) {
-			PlayerPlayAnimFrames(PTILE_EAT, {0,1});
-		}
+		PlayerPlayAnimFrames(PTILE_EAT, {0,1,2,3,2,3,2,3,2,3});
 		PlayerEnterIdle();
 	}
 	

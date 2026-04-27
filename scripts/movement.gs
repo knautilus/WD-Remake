@@ -13,6 +13,7 @@
 
 #def STATUS_CLIMB		6
 #def STATUS_CLIMBIDLE	7
+#def STATUS_SIT			8
 
 /////////////////////////////////////////////////////////////////////////////////
 // Custom Move - main update function
@@ -24,7 +25,8 @@ func CM_Update()
 
 	// input status
 	if( status==STATUS_IDLE || status==STATUS_WALK
-		|| status==STATUS_CLIMBIDLE || status==STATUS_CLIMB )
+		|| status==STATUS_CLIMBIDLE || status==STATUS_CLIMB
+		|| status==STATUS_SIT )
 	{
 		CM_EnterKeyState();
 		status = PlayerGet(P_STATUS); // re-read status
@@ -194,7 +196,7 @@ func CM_EnterClimb( dirx, diry )
 	PlayerSet(P_POW, 0);
 	PlayerSet(P_TILEWALK, PTILE_CLIMB);
 
-	tile = PlayerGet(P_COSTUME)+PlayerGet(P_TILEWALK);
+	tile = PlayerGet(P_COSTUME)+PTILE_CLIMB;
 	if( PlayerGet(P_TILE)!=tile )
 	{
 		PlayerSet(P_FRAME, 0);
@@ -209,12 +211,22 @@ func CM_EnterClimbIdle()
 	PlayerSet(P_POW, 0);
 	PlayerSet(P_TILEWALK, PTILE_CLIMB);
 
-	tile = PlayerGet(P_COSTUME)+PlayerGet(P_TILEWALK);
-	//if( PlayerGet(P_TILE)!=tile )
-	//{
-	//	PlayerSet(P_FRAME, 0);
+	tile = PlayerGet(P_COSTUME)+PTILE_CLIMB;
+	if( PlayerGet(P_TILE)!=tile )
+	{
+		PlayerSet(P_FRAME, 0);
 		PlayerSet(P_TILE, tile);
-	//}
+	}
+}
+
+func CM_EnterSit()
+{
+	PlayerSet(P_STATUS,STATUS_SIT);
+	PlayerSet(P_DIR,0);
+	PlayerSet(P_POW,0);
+	PlayerSet(P_FLIP,PlayerGet(P_FLIP)&FLIPY);
+	PlayerSet(P_TILE, PlayerGet(P_COSTUME)+PTILE_SIT+PlayerGet(P_EMOTION));
+	PlayerSet(P_STUNLEVEL,0); // avoid resident stun :)
 }
 
 func CM_EnterSpin( dir )
@@ -267,7 +279,7 @@ func CM_EnterKeyState()
 		}
 		else
 		{
-			CM_EnterIdle();
+			CM_EnterSit();
 		}
 	}
 	else
