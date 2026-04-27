@@ -31,6 +31,8 @@
 #def PTILE_SWIMUP	21
 #def PTILE_SWIMJUMP	22
 #def PTILE_DRAWN	23
+#def PTILE_TURN		24
+#def PTILE_CLIMB	25
 
 #def EMOTION_NOAIR1	6			// player's emotion offset for no air1
 #def EMOTION_NOAIR2	7			// player's emotion offset for no air2
@@ -46,6 +48,7 @@
 #def MAT_BLOCK		7			// ground, walls (hard); blocks the player
 #def MAT_JUMPFIX	8			// jumper fix (hard)
 #def MAT_JUMPPRO	9			// jumper progressive (hard)
+#def MAT_LADDER		10			// ladder; player can climb
 
 // objects classes
 #def CLASS_NONE		0			// default
@@ -95,6 +98,8 @@
 
 #def P_FRAME_CTR	67
 #def P_FPOW		68
+
+#def P_DIRY		69		// used in climbing mode. -1=up, 1=down
 
 #def DLG_TYPE		10
 

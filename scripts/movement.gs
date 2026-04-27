@@ -11,15 +11,20 @@
 #def CM_DEFPOW			0x0220
 #def CM_POWSTEP			0x12
 
+#def STATUS_CLIMB		6
+#def STATUS_CLIMBIDLE	7
+
 /////////////////////////////////////////////////////////////////////////////////
 // Custom Move - main update function
 /////////////////////////////////////////////////////////////////////////////////
 func CM_Update()
 {
 	status = PlayerGet(P_STATUS);
-	
+	tile = PlayerGet(P_TILE);
+
 	// input status
-	if( status==STATUS_IDLE || status==STATUS_WALK )
+	if( status==STATUS_IDLE || status==STATUS_WALK
+		|| status==STATUS_CLIMBIDLE || status==STATUS_CLIMB )
 	{
 		CM_EnterKeyState();
 		status = PlayerGet(P_STATUS); // re-read status
@@ -34,6 +39,9 @@ func CM_Update()
 	if( status==STATUS_JUMP )
 		CM_UpdateJump();
 	else
+	if( status==STATUS_CLIMB )
+		CM_UpdateClimb();
+	else
 	if( status==STATUS_FALL )
 		CM_UpdateFall();
 	else
@@ -46,11 +54,18 @@ func CM_Update()
 		status = PlayerGet(P_STATUS);
 
 		// stand check only if not already snapped to collider
-		if( !snap && (status==STATUS_IDLE || status==STATUS_WALK) )
+		if( !snap
+			&& !CM_IsMaterialInsidePlayer(MAT_LADDER)
+			&& !CM_IsMaterialUnderPlayer(MAT_LADDER)
+			&& (status==STATUS_IDLE || status==STATUS_WALK || status==STATUS_CLIMBIDLE || status==STATUS_CLIMB))
 		{
 			h = CM_CheckFallY(1); // see if it can fall 
 			if(h>0) // if any space below then enter in fall
 			{
+				if (status==STATUS_CLIMBIDLE || status==STATUS_CLIMB)
+				{
+					CM_EnterWalk(PlayerGet(P_DIR));
+				}
 				CM_EnterFall();
 				PlayerSet(P_Y,PlayerGet(P_Y)+1); 
 				PlayerSet(P_POW,PlayerGet(P_POW)+CM_POWSTEP); // force one step down (DIZZYMATCH)
@@ -87,6 +102,7 @@ func CM_EnterWalk( dir )
 	PlayerSet(P_STATUS, STATUS_WALK); 
 	PlayerSet(P_DIR, dir);
 	PlayerSet(P_POW, 0);
+	PlayerSet(P_TILEWALK, PTILE_WALK);
 	PlayerSet(P_FLIP, (PlayerGet(P_FLIP) & FLIPY) | (dir==-1));
 
 	tile = PlayerGet(P_COSTUME)+PlayerGet(P_TILEWALK);
@@ -170,6 +186,37 @@ func CM_EnterJumper( mat )
 		CM_EnterRoll(); // roll
 }
 
+func CM_EnterClimb( dirx, diry )
+{
+	PlayerSet(P_STATUS, STATUS_CLIMB);
+	PlayerSet(P_DIR, dirx);
+	PlayerSet(P_DIRY, diry);
+	PlayerSet(P_POW, 0);
+	PlayerSet(P_TILEWALK, PTILE_CLIMB);
+
+	tile = PlayerGet(P_COSTUME)+PlayerGet(P_TILEWALK);
+	if( PlayerGet(P_TILE)!=tile )
+	{
+		PlayerSet(P_FRAME, 0);
+		PlayerSet(P_TILE, tile);
+	}
+}
+
+func CM_EnterClimbIdle()
+{
+	PlayerSet(P_STATUS, STATUS_CLIMBIDLE);
+	PlayerSet(P_DIRY, 0);
+	PlayerSet(P_POW, 0);
+	PlayerSet(P_TILEWALK, PTILE_CLIMB);
+
+	tile = PlayerGet(P_COSTUME)+PlayerGet(P_TILEWALK);
+	//if( PlayerGet(P_TILE)!=tile )
+	//{
+	//	PlayerSet(P_FRAME, 0);
+		PlayerSet(P_TILE, tile);
+	//}
+}
+
 func CM_EnterSpin( dir )
 {
 	CM_EnterFall();
@@ -184,28 +231,81 @@ func CM_EnterKeyState()
 	if( PlayerGet(P_LIFE)<=0 ) { CM_EnterIdle(); return; } // prepare to die
 
 	dir = 0;
+	diry = 0;
+
+	status = PlayerGet(P_STATUS);
+
 	if( GetKey(KEY_RIGHT) )	dir++;
 	if( GetKey(KEY_LEFT) )	dir--;
-	if( GetKey(KEY_JUMP) )		
+	if( GetKey(KEY_JUMP) )
 	{
-		// call jump handler to determine the power of the jump
-		ScrSetHandlerData(0,-1); // send no material
-		ScrSetHandlerData(1,0);  // clean return for safety
-		HandlerJump();
-		pow = ScrGetHandlerData(1); // receive power
+		diry--;
+		if (diry==-1 && CM_IsMaterialInsidePlayer(MAT_LADDER))
+		{
+			CM_EnterClimb(dir,diry);
+		}
+		else
+		{
+			// call jump handler to determine the power of the jump
+			ScrSetHandlerData(0,-1); // send no material
+			ScrSetHandlerData(1,0);  // clean return for safety
+			HandlerJump();
+			pow = ScrGetHandlerData(1); // receive power
 
-		PlayerSet(P_FRAME_CTR, 0);
+			PlayerSet(P_FRAME_CTR, 0);
 
-		if(pow>0) CM_EnterJump(dir,pow); // 7 would be the default jump power
+			if(pow>0) CM_EnterJump(dir,pow); // 7 would be the default jump power
+		}
+	}
+	else
+	if( GetKey(KEY_DOWN) )
+	{
+		diry++;
+		if (diry==1 && (CM_IsMaterialInsidePlayer(MAT_LADDER) || CM_IsMaterialUnderPlayer(MAT_LADDER)))
+		{
+			CM_EnterClimb(dir,diry);
+		}
+		else
+		{
+			CM_EnterIdle();
+		}
 	}
 	else
 	if(dir!=0)
 	{
-		CM_EnterWalk(dir);
+		if (CM_IsMaterialInsidePlayer(MAT_LADDER))
+		{
+			if (status == STATUS_CLIMB || status == STATUS_CLIMBIDLE)
+			{
+				CM_EnterClimb(dir,diry);
+			}
+			else
+			{
+				CM_EnterWalk(dir);
+			}
+		}
+		else
+		{
+			CM_EnterWalk(dir);
+		}
 	}
 	else 
 	{
-		CM_EnterIdle();
+		if (CM_IsMaterialInsidePlayer(MAT_LADDER))
+		{
+			if (status == STATUS_CLIMB || status == STATUS_CLIMBIDLE)
+			{
+				CM_EnterClimbIdle();
+			}
+			else
+			{
+				CM_EnterIdle();
+			}
+		}
+		else
+		{
+			CM_EnterIdle();
+		}
 	}
 }
 
@@ -248,8 +348,6 @@ func CM_UpdateJump()
 	PlayerSet(P_POW,pow);
 	PlayerSet(P_FPOW,fpow);
 
-	//println("Step = ", step, ", Fpow = ", fpow, ", Pow = ", pow);
-
 	UpdatePlayerFrame();
 
 	if( pow< 0 ) // done jumping - see where to go idle or fall
@@ -260,6 +358,16 @@ func CM_UpdateJump()
 		else
 			CM_EnterFall();
 	}
+}
+
+func CM_UpdateClimb()
+{
+	if(CM_CheckWalkY())
+		PlayerSet(P_Y, PlayerGet(P_Y) + PlayerGet(P_DIRY)*CM_STEPX);
+	if(CM_CheckWalkX())
+		PlayerSet(P_X, PlayerGet(P_X) + PlayerGet(P_DIR)*CM_STEPX);
+
+	UpdatePlayerFrame();
 }
 
 func CM_UpdateFall()
@@ -282,8 +390,6 @@ func CM_UpdateFall()
 
 	step2 = CM_CheckFallY(step);
 	PlayerSet(P_Y, PlayerGet(P_Y)+step2);
-
-	//println("Step = ", step2, ", Fpow = ", fpow, ", Pow = ", pow);
 
 	PlayerSet(P_STUNLEVEL, PlayerGet(P_STUNLEVEL)+1);
 
@@ -330,6 +436,20 @@ func CM_CheckWalkX()
 		return false;
 }
 
+func CM_CheckWalkY()
+{
+	x1=0;y1=0;x2=0;y2=0;
+	PlayerMakeBB(&x1,&y1,&x2,&y2);
+	dir = PlayerGet(P_DIRY);
+	if(dir==1)
+		return MaterialCheckFree( x1,y2,x2,y2+CM_STEPX );
+	else
+	if(dir==-1)
+		return MaterialCheckFree( x1,y1-CM_STEPX,x2,y1 );
+	else
+		return false;
+}
+
 func CM_CheckJumpX()
 {
 	x1=0;y1=0;x2=0;y2=0;
@@ -372,6 +492,22 @@ func CM_CheckFallY( step )
 	x1=0;y1=0;x2=0;y2=0;
 	PlayerMakeBB(&x1,&y1,&x2,&y2);
 	return MaterialGetFreeDist(x1,y2,x2,y2+step,0,0); // top to bottom
+}
+
+func CM_IsMaterialUnderPlayer(mat)
+{
+	x1=0;y1=0;x2=0;y2=0;
+	PlayerMakeBB(&x1,&y1,&x2,&y2);
+	materials = MaterialRead(x1+6,y2,x2-x1-12,1);
+	return materials&(1<<mat);
+}
+
+func CM_IsMaterialInsidePlayer(mat)
+{
+	x1=0;y1=0;x2=0;y2=0;
+	PlayerMakeBB(&x1,&y1,&x2,&y2);
+	materials = MaterialRead(x1+7,y1,x2-x1-14,y2-y1);
+	return materials&(1<<mat);
 }
 
 // collision inside box bottom will rise dizzy up with maximum CM_STEPY 
