@@ -258,7 +258,7 @@ func CM_EnterKeyState()
 	if( GetKey(KEY_DOWN) )
 	{
 		diry++;
-		if (diry==1&&IsMaterialInsidePlayer(MAT_CLIMB))
+		if (diry==1&&(IsMaterialInsidePlayer(MAT_CLIMB)||IsMaterialUnderPlayer(MAT_CLIMB)))
 		{
 			CM_EnterClimb(dir,diry);
 		}
@@ -270,9 +270,16 @@ func CM_EnterKeyState()
 	else
 	if(dir!=0)
 	{
-		if (status == STATUS_CLIMB || status == STATUS_CLIMBIDLE)
+		if (IsMaterialInsidePlayer(MAT_CLIMB))
 		{
-			CM_EnterClimb(dir,diry);
+			if (status == STATUS_CLIMB || status == STATUS_CLIMBIDLE)
+			{
+				CM_EnterClimb(dir,diry);
+			}
+			else
+			{
+				CM_EnterWalk(dir);
+			}
 		}
 		else
 		{
