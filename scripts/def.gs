@@ -48,6 +48,7 @@
 #def MAT_BLOCK		7			// ground, walls (hard); blocks the player
 #def MAT_JUMPFIX	8			// jumper fix (hard)
 #def MAT_JUMPPRO	9			// jumper progressive (hard)
+#def MAT_LADDER		10			// ladder; player can climb
 
 // objects classes
 #def CLASS_NONE		0			// default

@@ -54,7 +54,10 @@ func CM_Update()
 		status = PlayerGet(P_STATUS);
 
 		// stand check only if not already snapped to collider
-		if( !snap && !IsMaterialUnderPlayer(MAT_CLIMB) && (status==STATUS_IDLE || status==STATUS_WALK || status==STATUS_CLIMBIDLE || status==STATUS_CLIMB))
+		if( !snap
+			&& !CM_IsMaterialInsidePlayer(MAT_LADDER)
+			&& !CM_IsMaterialUnderPlayer(MAT_LADDER)
+			&& (status==STATUS_IDLE || status==STATUS_WALK || status==STATUS_CLIMBIDLE || status==STATUS_CLIMB))
 		{
 			h = CM_CheckFallY(1); // see if it can fall 
 			if(h>0) // if any space below then enter in fall
@@ -237,7 +240,7 @@ func CM_EnterKeyState()
 	if( GetKey(KEY_JUMP) )
 	{
 		diry--;
-		if (diry==-1&&IsMaterialInsidePlayer(MAT_CLIMB))
+		if (diry==-1 && CM_IsMaterialInsidePlayer(MAT_LADDER))
 		{
 			CM_EnterClimb(dir,diry);
 		}
@@ -258,7 +261,7 @@ func CM_EnterKeyState()
 	if( GetKey(KEY_DOWN) )
 	{
 		diry++;
-		if (diry==1&&(IsMaterialInsidePlayer(MAT_CLIMB)||IsMaterialUnderPlayer(MAT_CLIMB)))
+		if (diry==1 && (CM_IsMaterialInsidePlayer(MAT_LADDER) || CM_IsMaterialUnderPlayer(MAT_LADDER)))
 		{
 			CM_EnterClimb(dir,diry);
 		}
@@ -270,7 +273,7 @@ func CM_EnterKeyState()
 	else
 	if(dir!=0)
 	{
-		if (IsMaterialInsidePlayer(MAT_CLIMB))
+		if (CM_IsMaterialInsidePlayer(MAT_LADDER))
 		{
 			if (status == STATUS_CLIMB || status == STATUS_CLIMBIDLE)
 			{
@@ -288,7 +291,7 @@ func CM_EnterKeyState()
 	}
 	else 
 	{
-		if (IsMaterialInsidePlayer(MAT_CLIMB))
+		if (CM_IsMaterialInsidePlayer(MAT_LADDER))
 		{
 			if (status == STATUS_CLIMB || status == STATUS_CLIMBIDLE)
 			{
@@ -345,8 +348,6 @@ func CM_UpdateJump()
 	PlayerSet(P_POW,pow);
 	PlayerSet(P_FPOW,fpow);
 
-	//println("Step = ", step, ", Fpow = ", fpow, ", Pow = ", pow);
-
 	UpdatePlayerFrame();
 
 	if( pow< 0 ) // done jumping - see where to go idle or fall
@@ -389,8 +390,6 @@ func CM_UpdateFall()
 
 	step2 = CM_CheckFallY(step);
 	PlayerSet(P_Y, PlayerGet(P_Y)+step2);
-
-	//println("Step = ", step2, ", Fpow = ", fpow, ", Pow = ", pow);
 
 	PlayerSet(P_STUNLEVEL, PlayerGet(P_STUNLEVEL)+1);
 
@@ -493,6 +492,22 @@ func CM_CheckFallY( step )
 	x1=0;y1=0;x2=0;y2=0;
 	PlayerMakeBB(&x1,&y1,&x2,&y2);
 	return MaterialGetFreeDist(x1,y2,x2,y2+step,0,0); // top to bottom
+}
+
+func CM_IsMaterialUnderPlayer(mat)
+{
+	x1=0;y1=0;x2=0;y2=0;
+	PlayerMakeBB(&x1,&y1,&x2,&y2);
+	materials = MaterialRead(x1+6,y2,x2-x1-12,1);
+	return materials&(1<<mat);
+}
+
+func CM_IsMaterialInsidePlayer(mat)
+{
+	x1=0;y1=0;x2=0;y2=0;
+	PlayerMakeBB(&x1,&y1,&x2,&y2);
+	materials = MaterialRead(x1+7,y1,x2-x1-14,y2-y1);
+	return materials&(1<<mat);
 }
 
 // collision inside box bottom will rise dizzy up with maximum CM_STEPY 
