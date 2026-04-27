@@ -387,7 +387,7 @@ func CM_UpdateFall()
 	if( CM_CheckFallX() )
 		PlayerSet(P_X, PlayerGet(P_X) + PlayerGet(P_DIR)*CM_STEPX);
 
-	UpdatePlayerFrame();	
+	UpdatePlayerFrame();
 
 	pow = PlayerGet(P_POW);
 	fpow = PlayerGet(P_FPOW);

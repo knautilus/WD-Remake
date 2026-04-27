@@ -221,6 +221,11 @@ func HandlerCollision()
 		PlayerSet(P_LIFE, 0);
 		return;
 	}
+	if(ObjGet(idx,O_CLASS)==CLASS_COIN)
+	{
+		fid = gs_fid( "CollideCoin" );
+		if(fid!=-1)	ScrRequest(fid); // call only if available
+	}
 	
 	id = ObjGet(idx,O_ID);
 	// println("HANDLER COLLISION ", id, " ", mode);
