@@ -192,15 +192,15 @@ func ActionObject_203()
 	pogieStatus = ObjGet(pogieIdx,O_STATUS);
 	if (pogieStatus==0)
 	{
-		Message1(5,4,"Gosh Pogie,\nthat really shook\nthe hut, are you ok?");
+		Message1("Gosh Pogie,\nthat really shook\nthe hut, are you ok?");
 		MessagePop();
-		Message2(11,6,"Squeak.");
+		Message2("Squeak.");
 		MessagePop();
 		ObjSet(pogieIdx,O_STATUS,1);
 	}
 	else
 	{
-		Message2(11,6,"Squeak.");
+		Message2("Squeak.");
 		MessagePop();
 	}
 }
@@ -214,31 +214,31 @@ func ActionObject_202()
 }
 
 // Outside Dizzy's hut - Mayor first dialog
-func CollideObject_202_1( idx )
+func CollideObject_202_1()
 {
 	doorIdx = ObjFind(202);
 	doorStatus = ObjGet(doorIdx,O_STATUS);
 	if (doorStatus==0)
 	{
 		WaitFrames(8);
-		Message2(5,4,"Oh my! Oh my! You've\nlanded on the wicked\nwitch of the east!");
+		Message2("Oh my! Oh my! You've\nlanded on the wicked\nwitch of the east!");
 		MessagePop();
-		Message1(9,6,"Who are you?");
+		Message1("Who are you?");
 		MessagePop();
-		Message2(1,4,"I'm Boq the Munchkin mayor.\nYou appear to have crushed\nthe witch! Who are you?");
+		Message2("I'm Boq the Munchkin mayor.\nYou appear to have crushed\nthe witch! Who are you?");
 		MessagePop();
-		Message1(8,6,"I'm Dizzy,\nbut where am I?");
+		Message1("I'm Dizzy,\nbut where am I?");
 		MessagePop();
-		Message2(1,4,"You are in Munchkin village,\nin the wonderful\nworld of Oz.");
+		Message2("You are in Munchkin village,\nin the wonderful\nworld of Oz.");
 		MessagePop();
-		Message1(4,5,"Oh... It's sooo colourful,\nin a kind of attributed\nlow resolution, limited\ncolour palette sort\nof style!");
+		Message1("Oh... It's sooo colourful,\nin a kind of attributed\nlow resolution, limited\ncolour palette sort\nof style!");
 		MessagePop();
 		ObjSet(doorIdx,O_STATUS,1);
 	}
 }
 
 // Outside Dizzy's hut - Daisy dialog
-func CollideObject_202_0( idx )
+func CollideObject_202_0()
 {
 	if (GameGet(G_ROOMX) != 3 || GameGet(G_ROOMY) != 7)
 	{
@@ -258,7 +258,7 @@ func CollideObject_202_0( idx )
 
 		ObjSet(daisyIdx, O_DISABLE, 0);
 		ObjPlayAnimFrames( daisyIdx, {0,1,2,3,2,1} );
-		Message2(5,4,"Quickly, take her boots.\nThey'll protect you.");
+		Message2("Quickly, take her boots.\nThey'll protect you.");
 		MessagePop();
 
 		ObjSet(smokeIdx, O_DISABLE, 0);
@@ -275,30 +275,145 @@ func ActionObject_100()
 {
 	bootsIdx = ObjFind(100);
 	ObjSet(bootsIdx, O_DISABLE, 1);
-	Message1(1,5,"Nice! Strangely they fit\nperfectly. Who kney I had\nsimilar feet to a witch!");
+	Message1("Nice! Strangely they fit\nperfectly. Who kney I had\nsimilar feet to a witch!");
 	MessagePop();
-	Message2(7,4,"And they'll keep\nyou safe too!");
+	Message2("And they'll keep\nyou safe too!");
 	MessagePop();
-	Message1(9,5,"Safe?");
+	Message1("Safe?");
 	MessagePop();
-	Message2(0,1,"Oh yes! When her sister,\nthe wicked witch of the west\nfinds out what you did,\nshe'll be furious!");
+	Message2("Oh yes! When her sister,\nthe wicked witch of the west\nfinds out what you did,\nshe'll be furious!");
 	MessagePop();
-	Message1(3,5,"That doesn't sound good!");
+	Message1("That doesn't sound good!");
 	MessagePop();
+
+	RoomSet(3,7,R_STATUS,1);
 }
 
-// Pogie walking
 func UpdateRoom_3_7()
 {
-	AIUpdateTrain(ObjFind(207));
+	pogieIdx = ObjFind(207);
+
+	// Pogie walking
+	AIUpdateTrain(pogieIdx);
+
+	if (ObjGet(pogieIdx, O_TARGET) == 0)
+	{
+		ObjSet(pogieIdx, O_DISABLE, 1);
+	}
+
+	status = RoomGet(3,7,R_STATUS);
+
+	if (status == 1)
+	{
+		RoomSet(3,7,R_STATUS,2);
+		fid = gs_fid( "BootsScene" );
+		if(fid!=-1)	ScrRequest(fid);
+	}
+
+	if (status == 3)
+	{
+		RoomSet(3,7,R_STATUS,4);
+		fid = gs_fid( "WitchAppearScene" );
+		if(fid!=-1)	ScrRequest(fid);
+	}
+
+	if (status == 5)
+	{
+		RoomSet(3,7,R_STATUS,6);
+		fid = gs_fid( "WitchDialogScene" );
+		if(fid!=-1)	ScrRequest(fid);
+	}
+}
+
+func BootsScene()
+{
+	WaitFrames(48);
+	if (GameGet(G_ROOMX) != 3 || GameGet(G_ROOMY) != 7)
+	{
+		RoomSet(3,7,R_STATUS,1);
+		return;
+	}
+	Message1("Wow! They really are magic.\nI seem to take on the colour\nof the background when\nI'm wearing them!");
+	MessagePop();
+	RoomSet(3,7,R_STATUS,3);
+}
+
+func WitchAppearScene()
+{
+	WaitFrames(48);
+	if (GameGet(G_ROOMX) != 3 || GameGet(G_ROOMY) != 7)
+	{
+		RoomSet(3,7,R_STATUS,3);
+		return;
+	}
+
+	witchIdx = ObjFind(210);
+	smokeIdx = ObjFind(211);
+
+	ObjSet(smokeIdx, O_DISABLE, 0);
+	ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
+	ObjSet(smokeIdx, O_DISABLE, 1);
+	ObjSet(witchIdx, O_DISABLE, 0);
+
+	RoomSet(3,7,R_STATUS,5);
+}
+
+func WitchDialogScene()
+{
+	WaitFrames(4);
+	if (GameGet(G_ROOMX) != 3 || GameGet(G_ROOMY) != 7)
+	{
+		RoomSet(3,7,R_STATUS,5);
+		return;
+	}
+
+	Message2("Arh!!! Who did this?", COLOR_YELLOW);
+	MessagePop();
+	Message2("I think it was\na freak accident!");
+	MessagePop();
+	Message1("I'm sorry, I really\ndidn't plan it. There\nwas this whirlwind...");
+	MessagePop();
+	Message2("Who are you? Arh...\nYou are wearing her boots!\nHow dare you!", COLOR_YELLOW);
+	MessagePop();
+	Message1("I'm sorry. Couldn't\nyou just...");
+	MessagePop();
+	Message2("What's that?", COLOR_YELLOW);
+	MessagePop();
+	Message1("Oh, he's my pet...\nPogie. He won't hurt you.");
+	MessagePop();
+	Message2("Well let's hope he tastes\nas good as he looks!", COLOR_YELLOW);
+	MessagePop();
+	Message1("No!");
+	MessagePop();
+
+	pogieIdx = ObjFind(207);
+
+	ObjSet(pogieIdx, O_TILE, 319);
+	ObjSet(pogieIdx, O_W, 24);
+	ObjSet(pogieIdx, O_H, 24);
+	ObjSet(pogieIdx, O_MAP+2, 24);
+	ObjSet(pogieIdx, O_MAP+3, 24);
+	ObjSet(pogieIdx, O_TARGET, 212);
+
+	witchIdx = ObjFind(210);
+	smokeIdx = ObjFind(211);
+
+	WaitFrames(8);
+
+	ObjSet(smokeIdx, O_DISABLE, 0);
+	ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
+	ObjSet(smokeIdx, O_DISABLE, 1);
+	ObjSet(witchIdx, O_DISABLE, 1);
+
+	RoomSet(3,7,R_STATUS,7);
 }
 
 // Outside Dizzy's hut - Pogie
 func ActionObject_207()
 {
-	Message1(6,4,"Don't worry Pogie,\nI'll keep you safe.");
+	Message1("Don't worry Pogie,\nI'll keep you safe.");
 	MessagePop();
-	Message2(8,6,"Squeak! Squeak...");
+	Message2("Squeak! Squeak...");
 	MessagePop();
 }
 
@@ -321,14 +436,14 @@ func ActionObject_215()
 // Inside Munchkin hut - villager 1
 func ActionObject_216()
 {
-	Message2(14,6,"Hi!");
+	Message2("Hi!");
 	MessagePop();
 }
 
 // Inside Munchkin hut - villager 2
 func ActionObject_217()
 {
-	Message2(14,6,"Hi!");
+	Message2("Hi!");
 	MessagePop();
 }
 

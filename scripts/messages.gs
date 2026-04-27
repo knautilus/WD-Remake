@@ -12,45 +12,36 @@ int g_msglastborder;// border color of the last message
 str g_msglastcaption;
 
 /////////////////////////////////////////////////////////////////////////////////
-// IN: int; x; horizontal coordinate in characters, multiple of 8 pixels [0,30)
-// IN: int; y; vertical coordinate in characters, multiple of 8 pixels [0,17)
 // IN: str; text; message text
 // IN: int; colorink; the text color
 // IN: int; colorborder; the border color
-// Stores x, y, and colors, for use with the MessageNext() function.
+// Stores colors and caption, for use with the MessageNext() function.
 // This does not closes the dialog. Needs DialogPop(), DialogPopAll(), or usually MessagePop().
 /////////////////////////////////////////////////////////////////////////////////
-func Message( x, y, text, colorink, colorborder, caption)
+func Message( text, colorink, colorborder, caption)
 {
-	g_msglastx = x;
-	g_msglasty = y;
 	g_msglastink = colorink;
 	g_msglastborder = colorborder;
 	g_msglastcaption = caption;
 
-	x*=8; y*=8;
 	GamePause(1);
 	DialogPush();
 	DialogSetCaption(caption);
 	DialogSetText("{c:0x"+(str "%x")colorink+"}"+text);
 	DialogSetColor(colorborder);
-	DialogFitAt(x,y);
+	DialogFitCenter();
 	DialogRun();
 	GamePause(0);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
 // IN: str; text; message text
-// [IN]: int; stepx=1; horizontal offset from the last dialog's position, in characters, multiple of 8 pixels
-// [IN]: int; stepy=1; vertical offset from the last dialog's position, in characters, multiple of 8 pixels
 // Opens another dialog message in cascade, using the position and the colors of the last message.
 // This does not closes the dialog. Needs DialogPop(), DialogPopAll(), or usually MessagePop(). See Message().
 /////////////////////////////////////////////////////////////////////////////////
-func MessageNext( text, stepx, stepy )
+func MessageNext( text )
 {
-	if(!?stepx) stepx = 1;
-	if(!?stepy) stepy = 1;
-	Message( g_msglastx+stepx, g_msglasty+stepy, text, g_msglastink, g_msglastborder, g_msglastcaption );
+	Message( text, g_msglastink, g_msglastborder, g_msglastcaption );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -62,38 +53,32 @@ func MessagePop()
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-// IN: int; x; horizontal coordinate in characters, multiple of 8 pixels
-// IN: int; y; vertical coordinate in characters, multiple of 8 pixels
 // IN: str; text; message text
 // quick call for Message() with story teller color settings
 /////////////////////////////////////////////////////////////////////////////////
-func Message0( x, y, text )
+func Message0( text )
 {
-	Message( x, y, text, COLOR_WHITE, COLOR_RED, "" );
+	Message( text, COLOR_WHITE, COLOR_RED, "" );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-// IN: int; x; horizontal coordinate in characters, multiple of 8 pixels
-// IN: int; y; vertical coordinate in characters, multiple of 8 pixels
 // IN: str; text; message text
 // quick call for Message() with player color settings
 /////////////////////////////////////////////////////////////////////////////////
-func Message1( x, y, text )
+func Message1( text )
 {
-	Message( x, y, text, COLOR_WHITE, COLOR_GREEN, "Dizzy" );
+	Message( text, COLOR_WHITE, COLOR_GREEN, "Dizzy" );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
-// IN: int; x; horizontal coordinate in characters, multiple of 8 pixels
-// IN: int; y; vertical coordinate in characters, multiple of 8 pixels
 // IN: str; text; message text
 // [IN]: int; bordercolor=COLOR_WHITE; border color
 // quick call for Message() with other characters color settings
 /////////////////////////////////////////////////////////////////////////////////
-func Message2( x, y, text, bordercolor )
+func Message2( text, bordercolor )
 {
 	if(!?bordercolor) bordercolor = COLOR_CYAN;
-	Message( x, y, text, COLOR_WHITE, bordercolor, "" );
+	Message( text, COLOR_WHITE, bordercolor, "" );
 }
 
 /////////////////////////////////////////////////////////////////////////////////

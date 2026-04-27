@@ -199,12 +199,11 @@ func DialogFitAt(x,y)
 /////////////////////////////////////////////////////////////////////////////////
 func DialogFitCenter()
 {
-	border = 16;
 	w = DialogTextW()+8; // plus some space
 	h = DialogTextH()+8; // plus some space
 	DialogSetSize(w,h);
 	x = (GameGet(G_ROOMW)-w)/2;
-	y = (GameGet(G_ROOMH)-h)/2;
+	y = (GameGet(G_ROOMH)-h)/2-16;
 	DialogSetPos(x,y);
 }
 
