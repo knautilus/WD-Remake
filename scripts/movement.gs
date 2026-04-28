@@ -21,7 +21,6 @@
 func CM_Update()
 {
 	status = PlayerGet(P_STATUS);
-	tile = PlayerGet(P_TILE);
 
 	// input status
 	if( status==STATUS_IDLE || status==STATUS_WALK
@@ -31,7 +30,13 @@ func CM_Update()
 		CM_EnterKeyState();
 		status = PlayerGet(P_STATUS); // re-read status
 	}
-	
+
+	if ((status==STATUS_JUMP || status==STATUS_FALL) && GetKey(KEY_ACTION))
+	{
+		fid = gs_fid( "PickupCoin" );
+		if(fid!=-1)	ScrRequest(fid);
+	}
+
 	if( status==STATUS_IDLE )
 		CM_UpdateIdle();
 	else
@@ -619,6 +624,19 @@ func UpdatePlayerFrame()
 	}
 
 	PlayerSet(P_FRAME_CTR, frameCounter);
+}
+
+func PickupCoin()
+{
+	pickUpIdx = FindPickupObject();
+	if (pickUpIdx == -1)
+	{
+		return;
+	}
+	if (ObjGet(pickUpIdx, O_CLASS) == CLASS_COIN)
+	{
+		DoPickupObject(pickUpIdx);
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////

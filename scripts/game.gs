@@ -446,16 +446,4 @@ func ActionObject_217()
 	Message2("Hi!");
 	MessagePop();
 }
-
-func CollideCoin()
-{
-	if( GetKey(KEY_ACTION) )
-	{
-		pickUpIdx = FindPickupObject();
-		if(pickUpIdx!=-1)
-		{
-			DoPickupObject(pickUpIdx);
-		}
-	}
-}
 /////////////////////////////////////////////////////////////////////////////////
