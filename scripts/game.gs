@@ -293,12 +293,17 @@ func UpdateRoom_3_7()
 {
 	pogieIdx = ObjFind(207);
 
-	// Pogie walking
-	AIUpdateTrain(pogieIdx);
-
-	if (ObjGet(pogieIdx, O_TARGET) == 0)
+	// Pogie moving
+	if (ObjGet(pogieIdx, O_DISABLE) == 0)
 	{
-		ObjSet(pogieIdx, O_DISABLE, 1);
+		AIUpdateTrain(pogieIdx);
+
+		if (ObjGet(pogieIdx, O_TARGET) == 0)
+		{
+			mayorIdx = ObjFind(204);
+			ObjSet(mayorIdx, O_STATUS, 1);
+			ObjSet(pogieIdx, O_DISABLE, 1);
+		}
 	}
 
 	status = RoomGet(3,7,R_STATUS);
@@ -398,7 +403,7 @@ func WitchDialogScene()
 	witchIdx = ObjFind(210);
 	smokeIdx = ObjFind(211);
 
-	WaitFrames(8);
+	WaitFrames(32);
 
 	ObjSet(smokeIdx, O_DISABLE, 0);
 	ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
@@ -415,6 +420,56 @@ func ActionObject_207()
 	MessagePop();
 	Message2("Squeak! Squeak...");
 	MessagePop();
+}
+
+// Outside Dizzy's hut - Mayor
+func ActionObject_204()
+{
+	mayorIdx = ObjFind(204);
+	mayorStatus = ObjGet(mayorIdx,O_STATUS);
+	if (mayorStatus==1)
+	{
+		Message1("Where did the witch\ntake Pogie?");
+		MessagePop();
+		Message2("Probably to dread\ncastle where she lives.");
+		MessagePop();
+		Message1("How do I get there?");
+		MessagePop();
+		Message2("Follow the red brick road,\nbut it's dangerous, so we\nlocked the gate!");
+		MessagePop();
+		Message1("But I must try and\nrescue him.");
+		MessagePop();
+		Message2("Sorry, I can't help you.\nI lost the key.");
+		MessagePop();
+		Message1("I'll look for it.\nIt's what I do!");
+		MessagePop();
+		ObjSet(mayorIdx, O_STATUS, 2);
+	}
+	else if (mayorStatus==2)
+	{
+		Message1("Also, do you know\nhow I can get home?");
+		MessagePop();
+		Message2("Sorry, no. But maybe the\ngreat wizard of Oz\nwill know.");
+		MessagePop();
+		Message1("How do I find him?");
+		MessagePop();
+		Message2("Follow the yellow brick\nroad to the emerald city.");
+		MessagePop();
+		Message1("That sounds easy.");
+		MessagePop();
+		Message2("Beware the cursed poppy\nfield. Here's the yellow\ngate key.");
+		MessagePop();
+		Message1("Thanks!");
+		MessagePop();
+		ObjSet(mayorIdx, O_DISABLE, 1);
+		keyIdx = ObjFind(101);
+		ObjSet(keyIdx, O_DISABLE, 0);
+	}
+	else
+	{
+		idxobj = OpenDialogInventory();
+		if(idxobj!=-1) UseObject(idxobj);
+	}
 }
 
 // Outside Munchkin hut - the door
