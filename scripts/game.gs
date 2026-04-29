@@ -405,7 +405,7 @@ func WitchDialogScene()
 	witchIdx = ObjFind(210);
 	smokeIdx = ObjFind(211);
 
-	WaitFrames(40);
+	WaitFrames(48);
 
 	ObjSet(smokeIdx, O_DISABLE, 0);
 	ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
@@ -470,7 +470,7 @@ func ActionObject_204()
 	else
 	{
 		idxobj = OpenDialogInventory();
-		if(idxobj!=-1) UseObject(idxobj);
+		if(idxobj!=-1) DropObject(idxobj);
 	}
 }
 
@@ -518,24 +518,13 @@ func ActionObject_218()
 	gateStatus = ObjGet(gateIdx, O_STATUS);
 	if (gateStatus == 0)
 	{
-		idxobj = OpenDialogInventory();
-		if(idxobj==-1)
-			return;
-		if(ObjGet(idxobj,O_ID)==101)
+		if (TryUseItem(101) == 1)
 		{
-			InventorySub(idxobj);
 			ObjSet(gateIdx, O_STATUS, 1);
 			leftLeafIdx = BrushFind(219);
 			rightLeafIdx = BrushFind(220);
-			BrushSet(leftLeafIdx, O_W, 8);
-			BrushSet(leftLeafIdx, O_MAP, BrushGet(leftLeafIdx, O_MAP)+8);
-			BrushSet(rightLeafIdx, O_W, 8);
+			BrushSet(leftLeafIdx, O_X, BrushGet(leftLeafIdx, O_X)-8);
 			BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
-			BrushSet(rightLeafIdx, O_MAP+2, BrushGet(rightLeafIdx, O_MAP+2)-8);
-		}
-		else
-		{
-			UseObject(idxobj);
 		}
 	}
 

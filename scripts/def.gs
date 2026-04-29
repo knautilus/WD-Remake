@@ -98,9 +98,11 @@
 #def P_SCORE		66
 
 #def P_FRAME_CTR	67
-#def P_FPOW		68
+#def P_FPOW			68
 
-#def P_DIRY		69		// used in climbing mode. -1=up, 1=down
+#def P_DIRY			69	// used in climbing mode. -1=up, 1=down
+
+#def P_PHRASE_NUM	70	// used in commenting wrong item
 
 #def DLG_TYPE		10
 

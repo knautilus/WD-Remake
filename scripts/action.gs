@@ -182,6 +182,54 @@ func UseObject( idx )
 	DropObject(idx);
 }
 
+func TryUseItem( itemId )
+{
+	handleIdx = ObjFind(itemId);
+	if (InventoryFind(handleIdx)!=-1)
+	{
+		idxobj = OpenDialogInventory();
+		if (idxobj==-1)
+			return 0;
+		if (idxobj==handleIdx)
+		{
+			InventorySub(idxobj);
+			return 1;
+		}
+		else
+		{
+			phraseNum = PlayerGet(P_PHRASE_NUM);
+			if (phraseNum == 0)
+			{
+				Message0("Well that\ndoesn't work.");
+				MessagePop();
+			}
+			else if (phraseNum == 1)
+			{
+				Message0("Fat lot of good\nthat was.");
+				MessagePop();
+			}
+			else if (phraseNum == 2)
+			{
+				Message0("I'm going to have to\ntry something else.");
+				MessagePop();
+			}
+			phraseNum++;
+			if (phraseNum > 2)
+			{
+				phraseNum = 0;
+			}
+			PlayerSet(P_PHRASE_NUM, phraseNum);
+			return 0;
+		}
+	}
+	else
+	{
+		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3,4,4,4,3,2,1,0});
+		PlayerEnterIdle();
+		return 0;
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 // IN: int; idx; object index
 // Drops an object from the inventory.
