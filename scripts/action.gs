@@ -182,7 +182,7 @@ func UseObject( idx )
 	DropObject(idx);
 }
 
-func TryUseItem( itemId )
+func TryUseItem( itemId, removeItem )
 {
 	handleIdx = ObjFind(itemId);
 	if (InventoryFind(handleIdx)!=-1)
@@ -192,7 +192,10 @@ func TryUseItem( itemId )
 			return 0;
 		if (idxobj==handleIdx)
 		{
-			InventorySub(idxobj);
+			if (removeItem == 1)
+			{
+				InventorySub(idxobj);
+			}
 			return 1;
 		}
 		else

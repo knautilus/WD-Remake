@@ -518,7 +518,7 @@ func ActionObject_218()
 	gateStatus = ObjGet(gateIdx, O_STATUS);
 	if (gateStatus == 0)
 	{
-		if (TryUseItem(101) == 1)
+		if (TryUseItem(101, 1) == 1)
 		{
 			ObjSet(gateIdx, O_STATUS, 1);
 			leftLeafIdx = BrushFind(219);
