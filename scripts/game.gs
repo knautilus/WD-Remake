@@ -340,6 +340,8 @@ func BootsScene()
 	}
 	Message1("Wow! They really are magic.\nI seem to take on the colour\nof the background when\nI'm wearing them!");
 	MessagePop();
+	Message2("Funny side\neffect I guess!");
+	MessagePop();
 	RoomSet(3,7,R_STATUS,3);
 }
 
@@ -403,7 +405,7 @@ func WitchDialogScene()
 	witchIdx = ObjFind(210);
 	smokeIdx = ObjFind(211);
 
-	WaitFrames(32);
+	WaitFrames(40);
 
 	ObjSet(smokeIdx, O_DISABLE, 0);
 	ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
@@ -500,5 +502,42 @@ func ActionObject_217()
 {
 	Message2("Hi!");
 	MessagePop();
+}
+
+// Closed hut
+func ActionObject_213()
+{
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3,4,4,4,3,2,1,0});
+	PlayerEnterIdle();
+}
+
+// Yellow gate
+func ActionObject_218()
+{
+	gateIdx = ObjFind(218);
+	gateStatus = ObjGet(gateIdx, O_STATUS);
+	if (gateStatus == 0)
+	{
+		idxobj = OpenDialogInventory();
+		if(idxobj==-1)
+			return;
+		if(ObjGet(idxobj,O_ID)==101)
+		{
+			InventorySub(idxobj);
+			ObjSet(gateIdx, O_STATUS, 1);
+			leftLeafIdx = BrushFind(219);
+			rightLeafIdx = BrushFind(220);
+			BrushSet(leftLeafIdx, O_W, 8);
+			BrushSet(leftLeafIdx, O_MAP, BrushGet(leftLeafIdx, O_MAP)+8);
+			BrushSet(rightLeafIdx, O_W, 8);
+			BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
+			BrushSet(rightLeafIdx, O_MAP+2, BrushGet(rightLeafIdx, O_MAP+2)-8);
+		}
+		else
+		{
+			UseObject(idxobj);
+		}
+	}
+
 }
 /////////////////////////////////////////////////////////////////////////////////
