@@ -31,10 +31,26 @@ func CM_Update()
 		status = PlayerGet(P_STATUS); // re-read status
 	}
 
-	if ((status==STATUS_JUMP || status==STATUS_FALL) && GetKey(KEY_ACTION))
+	if ((status==STATUS_JUMP || status==STATUS_FALL))
 	{
-		fid = gs_fid( "PickupCoin" );
-		if(fid!=-1)	ScrRequest(fid);
+		if (PlayerGet(P_LIFE)>0)
+		{
+			if (GetKey(KEY_ACTION))
+			{
+				fid = gs_fid( "PickupCoin" );
+				if(fid!=-1)	ScrRequest(fid);
+			}
+			diry=0;
+			if (GetKey(KEY_JUMP)) diry--;
+			if (GetKey(KEY_DOWN)) diry++;
+			if (diry!=0)
+			{
+				if(CM_IsMaterialInsidePlayer(MAT_LADDER))
+				{
+					CM_EnterClimb(0,diry);
+				}
+			}
+		}
 	}
 
 	if( status==STATUS_IDLE )
