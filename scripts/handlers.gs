@@ -314,9 +314,12 @@ func HandlerPlayerUpdate()
 		PlayerSet(P_Y, PlayerGet(P_Y)+1);
 	}
 	
-	// Check WaterPlay
-	if( SUPPORT_WATERPLAY ) 
-		PlayerUpdateWaterPlay();
+	// Check Player Water
+	if(PlayerGet(P_MATCENTER)==MAT_WATER)
+	{
+		PlayerSet(P_DEATH,DANGER_WATER);
+		PlayerSet(P_LIFE,0);
+	}
 	
 	// Check Player damage
 	if(IsMaterialInsidePlayer(MAT_KILL)) 

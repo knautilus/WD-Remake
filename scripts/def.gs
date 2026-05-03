@@ -30,7 +30,7 @@
 #def PTILE_SWIM		20
 #def PTILE_SWIMUP	21
 #def PTILE_SWIMJUMP	22
-#def PTILE_DRAWN	23
+#def PTILE_DROWN	23
 #def PTILE_TURN		24
 #def PTILE_CLIMB	25
 #def PTILE_SIT		26
@@ -103,6 +103,32 @@
 #def P_DIRY			69	// used in climbing mode. -1=up, 1=down
 
 #def P_PHRASE_NUM	70	// used in commenting wrong item
+
+#def P_DEATH		71	// cause of death
+
+// Dangers
+#def DANGER_NONE        0
+#def DANGER_DEFAULT     1
+#def DANGER_WATER       2
+#def DANGER_FIRE        3
+#def DANGER_SPIKES      4
+#def DANGER_CRUSHER     5
+#def DANGER_BAT         6
+#def DANGER_BIRD        7
+#def DANGER_SPIDER      8
+#def DANGER_FISH        9
+#def DANGER_GHOST       10
+#def DANGER_LAVA        11
+#def DANGER_RAIN        12
+#def DANGER_ACIDRAIN    13
+#def DANGER_VAMPIRE     14
+#def DANGER_DRAGON      15
+#def DANGER_SWAMP       16
+#def DANGER_MAGICBOLT   17
+#def DANGER_EAGLE       18
+#def DANGER_MAGICWALL   19
+#def DANGER_OCEAN       98
+#def DANGER_FALL        99
 
 #def DLG_TYPE		10
 

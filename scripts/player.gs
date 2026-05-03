@@ -301,19 +301,10 @@ func PlayerPlayDead()
 /////////////////////////////////////////////////////////////////////////////////
 func PlayerPlayDeadWater()
 {
-	PlayerSet( P_STATUS, STATUS_SCRIPTED );
-	PlayerSet( P_TILE, PlayerGet(P_COSTUME)+PTILE_DRAWN );
+	tileDrown = PlayerGet(P_COSTUME)+PTILE_DROWN;
 	
-	delay = PlayerGet(P_DELAY);
-	while(PlayerGet(P_MATCENTER)==MAT_WATER)
-	{
-		if(IsPlayerUpdate())
-			PlayerSet(P_Y, PlayerGet(P_Y)-2);
-		stop;
-	}
-	
-	WaitFrames(delay*10); // wait a few more cycles
-	
+	PlayerPlayAnimFrames(tileDrown, {0,0,1,1,2,2,3,3,4,4,3,3,4,4,3,3,4,4,3,3,4,4,3,3,4,4});
+
 	PlayerLoseLife();
 }
 
