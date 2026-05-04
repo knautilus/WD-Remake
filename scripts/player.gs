@@ -279,7 +279,6 @@ func PlayerPlayStun()
 	if( IsPlayerStable() && PlayerGet(P_LIFE) ) // hit hard
 	{
 		DoRumble(20); // DoShake(20);
-		SamplePlay(FX_STUN);
 		PlayerPlayAnimFrames(PTILE_STUN, {0,1,0,1,0,1,0,1,2,3,2,3,2,3,2,3,4,4,4,4}, true );
 	}
 	PlayerEnterIdle();

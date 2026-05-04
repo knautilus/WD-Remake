@@ -6,7 +6,7 @@
 #def GAME_SCRH		192			// screen's height (fixed by engine to Z80 screen size)
 #def AIR_LEVEL		100			// player's air critical level
 #def STUN_LEVEL		200			// player's stun critical level
-#def DIZ_HURT		4			// default hurt level for "hurt" materials
+#def DIZ_HURT		1			// default hurt level for "hurt" materials
 #def WINDPOW		2			// default wind power
 #def DIZ_POW		7			// player's jump power (for default movement)
 #def DIZ_STEP		4			// player's walk step (for default movement)

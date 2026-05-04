@@ -547,4 +547,12 @@ func CollideObject_221_1()
 	PlayerEnterIdle();
 }
 
+func UpdateRoom_7_7()
+{
+	crowIdx = ObjFind(223);
+	AIUpdateFly(crowIdx);
+	crowIdx = ObjFind(224);
+	AIUpdateFly(crowIdx);
+}
+
 /////////////////////////////////////////////////////////////////////////////////
