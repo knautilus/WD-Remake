@@ -527,13 +527,24 @@ func ActionObject_218()
 			BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
 		}
 	}
-
+	else if (gateStatus == 1)
+	{
+		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+		PlayerSetPos(1554,1109);
+		PlayerEnterIdle();
+	}
 }
 
 func UpdateRoom_6_7()
 {
-	fishIdx = ObjFind(223);
+	fishIdx = ObjFind(222);
 	AIUpdateFly(fishIdx);
+}
+
+func CollideObject_221_1()
+{
+	PlayerSetPos(1507,1117);
+	PlayerEnterIdle();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
