@@ -6,9 +6,6 @@
 // Users can add more AI functions for the characters or devices in their game.
 /////////////////////////////////////////////////////////////////////////////////
 
-#def O_WAYPOINTMOVEDELAY	32		// speed value for class waypoint, used in AIUpdateTrain()
-#def O_WAYPOINTFLIP		33		// flip value for class waypoint, used in AIUpdateTrain()
-
 /////////////////////////////////////////////////////////////////////////////////
 // IN: int; idx; object index
 // Train AI
@@ -106,9 +103,6 @@ func AIUpdateSpider( idx )
 	ObjSet(idx,O_Y,y);
 }
 
-#def O_BUBBLESPEED 	32	// bubble moving speed, set at spawn time, used in AIUpdateBubbles()
-#def O_BUBBLETIME 	33	// bubble life time, growing each cycle, used in AIUpdateBubbles()
-
 /////////////////////////////////////////////////////////////////////////////////
 // IN: int; id; first bubble object's id
 // IN: int; count; maximum number of bubble objects, with ids starting from id, id+1, id+2, etc
@@ -186,6 +180,69 @@ func AIUpdateBubbles( id, count, debit, speed, life )
 		ObjSet(idxfree,O_BUBBLESPEED,speed/2+gs_rand(speed));
 		ObjSet(idxfree,O_BUBBLETIME,0);
 		ObjPresent(idxfree);
+	}
+}
+
+func AIUpdateFly( idx )
+{
+	if(idx==-1)
+		return;
+
+	if(ObjGet(idx,O_DISABLE)==1)
+		return;
+
+	// Get idx boundaries
+	t = ObjGet(idx,O_BOUNDTOP);	
+	b = ObjGet(idx,O_BOUNDBOTTOM);
+	l = ObjGet(idx,O_BOUNDLEFT);
+	r = ObjGet(idx,O_BOUNDRIGHT);
+
+	dirx = ObjGet(idx,O_DIRX);
+	diry = ObjGet(idx,O_DIRY);
+	if (dirx==0)
+		dirx=-1;
+	if (diry==0)
+		diry=-1;
+
+	x = ObjGet(idx,O_X);
+	y = ObjGet(idx,O_Y);
+
+	speedx = MIN(10, MAX(1, ObjGet(idx,O_SPEEDX)));
+	speedy = MIN(10, MAX(1, ObjGet(idx,O_SPEEDY)));
+	delayx = 11-speedx;
+	delayy = 11-speedy;
+
+	if (IsUpdate(delayy))
+	{
+		if(diry<0)
+			y--;
+		else
+			y++;
+		ObjSet(idx,O_Y,y);
+		if(y<=t||y>=b)
+		{
+			diry=-1*diry;
+			ObjSet(idx, O_DIRY, diry);
+		}
+	}
+
+	if (IsUpdate(delayx))
+	{
+		if(dirx<0)
+			x--;
+		else
+			x++;
+		ObjSet(idx,O_X,x);
+		if(x<=l||x>=r)
+		{
+			dirx=-1*dirx;
+			ObjSet(idx, O_DIRX, dirx);
+			flip = ObjGet(idx,O_FLIP);
+			if (flip==0)
+				ObjSet(idx, O_FLIP, 1);
+			else
+				ObjSet(idx, O_FLIP, 0);
+		}
 	}
 }
 

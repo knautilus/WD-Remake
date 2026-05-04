@@ -90,7 +90,20 @@
 // ...
 
 // object variables starting from O_USER=32 up to O_MAX=48
-// ...
+#def O_WAYPOINTMOVEDELAY	32	// delay value for class waypoint, used in AIUpdateTrain()
+#def O_WAYPOINTFLIP			33	// flip value for class waypoint, used in AIUpdateTrain()
+
+#def O_BUBBLESPEED 	32	// bubble moving speed, set at spawn time, used in AIUpdateBubbles()
+#def O_BUBBLETIME 	33	// bubble life time, growing each cycle, used in AIUpdateBubbles()
+
+#def O_SPEEDX		32	// horizontal moving speed (1-10), used in AIUpdateFly()
+#def O_SPEEDY		33	// vertical moving speed (1-10), used in AIUpdateFly()
+#def O_BOUNDTOP		34	// top boundary y coordinate, used in AIUpdateFly()
+#def O_BOUNDBOTTOM	35	// bottom boundary y coordinate, used in AIUpdateFly()
+#def O_BOUNDLEFT	36	// left boundary x coordinate, used in AIUpdateFly()
+#def O_BOUNDRIGHT	37	// right boundary x coordinate, used in AIUpdateFly()
+#def O_DIRX			38	// horizontal moving direction (-1 or 0 = left, 1 = right), used in AIUpdateFly()
+#def O_DIRY			39	// vertical moving direction (-1 or 0 = up, 1 = down), used in AIUpdateFly()
 
 // player variables starting from P_USER=64 up to P_MAX=128
 #def P_LIFEINC		64

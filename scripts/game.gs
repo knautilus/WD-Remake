@@ -529,4 +529,11 @@ func ActionObject_218()
 	}
 
 }
+
+func UpdateRoom_6_7()
+{
+	fishIdx = ObjFind(223);
+	AIUpdateFly(fishIdx);
+}
+
 /////////////////////////////////////////////////////////////////////////////////
