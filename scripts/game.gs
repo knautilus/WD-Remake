@@ -168,7 +168,7 @@ func ActionObject_201()
 	if (doorStatus==1 || InventoryFind(handleIdx)!=-1)
 	{
 		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-		PlayerSetPos(864,1117);
+		PlayerSetPos(3168,685);
 		PlayerEnterIdle();
 		if (doorStatus==0)
 		{
@@ -209,7 +209,7 @@ func ActionObject_203()
 func ActionObject_202()
 {
 	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-	PlayerSetPos(896,982);
+	PlayerSetPos(3200,550);
 	PlayerEnterIdle();
 }
 
@@ -240,7 +240,7 @@ func CollideObject_202_1()
 // Outside Dizzy's hut - Daisy dialog
 func CollideObject_202_0()
 {
-	if (GameGet(G_ROOMX) != 3 || GameGet(G_ROOMY) != 7)
+	if (GameGet(G_ROOMX) != 12 || GameGet(G_ROOMY) != 4)
 	{
 		return;
 	}
@@ -286,10 +286,10 @@ func ActionObject_100()
 	Message1("That doesn't sound good!");
 	MessagePop();
 
-	RoomSet(3,7,R_STATUS,1);
+	RoomSet(12,4,R_STATUS,1);
 }
 
-func UpdateRoom_3_7()
+func UpdateRoom_12_4()
 {
 	pogieIdx = ObjFind(207);
 
@@ -306,25 +306,25 @@ func UpdateRoom_3_7()
 		}
 	}
 
-	status = RoomGet(3,7,R_STATUS);
+	status = RoomGet(12,4,R_STATUS);
 
 	if (status == 1)
 	{
-		RoomSet(3,7,R_STATUS,2);
+		RoomSet(12,4,R_STATUS,2);
 		fid = gs_fid( "BootsScene" );
 		if(fid!=-1)	ScrRequest(fid);
 	}
 
 	if (status == 3)
 	{
-		RoomSet(3,7,R_STATUS,4);
+		RoomSet(12,4,R_STATUS,4);
 		fid = gs_fid( "WitchAppearScene" );
 		if(fid!=-1)	ScrRequest(fid);
 	}
 
 	if (status == 5)
 	{
-		RoomSet(3,7,R_STATUS,6);
+		RoomSet(12,4,R_STATUS,6);
 		fid = gs_fid( "WitchDialogScene" );
 		if(fid!=-1)	ScrRequest(fid);
 	}
@@ -333,24 +333,24 @@ func UpdateRoom_3_7()
 func BootsScene()
 {
 	WaitFrames(48);
-	if (GameGet(G_ROOMX) != 3 || GameGet(G_ROOMY) != 7)
+	if (GameGet(G_ROOMX) != 12 || GameGet(G_ROOMY) != 4)
 	{
-		RoomSet(3,7,R_STATUS,1);
+		RoomSet(12,4,R_STATUS,1);
 		return;
 	}
 	Message1("Wow! They really are magic.\nI seem to take on the colour\nof the background when\nI'm wearing them!");
 	MessagePop();
 	Message2("Funny side\neffect I guess!");
 	MessagePop();
-	RoomSet(3,7,R_STATUS,3);
+	RoomSet(12,4,R_STATUS,3);
 }
 
 func WitchAppearScene()
 {
 	WaitFrames(48);
-	if (GameGet(G_ROOMX) != 3 || GameGet(G_ROOMY) != 7)
+	if (GameGet(G_ROOMX) != 12 || GameGet(G_ROOMY) != 4)
 	{
-		RoomSet(3,7,R_STATUS,3);
+		RoomSet(12,4,R_STATUS,3);
 		return;
 	}
 
@@ -362,15 +362,15 @@ func WitchAppearScene()
 	ObjSet(smokeIdx, O_DISABLE, 1);
 	ObjSet(witchIdx, O_DISABLE, 0);
 
-	RoomSet(3,7,R_STATUS,5);
+	RoomSet(12,4,R_STATUS,5);
 }
 
 func WitchDialogScene()
 {
 	WaitFrames(4);
-	if (GameGet(G_ROOMX) != 3 || GameGet(G_ROOMY) != 7)
+	if (GameGet(G_ROOMX) != 12 || GameGet(G_ROOMY) != 4)
 	{
-		RoomSet(3,7,R_STATUS,5);
+		RoomSet(12,4,R_STATUS,5);
 		return;
 	}
 
@@ -412,7 +412,7 @@ func WitchDialogScene()
 	ObjSet(smokeIdx, O_DISABLE, 1);
 	ObjSet(witchIdx, O_DISABLE, 1);
 
-	RoomSet(3,7,R_STATUS,7);
+	RoomSet(12,4,R_STATUS,7);
 }
 
 // Outside Dizzy's hut - Pogie
@@ -478,7 +478,7 @@ func ActionObject_204()
 func ActionObject_214()
 {
 	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-	PlayerSetPos(1182,990);
+	PlayerSetPos(3486,558);
 	PlayerEnterIdle();
 }
 
@@ -486,7 +486,7 @@ func ActionObject_214()
 func ActionObject_215()
 {
 	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-	PlayerSetPos(1094,1125);
+	PlayerSetPos(3398,693);
 	PlayerEnterIdle();
 }
 
@@ -530,12 +530,12 @@ func ActionObject_218()
 	else if (gateStatus == 1)
 	{
 		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-		PlayerSetPos(1554,1109);
+		PlayerSetPos(3858,677);
 		PlayerEnterIdle();
 	}
 }
 
-func UpdateRoom_6_7()
+func UpdateRoom_15_4()
 {
 	fishIdx = ObjFind(222);
 	AIUpdateFly(fishIdx);
@@ -543,11 +543,11 @@ func UpdateRoom_6_7()
 
 func CollideObject_221_1()
 {
-	PlayerSetPos(1507,1117);
+	PlayerSetPos(3811,685);
 	PlayerEnterIdle();
 }
 
-func UpdateRoom_7_7()
+func UpdateRoom_16_4()
 {
 	crowIdx = ObjFind(223);
 	AIUpdateFly(crowIdx);
