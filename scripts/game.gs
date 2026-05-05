@@ -54,6 +54,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(101),"Yellow gate key");
 	ObjSetName(ObjFind(102),"Pair of scissors");
 	ObjSetName(ObjFind(103),"Door handle");
+	ObjSetName(ObjFind(104),"Red gate key");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -553,6 +554,46 @@ func UpdateRoom_16_4()
 	AIUpdateFly(crowIdx);
 	crowIdx = ObjFind(224);
 	AIUpdateFly(crowIdx);
+}
+
+// Passage to the palace
+func ActionObject_225()
+{
+	passIdx = ObjFind(225);
+
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+	PlayerSetPos(4362,405);
+	PlayerEnterIdle();
+}
+
+func CollideObject_226_1()
+{
+	PlayerSetPos(4456,685);
+	PlayerEnterIdle();
+}
+
+// Red gate
+func ActionObject_229()
+{
+	gateIdx = ObjFind(229);
+	gateStatus = ObjGet(gateIdx, O_STATUS);
+	if (gateStatus == 0)
+	{
+		if (TryUseItem(104, 1) == 1)
+		{
+			ObjSet(gateIdx, O_STATUS, 1);
+			leftLeafIdx = BrushFind(227);
+			rightLeafIdx = BrushFind(228);
+			BrushSet(leftLeafIdx, O_X, BrushGet(leftLeafIdx, O_X)-8);
+			BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
+		}
+	}
+	else if (gateStatus == 1)
+	{
+		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+		PlayerSetPos(3858,677);
+		PlayerEnterIdle();
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////
