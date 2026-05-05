@@ -55,6 +55,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(102),"Pair of scissors");
 	ObjSetName(ObjFind(103),"Door handle");
 	ObjSetName(ObjFind(104),"Red gate key");
+	ObjSetName(ObjFind(108),"Woodman's axe");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -519,7 +520,7 @@ func ActionObject_218()
 	gateStatus = ObjGet(gateIdx, O_STATUS);
 	if (gateStatus == 0)
 	{
-		if (TryUseItem(101, 1) == 1)
+		if (TryUseItem2(101, 1) == 1)
 		{
 			ObjSet(gateIdx, O_STATUS, 1);
 			leftLeafIdx = BrushFind(219);
@@ -579,7 +580,7 @@ func ActionObject_229()
 	gateStatus = ObjGet(gateIdx, O_STATUS);
 	if (gateStatus == 0)
 	{
-		if (TryUseItem(104, 1) == 1)
+		if (TryUseItem2(104, 1) == 1)
 		{
 			ObjSet(gateIdx, O_STATUS, 1);
 			leftLeafIdx = BrushFind(227);
@@ -591,8 +592,29 @@ func ActionObject_229()
 	else if (gateStatus == 1)
 	{
 		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-		PlayerSetPos(3858,677);
+		PlayerSetPos(2800,685);
 		PlayerEnterIdle();
+	}
+}
+
+func CollideObject_230_1()
+{
+	PlayerSetPos(2840,685);
+	PlayerEnterIdle();
+}
+
+// Signpost
+func ActionObject_231()
+{
+	if (TryUseItem(108, 1) == 1)
+	{
+		Message0("Using the woodman's\naxe you are able to\nchop the post down\nand make a bridge.");
+		MessagePop();
+		signTopIdx = BrushFind(232);
+		bridgeIdx = BrushFind(233);
+		BrushSet(signTopIdx, B_DRAW, 0);
+		BrushSet(bridgeIdx, B_DRAW, 3);
+		GameCommand(CMD_REFRESH);
 	}
 }
 
