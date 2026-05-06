@@ -200,6 +200,7 @@ func TryUseItem( itemId, removeItem )
 	}
 	else
 	{
+		DropObject(idxobj);
 		return 0;
 	}
 }
@@ -222,28 +223,7 @@ func TryUseItem2( itemId, removeItem )
 		}
 		else
 		{
-			phraseNum = PlayerGet(P_PHRASE_NUM);
-			if (phraseNum == 0)
-			{
-				Message0("Well that\ndoesn't work.");
-				MessagePop();
-			}
-			else if (phraseNum == 1)
-			{
-				Message0("Fat lot of good\nthat was.");
-				MessagePop();
-			}
-			else if (phraseNum == 2)
-			{
-				Message0("I'm going to have to\ntry something else.");
-				MessagePop();
-			}
-			phraseNum++;
-			if (phraseNum > 2)
-			{
-				phraseNum = 0;
-			}
-			PlayerSet(P_PHRASE_NUM, phraseNum);
+			WrongItemDialog();
 			return 0;
 		}
 	}
@@ -253,6 +233,57 @@ func TryUseItem2( itemId, removeItem )
 		PlayerEnterIdle();
 		return 0;
 	}
+}
+
+func TryUseItem3( itemId, removeItem )
+{
+	handleIdx = ObjFind(itemId);
+	if (InventoryFind(handleIdx)!=-1)
+	{
+		idxobj = OpenDialogInventory();
+		if (idxobj==-1)
+			return 0;
+		if (idxobj==handleIdx)
+		{
+			if (removeItem == 1)
+			{
+				InventorySub(idxobj);
+			}
+			return 1;
+		}
+		else
+		{
+			WrongItemDialog();
+			return 0;
+		}
+	}
+	return -1;
+}
+
+func WrongItemDialog()
+{
+	phraseNum = PlayerGet(P_PHRASE_NUM);
+	if (phraseNum == 0)
+	{
+		Message0("Well that\ndoesn't work.");
+		MessagePop();
+	}
+	else if (phraseNum == 1)
+	{
+		Message0("Fat lot of good\nthat was.");
+		MessagePop();
+	}
+	else if (phraseNum == 2)
+	{
+		Message0("I'm going to have to\ntry something else.");
+		MessagePop();
+	}
+	phraseNum++;
+	if (phraseNum > 2)
+	{
+		phraseNum = 0;
+	}
+	PlayerSet(P_PHRASE_NUM, phraseNum);
 }
 
 /////////////////////////////////////////////////////////////////////////////////

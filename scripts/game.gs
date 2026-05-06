@@ -618,4 +618,102 @@ func ActionObject_231()
 	}
 }
 
+// Dozy first dialog
+func CollideObject_235_1()
+{
+	dozyTriggerIdx = ObjFind(235);
+	dozyTriggerStatus = ObjGet(dozyTriggerIdx,O_STATUS);
+	if (dozyTriggerStatus==0)
+	{
+		Message2("Hey you!");
+		MessagePop();
+		Message1("Who me?");
+		MessagePop();
+		Message2("Yes you! You couldn't\nget me down, could you?");
+		MessagePop();
+		Message1("Why, you're a\ntalking scarecrow!");
+		MessagePop();
+		Message2("No, I just fell\nasleep and when\nI woke up, I found\nmyself tied up here!");
+		MessagePop();
+		Message1("It's so tight,\nI can't undo it.");
+		MessagePop();
+		Message2("Perharps you could\ncut the rope?");
+		MessagePop();
+		Message1("That's a good idea. Let me\nlook for something to cut\nit with and I'll be back.");
+		MessagePop();
+		ObjSet(dozyTriggerIdx,O_STATUS,1);
+		UpdateDozyTile();
+	}
+}
+
+func OpenRoom_16_4()
+{
+	ScrRequest( gs_fid("UpdateDozyTile") );
+}
+
+func UpdateDozyTile()
+{
+	dozyTriggerIdx = ObjFind(235);
+	dozyTriggerStatus = ObjGet(dozyTriggerIdx,O_STATUS);
+	if (dozyTriggerStatus==1)
+	{
+		dozyIdx = BrushFind(234);
+		BrushSet(dozyIdx,B_TILE,329);
+		WaitFrames(48);
+		BrushSet(dozyIdx,B_TILE,330);
+	}
+}
+
+// Hanging Dozy
+func ActionObject_236()
+{
+	dozyTriggerIdx = ObjFind(235);
+	dozyTriggerStatus = ObjGet(dozyTriggerIdx,O_STATUS);
+	if (dozyTriggerStatus!=1)
+	{
+		idxobj = OpenDialogInventory();
+		if(idxobj!=-1) DropObject(idxobj);
+		return;
+	}
+	useItemResult = TryUseItem3(102, 1);
+	if (useItemResult == 1)
+	{
+		Message1("I'm back! And this\ntime with scissors!");
+		MessagePop();
+		Message2("Whoa! You gave me a\nfright. You've got\nto stop creeping up\non me like that!");
+		MessagePop();
+		Message1("Let me cut that rope\nand get you down.");
+		MessagePop();
+		Message2("Oh thank you.\nI feel so silly.\nSometimes I think\nI don't have a brain.");
+		MessagePop();
+		Message1("Why that's ridiculous!\nIt wasn't your falut\nyou were mistaken for\na scarecrow.");
+		MessagePop();
+		Message2("I suffer from narcolepsy,\nmeaning I keep falling\nasleep. I'm sure my head\nis stuffed with straw\nrather than brains.");
+		MessagePop();
+		Message1("We all have our faults,\nit's what makes us unique.\nI'm a kleptomaniac, but\nyou are clever and your\nhead isn't stuffed\nwith straw.");
+		MessagePop();
+		Message2("You think?");
+		MessagePop();
+		Message1("It was your idea\nto cut the rope.");
+		MessagePop();
+		Message2("It was obvious.");
+		MessagePop();
+		Message1("I know you are clever,\nand I'll convince you.");
+		MessagePop();
+		ObjSet(dozyTriggerIdx,O_STATUS,2);
+		dozyIdx = BrushFind(234);
+		BrushSet(dozyIdx,B_DRAW,0);
+	}
+	else if (useItemResult == -1)
+	{
+		Message1("I'm still looking!");
+		MessagePop();
+		Message2("Wow! You frightened me.\nI was just having\na little nap.");
+		MessagePop();
+		Message1("I'll keep looking.\nI don't want to keep\nyou hanging around.");
+		MessagePop();
+		Message2("Please do. I think\nthese birds might\nstart pecking me soon.");
+		MessagePop();
+	}
+}
 /////////////////////////////////////////////////////////////////////////////////
