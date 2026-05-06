@@ -560,8 +560,6 @@ func UpdateRoom_16_4()
 // Passage to the palace
 func ActionObject_225()
 {
-	passIdx = ObjFind(225);
-
 	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
 	PlayerSetPos(4362,405);
 	PlayerEnterIdle();
@@ -733,4 +731,19 @@ func ActionObject_237()
 	Message1("It's no use, I'm never\ngoing to be able to\nwake him this way.");
 	MessagePop();
 }
+
+// Passage to the chateau
+func ActionObject_238()
+{
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+	PlayerSetPos(4362,965);
+	PlayerEnterIdle();
+}
+
+func CollideObject_239_1()
+{
+	PlayerSetPos(4527,685);
+	PlayerEnterIdle();
+}
+
 /////////////////////////////////////////////////////////////////////////////////
