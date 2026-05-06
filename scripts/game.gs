@@ -537,16 +537,16 @@ func ActionObject_218()
 	}
 }
 
-func UpdateRoom_15_4()
-{
-	fishIdx = ObjFind(222);
-	AIUpdateFly(fishIdx);
-}
-
 func CollideObject_221_1()
 {
 	PlayerSetPos(3811,685);
 	PlayerEnterIdle();
+}
+
+func UpdateRoom_15_4()
+{
+	fishIdx = ObjFind(222);
+	AIUpdateFly(fishIdx);
 }
 
 func UpdateRoom_16_4()
@@ -701,8 +701,10 @@ func ActionObject_236()
 		Message1("I know you are clever,\nand I'll convince you.");
 		MessagePop();
 		ObjSet(dozyTriggerIdx,O_STATUS,2);
-		dozyIdx = BrushFind(234);
-		BrushSet(dozyIdx,B_DRAW,0);
+		dozyHangIdx = BrushFind(234);
+		BrushSet(dozyHangIdx,B_DRAW,0);
+		dozyLieIdx = ObjFind(237);
+		ObjSet(dozyLieIdx,O_DISABLE,0);
 	}
 	else if (useItemResult == -1)
 	{
@@ -715,5 +717,20 @@ func ActionObject_236()
 		Message2("Please do. I think\nthese birds might\nstart pecking me soon.");
 		MessagePop();
 	}
+}
+
+// Lying Dozy
+func ActionObject_237()
+{
+	Message1("Hey scarecrow! Wake up!\nI need your help.");
+	MessagePop();
+	Message2("Zzzz zzzz");
+	MessagePop();
+	Message1("Come on! Wake up!");
+	MessagePop();
+	Message2("Zzzz zzzz");
+	MessagePop();
+	Message1("It's no use, I'm never\ngoing to be able to\nwake him this way.");
+	MessagePop();
 }
 /////////////////////////////////////////////////////////////////////////////////
