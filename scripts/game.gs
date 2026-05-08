@@ -278,7 +278,7 @@ func ActionObject_100()
 	bootsIdx = ObjFind(100);
 	ObjSet(bootsIdx, O_DISABLE, 1);
 	jokeIdx = BrushFind(240);
-	BrushSet(jokeIdx, B_DRAW, 3);
+	BrushSet(jokeIdx, B_LAYER, 6);
 	Message1("Nice! Strangely they fit\nperfectly. Who kney I had\nsimilar feet to a witch!");
 	MessagePop();
 	Message2("And they'll keep\nyou safe too!");
