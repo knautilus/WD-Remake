@@ -210,9 +210,8 @@ func HandlerCollision()
 	
 	if(ObjGet(idx,O_CLASS)==CLASS_HURT && mode!=0) // hurt objects
 	{
+		PlayerSet(P_DEATH, ObjGet(idx,O_DEATH));
 		PlayerHurt(DIZ_HURT);
-		if(PlayerGet(P_LIFE)==0)
-			PlayerSet(P_DEATH, ObjGet(idx,O_DEATH));
 		return;
 	}
 	if(ObjGet(idx,O_CLASS)==CLASS_KILL && mode!=0) // kill objects

@@ -8,7 +8,7 @@
 #def CM_STEPYMAX		3			// move step y; used in jumps and falls
 #def CM_BOXW			16			// collision box width
 #def CM_BOXH			20			// collision box height
-#def CM_DEFPOW			0x0220
+#def CM_DEFPOW			0x0219
 #def CM_POWSTEP			0x12
 
 #def STATUS_CLIMB		6
@@ -168,7 +168,7 @@ func CM_EnterFall()
 func CM_EnterRoll()
 {
 	PlayerSet(P_POW,1); // cut fall power to roll on ground
-	
+
 	tile = PlayerGet(P_TILE);
 	costume = PlayerGet(P_COSTUME);
 	if( tile==costume+PlayerGet(P_TILEUP) || tile==costume+PlayerGet(P_TILEJUMP) ) // only when jumping
@@ -182,7 +182,6 @@ func CM_EnterRoll()
 	CM_EnterKeyState(); // be sure to stop the fall, just in case the fall handler doesn't
 
 	HandlerFall();
-	
 	PlayerSet(P_STUNLEVEL,0); // clear stun level
 }
 
@@ -424,8 +423,6 @@ func CM_UpdateFall()
 	step2 = CM_CheckFallY(step);
 	PlayerSet(P_Y, PlayerGet(P_Y)+step2);
 
-	PlayerSet(P_STUNLEVEL, PlayerGet(P_STUNLEVEL)+1);
-
 	// stopping fall if fall step was reduced
 	if(step2<step)
 	{
@@ -441,6 +438,7 @@ func CM_UpdateFall()
 		pow += CM_POWSTEP;
 		PlayerSet(P_POW, pow);
 		PlayerSet(P_FPOW, fpow);
+		PlayerSet(P_STUNLEVEL, PlayerGet(P_STUNLEVEL) + 1);
 	}
 }
 

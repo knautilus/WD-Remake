@@ -278,6 +278,8 @@ func PlayerPlayStun()
 {
 	if( IsPlayerStable() && PlayerGet(P_LIFE) ) // hit hard
 	{
+		PlayerSet(P_DEATH, DANGER_FALL);
+		PlayerSet(P_LIFEDEC, FALL_HURT);
 		DoRumble(20); // DoShake(20);
 		PlayerPlayAnimFrames(PTILE_STUN, {0,1,0,1,0,1,0,1,2,3,2,3,2,3,2,3,4,4,4,4}, true );
 	}
@@ -319,12 +321,21 @@ func PlayerLoseLife()
 	PlayerSet(P_CREDITS, credit);
 
 	death = PlayerGet(P_DEATH);
-	msg = PlayerDeathMessage(death);
-	if(msg!="") OpenDialogMessage(msg);
-	
+
+	deathmsg = PlayerDeathMessage(death);
+	if (credit==0)
+	{
+		creditmsg = "Game over!";
+	}
+	else
+	{
+		creditmsg = "You lose a life!";
+	}
+
+	OpenDialogMessage("{c:0xffffff00}" + deathmsg + "\n\n{c:0xffff0000}" + creditmsg, COLOR_RED);
+
 	if(credit==0)
 	{
-		OpenDialogMessage("YOU HAVE LOST\nALL YOUR LIVES!");
 		GameCommand(CMD_START);
 	}
 	else

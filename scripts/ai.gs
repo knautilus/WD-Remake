@@ -76,13 +76,14 @@ func AIUpdateChainLink( idx )
 // Used for classic Dizzy spiders.
 // O_USER = upper y value
 // O_USER+1 = lower y value
+// O_USER+2 = movement delay
 // O_STATUS = direction 0=up, 1=down
 /////////////////////////////////////////////////////////////////////////////////
 func AIUpdateSpider( idx )
 {
 	if(idx==-1) return;
 	if(ObjGet(idx,O_DISABLE)) return;
-	if(!IsUpdate(ObjGet(idx,O_DELAY))) return;
+	if(!IsUpdate(ObjGet(idx,O_USER+2))) return;
 	y = ObjGet(idx,O_Y);
 	if(ObjGet(idx,O_STATUS)==0) // up
 	{
@@ -96,7 +97,7 @@ func AIUpdateSpider( idx )
 	{
 		ty = ObjGet(idx,O_USER+1);
 		if(y<ty)
-			y+=4;
+			y+=1;
 		else
 			ObjSet(idx,O_STATUS,0);
 	}

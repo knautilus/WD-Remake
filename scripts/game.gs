@@ -88,6 +88,10 @@ func RoomSetCustomText( rx, ry, idx, refstr )
 /////////////////////////////////////////////////////////////////////////////////
 func PlayerDeathMessage( death )
 {
+	if(death==DANGER_SPIDER)		return "You're beaten by\na spider!";
+	if(death==DANGER_BIRD)			return "You were pecked\nby a bird!";
+	if(death==DANGER_WATER)			return "You fell in the\nwater and drowned!";
+	if(death==DANGER_FALL)			return "You hit the ground\ntoo hard!";
 	if(death==-1)					return "";
 	// ...
 	return "YOU HAVE DIED!";		// default
@@ -746,6 +750,13 @@ func CollideObject_239_1()
 {
 	PlayerSetPos(4527,685);
 	PlayerEnterIdle();
+}
+
+func UpdateRoom_6_4()
+{
+	spiderIdx = ObjFind(241);
+
+	AIUpdateSpider(spiderIdx);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
