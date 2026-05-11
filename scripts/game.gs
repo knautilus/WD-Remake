@@ -88,6 +88,7 @@ func RoomSetCustomText( rx, ry, idx, refstr )
 /////////////////////////////////////////////////////////////////////////////////
 func PlayerDeathMessage( death )
 {
+	if(death==DANGER_BAT)		return "You were killed\nby a bat";
 	if(death==DANGER_SPIDER)		return "You're beaten by\na spider!";
 	if(death==DANGER_BIRD)			return "You were pecked\nby a bird!";
 	if(death==DANGER_WATER)			return "You fell in the\nwater and drowned!";
