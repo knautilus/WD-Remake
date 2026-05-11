@@ -766,4 +766,43 @@ func UpdateRoom_6_3()
 	AIUpdateFly(batIdx);
 }
 
+func UpdateRoom_7_3()
+{
+	spiderIdx = ObjFind(243);
+
+	AIUpdateSpider(spiderIdx);
+}
+
+// Outside tree hut - the door
+func ActionObject_244()
+{
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+	PlayerSetPos(2000,380);
+	PlayerEnterIdle();
+}
+
+// Inside tree hut - the door
+func ActionObject_245()
+{
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+	PlayerSetPos(1840,524);
+	PlayerEnterIdle();
+}
+
+// Dense dark forest - stairway up
+func ActionObject_246()
+{
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+	PlayerSetPos(1955,597);
+	PlayerEnterIdle();
+}
+
+// Dense dark forest - stairway down
+func ActionObject_247()
+{
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+	PlayerSetPos(1955,653);
+	PlayerEnterIdle();
+}
+
 /////////////////////////////////////////////////////////////////////////////////
