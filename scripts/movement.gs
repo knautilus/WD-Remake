@@ -382,6 +382,15 @@ func CM_UpdateJump()
 
 	UpdatePlayerFrame();
 
+	py = PlayerGet(P_Y);
+	rh = GameGet(G_ROOMH);
+	ry = GameGet(G_ROOMY)*rh;
+	if( py<ry+10)
+	{
+		println("up");
+		PlayerSet(P_Y, py-20);
+	}
+
 	if( pow< 0 ) // done jumping - see where to go idle or fall
 	{
 		under = CM_CheckFallY(1);
@@ -439,6 +448,15 @@ func CM_UpdateFall()
 		PlayerSet(P_POW, pow);
 		PlayerSet(P_FPOW, fpow);
 		PlayerSet(P_STUNLEVEL, PlayerGet(P_STUNLEVEL) + 1);
+	}
+
+	py = PlayerGet(P_Y);
+	rh = GameGet(G_ROOMH);
+	ry = GameGet(G_ROOMY)*rh;
+	if( py>ry+rh-10)
+	{
+		println("down");
+		PlayerSet(P_Y, py+20);
 	}
 }
 

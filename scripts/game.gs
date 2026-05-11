@@ -759,4 +759,11 @@ func UpdateRoom_6_4()
 	AIUpdateSpider(spiderIdx);
 }
 
+func UpdateRoom_6_3()
+{
+	batIdx = ObjFind(242);
+
+	AIUpdateFly(batIdx);
+}
+
 /////////////////////////////////////////////////////////////////////////////////
