@@ -4,8 +4,8 @@
 // Users adjust values in this file to match needs of their game.
 // Advanced users may need to adjust values in other files as well.
 /////////////////////////////////////////////////////////////////////////////////
-#def GAME_AUTHOR		"ALEXANDRU SIMION"					// game's author name (for the credits dialog)
-#def GAME_TITLE			"DizzyAGE Default Template"			// game's title (for the window title)
+#def GAME_AUTHOR		"Alexander Utiansky"					// game's author name (for the credits dialog)
+#def GAME_TITLE			"Wonderful Dizzy Remake"			// game's title (for the window title)
 #def GAME_WEBSITE 		"http://www.yolkfolk.com/dizzyage"	// game's website (for the final dialog)
 #def GAME_ID			"DT080127"							// game's id text, used in saved games - change this when you release a new version, to prevent old saved games to be loaded.
 
