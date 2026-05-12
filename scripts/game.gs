@@ -759,6 +759,7 @@ func UpdateRoom_6_5()
 	AIUpdateFly(batIdx);
 }
 
+// Denzil dialogs
 func ActionObject_253()
 {
 	denzilIdx = ObjFind(253);
@@ -832,6 +833,14 @@ func ActionObject_253()
 	}
 	else if (denzilStatus==2)
 	{
+		Message2("Have you found\nthe wizard yet?");
+		MessagePop();
+		Message2("Did he give you\na heart for me?");
+		MessagePop();
+		Message1("No, I'm sorry, but\nI've not given up.");
+		MessagePop();
+		Message2("I feel so\nhollow inside.");
+		MessagePop();
 	}
 }
 
