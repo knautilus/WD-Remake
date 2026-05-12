@@ -296,6 +296,11 @@ func PlayerPlayDead()
 	PlayerLoseLife();
 }
 
+func PlayerPlayTurn()
+{
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 // Dead in water event requested by HandlerPlayerUpdate() when player died in water.
 // Latent function.

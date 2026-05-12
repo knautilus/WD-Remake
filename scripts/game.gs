@@ -55,6 +55,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(102),"Pair of scissors");
 	ObjSetName(ObjFind(103),"Door handle");
 	ObjSetName(ObjFind(104),"Red gate key");
+	ObjSetName(ObjFind(105),"An oil can");
 	ObjSetName(ObjFind(108),"Woodman's axe");
 }
 
@@ -167,28 +168,29 @@ func AddScore( add )
 /////////////////////////////////////////////////////////////////////////////////
 
 // Inside Dizzy's hut - the door
-func ActionObject_201()
+func ActionObject_251()
 {
 	handleIdx = ObjFind(103);
+	doorAreaIdx = ObjFind(251);
 	doorIdx = ObjFind(201);
-	doorStatus = ObjGet(doorIdx,O_STATUS);
-	if (doorStatus==1 || InventoryFind(handleIdx)!=-1)
+	if (InventoryFind(handleIdx)!=-1)
 	{
-		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-		PlayerSetPos(3168,685);
-		PlayerEnterIdle();
-		if (doorStatus==0)
+		ObjSet(doorIdx, O_DISABLE, 0);
+		ObjSet(doorAreaIdx, O_DISABLE, 1);
+		EnterDoor( doorIdx );
+		InventorySub(handleIdx);
+		for(i=900;i<=954;i++)
 		{
-			InventorySub(handleIdx);
-			for(i=900;i<=954;i++)
-			{
-				itemIdx = BrushFind(i);
-				BrushSet(itemIdx,B_TILE,309);
-			}
-			ObjSet(doorIdx,O_STATUS,1);
-			pogieIdx = ObjFind(203);
-			ObjSet(pogieIdx,O_DISABLE,1);
+			itemIdx = BrushFind(i);
+			BrushSet(itemIdx,B_TILE,309);
 		}
+		pogieIdx = ObjFind(203);
+		ObjSet(pogieIdx,O_DISABLE,1);
+	}
+	else
+	{
+		Message1("Um... The door\nhandle is missing?");
+		MessagePop();
 	}
 }
 
@@ -212,19 +214,11 @@ func ActionObject_203()
 	}
 }
 
-// Outside Dizzy's hut - the door
-func ActionObject_202()
-{
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-	PlayerSetPos(3200,550);
-	PlayerEnterIdle();
-}
-
 // Outside Dizzy's hut - Mayor first dialog
-func CollideObject_202_1()
+func CollideObject_252_1()
 {
-	doorIdx = ObjFind(202);
-	doorStatus = ObjGet(doorIdx,O_STATUS);
+	doorAreaIdx = ObjFind(252);
+	doorStatus = ObjGet(doorAreaIdx,O_STATUS);
 	if (doorStatus==0)
 	{
 		WaitFrames(8);
@@ -240,20 +234,20 @@ func CollideObject_202_1()
 		MessagePop();
 		Message1("Oh... It's sooo colourful,\nin a kind of attributed\nlow resolution, limited\ncolour palette sort\nof style!");
 		MessagePop();
-		ObjSet(doorIdx,O_STATUS,1);
+		ObjSet(doorAreaIdx,O_STATUS,1);
 	}
 }
 
 // Outside Dizzy's hut - Daisy dialog
-func CollideObject_202_0()
+func CollideObject_252_0()
 {
 	if (GameGet(G_ROOMX) != 12 || GameGet(G_ROOMY) != 4)
 	{
 		return;
 	}
 
-	doorIdx = ObjFind(202);
-	doorStatus = ObjGet(doorIdx,O_STATUS);
+	doorAreaIdx = ObjFind(252);
+	doorStatus = ObjGet(doorAreaIdx,O_STATUS);
 	if (doorStatus==1)
 	{
 		daisyIdx = ObjFind(205);
@@ -273,7 +267,7 @@ func CollideObject_202_0()
 		ObjSet(smokeIdx, O_DISABLE, 1);
 		ObjSet(daisyIdx, O_DISABLE, 1);
 		
-		ObjSet(doorIdx,O_STATUS,2);
+		ObjSet(doorAreaIdx,O_STATUS,2);
 	}
 }
 
@@ -483,22 +477,6 @@ func ActionObject_204()
 	}
 }
 
-// Outside Munchkin hut - the door
-func ActionObject_214()
-{
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-	PlayerSetPos(3486,558);
-	PlayerEnterIdle();
-}
-
-// Inside Munchkin hut - the door
-func ActionObject_215()
-{
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-	PlayerSetPos(3398,693);
-	PlayerEnterIdle();
-}
-
 // Inside Munchkin hut - villager 1
 func ActionObject_216()
 {
@@ -538,7 +516,7 @@ func ActionObject_218()
 	}
 	else if (gateStatus == 1)
 	{
-		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+		PlayerPlayTurn();
 		PlayerSetPos(3858,677);
 		PlayerEnterIdle();
 	}
@@ -567,7 +545,7 @@ func UpdateRoom_16_4()
 // Passage to the palace
 func ActionObject_225()
 {
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+	PlayerPlayTurn();
 	PlayerSetPos(4362,405);
 	PlayerEnterIdle();
 }
@@ -596,7 +574,7 @@ func ActionObject_229()
 	}
 	else if (gateStatus == 1)
 	{
-		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+		PlayerPlayTurn();
 		PlayerSetPos(2800,685);
 		PlayerEnterIdle();
 	}
@@ -742,7 +720,7 @@ func ActionObject_237()
 // Passage to the chateau
 func ActionObject_238()
 {
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+	PlayerPlayTurn();
 	PlayerSetPos(4362,965);
 	PlayerEnterIdle();
 }
@@ -774,36 +752,11 @@ func UpdateRoom_7_3()
 	AIUpdateSpider(spiderIdx);
 }
 
-// Outside tree hut - the door
-func ActionObject_244()
+func UpdateRoom_6_5()
 {
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-	PlayerSetPos(2000,380);
-	PlayerEnterIdle();
-}
+	batIdx = ObjFind(250);
 
-// Inside tree hut - the door
-func ActionObject_245()
-{
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-	PlayerSetPos(1840,524);
-	PlayerEnterIdle();
-}
-
-// Dense dark forest - stairway up
-func ActionObject_246()
-{
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-	PlayerSetPos(1955,597);
-	PlayerEnterIdle();
-}
-
-// Dense dark forest - stairway down
-func ActionObject_247()
-{
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
-	PlayerSetPos(1955,653);
-	PlayerEnterIdle();
+	AIUpdateFly(batIdx);
 }
 
 /////////////////////////////////////////////////////////////////////////////////

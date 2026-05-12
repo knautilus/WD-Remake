@@ -387,7 +387,6 @@ func CM_UpdateJump()
 	ry = GameGet(G_ROOMY)*rh;
 	if( py<ry+10)
 	{
-		println("up");
 		PlayerSet(P_Y, py-20);
 	}
 
@@ -455,7 +454,6 @@ func CM_UpdateFall()
 	ry = GameGet(G_ROOMY)*rh;
 	if( py>ry+rh-10)
 	{
-		println("down");
 		PlayerSet(P_Y, py+20);
 	}
 }

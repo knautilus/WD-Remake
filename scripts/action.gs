@@ -340,17 +340,39 @@ func ActionObject( idx )
 {
 	// try private function
 	id = ObjGet(idx, O_ID);
-	sz = "ActionObject_"+(str)id;
-	fid = gs_fid(sz);
-	if(fid!=-1)
+	if (ObjGet(idx, O_MATERIAL)==MAT_DOOR)
 	{
-		call(fid);
-		return;
+		sz = "EnterDoor";
+		fid = gs_fid(sz);
+		if(fid!=-1)
+		{
+			call(idx, fid);
+			return;
+		}
 	}
-	
+	else
+	{
+		sz = "ActionObject_"+(str)id;
+		fid = gs_fid(sz);
+		if(fid!=-1)
+		{
+			call(fid);
+			return;
+		}
+	}
+
 	// open inventory to use/drop something
 	idx2 = OpenDialogInventory();
 	if(idx2!=-1) UseObject(idx2);
+}
+
+func EnterDoor( idx )
+{
+	targetIdx = ObjFind(ObjGet(idx, O_TARGET));
+
+	PlayerPlayTurn();
+	PlayerSetPos(ObjGet(targetIdx,O_X)+8, ObjGet(targetIdx,O_Y)+13);
+	PlayerEnterIdle();
 }
 	
 /////////////////////////////////////////////////////////////////////////////////
