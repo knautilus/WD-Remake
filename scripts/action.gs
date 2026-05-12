@@ -238,26 +238,27 @@ func TryUseItem2( itemId, removeItem )
 func TryUseItem3( itemId, removeItem )
 {
 	handleIdx = ObjFind(itemId);
-	if (InventoryFind(handleIdx)!=-1)
+	if (InventoryFind(handleIdx)==-1)
 	{
-		idxobj = OpenDialogInventory();
-		if (idxobj==-1)
-			return 0;
-		if (idxobj==handleIdx)
-		{
-			if (removeItem == 1)
-			{
-				InventorySub(idxobj);
-			}
-			return 1;
-		}
-		else
-		{
-			WrongItemDialog();
-			return 0;
-		}
+		return -1;
 	}
-	return -1;
+	
+	idxobj = OpenDialogInventory();
+	if (idxobj==-1)
+		return 0;
+	if (idxobj==handleIdx)
+	{
+		if (removeItem == 1)
+		{
+			InventorySub(idxobj);
+		}
+		return 1;
+	}
+	else
+	{
+		WrongItemDialog();
+		return 0;
+	}
 }
 
 func WrongItemDialog()

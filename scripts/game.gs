@@ -408,7 +408,7 @@ func WitchDialogScene()
 	witchIdx = ObjFind(210);
 	smokeIdx = ObjFind(211);
 
-	WaitFrames(48);
+	WaitFrames(52);
 
 	ObjSet(smokeIdx, O_DISABLE, 0);
 	ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
@@ -757,6 +757,82 @@ func UpdateRoom_6_5()
 	batIdx = ObjFind(250);
 
 	AIUpdateFly(batIdx);
+}
+
+func ActionObject_253()
+{
+	denzilIdx = ObjFind(253);
+	denzilStatus = ObjGet(denzilIdx,O_STATUS);
+	if (denzilStatus==0)
+	{
+		Message2("Help! Won't you\nplease, please\nhelp me now?");
+		MessagePop();
+		Message1("I'm sorry? Are you\ntalking to me?");
+		MessagePop();
+		Message2("I'm rusted,\ncold and hard,\nwithout a heart.");
+		MessagePop();
+		Message1("How did this happen?");
+		MessagePop();
+		Message2("It's a kind of magic.");
+		MessagePop();
+		Message1("Are you listening\nto 80's music?");
+		MessagePop();
+		Message2("I'm stuck on repeat.");
+		MessagePop();
+		Message1("I'll see what\nI can do.");
+		MessagePop();
+		ObjSet(denzilIdx, O_STATUS, 1);
+	}
+	else if (denzilStatus==1)
+	{
+		useItemResult = TryUseItem3(105, 1);
+		if (useItemResult == 1)
+		{
+			Message1("I'm back. This oil\nshould help loosen\nthose rusted joints.");
+			MessagePop();
+			Message2("Oh yeh!\nI feel the grooves,\nI feel the moves.");
+			MessagePop();
+			Message1("Whoa!. Watch where\nyou are swinging\nthat axe.");
+			MessagePop();
+			Message2("I'm tired of this\nchopping and need\na new gig.");
+			MessagePop();
+			Message2("Take my axe, I'm\nthrough with this work.");
+			MessagePop();
+			Message1("That could be very\nuseful. Thanks.");
+			MessagePop();
+			Message2("So where are\nyou going?");
+			MessagePop();
+			Message1("Oh I'm off to find\nthe Wizard of Oz,\nhe's going to help\nme get home.");
+			MessagePop();
+			Message2("You don't suppose\nhe'd help me too,\ndo you?");
+			MessagePop();
+			Message1("Why do you need help?");
+			MessagePop();
+			Message2("I'm hollow inside.\nGo ahead, bang on my\nchest. You see there's\nnothing inside.");
+			MessagePop();
+			Message1("Um... I see.");
+			MessagePop();
+			Message2("You don't suppose\nhe'd give me a heart?");
+			MessagePop();
+			Message1("Well that's an\ninteresting idea,\nI really don't know,\nbut I will ask him.");
+			MessagePop();
+			Message2("Thank you.");
+			MessagePop();
+			axeIdx = ObjFind(108);
+			ObjSet(axeIdx, O_DISABLE, 0);
+			ObjSet(denzilIdx, O_STATUS, 2);
+		}
+		else if (useItemResult == -1)
+		{
+			Message1("Don't worry. I've\nnot given up on you.");
+			MessagePop();
+			Message2("I believe in you.");
+			MessagePop();
+		}
+	}
+	else if (denzilStatus==2)
+	{
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////
