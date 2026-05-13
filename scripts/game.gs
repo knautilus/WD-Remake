@@ -844,4 +844,12 @@ func ActionObject_253()
 	}
 }
 
+func UpdateRoom_5_3()
+{
+	batIdx = ObjFind(254);
+	AIUpdateFly(batIdx);
+	batIdx = ObjFind(255);
+	AIUpdateFly(batIdx);
+}
+
 /////////////////////////////////////////////////////////////////////////////////
