@@ -375,5 +375,5 @@ func EnterDoor( idx )
 	PlayerSetPos(ObjGet(targetIdx,O_X)+8, ObjGet(targetIdx,O_Y)+13);
 	PlayerEnterIdle();
 }
-	
+
 /////////////////////////////////////////////////////////////////////////////////

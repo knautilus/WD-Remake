@@ -522,12 +522,6 @@ func ActionObject_218()
 	}
 }
 
-func CollideObject_221_1()
-{
-	PlayerSetPos(3811,685);
-	PlayerEnterIdle();
-}
-
 func UpdateRoom_15_4()
 {
 	fishIdx = ObjFind(222);
@@ -540,12 +534,6 @@ func UpdateRoom_16_4()
 	AIUpdateFly(crowIdx);
 	crowIdx = ObjFind(224);
 	AIUpdateFly(crowIdx);
-}
-
-func CollideObject_226_1()
-{
-	PlayerSetPos(4456,685);
-	PlayerEnterIdle();
 }
 
 // Red gate
@@ -570,12 +558,6 @@ func ActionObject_229()
 		PlayerSetPos(2800,685);
 		PlayerEnterIdle();
 	}
-}
-
-func CollideObject_230_1()
-{
-	PlayerSetPos(2840,685);
-	PlayerEnterIdle();
 }
 
 // Signpost
@@ -707,12 +689,6 @@ func ActionObject_237()
 	MessagePop();
 	Message1("It's no use, I'm never\ngoing to be able to\nwake him this way.");
 	MessagePop();
-}
-
-func CollideObject_239_1()
-{
-	PlayerSetPos(4527,685);
-	PlayerEnterIdle();
 }
 
 func UpdateRoom_6_4()

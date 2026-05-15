@@ -28,6 +28,7 @@ func HandlerGameInit()
 	MaterialSetDensity( MAT_JUMPPRO,	MATD_JUMP );
 	MaterialSetDensity( MAT_LADDER,		MATD_VOID );
 	MaterialSetDensity( MAT_DOOR,		MATD_VOID );
+	MaterialSetDensity( MAT_TELEPORT,	MATD_VOID );
 	
 	MaterialSetColor( MAT_AIR,			0xFF000000 );
 	MaterialSetColor( MAT_WATER,		0xFF0060FF );
@@ -41,6 +42,7 @@ func HandlerGameInit()
 	MaterialSetColor( MAT_JUMPPRO,		0xFF00B000 );
 	MaterialSetColor( MAT_LADDER,		0xFFC8C800 );
 	MaterialSetColor( MAT_DOOR,			0xFFFF00FF );
+	MaterialSetColor( MAT_TELEPORT,		0xFFFF11FF );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -223,12 +225,25 @@ func HandlerCollision()
 		return;
 	}
 	
-	id = ObjGet(idx,O_ID);
-	// println("HANDLER COLLISION ", id, " ", mode);
-	fid = gs_fid( "CollideObject_"+(str)id+"_"+(str)mode );
-	if(fid!=-1)	ScrRequest(fid); // call only if available
-	// OBS: this will result in requesting only one collider (even if more objects collide), since they are latent.
-	// adjust behaviour with non-latent calls, if your game needs it
+	if (ObjGet(idx, O_MATERIAL)==MAT_TELEPORT)
+	{
+		sz = "EnterTeleport";
+		fid = gs_fid(sz);
+		if(fid!=-1)
+		{
+			call(idx, fid);
+			return;
+		}
+	}
+	else
+	{
+		id = ObjGet(idx,O_ID);
+		// println("HANDLER COLLISION ", id, " ", mode);
+		fid = gs_fid( "CollideObject_"+(str)id+"_"+(str)mode );
+		if(fid!=-1)	ScrRequest(fid); // call only if available
+		// OBS: this will result in requesting only one collider (even if more objects collide), since they are latent.
+		// adjust behaviour with non-latent calls, if your game needs it
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -542,6 +557,14 @@ func HandlerReloadScript()
 {
 	RoomsLoadTexts(ROOM_TEXTSFILE);
 	// ...
+}
+
+func EnterTeleport( idx )
+{
+	targetIdx = ObjFind(ObjGet(idx, O_TARGET));
+	if(targetIdx==-1) return;
+	PlayerSetPos(ObjGet(targetIdx,O_X)+8, ObjGet(targetIdx,O_Y)+13);
+	PlayerEnterIdle();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
