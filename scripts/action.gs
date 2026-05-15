@@ -370,7 +370,7 @@ func ActionObject( idx )
 func EnterDoor( idx )
 {
 	targetIdx = ObjFind(ObjGet(idx, O_TARGET));
-
+	if(targetIdx==-1) return;
 	PlayerPlayTurn();
 	PlayerSetPos(ObjGet(targetIdx,O_X)+8, ObjGet(targetIdx,O_Y)+13);
 	PlayerEnterIdle();

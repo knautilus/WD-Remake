@@ -51,7 +51,7 @@
 #def MAT_JUMPFIX	8			// jumper fix (hard)
 #def MAT_JUMPPRO	9			// jumper progressive (hard)
 #def MAT_LADDER		10			// ladder; player can climb
-#def MAT_DOOR		11			// door; player can teleport
+#def MAT_DOOR		11			// door; player can teleport on action
 
 // objects classes
 #def CLASS_NONE		0			// default

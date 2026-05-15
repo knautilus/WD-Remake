@@ -542,14 +542,6 @@ func UpdateRoom_16_4()
 	AIUpdateFly(crowIdx);
 }
 
-// Passage to the palace
-func ActionObject_225()
-{
-	PlayerPlayTurn();
-	PlayerSetPos(4362,405);
-	PlayerEnterIdle();
-}
-
 func CollideObject_226_1()
 {
 	PlayerSetPos(4456,685);
@@ -587,14 +579,14 @@ func CollideObject_230_1()
 }
 
 // Signpost
-func ActionObject_231()
+func ActionObject_262()
 {
 	if (TryUseItem(108, 1) == 1)
 	{
 		Message0("Using the woodman's\naxe you are able to\nchop the post down\nand make a bridge.");
 		MessagePop();
-		signTopIdx = BrushFind(232);
-		bridgeIdx = BrushFind(233);
+		signTopIdx = BrushFind(263);
+		bridgeIdx = BrushFind(264);
 		BrushSet(signTopIdx, B_DRAW, 0);
 		BrushSet(bridgeIdx, B_DRAW, 3);
 		GameCommand(CMD_REFRESH);
@@ -717,14 +709,6 @@ func ActionObject_237()
 	MessagePop();
 }
 
-// Passage to the chateau
-func ActionObject_238()
-{
-	PlayerPlayTurn();
-	PlayerSetPos(4362,965);
-	PlayerEnterIdle();
-}
-
 func CollideObject_239_1()
 {
 	PlayerSetPos(4527,685);
@@ -793,7 +777,7 @@ func ActionObject_253()
 			MessagePop();
 			Message2("Oh yeh!\nI feel the grooves,\nI feel the moves.");
 			MessagePop();
-			Message1("Whoa!. Watch where\nyou are swinging\nthat axe.");
+			Message1("Whoa! Watch where\nyou are swinging\nthat axe.");
 			MessagePop();
 			Message2("I'm tired of this\nchopping and need\na new gig.");
 			MessagePop();
