@@ -56,6 +56,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(103),"Door handle");
 	ObjSetName(ObjFind(104),"Red gate key");
 	ObjSetName(ObjFind(105),"An oil can");
+	ObjSetName(ObjFind(106),"A rubber band");
 	ObjSetName(ObjFind(108),"Woodman's axe");
 }
 
@@ -816,6 +817,92 @@ func UpdateRoom_5_5()
 {
 	snakeIdx = ObjFind(265);
 	AIUpdateSnake(snakeIdx);
+}
+
+func OpenRoom_17_4()
+{
+	RoomSet(18,4,R_STATUS,0);
+	tinkerAreaIdx = ObjFind(266);
+	tinkerStatus = ObjGet(tinkerAreaIdx, O_STATUS);
+	if (tinkerStatus == 3)
+	{
+		ObjSet(tinkerAreaIdx, O_STATUS, 4);
+	}
+	else if (tinkerStatus == 7)
+	{
+		ObjSet(tinkerAreaIdx, O_STATUS, 8);
+	}
+}
+
+func OpenRoom_19_4()
+{
+	RoomSet(18,4,R_STATUS,0);
+	tinkerAreaIdx = ObjFind(266);
+	tinkerStatus = ObjGet(tinkerAreaIdx, O_STATUS);
+	if (tinkerStatus == 1)
+	{
+		ObjSet(tinkerAreaIdx, O_STATUS, 2);
+	}
+	else if (tinkerStatus == 5)
+	{
+		ObjSet(tinkerAreaIdx, O_STATUS, 6);
+	}
+}
+
+func CollideObject_266_1()
+{
+	tinkerAreaIdx = ObjFind(266);
+	tinkerWallIdx = BrushFind(267);
+	tinkerStatus = ObjGet(tinkerAreaIdx, O_STATUS);
+	roomStatus = RoomGet(18,4,R_STATUS);
+
+	if (tinkerStatus == 0)
+	{
+		BrushSet(tinkerWallIdx, B_DRAW, 2);
+		GameCommand(CMD_REFRESH);
+
+		if (roomStatus == 0)
+		{
+			Message2("To cross, you'll\nneed to bring me...");
+			MessagePop();
+			Message2("The band that never plays.");
+			MessagePop();
+			Message1("Um... Strange. Maybe they\nare rubbish and they are\ndoing everyone a favour?");
+			MessagePop();
+			RoomSet(18,4,R_STATUS,1);
+			WaitFrames(8);
+		}
+
+		bandIdx = ObjFind(106);
+		if (InventoryFind(bandIdx)!=-1)
+		{
+			InventorySub(bandIdx);
+			Message1("I've got it! The band\nthat never plays is\na rubber band.");
+			MessagePop();
+			Message2("Well done! You may pass.");
+			MessagePop();
+			BrushSet(tinkerWallIdx, B_DRAW, 0);
+			ObjSet(tinkerAreaIdx, O_STATUS, 1);
+			GameCommand(CMD_REFRESH);
+		}
+	}
+	else if (tinkerStatus == 2)
+	{
+		BrushSet(tinkerWallIdx, B_DRAW, 2);
+		GameCommand(CMD_REFRESH);
+
+		if (roomStatus == 0)
+		{
+			Message2("To cross, you'll\nneed to bring me...");
+			MessagePop();
+			Message2("That whish never\nasks questions,\nbut is always heard\nand often answered.");
+			MessagePop();
+			Message1("Um... That's a tough one.\nI'll see what I can find.");
+			MessagePop();
+			RoomSet(18,4,R_STATUS,1);
+			WaitFrames(8);
+		}
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////
