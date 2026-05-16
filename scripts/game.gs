@@ -812,4 +812,10 @@ func UpdateRoom_5_3()
 	AIUpdateFly(batIdx);
 }
 
+func UpdateRoom_5_5()
+{
+	snakeIdx = ObjFind(265);
+	AIUpdateSnake(snakeIdx);
+}
+
 /////////////////////////////////////////////////////////////////////////////////

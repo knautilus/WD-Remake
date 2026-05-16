@@ -261,4 +261,27 @@ func MusicRestore()
 func MIN(a,b) { return (a<b)?a:b; }
 func MAX(a,b) { return (a>b)?a:b; }
 
+func MakeBBW ( idx, x1, y1, x2, y2 )
+{
+	dd = ObjGet(idx, O_X);
+	*x1 = ObjGet(idx, O_X);
+	*x2 = ObjGet(idx, O_X)+ObjGet(idx, O_W);
+	*y1 = ObjGet(idx, O_Y);
+	*y2 = ObjGet(idx, O_Y)+ObjGet(idx, O_H);
+}
+
+func MakeBB ( idx, x1, y1, x2, y2 )
+{
+	wx1=0;wy1=0;wx2=0;wy2=0;
+	rx = GameGet(G_ROOMX);
+	ry = GameGet(G_ROOMY);
+	rw = GameGet(G_ROOMW);
+	rh = GameGet(G_ROOMH);
+	MakeBBW(idx, &wx1,&wy1,&wx2,&wy2);
+	*x1 = wx1 - rx*rw;
+	*x2 = wx2 - rx*rw;
+	*y1 = wy1 - ry*rh;
+	*y2 = wy2 - ry*rh;
+}
+
 /////////////////////////////////////////////////////////////////////////////////

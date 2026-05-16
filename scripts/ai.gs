@@ -247,4 +247,114 @@ func AIUpdateFly( idx )
 	}
 }
 
+func AIUpdateSnake( idx )
+{
+	if(idx==-1) return;
+
+	speedx = MIN(10, MAX(1, ObjGet(idx,O_SPEEDX)));
+	delayx = 11-speedx;
+
+	if (!IsUpdate(delayx))
+	{
+		return;
+	}
+	
+	l = ObjGet(idx,O_BOUNDLEFT);
+	r = ObjGet(idx,O_BOUNDRIGHT);
+	dirx = ObjGet(idx, O_DIRX);
+	x = ObjGet(idx,O_X);
+	y = ObjGet(idx,O_Y);
+
+	if( AI_CheckWalkX( idx ) )
+	{
+		x += dirx*CM_STEPX;
+		ObjSet(idx,O_X,x);
+	}
+
+	snap = AI_CheckCollidersSnap( idx );
+
+	// stand check only if not already snapped to collider
+	if( !snap)
+	{
+		h = AI_CheckFallY( idx ); // see if it can fall 
+		if(h>0) // if any space below then enter in fall
+		{
+			ObjSet(idx, O_Y,y+1); 
+		}
+	}
+		
+	// fix collision by rising object
+	AI_CheckCollision( idx );
+
+	if(x<=l||x>=r)
+	{
+		ObjSet(idx,O_DIRX, dirx*-1);
+
+		flip = ObjGet(idx,O_FLIP);
+		if (flip==0)
+			ObjSet(idx, O_FLIP, 1);
+		else
+			ObjSet(idx, O_FLIP, 0);
+	}
+}
+
+func AI_CheckCollision( idx )
+{
+	x1=0;y1=0;x2=0;y2=0;
+	MakeBB(idx,&x1,&y1,&x2,&y2);
+	step = MaterialGetFreeDist(x1,y2-CM_STEPY,x2,y2,0,1); // top to bottom
+	if(step<CM_STEPY) // has some block
+		ObjSet(idx,O_Y,ObjGet(idx,O_Y)-(CM_STEPY-step)); // rise up
+}
+
+func AI_CheckCollidersSnap( idx )
+{
+	snap = 0;
+	x1=0;y1=0;x2=0;y2=0;
+	MakeBBW(idx, &x1,&y1,&x2,&y2); // bound in world
+
+	// test snap up - get max colliders distance inside object's bound
+	dist = ColliderSnapDistance(x1,y1,x2,y2);
+	if(dist>0) // got collision
+	{
+		step = MIN(dist,CM_STEPY);
+		ObjSet(O_Y, ObjGet(O_Y)-step);
+		snap=1; // snap up
+	}
+	else
+	{
+		// test snap down - get min colliders distance below object's bound
+		dist = ColliderSnapDistance(x1,y2,x2,y2+CM_STEPY+1); // max
+		step = CM_STEPY+1-dist; // min
+		if(step<=CM_STEPY) // got collision under
+		{
+			ObjSet(O_Y, ObjGet(O_Y)+step);
+			snap=1; // snap down
+		}
+	}	
+	
+	return snap;
+}
+
+func AI_CheckWalkX( idx )
+{
+	x1=0;y1=0;x2=0;y2=0;
+	MakeBB(idx,&x1,&y1,&x2,&y2);
+	dir = ObjGet(idx, O_DIRX);
+	if(dir==1)
+		return MaterialCheckFree( x2,y1,x2+CM_STEPX,y2-8 );
+	else
+	if(dir==-1)
+		return MaterialCheckFree( x1-CM_STEPX,y1,x1,y2-8 );
+	else
+		return false;
+}
+
+func AI_CheckFallY( idx )
+{
+	x1=0;y1=0;x2=0;y2=0;
+	MakeBB(idx,&x1,&y1,&x2,&y2);
+	return MaterialGetFreeDist(x1,y2,x2,y2+CM_STEPY,0,0); // top to bottom
+}
+
 /////////////////////////////////////////////////////////////////////////////////
