@@ -57,7 +57,8 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(104),"Red gate key");
 	ObjSetName(ObjFind(105),"An oil can");
 	ObjSetName(ObjFind(106),"A rubber band");
-	ObjSetName(ObjFind(108),"Woodman's axe");
+	ObjSetName(ObjFind(107),"Woodman's axe");
+	ObjSetName(ObjFind(108),"An empty bucket");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -564,7 +565,7 @@ func ActionObject_229()
 // Signpost
 func ActionObject_262()
 {
-	if (TryUseItem(108, 1) == 1)
+	if (TryUseItem(107, 1) == 1)
 	{
 		Message0("Using the woodman's\naxe you are able to\nchop the post down\nand make a bridge.");
 		MessagePop();
