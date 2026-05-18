@@ -107,20 +107,25 @@
 #def O_BOUNDRIGHT	37	// right boundary x coordinate, used in AIUpdateFly()
 #def O_DIRX			38	// horizontal moving direction (-1 or 0 = left, 1 = right), used in AIUpdateFly()
 #def O_DIRY			39	// vertical moving direction (-1 or 0 = up, 1 = down), used in AIUpdateFly()
+#def O_HURT			40	// hurt level, used in Class=Hurt
+#def O_HURTDELAY	41	// hurt delay, used in Class=Hurt
+#def O_LIFEDECSTEP	42	// hurt step, used in Class=Hurt
 
 // player variables starting from P_USER=64 up to P_MAX=128
 #def P_LIFEINC		64
 #def P_LIFEDEC		65
-#def P_SCORE		66
+#def P_LIFEDECSTEP	66
 
-#def P_FRAME_CTR	67
-#def P_FPOW			68
+#def P_SCORE		67
 
-#def P_DIRY			69	// used in climbing mode. -1=up, 1=down
+#def P_FRAME_CTR	68
+#def P_FPOW			69
 
-#def P_PHRASE_NUM	70	// used in commenting wrong item
+#def P_DIRY			70	// used in climbing mode. -1=up, 1=down
 
-#def P_DEATH		71	// cause of death
+#def P_PHRASE_NUM	71	// used in commenting wrong item
+
+#def P_DEATH		72	// cause of death
 
 // Dangers
 #def DANGER_NONE        0

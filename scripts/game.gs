@@ -59,6 +59,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(106),"A rubber band");
 	ObjSetName(ObjFind(107),"Woodman's axe");
 	ObjSetName(ObjFind(108),"An empty bucket");
+	ObjSetName(ObjFind(109),"Bunch of poppies");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -146,6 +147,7 @@ func BeginNewGame()
 	PlayerSetPos(PLAYER_BEGINX,PLAYER_BEGINY);	// set begin position
 	PlayerSet(P_LIFE,1);
 	PlayerSet(P_LIFEDEC, 0);
+	PlayerSet(P_LIFEDECSTEP, 1);
 	PlayerSet(P_LIFEINC, MAXLIFE-1);
 	PlayerSet(P_SCORE, 0);
 

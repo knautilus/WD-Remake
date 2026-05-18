@@ -378,13 +378,17 @@ func PlayerRespawn()
 // Player hurt event (non-latent).
 // Just take some energy and play a hurt sound.
 /////////////////////////////////////////////////////////////////////////////////
-func PlayerHurt( damage )
+func PlayerHurt( damage, step )
 {
 	DoRumble(6);
+	PlayerSet(P_SAFE,0); // not safe
 
-	lifeinc = PlayerGet(P_LIFEINC);
 	lifedec = PlayerGet(P_LIFEDEC);
 
+	if (lifedec != 0 && damage < lifedec)
+		return;
+
+	lifeinc = PlayerGet(P_LIFEINC);
 	lifeinc = lifeinc - lifedec - damage;
 	
 	if (lifeinc < 0)
@@ -395,7 +399,7 @@ func PlayerHurt( damage )
 	
 	PlayerSet(P_LIFEINC, lifeinc);
 	PlayerSet(P_LIFEDEC, lifedec);
-	PlayerSet(P_SAFE,0); // not safe
+	PlayerSet(P_LIFEDECSTEP, step);
 }
 
 /////////////////////////////////////////////////////////////////////////////////

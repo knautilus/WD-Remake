@@ -214,8 +214,14 @@ func HandlerCollision()
 	
 	if(ObjGet(idx,O_CLASS)==CLASS_HURT && mode!=0) // hurt objects
 	{
+		hurt = ObjGet(idx,O_HURT);
+		hurtDelay = ObjGet(idx,O_HURTDELAY);
+		lifedecStep = ObjGet(idx,O_LIFEDECSTEP);
+		if (hurt == 0)
+			hurt = DIZ_HURT;
 		PlayerSet(P_DEATH, ObjGet(idx,O_DEATH));
-		PlayerHurt(DIZ_HURT);
+		if (IsUpdate(hurtDelay))
+			PlayerHurt(hurt,lifedecStep);
 		return;
 	}
 	if(ObjGet(idx,O_CLASS)==CLASS_KILL && mode!=0) // kill objects
@@ -325,9 +331,10 @@ func HandlerPlayerUpdate()
 	}
 	
 	// Check clouds
-	if(IsMaterialUnderPlayer(MAT_CLOUD))
+	if(IsMaterialUnderPlayer(MAT_CLOUD) && PlayerGet(P_STATUS)!=STATUS_FALL)
 	{
-		PlayerSet(P_Y, PlayerGet(P_Y)+1);
+		if (IsUpdate(4))
+			PlayerSet(P_Y, PlayerGet(P_Y)+1);
 	}
 	
 	// Check Player Water
@@ -351,7 +358,7 @@ func HandlerPlayerUpdate()
 	{
 		if(PlayerGet(P_LIFE)>0)
 		{
-			PlayerHurt(DIZ_HURT);
+			PlayerHurt(DIZ_HURT, 1);
 			if(PlayerGet(P_LIFE)==0)
 				PlayerSet(P_DEATH,0); // set cause of death if needed
 		}
