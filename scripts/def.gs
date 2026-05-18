@@ -138,7 +138,7 @@
 #def DANGER_BIRD        7
 #def DANGER_SPIDER      8
 #def DANGER_FISH        9
-#def DANGER_GHOST       10
+#def DANGER_POPPY       10
 #def DANGER_LAVA        11
 #def DANGER_RAIN        12
 #def DANGER_ACIDRAIN    13

@@ -92,9 +92,10 @@ func RoomSetCustomText( rx, ry, idx, refstr )
 /////////////////////////////////////////////////////////////////////////////////
 func PlayerDeathMessage( death )
 {
-	if(death==DANGER_BAT)		return "You were killed\nby a bat";
+	if(death==DANGER_BAT)			return "You were killed\nby a bat";
 	if(death==DANGER_SPIDER)		return "You're beaten by\na spider!";
 	if(death==DANGER_BIRD)			return "You were pecked\nby a bird!";
+	if(death==DANGER_POPPY)			return "The poppies make\nyou fall asleep!";
 	if(death==DANGER_WATER)			return "You fell in the\nwater and drowned!";
 	if(death==DANGER_FALL)			return "You hit the ground\ntoo hard!";
 	if(death==-1)					return "";
@@ -906,6 +907,12 @@ func CollideObject_266_1()
 			WaitFrames(8);
 		}
 	}
+}
+
+func UpdateRoom_20_3()
+{
+	crowIdx = ObjFind(268);
+	AIUpdateFly(crowIdx);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
