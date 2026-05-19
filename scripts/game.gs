@@ -173,15 +173,13 @@ func AddScore( add )
 /////////////////////////////////////////////////////////////////////////////////
 
 // Inside Dizzy's hut - the door
-func ActionObject_251()
+func ActionObject_201()
 {
 	handleIdx = ObjFind(103);
-	doorAreaIdx = ObjFind(251);
 	doorIdx = ObjFind(201);
 	if (InventoryFind(handleIdx)!=-1)
 	{
-		ObjSet(doorIdx, O_DISABLE, 0);
-		ObjSet(doorAreaIdx, O_DISABLE, 1);
+		ObjSet(doorIdx, O_MATERIAL, MAT_DOOR);
 		EnterDoor( doorIdx );
 		InventorySub(handleIdx);
 		for(i=900;i<=954;i++)
@@ -191,6 +189,7 @@ func ActionObject_251()
 		}
 		pogieIdx = ObjFind(203);
 		ObjSet(pogieIdx,O_DISABLE,1);
+		GameCommand(CMD_REFRESH);
 	}
 	else
 	{
@@ -497,7 +496,7 @@ func ActionObject_217()
 }
 
 // Closed hut
-func ActionObject_213()
+func ActionObject_273()
 {
 	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3,4,4,4,3,2,1,0});
 	PlayerEnterIdle();
@@ -507,23 +506,15 @@ func ActionObject_213()
 func ActionObject_218()
 {
 	gateIdx = ObjFind(218);
-	gateStatus = ObjGet(gateIdx, O_STATUS);
-	if (gateStatus == 0)
+
+	if (TryUseItem2(101, 1) == 1)
 	{
-		if (TryUseItem2(101, 1) == 1)
-		{
-			ObjSet(gateIdx, O_STATUS, 1);
-			leftLeafIdx = BrushFind(219);
-			rightLeafIdx = BrushFind(220);
-			BrushSet(leftLeafIdx, O_X, BrushGet(leftLeafIdx, O_X)-8);
-			BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
-		}
-	}
-	else if (gateStatus == 1)
-	{
-		PlayerPlayTurn();
-		PlayerSetPos(3858,677);
-		PlayerEnterIdle();
+		leftLeafIdx = BrushFind(219);
+		rightLeafIdx = BrushFind(220);
+		BrushSet(leftLeafIdx, O_X, BrushGet(leftLeafIdx, O_X)-8);
+		BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
+		ObjSet(gateIdx, O_MATERIAL, MAT_DOOR);
+		GameCommand(CMD_REFRESH);
 	}
 }
 
@@ -545,23 +536,15 @@ func UpdateRoom_16_4()
 func ActionObject_229()
 {
 	gateIdx = ObjFind(229);
-	gateStatus = ObjGet(gateIdx, O_STATUS);
-	if (gateStatus == 0)
+
+	if (TryUseItem2(104, 1) == 1)
 	{
-		if (TryUseItem2(104, 1) == 1)
-		{
-			ObjSet(gateIdx, O_STATUS, 1);
-			leftLeafIdx = BrushFind(227);
-			rightLeafIdx = BrushFind(228);
-			BrushSet(leftLeafIdx, O_X, BrushGet(leftLeafIdx, O_X)-8);
-			BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
-		}
-	}
-	else if (gateStatus == 1)
-	{
-		PlayerPlayTurn();
-		PlayerSetPos(2800,685);
-		PlayerEnterIdle();
+		leftLeafIdx = BrushFind(227);
+		rightLeafIdx = BrushFind(228);
+		BrushSet(leftLeafIdx, O_X, BrushGet(leftLeafIdx, O_X)-8);
+		BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
+		ObjSet(gateIdx, O_MATERIAL, MAT_DOOR);
+		GameCommand(CMD_REFRESH);
 	}
 }
 
