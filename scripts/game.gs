@@ -898,4 +898,16 @@ func UpdateRoom_20_3()
 	AIUpdateFly(crowIdx);
 }
 
+func UpdateRoom_9_1()
+{
+	crowIdx = ObjFind(274);
+	AIUpdateFly(crowIdx);
+}
+
+func UpdateRoom_8_1()
+{
+	snakeIdx = ObjFind(275);
+	AIUpdateSnake(snakeIdx);
+}
+
 /////////////////////////////////////////////////////////////////////////////////
