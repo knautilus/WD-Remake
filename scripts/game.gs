@@ -910,4 +910,10 @@ func UpdateRoom_8_1()
 	AIUpdateSnake(snakeIdx);
 }
 
+func UpdateRoom_8_0()
+{
+	crowIdx = ObjFind(276);
+	AIUpdateFly(crowIdx);
+}
+
 /////////////////////////////////////////////////////////////////////////////////
