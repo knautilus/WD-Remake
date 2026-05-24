@@ -60,6 +60,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(107),"Woodman's axe");
 	ObjSetName(ObjFind(108),"An empty bucket");
 	ObjSetName(ObjFind(109),"Bunch of poppies");
+	ObjSetName(ObjFind(110),"A shiny new cog");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -96,6 +97,7 @@ func PlayerDeathMessage( death )
 	if(death==DANGER_SPIDER)		return "You're beaten by\na spider!";
 	if(death==DANGER_BIRD)			return "You were pecked\nby a bird!";
 	if(death==DANGER_POPPY)			return "The poppies make\nyou fall asleep!";
+	if(death==DANGER_FIRE)			return "You were burnt\nby the flames!";
 	if(death==DANGER_WATER)			return "You fell in the\nwater and drowned!";
 	if(death==DANGER_FALL)			return "You hit the ground\ntoo hard!";
 	if(death==-1)					return "";
@@ -914,6 +916,13 @@ func UpdateRoom_8_0()
 {
 	crowIdx = ObjFind(276);
 	AIUpdateFly(crowIdx);
+}
+
+func UpdateRoom_11_1()
+{
+	spiderIdx = ObjFind(283);
+
+	AIUpdateSpider(spiderIdx);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
