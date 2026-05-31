@@ -500,7 +500,7 @@ func ActionObject_217()
 // Closed hut
 func ActionObject_273()
 {
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3,4,4,4,3,2,1,0});
+	PlayerPlayTurnBackForth();
 	PlayerEnterIdle();
 }
 
@@ -508,8 +508,8 @@ func ActionObject_273()
 func ActionObject_218()
 {
 	gateIdx = ObjFind(218);
-
-	if (TryUseItem2(101, 1) == 1)
+	useItemResult = TryUseItem2(101, 1);
+	if (useItemResult == 1)
 	{
 		leftLeafIdx = BrushFind(219);
 		rightLeafIdx = BrushFind(220);
@@ -517,6 +517,11 @@ func ActionObject_218()
 		BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
 		ObjSet(gateIdx, O_MATERIAL, MAT_DOOR);
 		GameCommand(CMD_REFRESH);
+	}
+	else if (useItemResult == -1)
+	{
+		PlayerPlayTurnBackForth();
+		PlayerEnterIdle();
 	}
 }
 
@@ -538,8 +543,8 @@ func UpdateRoom_16_4()
 func ActionObject_229()
 {
 	gateIdx = ObjFind(229);
-
-	if (TryUseItem2(104, 1) == 1)
+	useItemResult = TryUseItem2(104, 1);
+	if (useItemResult == 1)
 	{
 		leftLeafIdx = BrushFind(227);
 		rightLeafIdx = BrushFind(228);
@@ -547,6 +552,11 @@ func ActionObject_229()
 		BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
 		ObjSet(gateIdx, O_MATERIAL, MAT_DOOR);
 		GameCommand(CMD_REFRESH);
+	}
+	else if (useItemResult == -1)
+	{
+		PlayerPlayTurnBackForth();
+		PlayerEnterIdle();
 	}
 }
 
@@ -622,7 +632,7 @@ func ActionObject_236()
 		if(idxobj!=-1) DropObject(idxobj);
 		return;
 	}
-	useItemResult = TryUseItem3(102, 1);
+	useItemResult = TryUseItem2(102, 1);
 	if (useItemResult == 1)
 	{
 		Message1("I'm back! And this\ntime with scissors!");
@@ -736,7 +746,7 @@ func ActionObject_253()
 	}
 	else if (denzilStatus==1)
 	{
-		useItemResult = TryUseItem3(105, 1);
+		useItemResult = TryUseItem2(105, 1);
 		if (useItemResult == 1)
 		{
 			Message1("I'm back. This oil\nshould help loosen\nthose rusted joints.");
@@ -925,4 +935,67 @@ func UpdateRoom_11_1()
 	AIUpdateSpider(spiderIdx);
 }
 
+func ActionObject_284()
+{
+	leverIdx = ObjFind(284);
+
+	useItemResult = TryUseItem2(110, 1);
+	if (useItemResult == 1)
+	{
+		ObjSet(leverIdx,O_CLASS,0);
+	}
+	else if (useItemResult == -1)
+	{
+		OpenDialogMessage("The lever\nappears broken", COLOR_RED);
+	}
+}
+
+// Donkey dialogs
+func ActionObject_285()
+{
+	donkeyIdx = ObjFind(285);
+	donkeyStatus = ObjGet(donkeyIdx,O_STATUS);
+	if (donkeyStatus==0)
+	{
+		Message1("Hello.");
+		MessagePop();
+		Message2("Um... Um... Ummm....");
+		MessagePop();
+		Message1("You appear to have\na rubber band on\nyour snout!");
+		MessagePop();
+		Message2("Um... Ummm.... Um.");
+		MessagePop();
+		Message1("Ok, ok. Let me\nget that for you.");
+		MessagePop();
+		Message2("Oh man. Can you\nbelieve what some\npeople do?");
+		MessagePop();
+		bandIdx = ObjFind(106);
+		ObjSet(bandIdx, O_DISABLE, 0);
+		ObjSet(donkeyIdx, O_STATUS, 1);
+	}
+	else if (donkeyStatus==1)
+	{
+		Message1("Do you mind if I\nask what happened\nto your leg?");
+		MessagePop();
+		Message2("Oh that. I was drinking\ndown the tavern. Great\nnight, and then...");
+		MessagePop();
+		Message2("Well, I woke up next\nday to find someone\nhad taken my leg!");
+		MessagePop();
+		Message1("Are you serious?");
+		MessagePop();
+		Message2("Only when sober...\nAnd that ain't often.\nI don't lie, my nose is\nlong enough already.");
+		MessagePop();
+		Message1("Maybe they were playing\n'nail the plank on\nthe donkey'?");
+		MessagePop();
+		Message2("Not funny.\nCan you help me?");
+		MessagePop();
+		Message1("I don't know,\nbut I'll try.");
+		MessagePop();
+		ObjSet(donkeyIdx, O_STATUS, 2);
+	}
+	else if (donkeyStatus==2)
+	{
+		// todo: check inventory for magic wand
+	}
+}
 /////////////////////////////////////////////////////////////////////////////////

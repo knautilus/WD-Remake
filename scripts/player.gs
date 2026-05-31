@@ -296,9 +296,16 @@ func PlayerPlayDead()
 	PlayerLoseLife();
 }
 
-func PlayerPlayTurn()
+func PlayerPlayTurnBack()
 {
+	PlayerSet(P_FLIP,0);
 	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3});
+}
+
+func PlayerPlayTurnBackForth()
+{
+	PlayerSet(P_FLIP,0);
+	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3,4,4,4,3,2,1,0});
 }
 
 /////////////////////////////////////////////////////////////////////////////////

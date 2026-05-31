@@ -208,36 +208,6 @@ func TryUseItem( itemId, removeItem )
 func TryUseItem2( itemId, removeItem )
 {
 	handleIdx = ObjFind(itemId);
-	if (InventoryFind(handleIdx)!=-1)
-	{
-		idxobj = OpenDialogInventory();
-		if (idxobj==-1)
-			return 0;
-		if (idxobj==handleIdx)
-		{
-			if (removeItem == 1)
-			{
-				InventorySub(idxobj);
-			}
-			return 1;
-		}
-		else
-		{
-			WrongItemDialog();
-			return 0;
-		}
-	}
-	else
-	{
-		PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3,4,4,4,3,2,1,0});
-		PlayerEnterIdle();
-		return 0;
-	}
-}
-
-func TryUseItem3( itemId, removeItem )
-{
-	handleIdx = ObjFind(itemId);
 	if (InventoryFind(handleIdx)==-1)
 	{
 		return -1;
@@ -266,18 +236,15 @@ func WrongItemDialog()
 	phraseNum = PlayerGet(P_PHRASE_NUM);
 	if (phraseNum == 0)
 	{
-		Message0("Well that\ndoesn't work.");
-		MessagePop();
+		OpenDialogMessage("Well that\ndoesn't work.", COLOR_MAGENTA);
 	}
 	else if (phraseNum == 1)
 	{
-		Message0("Fat lot of good\nthat was.");
-		MessagePop();
+		OpenDialogMessage("Fat lot of good\nthat was.", COLOR_MAGENTA);
 	}
 	else if (phraseNum == 2)
 	{
-		Message0("I'm going to have to\ntry something else.");
-		MessagePop();
+		OpenDialogMessage("I'm going to have to\ntry something else.", COLOR_MAGENTA);
 	}
 	phraseNum++;
 	if (phraseNum > 2)
@@ -371,7 +338,7 @@ func EnterDoor( idx )
 {
 	targetIdx = ObjFind(ObjGet(idx, O_TARGET));
 	if(targetIdx==-1) return;
-	PlayerPlayTurn();
+	PlayerPlayTurnBack();
 	PlayerSetPos(ObjGet(targetIdx,O_X)+8, ObjGet(targetIdx,O_Y)+13);
 	PlayerEnterIdle();
 }
