@@ -142,7 +142,6 @@ func CM_EnterWalk( dir )
 
 func CM_EnterJump( dir, pow )
 {
-	println("enter jump");
 	PlayerSet(P_STATUS, STATUS_JUMP); 
 	PlayerSet(P_DIR, dir);
 	PlayerSet(P_POW, pow);
@@ -165,7 +164,6 @@ func CM_EnterJump( dir, pow )
 
 func CM_EnterFall()
 {
-	println("enter fall");
 	PlayerSet(P_STATUS, STATUS_FALL);
 	PlayerSet(P_POW, CM_POWSTEP);
 	// don't change tile and frame
@@ -184,7 +182,6 @@ func CM_EnterRoll()
 		//if( frame < tile->m_frames-1 ) return; // don't enter idle unless last frame reached; until then stay in roll
 		if( frame != 0 ) return; // don't enter idle unless last frame reached; until then stay in roll
 	}
-	println("leave fall");
 	CM_EnterKeyState(); // be sure to stop the fall, just in case the fall handler doesn't
 
 	HandlerFall();
@@ -379,9 +376,7 @@ func CM_UpdateJump()
 	step = MIN(step, CM_STEPYMAX);
 
 	step = CM_CheckJumpY(step);
-	//println("step="+(str)step);
 	PlayerSet(P_Y, PlayerGet(P_Y)-step);
-	//println("Y="+(str)PlayerGet(P_Y));
 	pow -= CM_POWSTEP;
 	PlayerSet(P_POW,pow);
 	PlayerSet(P_FPOW,fpow);
@@ -398,7 +393,6 @@ func CM_UpdateJump()
 
 	if( pow< 0 ) // done jumping - see where to go idle or fall
 	{
-		println("leave jump");
 		under = CM_CheckFallY(1);
 		if(under==0)
 			CM_EnterKeyState();
@@ -436,7 +430,6 @@ func CM_UpdateFall()
 	step = MIN(step, CM_STEPYMAX);
 
 	step2 = CM_CheckFallY(step);
-	//println("keep falling");
 	PlayerSet(P_Y, PlayerGet(P_Y)+step2);
 
 	// stopping fall if fall step was reduced
@@ -601,7 +594,6 @@ func CM_CheckCollidersSnap()
 	dist = ColliderSnapDistance(x1,y1,x2,y2);
 	if(dist>0) // got collision
 	{
-		println("snap up");
 		step = MIN(dist,CM_STEPY);
 		PlayerSet(P_Y, PlayerGet(P_Y)-step);
 		snap=1; // snap up
@@ -611,10 +603,8 @@ func CM_CheckCollidersSnap()
 		// test snap down - get min colliders distance below player's bound
 		dist = ColliderSnapDistance(x1,y2,x2,y2+CM_STEPY+1); // max
 		step = CM_STEPY+1-dist; // min
-		println("step="+(str)step);
 		if(step<=CM_STEPY) // got collision under
 		{
-			println("snap down");
 			PlayerSet(P_Y, PlayerGet(P_Y)+step);
 			snap=1; // snap down
 		}
