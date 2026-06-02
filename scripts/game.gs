@@ -935,21 +935,6 @@ func UpdateRoom_11_1()
 	AIUpdateSpider(spiderIdx);
 }
 
-func ActionObject_284()
-{
-	leverIdx = ObjFind(284);
-
-	useItemResult = TryUseItem2(110, 1);
-	if (useItemResult == 1)
-	{
-		ObjSet(leverIdx,O_CLASS,0);
-	}
-	else if (useItemResult == -1)
-	{
-		OpenDialogMessage("The lever\nappears broken", COLOR_RED);
-	}
-}
-
 // Donkey dialogs
 func ActionObject_285()
 {
@@ -996,6 +981,60 @@ func ActionObject_285()
 	else if (donkeyStatus==2)
 	{
 		// todo: check inventory for magic wand
+	}
+}
+
+func ActionObject_284()
+{
+	leverIdx = ObjFind(284);
+
+	useItemResult = TryUseItem2(110, 1);
+	if (useItemResult == 1)
+	{
+		ObjSet(leverIdx,O_STATUS,1);
+		ObjSet(leverIdx,O_CLASS,0);
+	}
+	else if (useItemResult == -1)
+	{
+		OpenDialogMessage("The lever\nappears broken", COLOR_RED);
+	}
+}
+
+func UpdateRoom_7_5()
+{
+	leverIdx = ObjFind(284);
+
+	if (ObjGet(leverIdx, O_STATUS) != 1)
+	{
+		return;
+	}
+
+	bridge1Idx = ObjFind(288);
+	bridge2Idx = ObjFind(295);
+	bridge3Idx = ObjFind(299);
+	AIUpdateTrain(bridge1Idx);
+	AIUpdateTrain(bridge2Idx);
+	AIUpdateTrain(bridge3Idx);
+
+	bridge1Target = ObjGet(bridge1Idx, O_TARGET);
+
+	if (bridge1Target == 289)
+	{
+		ObjSet(bridge2Idx, O_TARGET, 296);
+		ObjSet(bridge3Idx, O_TARGET, 296);
+	}
+	else if (bridge1Target == 290)
+	{
+		ObjSet(bridge2Idx, O_TARGET, 297);
+	}
+	else if (bridge1Target == 293)
+	{
+		ObjSet(bridge2Idx, O_TARGET, 296);
+	}
+	else if (bridge1Target == 294)
+	{
+		ObjSet(bridge2Idx, O_TARGET, 298);
+		ObjSet(bridge3Idx, O_TARGET, 298);
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////
