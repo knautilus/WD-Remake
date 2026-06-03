@@ -50,17 +50,17 @@ func RoomsSetNames()
 /////////////////////////////////////////////////////////////////////////////////
 func ObjectsSetNames()
 {
-	ObjSetName(ObjFind(100),"Boots");
-	ObjSetName(ObjFind(101),"Yellow gate key");
-	ObjSetName(ObjFind(102),"Pair of scissors");
-	ObjSetName(ObjFind(103),"Door handle");
-	ObjSetName(ObjFind(104),"Red gate key");
-	ObjSetName(ObjFind(105),"An oil can");
-	ObjSetName(ObjFind(106),"A rubber band");
-	ObjSetName(ObjFind(107),"Woodman's axe");
-	ObjSetName(ObjFind(108),"An empty bucket");
-	ObjSetName(ObjFind(109),"Bunch of poppies");
-	ObjSetName(ObjFind(110),"A shiny new cog");
+	ObjSetName(ObjFind(100), OBJ_100);
+	ObjSetName(ObjFind(101), OBJ_101);
+	ObjSetName(ObjFind(102), OBJ_102);
+	ObjSetName(ObjFind(103), OBJ_103);
+	ObjSetName(ObjFind(104), OBJ_104);
+	ObjSetName(ObjFind(105), OBJ_105);
+	ObjSetName(ObjFind(106), OBJ_106);
+	ObjSetName(ObjFind(107), OBJ_107);
+	ObjSetName(ObjFind(108), OBJ_108);
+	ObjSetName(ObjFind(109), OBJ_109);
+	ObjSetName(ObjFind(110), OBJ_110);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -93,13 +93,13 @@ func RoomSetCustomText( rx, ry, idx, refstr )
 /////////////////////////////////////////////////////////////////////////////////
 func PlayerDeathMessage( death )
 {
-	if(death==DANGER_BAT)			return "You were killed\nby a bat";
-	if(death==DANGER_SPIDER)		return "You're beaten by\na spider!";
-	if(death==DANGER_BIRD)			return "You were pecked\nby a bird!";
-	if(death==DANGER_POPPY)			return "The poppies make\nyou fall asleep!";
-	if(death==DANGER_FIRE)			return "You were burnt\nby the flames!";
-	if(death==DANGER_WATER)			return "You fell in the\nwater and drowned!";
-	if(death==DANGER_FALL)			return "You hit the ground\ntoo hard!";
+	if(death==DANGER_BAT)			return TXT_DEATH_BAT;
+	if(death==DANGER_SPIDER)		return TXT_DEATH_SPIDER;
+	if(death==DANGER_BIRD)			return TXT_DEATH_BIRD;
+	if(death==DANGER_POPPY)			return TXT_DEATH_POPPY;
+	if(death==DANGER_FIRE)			return TXT_DEATH_FIRE;
+	if(death==DANGER_WATER)			return TXT_DEATH_WATER;
+	if(death==DANGER_FALL)			return TXT_DEATH_FALL;
 	if(death==-1)					return "";
 	// ...
 	return "YOU HAVE DIED!";		// default
@@ -195,7 +195,7 @@ func ActionObject_201()
 	}
 	else
 	{
-		Message1("Um... The door\nhandle is missing?");
+		Message1(TXT_DOOR);
 		MessagePop();
 	}
 }
@@ -207,15 +207,15 @@ func ActionObject_203()
 	pogieStatus = ObjGet(pogieIdx,O_STATUS);
 	if (pogieStatus==0)
 	{
-		Message1("Gosh Pogie,\nthat really shook\nthe hut, are you ok?");
+		Message1(DLG_POGIE_1_D);
 		MessagePop();
-		Message2("Squeak.");
+		Message2(DLG_POGIE_2);
 		MessagePop();
 		ObjSet(pogieIdx,O_STATUS,1);
 	}
 	else
 	{
-		Message2("Squeak.");
+		Message2(DLG_POGIE_2);
 		MessagePop();
 	}
 }
@@ -228,17 +228,17 @@ func CollideObject_252_1()
 	if (doorStatus==0)
 	{
 		WaitFrames(8);
-		Message2("Oh my! Oh my! You've\nlanded on the wicked\nwitch of the east!");
+		Message2(DLG_MAYOR_1);
 		MessagePop();
-		Message1("Who are you?");
+		Message1(DLG_MAYOR_2_D);
 		MessagePop();
-		Message2("I'm Boq the Munchkin mayor.\nYou appear to have crushed\nthe witch! Who are you?");
+		Message2(DLG_MAYOR_3);
 		MessagePop();
-		Message1("I'm Dizzy,\nbut where am I?");
+		Message1(DLG_MAYOR_4_D);
 		MessagePop();
-		Message2("You are in Munchkin village,\nin the wonderful\nworld of Oz.");
+		Message2(DLG_MAYOR_5);
 		MessagePop();
-		Message1("Oh... It's sooo colourful,\nin a kind of attributed\nlow resolution, limited\ncolour palette sort\nof style!");
+		Message1(DLG_MAYOR_6_D);
 		MessagePop();
 		ObjSet(doorAreaIdx,O_STATUS,1);
 	}
@@ -265,7 +265,7 @@ func CollideObject_252_0()
 
 		ObjSet(daisyIdx, O_DISABLE, 0);
 		ObjPlayAnimFrames( daisyIdx, {0,1,2,3,2,1} );
-		Message2("Quickly, take her boots.\nThey'll protect you.");
+		Message2(DLG_DAISY_1);
 		MessagePop();
 
 		ObjSet(smokeIdx, O_DISABLE, 0);
@@ -284,15 +284,15 @@ func ActionObject_100()
 	ObjSet(bootsIdx, O_DISABLE, 1);
 	jokeIdx = BrushFind(240);
 	BrushSet(jokeIdx, B_LAYER, 6);
-	Message1("Nice! Strangely they fit\nperfectly. Who kney I had\nsimilar feet to a witch!");
+	Message1(DLG_MAYOR_7_D);
 	MessagePop();
-	Message2("And they'll keep\nyou safe too!");
+	Message2(DLG_MAYOR_8);
 	MessagePop();
-	Message1("Safe?");
+	Message1(DLG_MAYOR_9_D);
 	MessagePop();
-	Message2("Oh yes! When her sister,\nthe wicked witch of the west\nfinds out what you did,\nshe'll be furious!");
+	Message2(DLG_MAYOR_10);
 	MessagePop();
-	Message1("That doesn't sound good!");
+	Message1(DLG_MAYOR_11_D);
 	MessagePop();
 
 	RoomSet(12,4,R_STATUS,1);
@@ -339,6 +339,15 @@ func UpdateRoom_12_4()
 	}
 }
 
+// Outside Dizzy's hut - Pogie
+func ActionObject_207()
+{
+	Message1(DLG_POGIE_3_D);
+	MessagePop();
+	Message2(DLG_POGIE_4);
+	MessagePop();
+}
+
 func BootsScene()
 {
 	WaitFrames(48);
@@ -347,9 +356,9 @@ func BootsScene()
 		RoomSet(12,4,R_STATUS,1);
 		return;
 	}
-	Message1("Wow! They really are magic.\nI seem to take on the colour\nof the background when\nI'm wearing them!");
+	Message1(DLG_MAYOR_12_D);
 	MessagePop();
-	Message2("Funny side\neffect I guess!");
+	Message2(DLG_MAYOR_13);
 	MessagePop();
 	RoomSet(12,4,R_STATUS,3);
 }
@@ -383,23 +392,23 @@ func WitchDialogScene()
 		return;
 	}
 
-	Message2("Arh!!! Who did this?", COLOR_YELLOW);
+	Message2(DLG_WITCH_1, COLOR_YELLOW);
 	MessagePop();
-	Message2("I think it was\na freak accident!");
+	Message2(DLG_WITCH_2_M);
 	MessagePop();
-	Message1("I'm sorry, I really\ndidn't plan it. There\nwas this whirlwind...");
+	Message1(DLG_WITCH_3_D);
 	MessagePop();
-	Message2("Who are you? Arh...\nYou are wearing her boots!\nHow dare you!", COLOR_YELLOW);
+	Message2(DLG_WITCH_4, COLOR_YELLOW);
 	MessagePop();
-	Message1("I'm sorry. Couldn't\nyou just...");
+	Message1(DLG_WITCH_5_D);
 	MessagePop();
-	Message2("What's that?", COLOR_YELLOW);
+	Message2(DLG_WITCH_6, COLOR_YELLOW);
 	MessagePop();
-	Message1("Oh, he's my pet...\nPogie. He won't hurt you.");
+	Message1(DLG_WITCH_7_D);
 	MessagePop();
-	Message2("Well let's hope he tastes\nas good as he looks!", COLOR_YELLOW);
+	Message2(DLG_WITCH_8, COLOR_YELLOW);
 	MessagePop();
-	Message1("No!");
+	Message1(DLG_WITCH_9_D);
 	MessagePop();
 
 	pogieIdx = ObjFind(207);
@@ -424,15 +433,6 @@ func WitchDialogScene()
 	RoomSet(12,4,R_STATUS,7);
 }
 
-// Outside Dizzy's hut - Pogie
-func ActionObject_207()
-{
-	Message1("Don't worry Pogie,\nI'll keep you safe.");
-	MessagePop();
-	Message2("Squeak! Squeak...");
-	MessagePop();
-}
-
 // Outside Dizzy's hut - Mayor
 func ActionObject_204()
 {
@@ -440,37 +440,37 @@ func ActionObject_204()
 	mayorStatus = ObjGet(mayorIdx,O_STATUS);
 	if (mayorStatus==1)
 	{
-		Message1("Where did the witch\ntake Pogie?");
+		Message1(DLG_MAYOR_14_D);
 		MessagePop();
-		Message2("Probably to dread\ncastle where she lives.");
+		Message2(DLG_MAYOR_15);
 		MessagePop();
-		Message1("How do I get there?");
+		Message1(DLG_MAYOR_16_D);
 		MessagePop();
-		Message2("Follow the red brick road,\nbut it's dangerous, so we\nlocked the gate!");
+		Message2(DLG_MAYOR_17);
 		MessagePop();
-		Message1("But I must try and\nrescue him.");
+		Message1(DLG_MAYOR_18_D);
 		MessagePop();
-		Message2("Sorry, I can't help you.\nI lost the key.");
+		Message2(DLG_MAYOR_19);
 		MessagePop();
-		Message1("I'll look for it.\nIt's what I do!");
+		Message1(DLG_MAYOR_20_D);
 		MessagePop();
 		ObjSet(mayorIdx, O_STATUS, 2);
 	}
 	else if (mayorStatus==2)
 	{
-		Message1("Also, do you know\nhow I can get home?");
+		Message1(DLG_MAYOR_21_D);
 		MessagePop();
-		Message2("Sorry, no. But maybe the\ngreat wizard of Oz\nwill know.");
+		Message2(DLG_MAYOR_22);
 		MessagePop();
-		Message1("How do I find him?");
+		Message1(DLG_MAYOR_23_D);
 		MessagePop();
-		Message2("Follow the yellow brick\nroad to the emerald city.");
+		Message2(DLG_MAYOR_24);
 		MessagePop();
-		Message1("That sounds easy.");
+		Message1(DLG_MAYOR_25_D);
 		MessagePop();
-		Message2("Beware the cursed poppy\nfield. Here's the yellow\ngate key.");
+		Message2(DLG_MAYOR_26);
 		MessagePop();
-		Message1("Thanks!");
+		Message1(DLG_MAYOR_27_D);
 		MessagePop();
 		ObjSet(mayorIdx, O_DISABLE, 1);
 		keyIdx = ObjFind(101);
@@ -486,14 +486,14 @@ func ActionObject_204()
 // Inside Munchkin hut - villager 1
 func ActionObject_216()
 {
-	Message2("Hi!");
+	Message2(DLG_VILLAGER);
 	MessagePop();
 }
 
 // Inside Munchkin hut - villager 2
 func ActionObject_217()
 {
-	Message2("Hi!");
+	Message2(DLG_VILLAGER);
 	MessagePop();
 }
 
@@ -565,7 +565,7 @@ func ActionObject_262()
 {
 	if (TryUseItem(107, 1) == 1)
 	{
-		Message0("Using the woodman's\naxe you are able to\nchop the post down\nand make a bridge.");
+		Message0(TXT_SIGNPOST);
 		MessagePop();
 		signTopIdx = BrushFind(263);
 		bridgeIdx = BrushFind(264);
@@ -582,21 +582,21 @@ func CollideObject_235_1()
 	dozyTriggerStatus = ObjGet(dozyTriggerIdx,O_STATUS);
 	if (dozyTriggerStatus==0)
 	{
-		Message2("Hey you!");
+		Message2(DLG_DOZY_1);
 		MessagePop();
-		Message1("Who me?");
+		Message1(DLG_DOZY_2_D);
 		MessagePop();
-		Message2("Yes you! You couldn't\nget me down, could you?");
+		Message2(DLG_DOZY_3);
 		MessagePop();
-		Message1("Why, you're a\ntalking scarecrow!");
+		Message1(DLG_DOZY_4_D);
 		MessagePop();
-		Message2("No, I just fell\nasleep and when\nI woke up, I found\nmyself tied up here!");
+		Message2(DLG_DOZY_5);
 		MessagePop();
-		Message1("It's so tight,\nI can't undo it.");
+		Message1(DLG_DOZY_6_D);
 		MessagePop();
-		Message2("Perharps you could\ncut the rope?");
+		Message2(DLG_DOZY_7);
 		MessagePop();
-		Message1("That's a good idea. Let me\nlook for something to cut\nit with and I'll be back.");
+		Message1(DLG_DOZY_8_D);
 		MessagePop();
 		ObjSet(dozyTriggerIdx,O_STATUS,1);
 		UpdateDozyTile();
@@ -635,27 +635,27 @@ func ActionObject_236()
 	useItemResult = TryUseItem2(102, 1);
 	if (useItemResult == 1)
 	{
-		Message1("I'm back! And this\ntime with scissors!");
+		Message1(DLG_DOZY_13_D);
 		MessagePop();
-		Message2("Whoa! You gave me a\nfright. You've got\nto stop creeping up\non me like that!");
+		Message2(DLG_DOZY_14);
 		MessagePop();
-		Message1("Let me cut that rope\nand get you down.");
+		Message1(DLG_DOZY_15_D);
 		MessagePop();
-		Message2("Oh thank you.\nI feel so silly.\nSometimes I think\nI don't have a brain.");
+		Message2(DLG_DOZY_16);
 		MessagePop();
-		Message1("Why that's ridiculous!\nIt wasn't your falut\nyou were mistaken for\na scarecrow.");
+		Message1(DLG_DOZY_17_D);
 		MessagePop();
-		Message2("I suffer from narcolepsy,\nmeaning I keep falling\nasleep. I'm sure my head\nis stuffed with straw\nrather than brains.");
+		Message2(DLG_DOZY_18);
 		MessagePop();
-		Message1("We all have our faults,\nit's what makes us unique.\nI'm a kleptomaniac, but\nyou are clever and your\nhead isn't stuffed\nwith straw.");
+		Message1(DLG_DOZY_19_D);
 		MessagePop();
-		Message2("You think?");
+		Message2(DLG_DOZY_20);
 		MessagePop();
-		Message1("It was your idea\nto cut the rope.");
+		Message1(DLG_DOZY_21_D);
 		MessagePop();
-		Message2("It was obvious.");
+		Message2(DLG_DOZY_22);
 		MessagePop();
-		Message1("I know you are clever,\nand I'll convince you.");
+		Message1(DLG_DOZY_23_D);
 		MessagePop();
 		ObjSet(dozyTriggerIdx,O_STATUS,2);
 		dozyHangIdx = BrushFind(234);
@@ -665,13 +665,13 @@ func ActionObject_236()
 	}
 	else if (useItemResult == -1)
 	{
-		Message1("I'm still looking!");
+		Message1(DLG_DOZY_9_D);
 		MessagePop();
-		Message2("Wow! You frightened me.\nI was just having\na little nap.");
+		Message2(DLG_DOZY_10);
 		MessagePop();
-		Message1("I'll keep looking.\nI don't want to keep\nyou hanging around.");
+		Message1(DLG_DOZY_11_D);
 		MessagePop();
-		Message2("Please do. I think\nthese birds might\nstart pecking me soon.");
+		Message2(DLG_DOZY_12);
 		MessagePop();
 	}
 }
@@ -679,43 +679,39 @@ func ActionObject_236()
 // Lying Dozy
 func ActionObject_237()
 {
-	Message1("Hey scarecrow! Wake up!\nI need your help.");
+	Message1(DLG_DOZY_24_D);
 	MessagePop();
-	Message2("Zzzz zzzz");
+	Message2(DLG_DOZY_25);
 	MessagePop();
-	Message1("Come on! Wake up!");
+	Message1(DLG_DOZY_26_D);
 	MessagePop();
-	Message2("Zzzz zzzz");
+	Message2(DLG_DOZY_27);
 	MessagePop();
-	Message1("It's no use, I'm never\ngoing to be able to\nwake him this way.");
+	Message1(DLG_DOZY_28_D);
 	MessagePop();
 }
 
 func UpdateRoom_6_4()
 {
 	spiderIdx = ObjFind(241);
-
 	AIUpdateSpider(spiderIdx);
 }
 
 func UpdateRoom_6_3()
 {
 	batIdx = ObjFind(242);
-
 	AIUpdateFly(batIdx);
 }
 
 func UpdateRoom_7_3()
 {
 	spiderIdx = ObjFind(243);
-
 	AIUpdateSpider(spiderIdx);
 }
 
 func UpdateRoom_6_5()
 {
 	batIdx = ObjFind(250);
-
 	AIUpdateFly(batIdx);
 }
 
@@ -726,21 +722,21 @@ func ActionObject_253()
 	denzilStatus = ObjGet(denzilIdx,O_STATUS);
 	if (denzilStatus==0)
 	{
-		Message2("Help! Won't you\nplease, please\nhelp me now?");
+		Message2(DLG_DENZIL_1);
 		MessagePop();
-		Message1("I'm sorry? Are you\ntalking to me?");
+		Message1(DLG_DENZIL_2_D);
 		MessagePop();
-		Message2("I'm rusted,\ncold and hard,\nwithout a heart.");
+		Message2(DLG_DENZIL_3);
 		MessagePop();
-		Message1("How did this happen?");
+		Message1(DLG_DENZIL_4_D);
 		MessagePop();
-		Message2("It's a kind of magic.");
+		Message2(DLG_DENZIL_5);
 		MessagePop();
-		Message1("Are you listening\nto 80's music?");
+		Message1(DLG_DENZIL_6_D);
 		MessagePop();
-		Message2("I'm stuck on repeat.");
+		Message2(DLG_DENZIL_7);
 		MessagePop();
-		Message1("I'll see what\nI can do.");
+		Message1(DLG_DENZIL_8_D);
 		MessagePop();
 		ObjSet(denzilIdx, O_STATUS, 1);
 	}
@@ -749,35 +745,35 @@ func ActionObject_253()
 		useItemResult = TryUseItem2(105, 1);
 		if (useItemResult == 1)
 		{
-			Message1("I'm back. This oil\nshould help loosen\nthose rusted joints.");
+			Message1(DLG_DENZIL_11_D);
 			MessagePop();
-			Message2("Oh yeh!\nI feel the grooves,\nI feel the moves.");
+			Message2(DLG_DENZIL_12);
 			MessagePop();
-			Message1("Whoa! Watch where\nyou are swinging\nthat axe.");
+			Message1(DLG_DENZIL_13_D);
 			MessagePop();
-			Message2("I'm tired of this\nchopping and need\na new gig.");
+			Message2(DLG_DENZIL_14);
 			MessagePop();
-			Message2("Take my axe, I'm\nthrough with this work.");
+			Message2(DLG_DENZIL_15);
 			MessagePop();
-			Message1("That could be very\nuseful. Thanks.");
+			Message1(DLG_DENZIL_16_D);
 			MessagePop();
-			Message2("So where are\nyou going?");
+			Message2(DLG_DENZIL_17);
 			MessagePop();
-			Message1("Oh I'm off to find\nthe Wizard of Oz,\nhe's going to help\nme get home.");
+			Message1(DLG_DENZIL_18_D);
 			MessagePop();
-			Message2("You don't suppose\nhe'd help me too,\ndo you?");
+			Message2(DLG_DENZIL_19);
 			MessagePop();
-			Message1("Why do you need help?");
+			Message1(DLG_DENZIL_20_D);
 			MessagePop();
-			Message2("I'm hollow inside.\nGo ahead, bang on my\nchest. You see there's\nnothing inside.");
+			Message2(DLG_DENZIL_21);
 			MessagePop();
-			Message1("Um... I see.");
+			Message1(DLG_DENZIL_22_D);
 			MessagePop();
-			Message2("You don't suppose\nhe'd give me a heart?");
+			Message2(DLG_DENZIL_23);
 			MessagePop();
-			Message1("Well that's an\ninteresting idea,\nI really don't know,\nbut I will ask him.");
+			Message1(DLG_DENZIL_24_D);
 			MessagePop();
-			Message2("Thank you.");
+			Message2(DLG_DENZIL_25);
 			MessagePop();
 			axeIdx = ObjFind(108);
 			ObjSet(axeIdx, O_DISABLE, 0);
@@ -785,21 +781,21 @@ func ActionObject_253()
 		}
 		else if (useItemResult == -1)
 		{
-			Message1("Don't worry. I've\nnot given up on you.");
+			Message1(DLG_DENZIL_9_D);
 			MessagePop();
-			Message2("I believe in you.");
+			Message2(DLG_DENZIL_10);
 			MessagePop();
 		}
 	}
 	else if (denzilStatus==2)
 	{
-		Message2("Have you found\nthe wizard yet?");
+		Message2(DLG_DENZIL_26);
 		MessagePop();
-		Message2("Did he give you\na heart for me?");
+		Message2(DLG_DENZIL_27);
 		MessagePop();
-		Message1("No, I'm sorry, but\nI've not given up.");
+		Message1(DLG_DENZIL_28_D);
 		MessagePop();
-		Message2("I feel so\nhollow inside.");
+		Message2(DLG_DENZIL_29);
 		MessagePop();
 	}
 }
@@ -818,6 +814,7 @@ func UpdateRoom_5_5()
 	AIUpdateSnake(snakeIdx);
 }
 
+// Reset Tinker dialog
 func OpenRoom_17_4()
 {
 	RoomSet(18,4,R_STATUS,0);
@@ -833,6 +830,7 @@ func OpenRoom_17_4()
 	}
 }
 
+// Reset Tinker dialog
 func OpenRoom_19_4()
 {
 	RoomSet(18,4,R_STATUS,0);
@@ -848,6 +846,7 @@ func OpenRoom_19_4()
 	}
 }
 
+// Area near Tinker
 func CollideObject_266_1()
 {
 	tinkerAreaIdx = ObjFind(266);
@@ -862,11 +861,11 @@ func CollideObject_266_1()
 
 		if (roomStatus == 0)
 		{
-			Message2("To cross, you'll\nneed to bring me...");
+			Message2(DLG_TINKER_1);
 			MessagePop();
-			Message2("The band that never plays.");
+			Message2(DLG_TINKER_2);
 			MessagePop();
-			Message1("Um... Strange. Maybe they\nare rubbish and they are\ndoing everyone a favour?");
+			Message1(DLG_TINKER_3_D);
 			MessagePop();
 			RoomSet(18,4,R_STATUS,1);
 			WaitFrames(8);
@@ -876,9 +875,9 @@ func CollideObject_266_1()
 		if (InventoryFind(bandIdx)!=-1)
 		{
 			InventorySub(bandIdx);
-			Message1("I've got it! The band\nthat never plays is\na rubber band.");
+			Message1(DLG_TINKER_4_D);
 			MessagePop();
-			Message2("Well done! You may pass.");
+			Message2(DLG_TINKER_5);
 			MessagePop();
 			BrushSet(tinkerWallIdx, B_DRAW, 0);
 			ObjSet(tinkerAreaIdx, O_STATUS, 1);
@@ -892,11 +891,11 @@ func CollideObject_266_1()
 
 		if (roomStatus == 0)
 		{
-			Message2("To cross, you'll\nneed to bring me...");
+			Message2(DLG_TINKER_6);
 			MessagePop();
-			Message2("That whish never\nasks questions,\nbut is always heard\nand often answered.");
+			Message2(DLG_TINKER_7);
 			MessagePop();
-			Message1("Um... That's a tough one.\nI'll see what I can find.");
+			Message1(DLG_TINKER_8_D);
 			MessagePop();
 			RoomSet(18,4,R_STATUS,1);
 			WaitFrames(8);
@@ -931,7 +930,6 @@ func UpdateRoom_8_0()
 func UpdateRoom_11_1()
 {
 	spiderIdx = ObjFind(283);
-
 	AIUpdateSpider(spiderIdx);
 }
 
@@ -942,17 +940,17 @@ func ActionObject_285()
 	donkeyStatus = ObjGet(donkeyIdx,O_STATUS);
 	if (donkeyStatus==0)
 	{
-		Message1("Hello.");
+		Message1(DLG_DONKEY_1_D);
 		MessagePop();
-		Message2("Um... Um... Ummm....");
+		Message2(DLG_DONKEY_2);
 		MessagePop();
-		Message1("You appear to have\na rubber band on\nyour snout!");
+		Message1(DLG_DONKEY_3_D);
 		MessagePop();
-		Message2("Um... Ummm.... Um.");
+		Message2(DLG_DONKEY_4);
 		MessagePop();
-		Message1("Ok, ok. Let me\nget that for you.");
+		Message1(DLG_DONKEY_5_D);
 		MessagePop();
-		Message2("Oh man. Can you\nbelieve what some\npeople do?");
+		Message2(DLG_DONKEY_6);
 		MessagePop();
 		bandIdx = ObjFind(106);
 		ObjSet(bandIdx, O_DISABLE, 0);
@@ -960,21 +958,21 @@ func ActionObject_285()
 	}
 	else if (donkeyStatus==1)
 	{
-		Message1("Do you mind if I\nask what happened\nto your leg?");
+		Message1(DLG_DONKEY_7_D);
 		MessagePop();
-		Message2("Oh that. I was drinking\ndown the tavern. Great\nnight, and then...");
+		Message2(DLG_DONKEY_8);
 		MessagePop();
-		Message2("Well, I woke up next\nday to find someone\nhad taken my leg!");
+		Message2(DLG_DONKEY_9);
 		MessagePop();
-		Message1("Are you serious?");
+		Message1(DLG_DONKEY_10_D);
 		MessagePop();
-		Message2("Only when sober...\nAnd that ain't often.\nI don't lie, my nose is\nlong enough already.");
+		Message2(DLG_DONKEY_11);
 		MessagePop();
-		Message1("Maybe they were playing\n'nail the plank on\nthe donkey'?");
+		Message1(DLG_DONKEY_12_D);
 		MessagePop();
-		Message2("Not funny.\nCan you help me?");
+		Message2(DLG_DONKEY_13);
 		MessagePop();
-		Message1("I don't know,\nbut I'll try.");
+		Message1(DLG_DONKEY_14_D);
 		MessagePop();
 		ObjSet(donkeyIdx, O_STATUS, 2);
 	}
@@ -984,6 +982,7 @@ func ActionObject_285()
 	}
 }
 
+// Bridge lever
 func ActionObject_284()
 {
 	leverIdx = ObjFind(284);
@@ -996,10 +995,11 @@ func ActionObject_284()
 	}
 	else if (useItemResult == -1)
 	{
-		OpenDialogMessage("The lever\nappears broken", COLOR_RED);
+		OpenDialogMessage(TXT_LEVER, COLOR_RED);
 	}
 }
 
+// Moving bridge
 func UpdateRoom_7_5()
 {
 	leverIdx = ObjFind(284);
@@ -1012,6 +1012,7 @@ func UpdateRoom_7_5()
 	bridge1Idx = ObjFind(288);
 	bridge2Idx = ObjFind(295);
 	bridge3Idx = ObjFind(299);
+
 	AIUpdateTrain(bridge1Idx);
 	AIUpdateTrain(bridge2Idx);
 	AIUpdateTrain(bridge3Idx);

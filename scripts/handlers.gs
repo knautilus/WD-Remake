@@ -353,8 +353,7 @@ func HandlerPlayerUpdate()
 			PlayerSet(P_DEATH,0); // set cause of death if needed
 		}
 	}
-	else
-	if(IsMaterialInsidePlayer(MAT_HURT)) 
+	else if(IsMaterialInsidePlayer(MAT_HURT)) 
 	{
 		if(PlayerGet(P_LIFE)>0)
 		{

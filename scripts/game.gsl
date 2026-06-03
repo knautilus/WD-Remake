@@ -1,0 +1,176 @@
+/////////////////////////////////////////////////////////////////////////////////
+// game.gsl
+// english version of game text definitions
+/////////////////////////////////////////////////////////////////////////////////
+
+// Object names
+
+#def	OBJ_100			"Boots"
+#def	OBJ_101			"Yellow gate key"
+#def	OBJ_102			"Pair of scissors"
+#def	OBJ_103			"Door handle"
+#def	OBJ_104			"Red gate key"
+#def	OBJ_105			"An oil can"
+#def	OBJ_106			"A rubber band"
+#def	OBJ_107			"Woodman's axe"
+#def	OBJ_108			"An empty bucket"
+#def	OBJ_109			"Bunch of poppies"
+#def	OBJ_110			"A shiny new cog"
+
+// Dialogs
+
+#def	TXT_DOOR		"Um... The door\nhandle is missing?"
+#def	TXT_SIGNPOST	"Using the woodman's\naxe you are able to\nchop the post down\nand make a bridge."
+#def	TXT_LEVER		"The lever\nappears broken"
+
+#def	TXT_DEATH_BAT		"You were killed\nby a bat"
+#def	TXT_DEATH_SPIDER	"You're beaten by\na spider!"
+#def	TXT_DEATH_BIRD		"You were pecked\nby a bird!"
+#def	TXT_DEATH_POPPY		"The poppies make\nyou fall asleep!"
+#def	TXT_DEATH_FIRE		"You were burnt\nby the flames!"
+#def	TXT_DEATH_WATER		"You fell in the\nwater and drowned!"
+#def	TXT_DEATH_FALL		"You hit the ground\ntoo hard!"
+
+#def	DLG_POGIE_1_D	"Gosh Pogie,\nthat really shook\nthe hut, are you ok?"
+#def	DLG_POGIE_2		"Squeak."
+
+#def	DLG_POGIE_3_D	"Don't worry Pogie,\nI'll keep you safe."
+#def	DLG_POGIE_4		"Squeak! Squeak..."
+
+#def	DLG_MAYOR_1		"Oh my! Oh my! You've\nlanded on the wicked\nwitch of the east!"
+#def	DLG_MAYOR_2_D	"Who are you?"
+#def	DLG_MAYOR_3		"I'm Boq the Munchkin mayor.\nYou appear to have crushed\nthe witch! Who are you?"
+#def	DLG_MAYOR_4_D	"I'm Dizzy,\nbut where am I?"
+#def	DLG_MAYOR_5		"You are in Munchkin village,\nin the wonderful\nworld of Oz."
+#def	DLG_MAYOR_6_D	"Oh... It's sooo colourful,\nin a kind of attributed\nlow resolution, limited\ncolour palette sort\nof style!"
+
+#def	DLG_MAYOR_7_D	"Nice! Strangely they fit\nperfectly. Who kney I had\nsimilar feet to a witch!"
+#def	DLG_MAYOR_8		"And they'll keep\nyou safe too!"
+#def	DLG_MAYOR_9_D	"Safe?"
+#def	DLG_MAYOR_10	"Oh yes! When her sister,\nthe wicked witch of the west\nfinds out what you did,\nshe'll be furious!"
+#def	DLG_MAYOR_11_D	"That doesn't sound good!"
+
+#def	DLG_MAYOR_12_D	"Wow! They really are magic.\nI seem to take on the colour\nof the background when\nI'm wearing them!"
+#def	DLG_MAYOR_13	"Funny side\neffect I guess!"
+
+#def	DLG_MAYOR_14_D	"Where did the witch\ntake Pogie?"
+#def	DLG_MAYOR_15	"Probably to dread\ncastle where she lives."
+#def	DLG_MAYOR_16_D	"How do I get there?"
+#def	DLG_MAYOR_17	"Follow the red brick road,\nbut it's dangerous, so we\nlocked the gate!"
+#def	DLG_MAYOR_18_D	"But I must try and\nrescue him."
+#def	DLG_MAYOR_19	"Sorry, I can't help you.\nI lost the key."
+#def	DLG_MAYOR_20_D	"I'll look for it.\nIt's what I do!"
+
+#def	DLG_MAYOR_21_D	"Also, do you know\nhow I can get home?"
+#def	DLG_MAYOR_22	"Sorry, no. But maybe the\ngreat wizard of Oz\nwill know."
+#def	DLG_MAYOR_23_D	"How do I find him?"
+#def	DLG_MAYOR_24	"Follow the yellow brick\nroad to the emerald city."
+#def	DLG_MAYOR_25_D	"That sounds easy."
+#def	DLG_MAYOR_26	"Beware the cursed poppy\nfield. Here's the yellow\ngate key."
+#def	DLG_MAYOR_27_D	"Thanks!"
+
+#def	DLG_DAISY_1		"Quickly, take her boots.\nThey'll protect you."
+
+#def	DLG_WITCH_1		"Arh!!! Who did this?"
+#def	DLG_WITCH_2_M	"I think it was\na freak accident!"
+#def	DLG_WITCH_3_D	"I'm sorry, I really\ndidn't plan it. There\nwas this whirlwind..."
+#def	DLG_WITCH_4 	"Who are you? Arh...\nYou are wearing her boots!\nHow dare you!"
+#def	DLG_WITCH_5_D	"I'm sorry. Couldn't\nyou just..."
+#def	DLG_WITCH_6 	"What's that?"
+#def	DLG_WITCH_7_D	"Oh, he's my pet...\nPogie. He won't hurt you."
+#def	DLG_WITCH_8 	"Well let's hope he tastes\nas good as he looks!"
+#def	DLG_WITCH_9_D	"No!"
+
+#def	DLG_VILLAGER	"Hi!"
+
+#def	DLG_DOZY_1		"Hey you!"
+#def	DLG_DOZY_2_D	"Who me?"
+#def	DLG_DOZY_3		"Yes you! You couldn't\nget me down, could you?"
+#def	DLG_DOZY_4_D	"Why, you're a\ntalking scarecrow!"
+#def	DLG_DOZY_5		"No, I just fell\nasleep and when\nI woke up, I found\nmyself tied up here!"
+#def	DLG_DOZY_6_D	"It's so tight,\nI can't undo it."
+#def	DLG_DOZY_7		"Perharps you could\ncut the rope?"
+#def	DLG_DOZY_8_D	"That's a good idea. Let me\nlook for something to cut\nit with and I'll be back."
+
+#def	DLG_DOZY_9_D	"I'm still looking!"
+#def	DLG_DOZY_10		"Wow! You frightened me.\nI was just having\na little nap."
+#def	DLG_DOZY_11_D	"I'll keep looking.\nI don't want to keep\nyou hanging around."
+#def	DLG_DOZY_12		"Please do. I think\nthese birds might\nstart pecking me soon."
+
+#def	DLG_DOZY_13_D	"I'm back! And this\ntime with scissors!"
+#def	DLG_DOZY_14		"Whoa! You gave me a\nfright. You've got\nto stop creeping up\non me like that!"
+#def	DLG_DOZY_15_D	"Let me cut that rope\nand get you down."
+#def	DLG_DOZY_16		"Oh thank you.\nI feel so silly.\nSometimes I think\nI don't have a brain."
+#def	DLG_DOZY_17_D	"Why that's ridiculous!\nIt wasn't your falut\nyou were mistaken for\na scarecrow."
+#def	DLG_DOZY_18		"I suffer from narcolepsy,\nmeaning I keep falling\nasleep. I'm sure my head\nis stuffed with straw\nrather than brains."
+#def	DLG_DOZY_19_D	"We all have our faults,\nit's what makes us unique.\nI'm a kleptomaniac, but\nyou are clever and your\nhead isn't stuffed\nwith straw."
+#def	DLG_DOZY_20		"You think?"
+#def	DLG_DOZY_21_D	"It was your idea\nto cut the rope."
+#def	DLG_DOZY_22		"It was obvious."
+#def	DLG_DOZY_23_D	"I know you are clever,\nand I'll convince you."
+
+#def	DLG_DOZY_24_D	"Hey scarecrow! Wake up!\nI need your help."
+#def	DLG_DOZY_25		"Zzzz zzzz"
+#def	DLG_DOZY_26_D	"Come on! Wake up!"
+#def	DLG_DOZY_27		"Zzzz zzzz"
+#def	DLG_DOZY_28_D	"It's no use, I'm never\ngoing to be able to\nwake him this way."
+
+#def	DLG_TINKER_1	"To cross, you'll\nneed to bring me..."
+#def	DLG_TINKER_2	"The band that never plays."
+#def	DLG_TINKER_3_D	"Um... Strange. Maybe they\nare rubbish and they are\ndoing everyone a favour?"
+
+#def	DLG_TINKER_4_D	"I've got it! The band\nthat never plays is\na rubber band."
+#def	DLG_TINKER_5	"Well done! You may pass."
+
+#def	DLG_TINKER_6	"To cross, you'll\nneed to bring me..."
+#def	DLG_TINKER_7	"That whish never\nasks questions,\nbut is always heard\nand often answered."
+#def	DLG_TINKER_8_D	"Um... That's a tough one.\nI'll see what I can find."
+
+#def	DLG_DENZIL_1	"Help! Won't you\nplease, please\nhelp me now?"
+#def	DLG_DENZIL_2_D	"I'm sorry? Are you\ntalking to me?"
+#def	DLG_DENZIL_3	"I'm rusted,\ncold and hard,\nwithout a heart."
+#def	DLG_DENZIL_4_D	"How did this happen?"
+#def	DLG_DENZIL_5	"It's a kind of magic."
+#def	DLG_DENZIL_6_D	"Are you listening\nto 80's music?"
+#def	DLG_DENZIL_7	"I'm stuck on repeat."
+#def	DLG_DENZIL_8_D	"I'll see what\nI can do."
+
+#def	DLG_DENZIL_9_D	"Don't worry. I've\nnot given up on you."
+#def	DLG_DENZIL_10	"I believe in you."
+
+#def	DLG_DENZIL_11_D	"I'm back. This oil\nshould help loosen\nthose rusted joints."
+#def	DLG_DENZIL_12	"Oh yeh!\nI feel the grooves,\nI feel the moves."
+#def	DLG_DENZIL_13_D	"Whoa! Watch where\nyou are swinging\nthat axe."
+#def	DLG_DENZIL_14	"I'm tired of this\nchopping and need\na new gig."
+#def	DLG_DENZIL_15	"Take my axe, I'm\nthrough with this work."
+#def	DLG_DENZIL_16_D	"That could be very\nuseful. Thanks."
+#def	DLG_DENZIL_17	"So where are\nyou going?"
+#def	DLG_DENZIL_18_D	"Oh I'm off to find\nthe Wizard of Oz,\nhe's going to help\nme get home."
+#def	DLG_DENZIL_19	"You don't suppose\nhe'd help me too,\ndo you?"
+#def	DLG_DENZIL_20_D	"Why do you need help?"
+#def	DLG_DENZIL_21	"I'm hollow inside.\nGo ahead, bang on my\nchest. You see there's\nnothing inside."
+#def	DLG_DENZIL_22_D	"Um... I see."
+#def	DLG_DENZIL_23	"You don't suppose\nhe'd give me a heart?"
+#def	DLG_DENZIL_24_D	"Well that's an\ninteresting idea,\nI really don't know,\nbut I will ask him."
+#def	DLG_DENZIL_25	"Thank you."
+
+#def	DLG_DENZIL_26	"Have you found\nthe wizard yet?"
+#def	DLG_DENZIL_27	"Did he give you\na heart for me?"
+#def	DLG_DENZIL_28_D	"No, I'm sorry, but\nI've not given up."
+#def	DLG_DENZIL_29	"I feel so\nhollow inside."
+
+#def	DLG_DONKEY_1_D	"Hello."
+#def	DLG_DONKEY_2	"Um... Um... Ummm...."
+#def	DLG_DONKEY_3_D	"You appear to have\na rubber band on\nyour snout!"
+#def	DLG_DONKEY_4	"Um... Ummm.... Um."
+#def	DLG_DONKEY_5_D	"Ok, ok. Let me\nget that for you."
+#def	DLG_DONKEY_6	"Oh man. Can you\nbelieve what some\npeople do?"
+
+#def	DLG_DONKEY_7_D	"Do you mind if I\nask what happened\nto your leg?"
+#def	DLG_DONKEY_8	"Oh that. I was drinking\ndown the tavern. Great\nnight, and then..."
+#def	DLG_DONKEY_9	"Well, I woke up next\nday to find someone\nhad taken my leg!"
+#def	DLG_DONKEY_10_D	"Are you serious?"
+#def	DLG_DONKEY_11	"Only when sober...\nAnd that ain't often.\nI don't lie, my nose is\nlong enough already."
+#def	DLG_DONKEY_12_D	"Maybe they were playing\n'nail the plank on\nthe donkey'?"
+#def	DLG_DONKEY_13	"Not funny.\nCan you help me?"
+#def	DLG_DONKEY_14_D	"I don't know,\nbut I'll try."

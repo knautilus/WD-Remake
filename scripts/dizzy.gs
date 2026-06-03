@@ -21,5 +21,6 @@
 #include "Data\\Scripts\\menus.gs"
 #include "Data\\Scripts\\handlers.gs"
 #include "Data\\Scripts\\ai.gs"
+#include "Data\\Scripts\\game.gsl"
 #include "Data\\Scripts\\game.gs"
 /////////////////////////////////////////////////////////////////////////////////
