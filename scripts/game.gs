@@ -934,9 +934,9 @@ func UpdateRoom_11_1()
 }
 
 // Donkey dialogs
-func ActionObject_285()
+func ActionObject_301()
 {
-	donkeyIdx = ObjFind(285);
+	donkeyIdx = ObjFind(301);
 	donkeyStatus = ObjGet(donkeyIdx,O_STATUS);
 	if (donkeyStatus==0)
 	{
@@ -1037,5 +1037,11 @@ func UpdateRoom_7_5()
 		ObjSet(bridge2Idx, O_TARGET, 298);
 		ObjSet(bridge3Idx, O_TARGET, 298);
 	}
+}
+
+func UpdateRoom_18_6()
+{
+	crowIdx = ObjFind(300);
+	AIUpdateFly(crowIdx);
 }
 /////////////////////////////////////////////////////////////////////////////////
