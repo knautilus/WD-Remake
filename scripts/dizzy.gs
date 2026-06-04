@@ -16,11 +16,12 @@
 #include "Data\\Scripts\\messages.gs"
 #include "Data\\Scripts\\player.gs"
 #include "Data\\Scripts\\movement.gs"
-#include "Data\\Scripts\\action.gs"
 #include "Data\\Scripts\\start.gs"
-#include "Data\\Scripts\\menus.gs"
 #include "Data\\Scripts\\handlers.gs"
 #include "Data\\Scripts\\ai.gs"
+
 #include "Data\\Scripts\\game.gsl"
+#include "Data\\Scripts\\action.gs"
+#include "Data\\Scripts\\menus.gs"
 #include "Data\\Scripts\\game.gs"
 /////////////////////////////////////////////////////////////////////////////////

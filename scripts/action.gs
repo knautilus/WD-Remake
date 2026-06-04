@@ -104,7 +104,7 @@ func DoPickupObject(idx)
 		ok = InventoryAdd(idx); // add item to inventory and return 1 if success or 0 if inventory is full
 		if(!ok) // inventory is full
 		{
-			OpenDialogMessage("YOUR HANDS\nARE FULL!");
+			OpenDialogMessage(TXT_INV_FULL);
 			return;
 		}
 		
@@ -122,11 +122,7 @@ func DoPickupObject(idx)
 		PlayerSet(P_COINS,coins); // store coins counter
 		SamplePlay(FX_COIN);
 		AddScore(SCORE_COIN);
-		// check if found them all - edit these messages
-		//if( coins==MAXCOINS )
-		//	OpenDialogMessage("YOU HAVE FOUND\nALL THE COINS");
-		//else
-		OpenDialogMessage("{c:0xffff00ff}Well done!\n\n{c:0xffffff00}You found\na coinstar!");
+		OpenDialogMessage("{c:0xffff00ff}"+TXT_COIN_1+"\n\n{c:0xffffff00}"+TXT_COIN_2);
 	}
 	
 	else
@@ -236,15 +232,15 @@ func WrongItemDialog()
 	phraseNum = PlayerGet(P_PHRASE_NUM);
 	if (phraseNum == 0)
 	{
-		OpenDialogMessage("Well that\ndoesn't work.", COLOR_MAGENTA);
+		OpenDialogMessage(TXT_WRONG_ITEM_1, COLOR_MAGENTA);
 	}
 	else if (phraseNum == 1)
 	{
-		OpenDialogMessage("Fat lot of good\nthat was.", COLOR_MAGENTA);
+		OpenDialogMessage(TXT_WRONG_ITEM_2, COLOR_MAGENTA);
 	}
 	else if (phraseNum == 2)
 	{
-		OpenDialogMessage("I'm going to have to\ntry something else.", COLOR_MAGENTA);
+		OpenDialogMessage(TXT_WRONG_ITEM_3, COLOR_MAGENTA);
 	}
 	phraseNum++;
 	if (phraseNum > 2)

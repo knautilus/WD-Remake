@@ -458,7 +458,7 @@ func DialogInventory( select )
 	DialogPopAll(); // close all old dialogs (RunDialogSelect can handle only one)
 	
 	// construct text
-	text = "{c:0xffffffff}{a:center}YOU ARE CARRYING\n\n";
+	text = "{c:0xffffffff}{a:center}" + TXT_INV_CAPTION + "\n\n";
 	
 	// push elements names
 	count = InventoryCount();
@@ -475,13 +475,13 @@ func DialogInventory( select )
 			text += "\n\n";
 		}
 	}
-	else	
+	else
 	{
-		text += "N O T H I N G\n";
+		text = text + TXT_INV_EMPTY + "\n";
 	}
 	
 	if(select==count) text += "{f:1}";
-	text += "\n{a:center}EXIT AND DON'T DROP";
+	text = text + "\n{a:center}" + TXT_INV_EXIT;
 	if(select==count) text += "{f:0}";
 	
 	// construct dialog

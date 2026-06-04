@@ -16,8 +16,20 @@
 #def	OBJ_108			"An empty bucket"
 #def	OBJ_109			"Bunch of poppies"
 #def	OBJ_110			"A shiny new cog"
+#def	OBJ_111			"Masquerade mask"
+#def	OBJ_112			"A Crash magazine"
 
 // Dialogs
+
+#def	TXT_INV_CAPTION	"You are carrying"
+#def	TXT_INV_EMPTY	"N O T H I N G"
+#def	TXT_INV_EXIT	"Exit and don't drop"
+#def	TXT_INV_FULL	"Your hands\nare full!"
+#def	TXT_WRONG_ITEM_1	"Well that\ndoesn't work."
+#def	TXT_WRONG_ITEM_2	"Fat lot of good\nthat was."
+#def	TXT_WRONG_ITEM_3	"I'm going to have to\ntry something else."
+#def	TXT_COIN_1		"Well done!"
+#def	TXT_COIN_2		"You found\na coinstar!"
 
 #def	TXT_DOOR		"Um... The door\nhandle is missing?"
 #def	TXT_SIGNPOST	"Using the woodman's\naxe you are able to\nchop the post down\nand make a bridge."
