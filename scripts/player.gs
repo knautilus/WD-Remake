@@ -221,7 +221,7 @@ func PlayerEnterScripted()
 /////////////////////////////////////////////////////////////////////////////////
 func PlayerSetPos( x, y )
 {
-	PlayerSet(P_X,(x/4)*4); // multiple of 4
+	PlayerSet(P_X,x);
 	PlayerSet(P_Y,y);
 }
 

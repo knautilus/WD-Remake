@@ -391,7 +391,7 @@ func CM_UpdateJump()
 		PlayerSet(P_Y, py-20);
 	}
 
-	if( pow< 0 ) // done jumping - see where to go idle or fall
+	if( pow < 0 ) // done jumping - see where to go idle or fall
 	{
 		under = CM_CheckFallY(1);
 		if(under==0)

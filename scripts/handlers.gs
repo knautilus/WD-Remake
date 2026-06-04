@@ -73,6 +73,7 @@ func HandlerGameStart()
 	// player cfg
 	PlayerSet(P_LAYER, PLAYER_LAYER);
 	PlayerSet(P_DELAY,1);
+	PlayerSet(P_H, PLAYER_H);
 
 	// inventory
 	InventoryClear();
@@ -569,7 +570,7 @@ func EnterTeleport( idx )
 {
 	targetIdx = ObjFind(ObjGet(idx, O_TARGET));
 	if(targetIdx==-1) return;
-	PlayerSetPos(ObjGet(targetIdx,O_X)+8, ObjGet(targetIdx,O_Y)+13);
+	PlayerSetPos(ObjGet(targetIdx,O_X)+8, ObjGet(targetIdx,O_Y)+11);
 	PlayerEnterIdle();
 }
 
