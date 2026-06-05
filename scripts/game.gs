@@ -415,7 +415,7 @@ func WitchDialogScene()
 
 	pogieIdx = ObjFind(207);
 
-	ObjSet(pogieIdx, O_TILE, 319);
+	ObjSet(pogieIdx, O_TILE, 175);
 	ObjSet(pogieIdx, O_W, 24);
 	ObjSet(pogieIdx, O_H, 24);
 	ObjSet(pogieIdx, O_MAP+2, 24);
@@ -617,9 +617,9 @@ func UpdateDozyTile()
 	if (dozyTriggerStatus==1)
 	{
 		dozyIdx = BrushFind(234);
-		BrushSet(dozyIdx,B_TILE,329);
+		BrushSet(dozyIdx,B_TILE,176);
 		WaitFrames(48);
-		BrushSet(dozyIdx,B_TILE,330);
+		BrushSet(dozyIdx,B_TILE,177);
 	}
 }
 
