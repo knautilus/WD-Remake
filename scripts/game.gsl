@@ -186,3 +186,26 @@
 #def	DLG_DONKEY_12_D	"Maybe they were playing\n'nail the plank on\nthe donkey'?"
 #def	DLG_DONKEY_13	"Not funny.\nCan you help me?"
 #def	DLG_DONKEY_14_D	"I don't know,\nbut I'll try."
+
+#def	DLG_JESTER_1_D	"Hello jester. Your\nclothes say happy, but\nyour face says sad?"
+#def	DLG_JESTER_2	"The wizard wants me\nno more, he finds fun\nthrough another door."
+#def	DLG_JESTER_3_D	"That's a shame,\ncan I help?"
+#def	DLG_JESTER_4	"Bring me what amuses\nhim so much, so that\nI can see and touch."
+#def	DLG_JESTER_5_D	"I will see what\nI can do."
+
+#def	DLG_JESTER_6	"Did you find, did you see?\nDid you take, to give me?"
+#def	DLG_JESTER_7_D	"Sorry no. Got to go.\nNow look what you've\nmade me do!"
+
+#def	DLG_DORA_1_D	"You look familiar.\nDo I know you?"
+#def	DLG_DORA_2		"I am the good witch of\nthe south. I hear you\nare the brave hero that\nkilled the wicked witch\nof the east."
+#def	DLG_DORA_3_D	"Well not delibertely.\nMy hut landed on her."
+#def	DLG_DORA_4		"Nevertheless, you have\nhelped those poor munchkins\nmore than you know."
+#def	DLG_DORA_5_D	"I'm always happy to help."
+#def	DLG_DORA_6		"I'm happy to hear this,\nsince I could do with\nyour help."
+#def	DLG_DORA_7_D	"I walked into that,\ndidn't I! What do you need?"
+#def	DLG_DORA_8		"The wicked witch of the\nwest stole my magic staff.\nCould you find it for me?"
+#def	DLG_DORA_9_D	"I'll see what I can do."
+
+#def	DLG_DORA_10_D	"I've no idea where\nyour magic staff is."
+#def	DLG_DORA_11		"I expect it's in the\nhardest, deepest, most\ndangerous place imaginable."
+#def	DLG_DORA_12_D	"Great. Just what\nI wanted to hear!"

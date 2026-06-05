@@ -1046,4 +1046,74 @@ func UpdateRoom_18_6()
 	crowIdx = ObjFind(300);
 	AIUpdateFly(crowIdx);
 }
+
+// Jester dialogs
+func ActionObject_304()
+{
+	jesterIdx = ObjFind(304);
+	jesterStatus = ObjGet(jesterIdx,O_STATUS);
+	if (jesterStatus==0)
+	{
+		Message1(DLG_JESTER_1_D);
+		MessagePop();
+		Message2(DLG_JESTER_2);
+		MessagePop();
+		Message1(DLG_JESTER_3_D);
+		MessagePop();
+		Message2(DLG_JESTER_4);
+		MessagePop();
+		Message1(DLG_JESTER_5_D);
+		MessagePop();
+		ObjSet(jesterIdx, O_STATUS, 1);
+	}
+	else if (jesterStatus==1)
+	{
+		// todo: check inventory for x box
+
+		Message2(DLG_JESTER_6);
+		MessagePop();
+		Message1(DLG_JESTER_7_D);
+		MessagePop();
+	}
+}
+
+// Dora dialogs
+func ActionObject_305()
+{
+	doraIdx = ObjFind(305);
+	doraStatus = ObjGet(doraIdx,O_STATUS);
+	if (doraStatus==0)
+	{
+		Message1(DLG_DORA_1_D);
+		MessagePop();
+		Message2(DLG_DORA_2);
+		MessagePop();
+		Message1(DLG_DORA_3_D);
+		MessagePop();
+		Message2(DLG_DORA_4);
+		MessagePop();
+		Message1(DLG_DORA_5_D);
+		MessagePop();
+		Message2(DLG_DORA_6);
+		MessagePop();
+		Message1(DLG_DORA_7_D);
+		MessagePop();
+		Message2(DLG_DORA_8);
+		MessagePop();
+		Message1(DLG_DORA_9_D);
+		MessagePop();
+		ObjSet(doraIdx, O_STATUS, 1);
+	}
+	else if (doraStatus==1)
+	{
+		// todo: check inventory for magic staff
+
+		Message1(DLG_DORA_10_D);
+		MessagePop();
+		Message2(DLG_DORA_11);
+		MessagePop();
+		Message1(DLG_DORA_12_D);
+		MessagePop();
+	}
+}
 /////////////////////////////////////////////////////////////////////////////////
