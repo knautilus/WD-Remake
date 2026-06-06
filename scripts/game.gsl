@@ -18,6 +18,7 @@
 #def	OBJ_110			"A shiny new cog"
 #def	OBJ_111			"Masquerade mask"
 #def	OBJ_112			"A Crash magazine"
+#def	OBJ_113			"A brass bell"
 
 // Dialogs
 
@@ -128,15 +129,23 @@
 #def	DLG_DOZY_28_D	"It's no use, I'm never\ngoing to be able to\nwake him this way."
 
 #def	DLG_TINKER_1	"To cross, you'll\nneed to bring me..."
+
 #def	DLG_TINKER_2	"The band that never plays."
 #def	DLG_TINKER_3_D	"Um... Strange. Maybe they\nare rubbish and they are\ndoing everyone a favour?"
 
 #def	DLG_TINKER_4_D	"I've got it! The band\nthat never plays is\na rubber band."
+
 #def	DLG_TINKER_5	"Well done! You may pass."
 
-#def	DLG_TINKER_6	"To cross, you'll\nneed to bring me..."
-#def	DLG_TINKER_7	"That whish never\nasks questions,\nbut is always heard\nand often answered."
-#def	DLG_TINKER_8_D	"Um... That's a tough one.\nI'll see what I can find."
+#def	DLG_TINKER_6	"That whish never\nasks questions,\nbut is always heard\nand often answered."
+#def	DLG_TINKER_7_D	"Um... That's a tough one.\nI'll see what I can find."
+
+#def	DLG_TINKER_8_D	"Here it is. A bell is\nalways heard, sometimes\nanswered, but never\nasks questions."
+
+#def	DLG_TINKER_9	"The tool of a thief,\ntoy of a queen.\nAlways used to be unseen."
+#def	DLG_TINKER_10_D	"Um... I'll see\nWhat I can find."
+
+#def	DLG_TINKER_11_D	"I have a mask, the tool\nof a thief and a toy\nfor a queen."
 
 #def	DLG_DENZIL_1	"Help! Won't you\nplease, please\nhelp me now?"
 #def	DLG_DENZIL_2_D	"I'm sorry? Are you\ntalking to me?"
@@ -188,13 +197,13 @@
 #def	DLG_DONKEY_14_D	"I don't know,\nbut I'll try."
 
 #def	DLG_JESTER_1_D	"Hello jester. Your\nclothes say happy, but\nyour face says sad?"
-#def	DLG_JESTER_2	"The wizard wants me\nno more, he finds fun\nthrough another door."
+#def	DLG_JESTER_2	"The wizard wants\nme no more,\nhe finds fun\nthrough another door."
 #def	DLG_JESTER_3_D	"That's a shame,\ncan I help?"
-#def	DLG_JESTER_4	"Bring me what amuses\nhim so much, so that\nI can see and touch."
+#def	DLG_JESTER_4	"Bring me what amuses him\nso much,\nso that I can see\nand touch."
 #def	DLG_JESTER_5_D	"I will see what\nI can do."
 
-#def	DLG_JESTER_6	"Did you find, did you see?\nDid you take, to give me?"
-#def	DLG_JESTER_7_D	"Sorry no. Got to go.\nNow look what you've\nmade me do!"
+#def	DLG_JESTER_6	"Did you find,\ndid you see?\nDid you take,\nto give me?"
+#def	DLG_JESTER_7_D	"Sorry no.\nGot to go.\nNow look what you've\nmade me do!"
 
 #def	DLG_DORA_1_D	"You look familiar.\nDo I know you?"
 #def	DLG_DORA_2		"I am the good witch of\nthe south. I hear you\nare the brave hero that\nkilled the wicked witch\nof the east."

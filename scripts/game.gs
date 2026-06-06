@@ -63,6 +63,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(110), OBJ_110);
 	ObjSetName(ObjFind(111), OBJ_111);
 	ObjSetName(ObjFind(112), OBJ_112);
+	ObjSetName(ObjFind(113), OBJ_113);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -820,15 +821,11 @@ func UpdateRoom_5_5()
 func OpenRoom_17_4()
 {
 	RoomSet(18,4,R_STATUS,0);
-	tinkerAreaIdx = ObjFind(266);
-	tinkerStatus = ObjGet(tinkerAreaIdx, O_STATUS);
+	tinkerIdx = ObjFind(268);
+	tinkerStatus = ObjGet(tinkerIdx, O_STATUS);
 	if (tinkerStatus == 3)
 	{
-		ObjSet(tinkerAreaIdx, O_STATUS, 4);
-	}
-	else if (tinkerStatus == 7)
-	{
-		ObjSet(tinkerAreaIdx, O_STATUS, 8);
+		ObjSet(tinkerIdx, O_STATUS, 4);
 	}
 }
 
@@ -836,24 +833,20 @@ func OpenRoom_17_4()
 func OpenRoom_19_4()
 {
 	RoomSet(18,4,R_STATUS,0);
-	tinkerAreaIdx = ObjFind(266);
-	tinkerStatus = ObjGet(tinkerAreaIdx, O_STATUS);
+	tinkerIdx = ObjFind(268);
+	tinkerStatus = ObjGet(tinkerIdx, O_STATUS);
 	if (tinkerStatus == 1)
 	{
-		ObjSet(tinkerAreaIdx, O_STATUS, 2);
-	}
-	else if (tinkerStatus == 5)
-	{
-		ObjSet(tinkerAreaIdx, O_STATUS, 6);
+		ObjSet(tinkerIdx, O_STATUS, 2);
 	}
 }
 
 // Area near Tinker
-func CollideObject_266_1()
+func CollideObject_266_2()
 {
-	tinkerAreaIdx = ObjFind(266);
+	tinkerIdx = ObjFind(268);
 	tinkerWallIdx = BrushFind(267);
-	tinkerStatus = ObjGet(tinkerAreaIdx, O_STATUS);
+	tinkerStatus = ObjGet(tinkerIdx, O_STATUS);
 	roomStatus = RoomGet(18,4,R_STATUS);
 
 	if (tinkerStatus == 0)
@@ -861,7 +854,9 @@ func CollideObject_266_1()
 		BrushSet(tinkerWallIdx, B_DRAW, 2);
 		GameCommand(CMD_REFRESH);
 
-		if (roomStatus == 0)
+		bandIdx = ObjFind(106);
+
+		if (roomStatus == 0 || InventoryFind(bandIdx)!=-1)
 		{
 			Message2(DLG_TINKER_1);
 			MessagePop();
@@ -871,19 +866,18 @@ func CollideObject_266_1()
 			MessagePop();
 			RoomSet(18,4,R_STATUS,1);
 			WaitFrames(8);
-		}
 
-		bandIdx = ObjFind(106);
-		if (InventoryFind(bandIdx)!=-1)
-		{
-			InventorySub(bandIdx);
-			Message1(DLG_TINKER_4_D);
-			MessagePop();
-			Message2(DLG_TINKER_5);
-			MessagePop();
-			BrushSet(tinkerWallIdx, B_DRAW, 0);
-			ObjSet(tinkerAreaIdx, O_STATUS, 1);
-			GameCommand(CMD_REFRESH);
+			if (InventoryFind(bandIdx)!=-1)
+			{
+				InventorySub(bandIdx);
+				Message1(DLG_TINKER_4_D);
+				MessagePop();
+				Message2(DLG_TINKER_5);
+				MessagePop();
+				BrushSet(tinkerWallIdx, B_DRAW, 0);
+				ObjSet(tinkerIdx, O_STATUS, 1);
+				GameCommand(CMD_REFRESH);
+			}
 		}
 	}
 	else if (tinkerStatus == 2)
@@ -891,23 +885,90 @@ func CollideObject_266_1()
 		BrushSet(tinkerWallIdx, B_DRAW, 2);
 		GameCommand(CMD_REFRESH);
 
-		if (roomStatus == 0)
+		bellIdx = ObjFind(113);
+
+		if (roomStatus == 0 || InventoryFind(bellIdx)!=-1)
 		{
+			Message2(DLG_TINKER_1);
+			MessagePop();
 			Message2(DLG_TINKER_6);
 			MessagePop();
-			Message2(DLG_TINKER_7);
-			MessagePop();
-			Message1(DLG_TINKER_8_D);
+			Message1(DLG_TINKER_7_D);
 			MessagePop();
 			RoomSet(18,4,R_STATUS,1);
 			WaitFrames(8);
+
+			if (InventoryFind(bellIdx)!=-1)
+			{
+				InventorySub(bellIdx);
+				Message1(DLG_TINKER_8_D);
+				MessagePop();
+				Message2(DLG_TINKER_5);
+				MessagePop();
+				BrushSet(tinkerWallIdx, B_DRAW, 0);
+				ObjSet(tinkerIdx, O_STATUS, 3);
+				GameCommand(CMD_REFRESH);
+			}
 		}
+	}
+	else if (tinkerStatus == 4)
+	{
+		BrushSet(tinkerWallIdx, B_DRAW, 2);
+		GameCommand(CMD_REFRESH);
+
+		maskIdx = ObjFind(111);
+		maskX = ObjGet(maskIdx, O_X);
+		maskY = ObjGet(maskIdx, O_Y);
+		forbiddenTop = ObjGet(maskIdx, O_USER);
+		forbiddenBottom = ObjGet(maskIdx, O_USER+1);
+		forbiddenLeft = ObjGet(maskIdx, O_USER+2);
+		forbiddenRight = ObjGet(maskIdx, O_USER+3);
+		
+		if (maskX > forbiddenLeft && maskX < forbiddenRight && maskY > forbiddenTop && maskY < forbiddenBottom)
+		{
+			ObjSet(maskIdx, O_X, ObjGet(maskIdx,O_USER+4));
+			ObjSet(maskIdx, O_Y, ObjGet(maskIdx,O_USER+5));
+		}
+
+		if (roomStatus == 0 || InventoryFind(maskIdx)!=-1)
+		{
+			Message2(DLG_TINKER_1);
+			MessagePop();
+			Message2(DLG_TINKER_9);
+			MessagePop();
+			Message1(DLG_TINKER_10_D);
+			MessagePop();
+			RoomSet(18,4,R_STATUS,1);
+			WaitFrames(8);
+
+			if (InventoryFind(maskIdx)!=-1)
+			{
+				InventorySub(maskIdx);
+				Message1(DLG_TINKER_11_D);
+				MessagePop();
+				Message2(DLG_TINKER_5);
+				MessagePop();
+				BrushSet(tinkerWallIdx, B_DRAW, 0);
+				ObjSet(tinkerIdx, O_STATUS, 5);
+				GameCommand(CMD_REFRESH);
+			}
+		}
+	}
+}
+
+// Tinker
+func ActionObject_268()
+{
+	idxobj = OpenDialogInventory();
+	if(idxobj!=-1)
+	{
+		WrongItemDialog();
 	}
 }
 
 func UpdateRoom_20_3()
 {
-	crowIdx = ObjFind(268);
+	crowIdx = ObjFind(306);
 	AIUpdateFly(crowIdx);
 }
 
