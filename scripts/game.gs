@@ -64,6 +64,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(111), OBJ_111);
 	ObjSetName(ObjFind(112), OBJ_112);
 	ObjSetName(ObjFind(113), OBJ_113);
+	ObjSetName(ObjFind(114), OBJ_114);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1175,6 +1176,27 @@ func ActionObject_305()
 		MessagePop();
 		Message1(DLG_DORA_12_D);
 		MessagePop();
+	}
+}
+
+func ActionObject_307()
+{
+	ActionWaterfall();
+}
+
+func ActionObject_308()
+{
+	ActionWaterfall();
+}
+
+func ActionWaterfall()
+{
+	if (TryUseItem(108, 1) == 1)
+	{
+		Message0(TXT_WATERFALL);
+		MessagePop();
+		fullBucketIdx = ObjFind(114);
+		InventoryAdd(fullBucketIdx);
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////

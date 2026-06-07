@@ -19,6 +19,7 @@
 #def	OBJ_111			"Masquerade mask"
 #def	OBJ_112			"A Crash magazine"
 #def	OBJ_113			"A brass bell"
+#def	OBJ_114			"Bucket of water"
 
 // Dialogs
 
@@ -35,6 +36,7 @@
 #def	TXT_DOOR		"Um... The door\nhandle is missing?"
 #def	TXT_SIGNPOST	"Using the woodman's\naxe you are able to\nchop the post down\nand make a bridge."
 #def	TXT_LEVER		"The lever\nappears broken"
+#def	TXT_WATERFALL	"You hold the empty\nbucket under the\nfalling water to\nfill it up."
 
 #def	TXT_DEATH_BAT		"You were killed\nby a bat"
 #def	TXT_DEATH_SPIDER	"You're beaten by\na spider!"
