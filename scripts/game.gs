@@ -65,6 +65,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(112), OBJ_112);
 	ObjSetName(ObjFind(113), OBJ_113);
 	ObjSetName(ObjFind(114), OBJ_114);
+	ObjSetName(ObjFind(115), OBJ_115);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1198,5 +1199,11 @@ func ActionWaterfall()
 		fullBucketIdx = ObjFind(114);
 		InventoryAdd(fullBucketIdx);
 	}
+}
+
+func UpdateRoom_4_4()
+{
+	snakeIdx = ObjFind(309);
+	AIUpdateSnake(snakeIdx);
 }
 /////////////////////////////////////////////////////////////////////////////////
