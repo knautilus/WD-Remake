@@ -133,7 +133,7 @@
 #def DANGER_WATER       2
 #def DANGER_FIRE        3
 #def DANGER_SPIKES      4
-#def DANGER_CRUSHER     5
+#def DANGER_SNAKE       5
 #def DANGER_BAT         6
 #def DANGER_BIRD        7
 #def DANGER_SPIDER      8

@@ -66,6 +66,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(113), OBJ_113);
 	ObjSetName(ObjFind(114), OBJ_114);
 	ObjSetName(ObjFind(115), OBJ_115);
+	ObjSetName(ObjFind(116), OBJ_116);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -105,6 +106,7 @@ func PlayerDeathMessage( death )
 	if(death==DANGER_FIRE)			return TXT_DEATH_FIRE;
 	if(death==DANGER_WATER)			return TXT_DEATH_WATER;
 	if(death==DANGER_FALL)			return TXT_DEATH_FALL;
+	if(death==DANGER_SNAKE)			return TXT_DEATH_SNAKE;
 	if(death==-1)					return "";
 	// ...
 	return "YOU HAVE DIED!";		// default
@@ -1205,5 +1207,19 @@ func UpdateRoom_4_4()
 {
 	snakeIdx = ObjFind(309);
 	AIUpdateSnake(snakeIdx);
+}
+
+func UpdateRoom_10_5()
+{
+	fishIdx = ObjFind(310);
+	AIUpdateFly(fishIdx);
+}
+
+func UpdateRoom_11_5()
+{
+	crowIdx = ObjFind(311);
+	AIUpdateFly(crowIdx);
+	crowIdx = ObjFind(312);
+	AIUpdateFly(crowIdx);
 }
 /////////////////////////////////////////////////////////////////////////////////

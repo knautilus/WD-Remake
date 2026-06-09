@@ -21,6 +21,7 @@
 #def	OBJ_113			"A brass bell"
 #def	OBJ_114			"Bucket of water"
 #def	OBJ_115			"Zzap!64 magazine"
+#def	OBJ_116			"A loud fog horn"
 
 // Dialogs
 
@@ -40,12 +41,13 @@
 #def	TXT_WATERFALL	"You hold the empty\nbucket under the\nfalling water to\nfill it up."
 
 #def	TXT_DEATH_BAT		"You were killed\nby a bat"
-#def	TXT_DEATH_SPIDER	"You're beaten by\na spider!"
+#def	TXT_DEATH_SPIDER	"You're bitten by\na spider!"
 #def	TXT_DEATH_BIRD		"You were pecked\nby a bird!"
 #def	TXT_DEATH_POPPY		"The poppies make\nyou fall asleep!"
 #def	TXT_DEATH_FIRE		"You were burnt\nby the flames!"
 #def	TXT_DEATH_WATER		"You fell in the\nwater and drowned!"
 #def	TXT_DEATH_FALL		"You hit the ground\ntoo hard!"
+#def	TXT_DEATH_SNAKE		"You're bitten by\na poisonous snake!"
 
 #def	DLG_POGIE_1_D	"Gosh Pogie,\nthat really shook\nthe hut, are you ok?"
 #def	DLG_POGIE_2		"Squeak."
