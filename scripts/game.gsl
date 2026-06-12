@@ -22,6 +22,7 @@
 #def	OBJ_114			"Bucket of water"
 #def	OBJ_115			"Zzap!64 magazine"
 #def	OBJ_116			"A loud fog horn"
+#def	OBJ_117			"A crystal tiara"
 
 // Dialogs
 
@@ -223,3 +224,25 @@
 #def	DLG_DORA_10_D	"I've no idea where\nyour magic staff is."
 #def	DLG_DORA_11		"I expect it's in the\nhardest, deepest, most\ndangerous place imaginable."
 #def	DLG_DORA_12_D	"Great. Just what\nI wanted to hear!"
+
+#def	DLG_DYLAN_1		"Roar! Come any closer\nand I'll rip you to pieces!\nRoar!!!"
+#def	DLG_DYLAN_2_D	"Whoa... Calm down! I mean\nyou no harm. I'm trying to\nfind my pet fluffle\nand my way home."
+#def	DLG_DYLAN_3		"I can fight you any day!\nCome on, put your paws up."
+#def	DLG_DYLAN_4_D	"Ok, but you should know\nthat I box pretty well.\nJust look at these gloves!"
+#def	DLG_DYLAN_5		"Oh no! Please don't hurt me.\nOh please - I beg you.\nDon't hurt me."
+#def	DLG_DYLAN_6_D	"Why you're nothing but\na coward. You can't go\naround growling at folk\nand threatening them."
+#def	DLG_DYLAN_7		"Yes, you're right. I haven't\nany courage at all, please\ndon't hurt me."
+#def	DLG_DYLAN_8_D	"Maybe the Wizard of Oz\ncould help you? I'm going\nto find him and he's going\nto help me get home."
+#def	DLG_DYLAN_9		"Oh, yes. Maybe he could\ngive me courage. The good\nwitch of north spoke of him."
+#def	DLG_DYLAN_10_D	"What do you know\nabout her?"
+#def	DLG_DYLAN_11	"She's lovely. She dropped\nher crystal tiara here,\nperharps you could return\nit to her? I'd go, but\nI'm scared."
+#def	DLG_DYLAN_12_D	"Where can I find her?"
+#def	DLG_DYLAN_13	"She lives in the beautiful\ncrystal palace to the north."
+#def	DLG_DYLAN_14_D	"Ok. I'll try and I'll ask\nthe Wizard if he can help\nyou, but promise me you'll\nstop scaring yolk."
+#def	DLG_DYLAN_15	"Ok. I will. Thank you."
+
+#def	DLG_DYLAN_16	"You left me all alone\nto fend for myself."
+#def	DLG_DYLAN_17_D	"You're a lion. Man up!"
+#def	DLG_DYLAN_18	"That's easy for you to say,\nyou're a great boxer."
+#def	DLG_DYLAN_19_D	"And you're a lion!\nDon't worry I'll try help."
+#def	DLG_DYLAN_20	"Oh, thank you."

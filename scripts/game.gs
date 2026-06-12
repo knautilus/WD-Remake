@@ -67,6 +67,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(114), OBJ_114);
 	ObjSetName(ObjFind(115), OBJ_115);
 	ObjSetName(ObjFind(116), OBJ_116);
+	ObjSetName(ObjFind(117), OBJ_117);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1222,4 +1223,61 @@ func UpdateRoom_11_5()
 	crowIdx = ObjFind(312);
 	AIUpdateFly(crowIdx);
 }
+
+// Dylan dialogs
+func ActionObject_313()
+{
+	dylanIdx = ObjFind(313);
+	dylanStatus = ObjGet(dylanIdx,O_STATUS);
+	if (dylanStatus==0)
+	{
+		Message2(DLG_DYLAN_1);
+		MessagePop();
+		Message1(DLG_DYLAN_2_D);
+		MessagePop();
+		Message2(DLG_DYLAN_3);
+		MessagePop();
+		Message1(DLG_DYLAN_4_D);
+		MessagePop();
+		Message2(DLG_DYLAN_5);
+		MessagePop();
+		Message1(DLG_DYLAN_6_D);
+		MessagePop();
+		Message2(DLG_DYLAN_7);
+		MessagePop();
+		Message1(DLG_DYLAN_8_D);
+		MessagePop();
+		Message2(DLG_DYLAN_9);
+		MessagePop();
+		Message1(DLG_DYLAN_10_D);
+		MessagePop();
+		Message2(DLG_DYLAN_11);
+		MessagePop();
+		Message1(DLG_DYLAN_12_D);
+		MessagePop();
+		Message2(DLG_DYLAN_13);
+		MessagePop();
+		Message1(DLG_DYLAN_14_D);
+		MessagePop();
+		Message2(DLG_DYLAN_15);
+		MessagePop();
+		tiaraIdx = ObjFind(117);
+		ObjSet(tiaraIdx, O_DISABLE, 0);
+		ObjSet(dylanIdx, O_STATUS, 1);
+	}
+	else if (dylanStatus==1)
+	{
+		Message2(DLG_DYLAN_16);
+		MessagePop();
+		Message1(DLG_DYLAN_17_D);
+		MessagePop();
+		Message2(DLG_DYLAN_18);
+		MessagePop();
+		Message1(DLG_DYLAN_19_D);
+		MessagePop();
+		Message2(DLG_DYLAN_20);
+		MessagePop();
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////
