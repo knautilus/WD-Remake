@@ -68,6 +68,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(115), OBJ_115);
 	ObjSetName(ObjFind(116), OBJ_116);
 	ObjSetName(ObjFind(117), OBJ_117);
+	ObjSetName(ObjFind(118), OBJ_118);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -203,8 +204,7 @@ func ActionObject_201()
 	}
 	else
 	{
-		Message1(TXT_DOOR);
-		MessagePop();
+		Message1(TXT_DIZZY_DOOR);
 	}
 }
 
@@ -216,15 +216,12 @@ func ActionObject_203()
 	if (pogieStatus==0)
 	{
 		Message1(DLG_POGIE_1_D);
-		MessagePop();
 		Message2(DLG_POGIE_2);
-		MessagePop();
 		ObjSet(pogieIdx,O_STATUS,1);
 	}
 	else
 	{
 		Message2(DLG_POGIE_2);
-		MessagePop();
 	}
 }
 
@@ -237,17 +234,11 @@ func CollideObject_252_1()
 	{
 		WaitFrames(8);
 		Message2(DLG_MAYOR_1);
-		MessagePop();
 		Message1(DLG_MAYOR_2_D);
-		MessagePop();
 		Message2(DLG_MAYOR_3);
-		MessagePop();
 		Message1(DLG_MAYOR_4_D);
-		MessagePop();
 		Message2(DLG_MAYOR_5);
-		MessagePop();
 		Message1(DLG_MAYOR_6_D);
-		MessagePop();
 		ObjSet(doorAreaIdx,O_STATUS,1);
 	}
 }
@@ -274,7 +265,6 @@ func CollideObject_252_0()
 		ObjSet(daisyIdx, O_DISABLE, 0);
 		ObjPlayAnimFrames( daisyIdx, {0,1,2,3,2,1} );
 		Message2(DLG_DAISY_1);
-		MessagePop();
 
 		ObjSet(smokeIdx, O_DISABLE, 0);
 		ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
@@ -293,15 +283,10 @@ func ActionObject_100()
 	jokeIdx = BrushFind(240);
 	BrushSet(jokeIdx, B_LAYER, 6);
 	Message1(DLG_MAYOR_7_D);
-	MessagePop();
 	Message2(DLG_MAYOR_8);
-	MessagePop();
 	Message1(DLG_MAYOR_9_D);
-	MessagePop();
 	Message2(DLG_MAYOR_10);
-	MessagePop();
 	Message1(DLG_MAYOR_11_D);
-	MessagePop();
 
 	RoomSet(12,4,R_STATUS,1);
 }
@@ -351,9 +336,7 @@ func UpdateRoom_12_4()
 func ActionObject_207()
 {
 	Message1(DLG_POGIE_3_D);
-	MessagePop();
 	Message2(DLG_POGIE_4);
-	MessagePop();
 }
 
 func BootsScene()
@@ -365,9 +348,7 @@ func BootsScene()
 		return;
 	}
 	Message1(DLG_MAYOR_12_D);
-	MessagePop();
 	Message2(DLG_MAYOR_13);
-	MessagePop();
 	RoomSet(12,4,R_STATUS,3);
 }
 
@@ -401,23 +382,14 @@ func WitchDialogScene()
 	}
 
 	Message2(DLG_WITCH_1, COLOR_YELLOW);
-	MessagePop();
 	Message2(DLG_WITCH_2_M);
-	MessagePop();
 	Message1(DLG_WITCH_3_D);
-	MessagePop();
 	Message2(DLG_WITCH_4, COLOR_YELLOW);
-	MessagePop();
 	Message1(DLG_WITCH_5_D);
-	MessagePop();
 	Message2(DLG_WITCH_6, COLOR_YELLOW);
-	MessagePop();
 	Message1(DLG_WITCH_7_D);
-	MessagePop();
 	Message2(DLG_WITCH_8, COLOR_YELLOW);
-	MessagePop();
 	Message1(DLG_WITCH_9_D);
-	MessagePop();
 
 	pogieIdx = ObjFind(207);
 
@@ -449,37 +421,23 @@ func ActionObject_204()
 	if (mayorStatus==1)
 	{
 		Message1(DLG_MAYOR_14_D);
-		MessagePop();
 		Message2(DLG_MAYOR_15);
-		MessagePop();
 		Message1(DLG_MAYOR_16_D);
-		MessagePop();
 		Message2(DLG_MAYOR_17);
-		MessagePop();
 		Message1(DLG_MAYOR_18_D);
-		MessagePop();
 		Message2(DLG_MAYOR_19);
-		MessagePop();
 		Message1(DLG_MAYOR_20_D);
-		MessagePop();
 		ObjSet(mayorIdx, O_STATUS, 2);
 	}
 	else if (mayorStatus==2)
 	{
 		Message1(DLG_MAYOR_21_D);
-		MessagePop();
 		Message2(DLG_MAYOR_22);
-		MessagePop();
 		Message1(DLG_MAYOR_23_D);
-		MessagePop();
 		Message2(DLG_MAYOR_24);
-		MessagePop();
 		Message1(DLG_MAYOR_25_D);
-		MessagePop();
 		Message2(DLG_MAYOR_26);
-		MessagePop();
 		Message1(DLG_MAYOR_27_D);
-		MessagePop();
 		ObjSet(mayorIdx, O_DISABLE, 1);
 		keyIdx = ObjFind(101);
 		ObjSet(keyIdx, O_DISABLE, 0);
@@ -495,14 +453,12 @@ func ActionObject_204()
 func ActionObject_216()
 {
 	Message2(DLG_VILLAGER);
-	MessagePop();
 }
 
 // Inside Munchkin hut - villager 2
 func ActionObject_217()
 {
 	Message2(DLG_VILLAGER);
-	MessagePop();
 }
 
 // Closed hut
@@ -574,7 +530,6 @@ func ActionObject_262()
 	if (TryUseItem(107, 1) == 1)
 	{
 		Message0(TXT_SIGNPOST);
-		MessagePop();
 		signTopIdx = BrushFind(263);
 		bridgeIdx = BrushFind(264);
 		BrushSet(signTopIdx, B_DRAW, 0);
@@ -591,21 +546,13 @@ func CollideObject_235_1()
 	if (dozyTriggerStatus==0)
 	{
 		Message2(DLG_DOZY_1);
-		MessagePop();
 		Message1(DLG_DOZY_2_D);
-		MessagePop();
 		Message2(DLG_DOZY_3);
-		MessagePop();
 		Message1(DLG_DOZY_4_D);
-		MessagePop();
 		Message2(DLG_DOZY_5);
-		MessagePop();
 		Message1(DLG_DOZY_6_D);
-		MessagePop();
 		Message2(DLG_DOZY_7);
-		MessagePop();
 		Message1(DLG_DOZY_8_D);
-		MessagePop();
 		ObjSet(dozyTriggerIdx,O_STATUS,1);
 		UpdateDozyTile();
 	}
@@ -644,27 +591,16 @@ func ActionObject_236()
 	if (useItemResult == 1)
 	{
 		Message1(DLG_DOZY_13_D);
-		MessagePop();
 		Message2(DLG_DOZY_14);
-		MessagePop();
 		Message1(DLG_DOZY_15_D);
-		MessagePop();
 		Message2(DLG_DOZY_16);
-		MessagePop();
 		Message1(DLG_DOZY_17_D);
-		MessagePop();
 		Message2(DLG_DOZY_18);
-		MessagePop();
 		Message1(DLG_DOZY_19_D);
-		MessagePop();
 		Message2(DLG_DOZY_20);
-		MessagePop();
 		Message1(DLG_DOZY_21_D);
-		MessagePop();
 		Message2(DLG_DOZY_22);
-		MessagePop();
 		Message1(DLG_DOZY_23_D);
-		MessagePop();
 		ObjSet(dozyTriggerIdx,O_STATUS,2);
 		dozyHangIdx = BrushFind(234);
 		BrushSet(dozyHangIdx,B_DRAW,0);
@@ -674,13 +610,9 @@ func ActionObject_236()
 	else if (useItemResult == -1)
 	{
 		Message1(DLG_DOZY_9_D);
-		MessagePop();
 		Message2(DLG_DOZY_10);
-		MessagePop();
 		Message1(DLG_DOZY_11_D);
-		MessagePop();
 		Message2(DLG_DOZY_12);
-		MessagePop();
 	}
 }
 
@@ -688,15 +620,10 @@ func ActionObject_236()
 func ActionObject_237()
 {
 	Message1(DLG_DOZY_24_D);
-	MessagePop();
 	Message2(DLG_DOZY_25);
-	MessagePop();
 	Message1(DLG_DOZY_26_D);
-	MessagePop();
 	Message2(DLG_DOZY_27);
-	MessagePop();
 	Message1(DLG_DOZY_28_D);
-	MessagePop();
 }
 
 func UpdateRoom_6_4()
@@ -731,21 +658,13 @@ func ActionObject_253()
 	if (denzilStatus==0)
 	{
 		Message2(DLG_DENZIL_1);
-		MessagePop();
 		Message1(DLG_DENZIL_2_D);
-		MessagePop();
 		Message2(DLG_DENZIL_3);
-		MessagePop();
 		Message1(DLG_DENZIL_4_D);
-		MessagePop();
 		Message2(DLG_DENZIL_5);
-		MessagePop();
 		Message1(DLG_DENZIL_6_D);
-		MessagePop();
 		Message2(DLG_DENZIL_7);
-		MessagePop();
 		Message1(DLG_DENZIL_8_D);
-		MessagePop();
 		ObjSet(denzilIdx, O_STATUS, 1);
 	}
 	else if (denzilStatus==1)
@@ -754,35 +673,20 @@ func ActionObject_253()
 		if (useItemResult == 1)
 		{
 			Message1(DLG_DENZIL_11_D);
-			MessagePop();
 			Message2(DLG_DENZIL_12);
-			MessagePop();
 			Message1(DLG_DENZIL_13_D);
-			MessagePop();
 			Message2(DLG_DENZIL_14);
-			MessagePop();
 			Message2(DLG_DENZIL_15);
-			MessagePop();
 			Message1(DLG_DENZIL_16_D);
-			MessagePop();
 			Message2(DLG_DENZIL_17);
-			MessagePop();
 			Message1(DLG_DENZIL_18_D);
-			MessagePop();
 			Message2(DLG_DENZIL_19);
-			MessagePop();
 			Message1(DLG_DENZIL_20_D);
-			MessagePop();
 			Message2(DLG_DENZIL_21);
-			MessagePop();
 			Message1(DLG_DENZIL_22_D);
-			MessagePop();
 			Message2(DLG_DENZIL_23);
-			MessagePop();
 			Message1(DLG_DENZIL_24_D);
-			MessagePop();
 			Message2(DLG_DENZIL_25);
-			MessagePop();
 			axeIdx = ObjFind(108);
 			ObjSet(axeIdx, O_DISABLE, 0);
 			ObjSet(denzilIdx, O_STATUS, 2);
@@ -790,21 +694,15 @@ func ActionObject_253()
 		else if (useItemResult == -1)
 		{
 			Message1(DLG_DENZIL_9_D);
-			MessagePop();
 			Message2(DLG_DENZIL_10);
-			MessagePop();
 		}
 	}
 	else if (denzilStatus==2)
 	{
 		Message2(DLG_DENZIL_26);
-		MessagePop();
 		Message2(DLG_DENZIL_27);
-		MessagePop();
 		Message1(DLG_DENZIL_28_D);
-		MessagePop();
 		Message2(DLG_DENZIL_29);
-		MessagePop();
 	}
 }
 
@@ -864,11 +762,8 @@ func CollideObject_266_2()
 		if (roomStatus == 0 || InventoryFind(bandIdx)!=-1)
 		{
 			Message2(DLG_TINKER_1);
-			MessagePop();
 			Message2(DLG_TINKER_2);
-			MessagePop();
 			Message1(DLG_TINKER_3_D);
-			MessagePop();
 			RoomSet(18,4,R_STATUS,1);
 			WaitFrames(8);
 
@@ -876,9 +771,7 @@ func CollideObject_266_2()
 			{
 				InventorySub(bandIdx);
 				Message1(DLG_TINKER_4_D);
-				MessagePop();
 				Message2(DLG_TINKER_5);
-				MessagePop();
 				BrushSet(tinkerWallIdx, B_DRAW, 0);
 				ObjSet(tinkerIdx, O_STATUS, 1);
 				GameCommand(CMD_REFRESH);
@@ -895,11 +788,8 @@ func CollideObject_266_2()
 		if (roomStatus == 0 || InventoryFind(bellIdx)!=-1)
 		{
 			Message2(DLG_TINKER_1);
-			MessagePop();
 			Message2(DLG_TINKER_6);
-			MessagePop();
 			Message1(DLG_TINKER_7_D);
-			MessagePop();
 			RoomSet(18,4,R_STATUS,1);
 			WaitFrames(8);
 
@@ -907,9 +797,7 @@ func CollideObject_266_2()
 			{
 				InventorySub(bellIdx);
 				Message1(DLG_TINKER_8_D);
-				MessagePop();
 				Message2(DLG_TINKER_5);
-				MessagePop();
 				BrushSet(tinkerWallIdx, B_DRAW, 0);
 				ObjSet(tinkerIdx, O_STATUS, 3);
 				GameCommand(CMD_REFRESH);
@@ -938,11 +826,8 @@ func CollideObject_266_2()
 		if (roomStatus == 0 || InventoryFind(maskIdx)!=-1)
 		{
 			Message2(DLG_TINKER_1);
-			MessagePop();
 			Message2(DLG_TINKER_9);
-			MessagePop();
 			Message1(DLG_TINKER_10_D);
-			MessagePop();
 			RoomSet(18,4,R_STATUS,1);
 			WaitFrames(8);
 
@@ -950,9 +835,7 @@ func CollideObject_266_2()
 			{
 				InventorySub(maskIdx);
 				Message1(DLG_TINKER_11_D);
-				MessagePop();
 				Message2(DLG_TINKER_5);
-				MessagePop();
 				BrushSet(tinkerWallIdx, B_DRAW, 0);
 				ObjSet(tinkerIdx, O_STATUS, 5);
 				GameCommand(CMD_REFRESH);
@@ -1009,17 +892,11 @@ func ActionObject_301()
 	if (donkeyStatus==0)
 	{
 		Message1(DLG_DONKEY_1_D);
-		MessagePop();
 		Message2(DLG_DONKEY_2);
-		MessagePop();
 		Message1(DLG_DONKEY_3_D);
-		MessagePop();
 		Message2(DLG_DONKEY_4);
-		MessagePop();
 		Message1(DLG_DONKEY_5_D);
-		MessagePop();
 		Message2(DLG_DONKEY_6);
-		MessagePop();
 		bandIdx = ObjFind(106);
 		ObjSet(bandIdx, O_DISABLE, 0);
 		ObjSet(donkeyIdx, O_STATUS, 1);
@@ -1027,21 +904,13 @@ func ActionObject_301()
 	else if (donkeyStatus==1)
 	{
 		Message1(DLG_DONKEY_7_D);
-		MessagePop();
 		Message2(DLG_DONKEY_8);
-		MessagePop();
 		Message2(DLG_DONKEY_9);
-		MessagePop();
 		Message1(DLG_DONKEY_10_D);
-		MessagePop();
 		Message2(DLG_DONKEY_11);
-		MessagePop();
 		Message1(DLG_DONKEY_12_D);
-		MessagePop();
 		Message2(DLG_DONKEY_13);
-		MessagePop();
 		Message1(DLG_DONKEY_14_D);
-		MessagePop();
 		ObjSet(donkeyIdx, O_STATUS, 2);
 	}
 	else if (donkeyStatus==2)
@@ -1121,15 +990,10 @@ func ActionObject_304()
 	if (jesterStatus==0)
 	{
 		Message1(DLG_JESTER_1_D);
-		MessagePop();
 		Message2(DLG_JESTER_2);
-		MessagePop();
 		Message1(DLG_JESTER_3_D);
-		MessagePop();
 		Message2(DLG_JESTER_4);
-		MessagePop();
 		Message1(DLG_JESTER_5_D);
-		MessagePop();
 		ObjSet(jesterIdx, O_STATUS, 1);
 	}
 	else if (jesterStatus==1)
@@ -1137,9 +1001,7 @@ func ActionObject_304()
 		// todo: check inventory for x box
 
 		Message2(DLG_JESTER_6);
-		MessagePop();
 		Message1(DLG_JESTER_7_D);
-		MessagePop();
 	}
 }
 
@@ -1151,23 +1013,14 @@ func ActionObject_305()
 	if (doraStatus==0)
 	{
 		Message1(DLG_DORA_1_D);
-		MessagePop();
 		Message2(DLG_DORA_2);
-		MessagePop();
 		Message1(DLG_DORA_3_D);
-		MessagePop();
 		Message2(DLG_DORA_4);
-		MessagePop();
 		Message1(DLG_DORA_5_D);
-		MessagePop();
 		Message2(DLG_DORA_6);
-		MessagePop();
 		Message1(DLG_DORA_7_D);
-		MessagePop();
 		Message2(DLG_DORA_8);
-		MessagePop();
 		Message1(DLG_DORA_9_D);
-		MessagePop();
 		ObjSet(doraIdx, O_STATUS, 1);
 	}
 	else if (doraStatus==1)
@@ -1175,11 +1028,8 @@ func ActionObject_305()
 		// todo: check inventory for magic staff
 
 		Message1(DLG_DORA_10_D);
-		MessagePop();
 		Message2(DLG_DORA_11);
-		MessagePop();
 		Message1(DLG_DORA_12_D);
-		MessagePop();
 	}
 }
 
@@ -1198,7 +1048,6 @@ func ActionWaterfall()
 	if (TryUseItem(108, 1) == 1)
 	{
 		Message0(TXT_WATERFALL);
-		MessagePop();
 		fullBucketIdx = ObjFind(114);
 		InventoryAdd(fullBucketIdx);
 	}
@@ -1232,35 +1081,20 @@ func ActionObject_313()
 	if (dylanStatus==0)
 	{
 		Message2(DLG_DYLAN_1);
-		MessagePop();
 		Message1(DLG_DYLAN_2_D);
-		MessagePop();
 		Message2(DLG_DYLAN_3);
-		MessagePop();
 		Message1(DLG_DYLAN_4_D);
-		MessagePop();
 		Message2(DLG_DYLAN_5);
-		MessagePop();
 		Message1(DLG_DYLAN_6_D);
-		MessagePop();
 		Message2(DLG_DYLAN_7);
-		MessagePop();
 		Message1(DLG_DYLAN_8_D);
-		MessagePop();
 		Message2(DLG_DYLAN_9);
-		MessagePop();
 		Message1(DLG_DYLAN_10_D);
-		MessagePop();
 		Message2(DLG_DYLAN_11);
-		MessagePop();
 		Message1(DLG_DYLAN_12_D);
-		MessagePop();
 		Message2(DLG_DYLAN_13);
-		MessagePop();
 		Message1(DLG_DYLAN_14_D);
-		MessagePop();
 		Message2(DLG_DYLAN_15);
-		MessagePop();
 		tiaraIdx = ObjFind(117);
 		ObjSet(tiaraIdx, O_DISABLE, 0);
 		ObjSet(dylanIdx, O_STATUS, 1);
@@ -1268,16 +1102,75 @@ func ActionObject_313()
 	else if (dylanStatus==1)
 	{
 		Message2(DLG_DYLAN_16);
-		MessagePop();
 		Message1(DLG_DYLAN_17_D);
-		MessagePop();
 		Message2(DLG_DYLAN_18);
-		MessagePop();
 		Message1(DLG_DYLAN_19_D);
-		MessagePop();
 		Message2(DLG_DYLAN_20);
-		MessagePop();
 	}
 }
 
+// Daisy dialogs
+func ActionObject_320()
+{
+	daisyIdx = ObjFind(320);
+	daisyStatus = ObjGet(daisyIdx,O_STATUS);
+	if (daisyStatus==0)
+	{
+		Message1(DLG_DAISY_2_D);
+		Message2(DLG_DAISY_3);
+		Message1(DLG_DAISY_4_D);
+		Message2(DLG_DAISY_5);
+		Message1(DLG_DAISY_6_D);
+		Message2(DLG_DAISY_7);
+		Message1(DLG_DAISY_8_D);
+		Message2(DLG_DAISY_9);
+		Message1(DLG_DAISY_10_D);
+		ObjSet(daisyIdx, O_STATUS, 1);
+	}
+	else if (daisyStatus==1)
+	{
+		tiaraIdx = ObjFind(117);
+		if (InventoryFind(tiaraIdx)!=-1)
+		{
+			useItemResult = TryUseItem2(117, 1);
+			if (useItemResult == 1)
+			{
+				Message1(DLG_DAISY_16_D);
+				Message2(DLG_DAISY_17);
+				Message1(DLG_DAISY_18_D);
+				Message2(DLG_DAISY_19);
+				Message1(DLG_DAISY_20_D);
+				Message2(DLG_DAISY_21);
+				ObjSet(daisyIdx, O_STATUS, 2);
+			}
+		}
+		else
+		{
+			Message2(DLG_DAISY_11);
+			Message1(DLG_DAISY_12_D);
+			Message2(DLG_DAISY_13);
+			Message1(DLG_DAISY_14_D);
+			Message2(DLG_DAISY_15);
+		}
+	}
+	else if (daisyStatus==2)
+	{
+	    // if no wand in inventory
+		Message1(DLG_DAISY_22_D);
+		Message2(DLG_DAISY_23);
+		Message1(DLG_DAISY_24_D);
+		// else
+	}
+}
+
+// Crystal palace door
+func ActionObject_321()
+{
+	doorIdx = ObjFind(321);
+	doorStatus = ObjGet(doorIdx,O_STATUS);
+	if (doorStatus==0)
+	{
+		Message1(TXT_CRYSTAL_DOOR);
+	}
+}
 /////////////////////////////////////////////////////////////////////////////////

@@ -23,6 +23,7 @@
 #def	OBJ_115			"Zzap!64 magazine"
 #def	OBJ_116			"A loud fog horn"
 #def	OBJ_117			"A crystal tiara"
+#def	OBJ_118			"A door knocker"
 
 // Dialogs
 
@@ -36,10 +37,11 @@
 #def	TXT_COIN_1		"Well done!"
 #def	TXT_COIN_2		"You found\na coinstar!"
 
-#def	TXT_DOOR		"Um... The door\nhandle is missing?"
+#def	TXT_DIZZY_DOOR	"Um... The door\nhandle is missing?"
 #def	TXT_SIGNPOST	"Using the woodman's\naxe you are able to\nchop the post down\nand make a bridge."
 #def	TXT_LEVER		"The lever\nappears broken"
 #def	TXT_WATERFALL	"You hold the empty\nbucket under the\nfalling water to\nfill it up."
+#def	TXT_CRYSTAL_DOOR	"Um... The door seems\nlocked tight. I wonder\nwhere it leads?"
 
 #def	TXT_DEATH_BAT		"You were killed\nby a bat"
 #def	TXT_DEATH_SPIDER	"You're bitten by\na spider!"
@@ -89,6 +91,33 @@
 #def	DLG_MAYOR_27_D	"Thanks!"
 
 #def	DLG_DAISY_1		"Quickly, take her boots.\nThey'll protect you."
+
+#def	DLG_DAISY_2_D	"Hello again. Thank you so\nmuch for telling me about\nthe boots, they really\nare very special."
+#def	DLG_DAISY_3		"Have you found\nyour pet yet?"
+#def	DLG_DAISY_4_D	"I'm afraid not, but I have\nmet some characters who\nseem strangely familiar."
+#def	DLG_DAISY_5		"Well have you visited\nthe land of Oz before?"
+#def	DLG_DAISY_6_D	"Oh no. Never. I would\nhave remembered that."
+#def	DLG_DAISY_7		"Maybe you bumped your head\nand forgot or maybe you\nvisited here in a dream?"
+#def	DLG_DAISY_8_D	"I dont't tend to visit\nplaces in my dreams.\nNow I must get back\nto looking for Pogie."
+#def	DLG_DAISY_9		"Well if you say so.\nOh if you find my tiara,\nbe a love and fetch it."
+#def	DLG_DAISY_10_D	"Ok. I'll keep\na look out for it."
+
+#def	DLG_DAISY_11	"It's that funny little\negg shaped fellow again?"
+#def	DLG_DAISY_12_D	"I'm not an egg, I just\nhave a big face!"
+#def	DLG_DAISY_13	"And a big heart!"
+#def	DLG_DAISY_14_D	"Thank you. Sadly I've\nstill not found Pogie\nor your tiara."
+#def	DLG_DAISY_15	"Never give up Dorothy,\noops, I mean Dizzy.\nYou'll be amazed what\nyou can achieve."
+
+#def	DLG_DAISY_16_D	"I have your tiara. You must\nhave dropped it when you\nhelped the cowardly lion."
+#def	DLG_DAISY_17	"Thank you Dizzy. Is there\nanything I can do for you?"
+#def	DLG_DAISY_18_D	"Would it be possible to\nborrow your magic wand?\nI promise I'll return it."
+#def	DLG_DAISY_19	"Very well, but it is quite\nuseless without a spell."
+#def	DLG_DAISY_20_D	"Oh don't worry,\nI have a plan."
+#def	DLG_DAISY_21	"Good luck and when you\nreturn my wand I'll give\nyou a small gift."
+
+#def	DLG_DAISY_22_D	"Me again!"
+#def	DLG_DAISY_23	"Don't forget to return my\nwand after you've used it."
+#def	DLG_DAISY_24_D	"I won't. Bye."
 
 #def	DLG_WITCH_1		"Arh!!! Who did this?"
 #def	DLG_WITCH_2_M	"I think it was\na freak accident!"

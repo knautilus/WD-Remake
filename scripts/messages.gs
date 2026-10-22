@@ -59,6 +59,7 @@ func MessagePop()
 func Message0( text )
 {
 	Message( text, COLOR_WHITE, COLOR_MAGENTA, "" );
+	MessagePop();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -68,6 +69,7 @@ func Message0( text )
 func Message1( text )
 {
 	Message( text, COLOR_WHITE, COLOR_GREEN, "Dizzy" );
+	MessagePop();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -79,6 +81,7 @@ func Message2( text, bordercolor )
 {
 	if(!?bordercolor) bordercolor = COLOR_CYAN;
 	Message( text, COLOR_WHITE, bordercolor, "" );
+	MessagePop();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
