@@ -1141,6 +1141,8 @@ func ActionObject_320()
 				Message2(DLG_DAISY_19);
 				Message1(DLG_DAISY_20_D);
 				Message2(DLG_DAISY_21);
+				wandIdx = ObjFind(119);
+				ObjSet(wandIdx, O_DISABLE, 0);
 				ObjSet(daisyIdx, O_STATUS, 2);
 			}
 		}
@@ -1155,7 +1157,7 @@ func ActionObject_320()
 	}
 	else if (daisyStatus==2)
 	{
-	    // if no wand in inventory
+		// if no wand in inventory
 		Message1(DLG_DAISY_22_D);
 		Message2(DLG_DAISY_23);
 		Message1(DLG_DAISY_24_D);
@@ -1171,6 +1173,191 @@ func ActionObject_321()
 	if (doorStatus==0)
 	{
 		Message1(TXT_CRYSTAL_DOOR);
+	}
+}
+
+// Spec dialogs
+func ActionObject_323()
+{
+	specIdx = ObjFind(323);
+	specStatus = ObjGet(specIdx,O_STATUS);
+
+	if (specStatus == 0)
+	{
+		ActionSpecComm();
+	}
+	else if (specStatus == 1)
+	{
+		crashIdx = ObjFind(112);
+		zzapIdx = ObjFind(115);
+		if (InventoryFind(crashIdx)!=-1 || InventoryFind(zzapIdx)!=-1)
+		{
+			idxobj = OpenDialogInventory();
+			if (idxobj==crashIdx)
+			{
+				InventorySub(idxobj);
+				Message1(DLG_SPEC_9_D);
+				Message2(DLG_SPEC_10, COLOR_YELLOW);
+				ObjSet(specIdx, O_STATUS, 2);
+			}
+			else if (idxobj==zzapIdx)
+			{
+				Message1(DLG_SPEC_7_D);
+				Message2(DLG_SPEC_8, COLOR_YELLOW);
+			}
+			else
+			{
+				WrongItemDialog();
+			}
+		}
+		else
+		{
+			Message2(DLG_SPEC_4, COLOR_YELLOW);
+			Message1(DLG_SPEC_5_D);
+			Message2(DLG_SPEC_6, COLOR_YELLOW);
+		}
+	}
+	else if (specStatus == 2)
+	{
+		Message2(DLG_SPEC_11, COLOR_YELLOW);
+	}
+}
+
+// Comm dialogs
+func ActionObject_324()
+{
+	commIdx = ObjFind(324);
+	commStatus = ObjGet(commIdx,O_STATUS);
+
+	if (commStatus == 0)
+	{
+		ActionSpecComm();
+	}
+	else if (commStatus == 1)
+	{
+		crashIdx = ObjFind(112);
+		zzapIdx = ObjFind(115);
+		if (InventoryFind(crashIdx)!=-1 || InventoryFind(zzapIdx)!=-1)
+		{
+			idxobj = OpenDialogInventory();
+			if (idxobj==zzapIdx)
+			{
+				InventorySub(idxobj);
+				Message1(DLG_COMM_11_D);
+				Message2(DLG_COMM_12);
+				ObjSet(commIdx, O_STATUS, 2);
+			}
+			else if (idxobj==crashIdx)
+			{
+				Message1(DLG_COMM_9_D);
+				Message2(DLG_COMM_10);
+			}
+			else
+			{
+				WrongItemDialog();
+			}
+		}
+		else
+		{
+			Message1(DLG_COMM_7_D);
+			Message2(DLG_COMM_8);
+		}
+	}
+	else if (commStatus == 2)
+	{
+		Message2(DLG_COMM_13);
+	}
+}
+
+func ActionSpecComm()
+{
+	Message2(DLG_SPECCOMM_1_S, COLOR_YELLOW);
+	Message1(DLG_SPECCOMM_2_D);
+	Message2(DLG_SPECCOMM_3_S, COLOR_YELLOW);
+	Message2(DLG_SPECCOMM_4_C);
+	Message2(DLG_SPECCOMM_5_S, COLOR_YELLOW);
+	Message2(DLG_SPECCOMM_6_C);
+	Message2(DLG_SPECCOMM_7_S, COLOR_YELLOW);
+	Message1(DLG_SPECCOMM_8_D);
+	Message1(DLG_SPECCOMM_9_D);
+	Message2(DLG_SPECCOMM_10_C);
+	Message2(DLG_SPECCOMM_11_S, COLOR_YELLOW);
+	Message1(DLG_SPECCOMM_12_D);
+	Message2(DLG_SPECCOMM_13_S, COLOR_YELLOW);
+	Message2(DLG_SPECCOMM_14_C);
+	Message1(DLG_SPECCOMM_15_D);
+	Message2(DLG_SPECCOMM_16_S, COLOR_YELLOW);
+
+	specIdx = ObjFind(323);
+	commIdx = ObjFind(324);
+	ObjSet(specIdx, O_STATUS, 1);
+	ObjSet(commIdx, O_STATUS, 1);
+}
+
+// Emerald city door
+func ActionObject_325()
+{
+	doorIdx = ObjFind(325);
+	doorStatus = ObjGet(doorIdx,O_STATUS);
+	specIdx = ObjFind(323);
+	specStatus = ObjGet(specIdx,O_STATUS);
+	commIdx = ObjFind(324);
+	commStatus = ObjGet(commIdx,O_STATUS);
+
+	if (doorStatus<2 && specStatus==2 && commStatus==2)
+	{
+		ObjSet(doorIdx, O_STATUS, 2);
+	}
+	else if (commStatus==2 && doorStatus==1)
+	{
+		ObjSet(doorIdx, O_STATUS, 0);
+	}
+	else if (specStatus==2 && doorStatus==0)
+	{
+		ObjSet(doorIdx, O_STATUS, 1);
+	}
+
+	if (specStatus<2 && doorStatus==0)
+	{
+		Message2(DLG_SPEC_1, COLOR_YELLOW);
+		Message1(DLG_SPEC_2_D);
+		Message2(DLG_SPEC_3, COLOR_YELLOW);
+
+		if (commStatus<2)
+		{
+			ObjSet(doorIdx, O_STATUS, 1);
+		}
+	}
+	else if (commStatus<2 && doorStatus==1)
+	{
+		Message2(DLG_COMM_1);
+		Message1(DLG_COMM_2_D);
+		Message2(DLG_COMM_3);
+		Message1(DLG_COMM_4_D);
+		Message2(DLG_COMM_5);
+		Message1(DLG_COMM_6_D);
+
+		if (specStatus<2)
+		{
+			ObjSet(doorIdx, O_STATUS, 0);
+		}
+	}
+	else if (doorStatus == 2)
+	{
+		cnockerIdx = ObjFind(118);
+		if (InventoryFind(cnockerIdx)!=-1)
+		{
+			useItemResult = TryUseItem2(118, 1);
+			if (useItemResult == 1)
+			{
+				Message0(TXT_EMERALD_DOOR_2);
+				ObjSet(doorIdx, O_STATUS, 3);
+			}
+		}
+		else
+		{
+			Message0(TXT_EMERALD_DOOR);
+		}
 	}
 }
 /////////////////////////////////////////////////////////////////////////////////

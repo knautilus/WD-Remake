@@ -24,6 +24,7 @@
 #def	OBJ_116			"A loud fog horn"
 #def	OBJ_117			"A crystal tiara"
 #def	OBJ_118			"A door knocker"
+#def	OBJ_119			"A magic wand"
 
 // Dialogs
 
@@ -42,6 +43,8 @@
 #def	TXT_LEVER		"The lever\nappears broken"
 #def	TXT_WATERFALL	"You hold the empty\nbucket under the\nfalling water to\nfill it up."
 #def	TXT_CRYSTAL_DOOR	"Um... The door seems\nlocked tight. I wonder\nwhere it leads?"
+#def	TXT_EMERALD_DOOR	"The door is locked,\nthe bell is broken and\nknocking with boxing\ngloves on proves futile."
+#def	TXT_EMERALD_DOOR_2	"Your knocking echos\ninside the city and\nmysteriously the\ndoor opens."
 
 #def	TXT_DEATH_BAT		"You were killed\nby a bat"
 #def	TXT_DEATH_SPIDER	"You're bitten by\na spider!"
@@ -275,3 +278,54 @@
 #def	DLG_DYLAN_18	"That's easy for you to say,\nyou're a great boxer."
 #def	DLG_DYLAN_19_D	"And you're a lion!\nDon't worry I'll try help."
 #def	DLG_DYLAN_20	"Oh, thank you."
+
+#def	DLG_SPECCOMM_1_S	"You look clover.\nYou tell him..."
+#def	DLG_SPECCOMM_2_D	"Tell him what?"
+#def	DLG_SPECCOMM_3_S	"Tell him the Spectrum\nis better than the\nCommodore 64."
+#def	DLG_SPECCOMM_4_C	"Rubbish. The C64 has\nhardware sprites\nand scrolling."
+#def	DLG_SPECCOMM_5_S	"It's bulky and loud,\nlike the americans\nthat made it."
+#def	DLG_SPECCOMM_6_C	"The Spectrum has those\nrubber keys with tiny\nwords all over them.\nAnd let's not forget\nthe C64's sid chip."
+#def	DLG_SPECCOMM_7_S	"It's a design icon of the\n80's. A sleak and powerful\ntoy. You don't get the\nOliver twins writing\ngames on the C64!"
+#def	DLG_SPECCOMM_8_D	"Please, guys.\nLet's not fight.\nIt doesn't matter.\nYou both obviously love\nyour 8 bit computers."
+#def	DLG_SPECCOMM_9_D	"Can you let me in?"
+#def	DLG_SPECCOMM_10_C	"No. Not until you agree with\nme that the Commodore 64 is\nfar superior to the Spectrum"
+#def	DLG_SPECCOMM_11_S	"I'm not letting him in\nif he's a Commodore fan boy."
+#def	DLG_SPECCOMM_12_D	"Let it go. It's been over\n35 years! Please let me in."
+#def	DLG_SPECCOMM_13_S	"You'll have to ring."
+#def	DLG_SPECCOMM_14_C	"No, that's broken.\nHe'll need to knock."
+#def	DLG_SPECCOMM_15_D	"I'm wearing boxing\ngloves, I can't knock!"
+#def	DLG_SPECCOMM_16_S	"Looks like you won't\nbe gettin' in then!"
+
+#def	DLG_SPEC_1		"Not on my watch."
+#def	DLG_SPEC_2_D	"Sorry. What?"
+#def	DLG_SPEC_3		"I'm not letting you in."
+
+#def	DLG_SPEC_4		"Back again? Do you\nknow anything about\nthis new Spectrum Next?"
+#def	DLG_SPEC_5_D	"Sorry. No. I'm hoping\nyou'll let me enter\nthe city."
+#def	DLG_SPEC_6		"Sorry, no. It's our job\nto stop folk getting in."
+
+#def	DLG_SPEC_7_D	"I wondered of you'd liken\nthis Zzap!64 magazine?"
+#def	DLG_SPEC_8		"I'd rather bog paper."
+
+#def	DLG_SPEC_9_D	"Here's the latest Crash\nmagazine, it has a feature\non the new Spectrum Next."
+#def	DLG_SPEC_10		"Oh, that's fantastic.\nGiv' it here."
+
+#def	DLG_SPEC_11		"Shh... I'm reading."
+
+#def	DLG_COMM_1		"I don't think so. We're\nhere to stop folk like\nyou getting in."
+#def	DLG_COMM_2_D	"You've seen\nothers like me?"
+#def	DLG_COMM_3		"Well now you come to\nmention it, no. You're\nquite an oval oddity,\nbut we just stop everyone."
+#def	DLG_COMM_4_D	"Oh. I'll have to work\nout how to distract you."
+#def	DLG_COMM_5		"You'd have to be pretty\nsmart to get by me."
+#def	DLG_COMM_6_D	"Challenge accepted."
+
+#def	DLG_COMM_7_D	"Any chance you\ncould let me in?"
+#def	DLG_COMM_8		"Not on my watch."
+
+#def	DLG_COMM_9_D	"Can I interest you in\na copy of Crash magazine?"
+#def	DLG_COMM_10		"Only if you want to be run\nthrough with this spear!"
+
+#def	DLG_COMM_11_D	"Fancy a Zzap!64 magazine?\nIt's got some classic games\nreviewed and details of\nthe C64 mini."
+#def	DLG_COMM_12		"I'll be confiscating that.\nWe don't want it getting\nlost do we?"
+
+#def	DLG_COMM_13		"Go away. I'm busy."
