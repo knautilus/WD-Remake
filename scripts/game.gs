@@ -71,6 +71,10 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(118), OBJ_118);
 	ObjSetName(ObjFind(119), OBJ_119);
 	ObjSetName(ObjFind(120), OBJ_120);
+	ObjSetName(ObjFind(121), OBJ_121);
+	ObjSetName(ObjFind(122), OBJ_122);
+	ObjSetName(ObjFind(123), OBJ_123);
+	ObjSetName(ObjFind(124), OBJ_124);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -849,10 +853,77 @@ func CollideObject_266_2()
 // Tinker
 func ActionObject_268()
 {
-	idxobj = OpenDialogInventory();
-	if(idxobj!=-1)
+	tinkerIdx = ObjFind(268);
+	tinkerStatus = ObjGet(tinkerIdx, O_STATUS);
+	if (tinkerStatus < 5)
 	{
-		WrongItemDialog();
+		idxobj = OpenDialogInventory();
+		if(idxobj!=-1)
+		{
+			WrongItemDialog();
+		}
+	}
+	else if (tinkerStatus == 5)
+	{
+		Message2(DLG_TINKER_12);
+		Message2(DLG_TINKER_13);
+		Message1(DLG_TINKER_14_D);
+		ObjSet(tinkerIdx, O_STATUS, 6);
+	}
+	else if (tinkerStatus == 6)
+	{
+		clockIdx = ObjFind(120);
+		if (InventoryFind(clockIdx)!=-1)
+		{
+			useItemResult = TryUseItem2(120, 1);
+			if (useItemResult == 1)
+			{
+				Message1(DLG_TINKER_15_D);
+				Message2(DLG_TINKER_16);
+				ticketIdx = ObjFind(123);
+				ObjSet(ticketIdx, O_DISABLE, 0);
+				coinIdx = ObjFind(330);
+				ObjSet(coinIdx, O_DISABLE, 0);
+				ObjSet(tinkerIdx, O_STATUS, 7);
+			}
+		}
+		else
+		{
+			Message2(DLG_TINKER_12);
+			Message2(DLG_TINKER_13);
+			Message1(DLG_TINKER_14_D);
+		}
+	}
+	else if (tinkerStatus == 7)
+	{
+		Message2(DLG_TINKER_12);
+		Message2(DLG_TINKER_17);
+		Message1(DLG_TINKER_18_D);
+		ObjSet(tinkerIdx, O_STATUS, 8);
+	}
+	else if (tinkerStatus == 8)
+	{
+		diceIdx = ObjFind(122);
+		if (InventoryFind(diceIdx)!=-1)
+		{
+			useItemResult = TryUseItem2(122, 1);
+			if (useItemResult == 1)
+			{
+				Message1(DLG_TINKER_19_D);
+				Message2(DLG_TINKER_20);
+				keyIdx = ObjFind(124);
+				ObjSet(keyIdx, O_DISABLE, 0);
+				coinIdx = ObjFind(331);
+				ObjSet(coinIdx, O_DISABLE, 0);
+				ObjSet(tinkerIdx, O_STATUS, 9);
+			}
+		}
+		else
+		{
+			Message2(DLG_TINKER_12);
+			Message2(DLG_TINKER_17);
+			Message1(DLG_TINKER_18_D);
+		}
 	}
 }
 
@@ -1000,10 +1071,33 @@ func ActionObject_304()
 	}
 	else if (jesterStatus==1)
 	{
-		// todo: check inventory for x box
-
-		Message2(DLG_JESTER_6);
-		Message1(DLG_JESTER_7_D);
+		boxIdx = ObjFind(121);
+		if (InventoryFind(boxIdx)!=-1)
+		{
+			useItemResult = TryUseItem2(121, 1);
+			if (useItemResult == 1)
+			{
+				Message1(DLG_JESTER_8_D);
+				Message2(DLG_JESTER_9);
+				Message1(DLG_JESTER_10_D);
+				Message2(DLG_JESTER_11);
+				Message1(DLG_JESTER_12_D);
+				Message2(DLG_JESTER_13);
+				Message1(DLG_JESTER_14_D);
+				diceIdx = ObjFind(122);
+				ObjSet(diceIdx, O_DISABLE, 0);
+				ObjSet(jesterIdx, O_STATUS, 2);
+			}
+		}
+		else
+		{
+			Message2(DLG_JESTER_6);
+			Message1(DLG_JESTER_7_D);
+		}
+	}
+	else if (jesterStatus==2)
+	{
+		Message2(DLG_JESTER_15);
 	}
 }
 

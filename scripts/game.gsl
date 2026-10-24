@@ -26,6 +26,10 @@
 #def	OBJ_118			"A door knocker"
 #def	OBJ_119			"A magic wand"
 #def	OBJ_120			"A clock"
+#def	OBJ_121			"A box marked X"
+#def	OBJ_122			"A dice"
+#def	OBJ_123			"Raffle ticket"
+#def	OBJ_124			"Rusty old key"
 
 // Dialogs
 
@@ -186,6 +190,23 @@
 
 #def	DLG_TINKER_11_D	"I have a mask, the tool\nof a thief and a toy\nfor a queen."
 
+#def	DLG_TINKER_12	"I'll give you a gift\nif you give me..."
+
+#def	DLG_TINKER_13	"A face with no eyes,\nwith hands, but no arms."
+#def	DLG_TINKER_14_D	"I think I know that\none... I wonder what\nthe gift will be?"
+
+#def	DLG_TINKER_15_D	"That was a easy one.\nI just had to find a clock."
+#def	DLG_TINKER_16	"Here is a winning raffle\nticket. I suggest you take\nit to the toy shop for\nyour prize."
+
+#def	DLG_TINKER_17	"That which has six faces\nand twenty one eyes."
+#def	DLG_TINKER_18_D	"I seriously hope it's not\na hydra you want. I guess\nI might get a nice golden\nfleece for my troubles."
+
+#def	DLG_TINKER_19_D	"It's a dice of course.\nHere you are."
+#def	DLG_TINKER_20	"Well done, here's\na rusty old key."
+
+#def	DLG_TINKER_21	"Something tall when\nit's young and short\nwhen it's old."
+#def	DLG_TINKER_22_D	"Um... I think I'm getting\nshorter with all this\nrunning around."
+
 #def	DLG_DENZIL_1	"Help! Won't you\nplease, please\nhelp me now?"
 #def	DLG_DENZIL_2_D	"I'm sorry? Are you\ntalking to me?"
 #def	DLG_DENZIL_3	"I'm rusted,\ncold and hard,\nwithout a heart."
@@ -243,6 +264,16 @@
 
 #def	DLG_JESTER_6	"Did you find,\ndid you see?\nDid you take,\nto give me?"
 #def	DLG_JESTER_7_D	"Sorry no.\nGot to go.\nNow look what you've\nmade me do!"
+
+#def	DLG_JESTER_8_D	"I believe I have it,\nin this box marked X."
+#def	DLG_JESTER_9	"You took your time,\nI hope you're right.\nI hope this reveals\nthe hidden light."
+#def	DLG_JESTER_10_D	"So go ahead and open it..."
+#def	DLG_JESTER_11	"What is in the box\nmarked X?\nWhy it's a fantastic\nSpectrum Next!"
+#def	DLG_JESTER_12_D	"So I'll just leave you\nto play with that."
+#def	DLG_JESTER_13	"No wait! I'll have\nno need for this,\ntake my dice\nthat it may please."
+#def	DLG_JESTER_14_D	"Thanks."
+
+#def	DLG_JESTER_15	"I'm busy."
 
 #def	DLG_DORA_1_D	"You look familiar.\nDo I know you?"
 #def	DLG_DORA_2		"I am the good witch of\nthe south. I hear you\nare the brave hero that\nkilled the wicked witch\nof the east."
@@ -330,3 +361,21 @@
 #def	DLG_COMM_12		"I'll be confiscating that.\nWe don't want it getting\nlost do we?"
 
 #def	DLG_COMM_13		"Go away. I'm busy."
+
+#def	DLG_THEO_1		"I am the great wizard of Oz.\nWho are you, and why do\nyou seek me?"
+#def	DLG_THEO_2_D	"I am Dizzy, and I want to\nfind my pet and return home.\nI have come to you for help."
+#def	DLG_THEO_3		"Where did you get\nthose red boots?"
+#def	DLG_THEO_4_D	"I got them from the wicked\nwitch of the east, when\nmy hut fell on her\nand killed her."
+#def	DLG_THEO_5		"Um... I will help you,\nif you help me."
+#def	DLG_THEO_6_D	"It would appear that is my\ncalling in life. What can\nI do for you?"
+#def	DLG_THEO_7		"Kill the wicked witch\nof west, then you can\nrescue Pogie yourself\nand I will return\nyou home."
+#def	DLG_THEO_8_D	"I can't do that!"
+#def	DLG_THEO_9		"You killed the wicked\nwitch of the east, you\ncan kill wicked witch\nof the west."
+#def	DLG_THEO_10_D	"But that was an accident."
+#def	DLG_THEO_11		"Until the witch is dead,\nI shall not help you.\nBring me her broomstick\nas proof you've killed her."
+#def	DLG_THEO_12_D	"I'll try, but it's not\ngoing to be easy."
+#def	DLG_THEO_13		"Nothing in life worth\nachieving is easy. Now go.\nBother me no more."
+
+#def	DLG_THEO_14		"You have returned, but\nwithout the witches\nbroomstick?"
+#def	DLG_THEO_15_D	"It's not easy\nkilling a witch."
+#def	DLG_THEO_16		"You found it easy enough\nthe first time. Now go."
