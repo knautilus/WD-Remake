@@ -1317,6 +1317,8 @@ func ActionObject_325()
 		ObjSet(doorIdx, O_STATUS, 1);
 	}
 
+	doorStatus = ObjGet(doorIdx,O_STATUS);
+
 	if (specStatus<2 && doorStatus==0)
 	{
 		Message2(DLG_SPEC_1, COLOR_YELLOW);
@@ -1344,14 +1346,24 @@ func ActionObject_325()
 	}
 	else if (doorStatus == 2)
 	{
-		cnockerIdx = ObjFind(118);
-		if (InventoryFind(cnockerIdx)!=-1)
+		knockerIdx = ObjFind(118);
+		if (InventoryFind(knockerIdx) != -1)
 		{
 			useItemResult = TryUseItem2(118, 1);
 			if (useItemResult == 1)
 			{
 				Message0(TXT_EMERALD_DOOR_2);
 				ObjSet(doorIdx, O_STATUS, 3);
+				leftLeafIdx = BrushFind(326);
+				rightLeafIdx = BrushFind(327);
+				BrushSet(leftLeafIdx, O_MAP, BrushGet(leftLeafIdx, O_MAP)-16);
+				BrushSet(leftLeafIdx, O_MAP+2, BrushGet(leftLeafIdx, O_MAP+2)-16);
+				BrushSet(leftLeafIdx, O_X, BrushGet(leftLeafIdx, O_X)-8);
+				BrushSet(rightLeafIdx, O_MAP, BrushGet(rightLeafIdx, O_MAP)+16);
+				BrushSet(rightLeafIdx, O_MAP+2, BrushGet(rightLeafIdx, O_MAP+2)+16);
+				BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
+				ObjSet(doorIdx, O_MATERIAL, MAT_DOOR);
+				GameCommand(CMD_REFRESH);
 			}
 		}
 		else
