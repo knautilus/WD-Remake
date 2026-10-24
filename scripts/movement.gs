@@ -217,6 +217,8 @@ func CM_EnterClimb( dirx, diry )
 	PlayerSet(P_DIR, dirx);
 	PlayerSet(P_DIRY, diry);
 	PlayerSet(P_POW, 0);
+	PlayerSet(P_FPOW, 0);
+	PlayerSet(P_STUNLEVEL,0);
 	PlayerSet(P_TILEWALK, PTILE_CLIMB);
 
 	tile = PlayerGet(P_COSTUME)+PTILE_CLIMB;
@@ -232,6 +234,8 @@ func CM_EnterClimbIdle()
 	PlayerSet(P_STATUS, STATUS_CLIMBIDLE);
 	PlayerSet(P_DIRY, 0);
 	PlayerSet(P_POW, 0);
+	PlayerSet(P_FPOW, 0);
+	PlayerSet(P_STUNLEVEL,0);
 	PlayerSet(P_TILEWALK, PTILE_CLIMB);
 
 	tile = PlayerGet(P_COSTUME)+PTILE_CLIMB;

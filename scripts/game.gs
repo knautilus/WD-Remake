@@ -69,6 +69,8 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(116), OBJ_116);
 	ObjSetName(ObjFind(117), OBJ_117);
 	ObjSetName(ObjFind(118), OBJ_118);
+	ObjSetName(ObjFind(119), OBJ_119);
+	ObjSetName(ObjFind(120), OBJ_120);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
