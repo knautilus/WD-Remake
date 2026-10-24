@@ -1128,6 +1128,8 @@ func ActionObject_320()
 		Message2(DLG_DAISY_9);
 		Message1(DLG_DAISY_10_D);
 		ObjSet(daisyIdx, O_STATUS, 1);
+		ObjSet(daisyIdx, O_TILE, 190);
+		ObjSet(daisyIdx, O_DELAY, 10);
 	}
 	else if (daisyStatus==1)
 	{
