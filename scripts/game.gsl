@@ -30,6 +30,9 @@
 #def	OBJ_122			"A dice"
 #def	OBJ_123			"Raffle ticket"
 #def	OBJ_124			"Rusty old key"
+#def	OBJ_125			"A candle"
+#def	OBJ_126			"Sleeping potion"
+#def	OBJ_127			"The magic staff"
 
 // Dialogs
 
@@ -298,6 +301,32 @@
 #def	DLG_DORA_10_D	"I've no idea where\nyour magic staff is."
 #def	DLG_DORA_11		"I expect it's in the\nhardest, deepest, most\ndangerous place imaginable."
 #def	DLG_DORA_12_D	"Great. Just what\nI wanted to hear!"
+
+#def	DLG_DORA_13_D	"I have good news\nand bad news."
+#def	DLG_DORA_14		"So what's the\ngood news?"
+#def	DLG_DORA_15_D	"I've found where\nyour magic staff is."
+#def	DLG_DORA_16		"And the bad news?"
+#def	DLG_DORA_17_D	"It's guarded by a dragon\nunder castle dread."
+#def	DLG_DORA_18		"I'm guessing he's not\na friendly dragon?"
+#def	DLG_DORA_19_D	"If there are friendly\ndragons, I've not met\nthem. Any ideas?"
+#def	DLG_DORA_20		"I suggest you sneak in\nwhilst he's sleeping."
+#def	DLG_DORA_21_D	"He never appears to\nbe sleeping. Do you know\nwhen he sleeps?"
+#def	DLG_DORA_22		"Oh, you've given me an\nidea. I could make you\na sleeping potion."
+#def	DLG_DORA_23		"Oh, it looks like I'm\nout of poppies. Could\nyou go and fetch me some?"
+#def	DLG_DORA_24_D	"Sure, I know where\nI can get some."
+
+#def	DLG_DORA_25		"Poppies?"
+#def	DLG_DORA_26_D	"Oh, yes.\nSorry, I forgot."
+
+#def	DLG_DORA_27_D	"Here's a bunch of poppies,\nthey made me drowsy just\nholding them."
+#def	DLG_DORA_28		"I'll just crush them,\nmix them, and say\nthe magic words..."
+#def	DLG_DORA_29		"Hocus pocus... Alakazam...\nFrom ancient spells\nand poppies red,\nsmell this scent\nand rest your head."
+#def	DLG_DORA_30_D	"Is that it? It that\nthe whole spell and\nno other ingredients?"
+#def	DLG_DORA_31		"Oh yes, the opium in\nthese should do it."
+#def	DLG_DORA_32		"I'll just pop it in this\nflask and you're good to\ngo. Make sure to smash it\nnear the dragon."
+
+#def	DLG_DORA_33		"That was quick."
+#def	DLG_DORA_34_D	"I've not done it yet...\nBut I have a plan. Smash\nthe magic sleeping potion\nnear the dragon."
 
 #def	DLG_DYLAN_1		"Roar! Come any closer\nand I'll rip you to pieces!\nRoar!!!"
 #def	DLG_DYLAN_2_D	"Whoa... Calm down! I mean\nyou no harm. I'm trying to\nfind my pet fluffle\nand my way home."

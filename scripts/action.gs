@@ -130,7 +130,7 @@ func DoPickupObject(idx)
 	if(class==CLASS_FOOD) // food gives energy
 	{
 		ObjSet(idx, O_DISABLE, 1); // make disabled (picked up)
-		PlayerSet(P_LIFEINC, MAXLIFE/3);
+		PlayerSet(P_LIFEINC, MAXLIFE/2);
 		AddScore(SCORE_FOOD);
 		PlayerPlayAnimFrames(PTILE_EAT, {0,1,2,3,2,3,2,3,2,3});
 		PlayerEnterIdle();
