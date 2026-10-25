@@ -625,11 +625,39 @@ func ActionObject_236()
 // Lying Dozy
 func ActionObject_237()
 {
-	Message1(DLG_DOZY_24_D);
-	Message2(DLG_DOZY_25);
-	Message1(DLG_DOZY_26_D);
-	Message2(DLG_DOZY_27);
-	Message1(DLG_DOZY_28_D);
+	dozyIdx = ObjFind(237);
+	dozyStatus = ObjGet(dozyIdx,O_STATUS);
+	if (dozyStatus == 0)
+	{
+		hornIdx = ObjFind(116);
+		if (InventoryFind(hornIdx)!=-1)
+		{
+			useItemResult = TryUseItem2(116, 1);
+			if (useItemResult == 1)
+			{
+				Message1(DLG_DOZY_29_D);
+				Message1(DLG_DOZY_30_D);
+				Message2(DLG_DOZY_31);
+				Message1(DLG_DOZY_32_D);
+				Message2(DLG_DOZY_33);
+				Message1(DLG_DOZY_34_D);
+				Message2(DLG_DOZY_35);
+				ObjSet(dozyIdx, O_STATUS, 1);
+			}
+		}
+		else
+		{
+			Message1(DLG_DOZY_24_D);
+			Message2(DLG_DOZY_25);
+			Message1(DLG_DOZY_26_D);
+			Message2(DLG_DOZY_27);
+			Message1(DLG_DOZY_28_D);
+		}
+	}
+	else if (dozyStatus == 1)
+	{
+		Message1(DLG_DOZY_36_D);
+	}
 }
 
 func UpdateRoom_6_4()
@@ -923,6 +951,38 @@ func ActionObject_268()
 			Message2(DLG_TINKER_12);
 			Message2(DLG_TINKER_17);
 			Message1(DLG_TINKER_18_D);
+		}
+	}
+	else if (tinkerStatus == 9)
+	{
+		Message2(DLG_TINKER_12);
+		Message2(DLG_TINKER_21);
+		Message1(DLG_TINKER_22_D);
+		ObjSet(tinkerIdx, O_STATUS, 10);
+	}
+	else if (tinkerStatus == 10)
+	{
+		candleIdx = ObjFind(125);
+		if (InventoryFind(candleIdx)!=-1)
+		{
+			useItemResult = TryUseItem2(125, 1);
+			if (useItemResult == 1)
+			{
+				Message1(DLG_TINKER_19_D);
+				Message2(DLG_TINKER_20);
+				// TODO
+				//keyIdx = ObjFind(124);
+				//ObjSet(keyIdx, O_DISABLE, 0);
+				//coinIdx = ObjFind(331);
+				//ObjSet(coinIdx, O_DISABLE, 0);
+				ObjSet(tinkerIdx, O_STATUS, 11);
+			}
+		}
+		else
+		{
+			Message2(DLG_TINKER_12);
+			Message2(DLG_TINKER_21);
+			Message1(DLG_TINKER_22_D);
 		}
 	}
 }

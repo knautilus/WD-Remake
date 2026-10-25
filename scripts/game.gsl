@@ -171,6 +171,16 @@
 #def	DLG_DOZY_27		"Zzzz zzzz"
 #def	DLG_DOZY_28_D	"It's no use, I'm never\ngoing to be able to\nwake him this way."
 
+#def	DLG_DOZY_29_D	"Honk! Honk!"
+#def	DLG_DOZY_30_D	"Well that's loud\nenough to wake\nthe dead!"
+#def	DLG_DOZY_31		"Yawn... What now?"
+#def	DLG_DOZY_32_D	"I met this donkey, he's\ngot a wooden leg and\ndoesn't know how\nit happened."
+#def	DLG_DOZY_33		"You'd think\nhe'd remember."
+#def	DLG_DOZY_34_D	"Well yes, but he\ndoesn't. I think\nhe was drunk."
+#def	DLG_DOZY_35		"Sounds like evil\nmagic to me. Perharps\nyou could find a wand\nand spell to undo it?"
+
+#def	DLG_DOZY_36_D	"Arh...\nSleeping like a...\nscarecrow."
+
 #def	DLG_TINKER_1	"To cross, you'll\nneed to bring me..."
 
 #def	DLG_TINKER_2	"The band that never plays."
