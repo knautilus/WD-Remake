@@ -1184,11 +1184,75 @@ func ActionObject_305()
 	}
 	else if (doraStatus==1)
 	{
-		// todo: check inventory for magic staff
-
-		Message1(DLG_DORA_10_D);
-		Message2(DLG_DORA_11);
-		Message1(DLG_DORA_12_D);
+		dragonVisited = RoomGet(0,5,R_VISITED);
+		if (dragonVisited == 0)
+		{
+			Message1(DLG_DORA_10_D);
+			Message2(DLG_DORA_11);
+			Message1(DLG_DORA_12_D);
+		}
+		else
+		{
+			Message1(DLG_DORA_13_D);
+			Message2(DLG_DORA_14);
+			Message1(DLG_DORA_15_D);
+			Message2(DLG_DORA_16);
+			Message1(DLG_DORA_17_D);
+			Message2(DLG_DORA_18);
+			Message1(DLG_DORA_19_D);
+			Message2(DLG_DORA_20);
+			Message1(DLG_DORA_21_D);
+			Message2(DLG_DORA_22);
+			Message2(DLG_DORA_23);
+			Message1(DLG_DORA_24_D);
+			ObjSet(doraIdx, O_STATUS, 2);
+		}
+	}
+	else if (doraStatus==2)
+	{
+		poppiesIdx = ObjFind(109);
+		if (InventoryFind(poppiesIdx)!=-1)
+		{
+			useItemResult = TryUseItem2(109, 1);
+			if (useItemResult == 1)
+			{
+				Message1(DLG_DORA_27_D);
+				Message2(DLG_DORA_28);
+				Message2(DLG_DORA_29);
+				Message1(DLG_DORA_30_D);
+				Message2(DLG_DORA_31);
+				Message2(DLG_DORA_32);
+				potionIdx = ObjFind(126);
+				ObjSet(potionIdx, O_DISABLE, 0);
+				ObjSet(doraIdx, O_STATUS, 3);
+			}
+		}
+		else
+		{
+			Message2(DLG_DORA_25);
+			Message1(DLG_DORA_26_D);
+		}
+	}
+	else if (doraStatus==3)
+	{
+		staffIdx = ObjFind(127);
+		if (InventoryFind(staffIdx)!=-1)
+		{
+			useItemResult = TryUseItem2(127, 1);
+			if (useItemResult == 1)
+			{
+				//Message1(DLG_DORA_27_D);
+				//Message2(DLG_DORA_28);
+				//spellIdx = ObjFind(128);
+				//ObjSet(spellIdx, O_DISABLE, 0);
+				//ObjSet(doraIdx, O_STATUS, 4);
+			}
+		}
+		else
+		{
+			Message2(DLG_DORA_33);
+			Message1(DLG_DORA_34_D);
+		}
 	}
 }
 
@@ -1533,4 +1597,11 @@ func ActionObject_325()
 		}
 	}
 }
+
+func UpdateRoom_1_5()
+{
+	batIdx = ObjFind(332);
+	AIUpdateFly(batIdx);
+}
+
 /////////////////////////////////////////////////////////////////////////////////
