@@ -78,6 +78,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(125), OBJ_125);
 	ObjSetName(ObjFind(126), OBJ_126);
 	ObjSetName(ObjFind(127), OBJ_127);
+	ObjSetName(ObjFind(128), OBJ_128);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -956,13 +957,12 @@ func ActionObject_268()
 		useItemResult = TryUseItem2(125, 1);
 		if (useItemResult == 1)
 		{
-			Message1(DLG_TINKER_19_D);
-			Message2(DLG_TINKER_20);
-			// TODO
-			//keyIdx = ObjFind(124);
-			//ObjSet(keyIdx, O_DISABLE, 0);
-			//coinIdx = ObjFind(331);
-			//ObjSet(coinIdx, O_DISABLE, 0);
+			Message1(DLG_TINKER_23_D);
+			Message2(DLG_TINKER_24);
+			pickaxeIdx = ObjFind(128);
+			ObjSet(pickaxeIdx, O_DISABLE, 0);
+			coinIdx = ObjFind(335);
+			ObjSet(coinIdx, O_DISABLE, 0);
 			ObjSet(tinkerIdx, O_STATUS, 11);
 		}
 		else if (useItemResult == -1)
@@ -970,6 +970,33 @@ func ActionObject_268()
 			Message2(DLG_TINKER_12);
 			Message2(DLG_TINKER_21);
 			Message1(DLG_TINKER_22_D);
+		}
+	}
+	else if (tinkerStatus == 12)
+	{
+		Message2(DLG_TINKER_12);
+		Message2(DLG_TINKER_25);
+		Message1(DLG_TINKER_26_D);
+		ObjSet(tinkerIdx, O_STATUS, 13);
+	}
+	else if (tinkerStatus == 13)
+	{
+		useItemResult = TryUseItem2(129, 1);
+		if (useItemResult == 1)
+		{
+			//Message1(DLG_TINKER_19_D);
+			//Message2(DLG_TINKER_20);
+			//pickaxeIdx = ObjFind(128);
+			//ObjSet(pickaxeIdx, O_DISABLE, 0);
+			//coinIdx = ObjFind(335);
+			//ObjSet(coinIdx, O_DISABLE, 0);
+			ObjSet(tinkerIdx, O_STATUS, 14);
+		}
+		else if (useItemResult == -1)
+		{
+			Message2(DLG_TINKER_12);
+			Message2(DLG_TINKER_25);
+			Message1(DLG_TINKER_26_D);
 		}
 	}
 }

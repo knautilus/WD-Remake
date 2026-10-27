@@ -33,6 +33,7 @@
 #def	OBJ_125			"A candle"
 #def	OBJ_126			"Sleeping potion"
 #def	OBJ_127			"The magic staff"
+#def	OBJ_128			"A pickaxe"
 
 // Dialogs
 
@@ -220,6 +221,12 @@
 
 #def	DLG_TINKER_21	"Something tall when\nit's young and short\nwhen it's old."
 #def	DLG_TINKER_22_D	"Um... I think I'm getting\nshorter with all this\nrunning around."
+
+#def	DLG_TINKER_23_D	"Here's a candle,\ntall when young,\nbut short when old."
+#def	DLG_TINKER_24	"Congratulations\nand for that,\nI present you a pickaxe."
+
+#def	DLG_TINKER_25	"The pizza that\neats itself."
+#def	DLG_TINKER_26_D	"Um... That's a tough one.\nI'll see what I can find."
 
 #def	DLG_DENZIL_1	"Help! Won't you\nplease, please\nhelp me now?"
 #def	DLG_DENZIL_2_D	"I'm sorry? Are you\ntalking to me?"
