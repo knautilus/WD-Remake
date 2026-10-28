@@ -79,6 +79,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(126), OBJ_126);
 	ObjSetName(ObjFind(127), OBJ_127);
 	ObjSetName(ObjFind(128), OBJ_128);
+	ObjSetName(ObjFind(129), OBJ_129);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -611,11 +612,11 @@ func ActionObject_236()
 		Message1(DLG_DOZY_21_D);
 		Message2(DLG_DOZY_22);
 		Message1(DLG_DOZY_23_D);
-		ObjSet(dozyTriggerIdx,O_STATUS,2);
+		ObjSet(dozyTriggerIdx, O_STATUS, 2);
 		dozyHangIdx = BrushFind(234);
-		BrushSet(dozyHangIdx,B_DRAW,0);
+		BrushSet(dozyHangIdx, B_DRAW, 0);
 		dozyLieIdx = ObjFind(237);
-		ObjSet(dozyLieIdx,O_DISABLE,0);
+		ObjSet(dozyLieIdx, O_DISABLE, 0);
 	}
 	else if (useItemResult == -1)
 	{
@@ -1614,6 +1615,20 @@ func ActionObject_333()
 		{
 			Message0(TXT_SECRET_DOOR);
 		}
+	}
+}
+
+// Boulder
+func ActionObject_338()
+{
+	if (TryUseItem(128, 1) == 1)
+	{
+		Message0(TXT_BOULDER);
+		boulderIdx = BrushFind(336);
+		BrushSet(boulderIdx, B_DRAW, 0);
+		boulderWallIdx = BrushFind(337);
+		BrushSet(boulderWallIdx, B_DRAW, 0);
+		GameCommand(CMD_REFRESH);
 	}
 }
 

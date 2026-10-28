@@ -34,6 +34,8 @@
 #def	OBJ_126			"Sleeping potion"
 #def	OBJ_127			"The magic staff"
 #def	OBJ_128			"A pickaxe"
+#def	OBJ_129			"Eye of the tiger"
+#def	OBJ_130			"A red herring"
 
 // Dialogs
 
@@ -55,6 +57,9 @@
 #def	TXT_EMERALD_DOOR	"The door is locked,\nthe bell is broken and\nknocking with boxing\ngloves on proves futile."
 #def	TXT_EMERALD_DOOR_2	"Your knocking echos\ninside the city and\nmysteriously the\ndoor opens."
 #def	TXT_SECRET_DOOR	"The door is jammed."
+#def	TXT_BOULDER		"You smash the\nboulder to rubble."
+#def	TXT_EYE			"You plug the eye of\nthe tiger back into\nit's socket and it's\nmouth opens"
+#def	TXT_TUNNEL_DOOR_D	"Hey, it opens. I wonder\nwhere it leads?"	
 
 #def	TXT_DEATH_BAT		"You were killed\nby a bat"
 #def	TXT_DEATH_SPIDER	"You're bitten by\na spider!"
