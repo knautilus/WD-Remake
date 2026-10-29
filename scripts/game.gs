@@ -1632,4 +1632,20 @@ func ActionObject_338()
 	}
 }
 
+// Tiger
+func ActionObject_341()
+{
+	if (TryUseItem2(129, 1) == 1)
+	{
+		doorIdx = ObjFind(341);
+		Message0(TXT_EYE);
+		mouthIdx = BrushFind(339);
+		BrushSet(mouthIdx, O_Y, BrushGet(mouthIdx, O_Y)+8);
+		eyeIdx = BrushFind(340);
+		BrushSet(eyeIdx, B_DRAW, 0);
+		ObjSet(doorIdx, O_MATERIAL, MAT_DOOR);
+		GameCommand(CMD_REFRESH);
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////

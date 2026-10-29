@@ -284,4 +284,13 @@ func MakeBB ( idx, x1, y1, x2, y2 )
 	*y2 = wy2 - ry*rh;
 }
 
+func GetObjectRoomXY ( idx, rx, ry )
+{
+	rw = GameGet(G_ROOMW);
+	rh = GameGet(G_ROOMH);
+	ox = ObjGet(idx, O_X);
+	oy = ObjGet(idx, O_Y);
+	*rx = ox / rw;
+	*ry = oy / rh;
+}
 /////////////////////////////////////////////////////////////////////////////////
