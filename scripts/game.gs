@@ -1334,9 +1334,9 @@ func ActionObject_313()
 }
 
 // Daisy dialogs
-func ActionObject_320()
+func ActionObject_344()
 {
-	daisyIdx = ObjFind(320);
+	daisyIdx = ObjFind(344);
 	daisyStatus = ObjGet(daisyIdx,O_STATUS);
 	if (daisyStatus==0)
 	{
@@ -1394,7 +1394,7 @@ func ActionObject_321()
 	doorStatus = ObjGet(doorIdx,O_STATUS);
 	if (doorStatus==0)
 	{
-		Message1(TXT_CRYSTAL_DOOR);
+		Message1(TXT_CRYSTAL_DOOR_D);
 	}
 }
 
@@ -1645,6 +1645,23 @@ func ActionObject_341()
 		eyeIdx = BrushFind(340);
 		BrushSet(eyeIdx, B_DRAW, 0);
 		ObjSet(doorIdx, O_MATERIAL, MAT_DOOR);
+		GameCommand(CMD_REFRESH);
+	}
+}
+
+// Exit from the secret tunnel
+func CollideObject_322_1()
+{
+	exitIdx = ObjFind(322);
+	exitStatus = ObjGet(exitIdx,O_STATUS);
+	if (exitStatus == 0)
+	{
+		doorIdx = ObjFind(321);
+		doorStatus = ObjGet(doorIdx,O_STATUS);
+		Message1(TXT_TUNNEL_DOOR_D);
+		ObjSet(doorIdx, O_MATERIAL, MAT_DOOR);
+		ObjSet(exitIdx,O_STATUS,1);
+		ObjSet(doorIdx,O_STATUS,1);
 		GameCommand(CMD_REFRESH);
 	}
 }

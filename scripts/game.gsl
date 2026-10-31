@@ -53,7 +53,7 @@
 #def	TXT_SIGNPOST	"Using the woodman's\naxe you are able to\nchop the post down\nand make a bridge."
 #def	TXT_LEVER		"The lever\nappears broken"
 #def	TXT_WATERFALL	"You hold the empty\nbucket under the\nfalling water to\nfill it up."
-#def	TXT_CRYSTAL_DOOR	"Um... The door seems\nlocked tight. I wonder\nwhere it leads?"
+#def	TXT_CRYSTAL_DOOR_D	"Um... The door seems\nlocked tight. I wonder\nwhere it leads?"
 #def	TXT_EMERALD_DOOR	"The door is locked,\nthe bell is broken and\nknocking with boxing\ngloves on proves futile."
 #def	TXT_EMERALD_DOOR_2	"Your knocking echos\ninside the city and\nmysteriously the\ndoor opens."
 #def	TXT_SECRET_DOOR	"The door is jammed."
