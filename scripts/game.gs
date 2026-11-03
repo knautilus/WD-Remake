@@ -1704,6 +1704,7 @@ func UpdateRoom_0_5()
 		newFrameIndex = (GameFrame() % (sizeof(frames) * delay)) / delay;
 		BrushSet(dragonEyesIdx, O_FRAME, frames[newFrameIndex]);
 		
+		// Dragon breath
 		if (dragonStatus == 1)
 		{
 			// Animate dragon's mouth

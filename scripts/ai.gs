@@ -416,22 +416,21 @@ func AIUpdateAcidRain(dripper, drip)
 	
 	frames = {0,1,2,3,4,5,6,5,6,7};
 	
-	dripperDelay = ObjGet(dripper,O_DELAY);
-	dripperStatus = ObjGet(dripper,O_STATUS);
-	framesCounter = ObjGet(dripper,O_USER)+1;
-	frameIndex = ObjGet(dripper,O_USER+1);
-	wait = ObjGet(dripper,O_USER+2);
+	dripperDelay = ObjGet(dripper, O_DELAY);
+	dripperStatus = ObjGet(dripper, O_STATUS);
+	frameIndex = ObjGet(dripper, O_USER);
+	minWait = 4;
+	wait = ObjGet(dripper, O_USER+1);
 	
-	if (framesCounter % dripperDelay == 0)
+	if (IsUpdate(dripperDelay))
 	{
-		framesCounter=0;
 		frameIndex++;
 		if (dripperStatus == 0)
 		{
 			if (frameIndex > 4)
 			{
-				ObjSet(dripper,O_STATUS,1);
-				ObjSet(dripper,O_USER+2,4+gs_rand(4));
+				ObjSet(dripper, O_STATUS, 1);
+				ObjSet(dripper, O_USER+1, minWait+gs_rand(4));
 			}
 		}
 		else if (dripperStatus == 1)
@@ -444,15 +443,15 @@ func AIUpdateAcidRain(dripper, drip)
 					wait--;
 					if (wait > 0)
 					{
-						ObjSet(dripper,O_USER+2,wait);
+						ObjSet(dripper, O_USER+1, wait);
 					}
 					else
 					{
 						frameIndex = 9;
-						ObjSet(drip,O_X,(ObjGet(dripper,O_X)+4));
-						ObjSet(drip,O_Y,(ObjGet(dripper,O_Y)+8));
-						ObjSet(drip,O_DISABLE,0);
-						ObjSet(dripper,O_STATUS,2);
+						ObjSet(drip, O_X, ObjGet(dripper,O_X)+4);
+						ObjSet(drip, O_Y, ObjGet(dripper,O_Y)+8);
+						ObjSet(drip, O_DISABLE, 0);
+						ObjSet(dripper, O_STATUS, 2);
 					}
 				}
 			}
@@ -461,14 +460,10 @@ func AIUpdateAcidRain(dripper, drip)
 		{
 			if (frameIndex > 9)
 			{
-				ObjSet(dripper,O_STATUS,0);
+				ObjSet(dripper, O_STATUS, 0);
 				frameIndex = 0;
-			}	
+			}
 		}
-	}
-	else
-	{
-		framesCounter++;
 	}
 
 	if (ObjGet(drip,O_DISABLE)==0)
@@ -486,8 +481,7 @@ func AIUpdateAcidRain(dripper, drip)
 		}
 	}
 	
-	ObjSet(dripper,O_USER,framesCounter);
-	ObjSet(dripper,O_USER+1,frameIndex);
+	ObjSet(dripper,O_USER,frameIndex);
 	ObjSet(dripper,O_FRAME,frames[frameIndex]);
 }
 

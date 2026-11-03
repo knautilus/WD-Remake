@@ -108,6 +108,7 @@
 #def O_BOUNDRIGHT	37	// right boundary x coordinate, used in AIUpdateFly(), AIUpdateSnake()
 #def O_DIRX			38	// horizontal moving direction (-1 or 0 = left, 1 = right), used in AIUpdateFly(), AIUpdateSnake()
 #def O_DIRY			39	// vertical moving direction (-1 or 0 = up, 1 = down), used in AIUpdateFly()
+
 #def O_HURT			40	// hurt level, used in Class=Hurt
 #def O_HURTDELAY	41	// hurt delay, used in Class=Hurt
 #def O_LIFEDECSTEP	42	// hurt step, used in Class=Hurt
