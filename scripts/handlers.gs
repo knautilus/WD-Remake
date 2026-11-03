@@ -29,6 +29,7 @@ func HandlerGameInit()
 	MaterialSetDensity( MAT_LADDER,		MATD_VOID );
 	MaterialSetDensity( MAT_DOOR,		MATD_VOID );
 	MaterialSetDensity( MAT_TELEPORT,	MATD_VOID );
+	MaterialSetDensity( MAT_DANGER,		MATD_VOID );
 	
 	MaterialSetColor( MAT_AIR,			0xFF000000 );
 	MaterialSetColor( MAT_WATER,		0xFF0060FF );
@@ -43,6 +44,7 @@ func HandlerGameInit()
 	MaterialSetColor( MAT_LADDER,		0xFFC8C800 );
 	MaterialSetColor( MAT_DOOR,			0xFFFF00FF );
 	MaterialSetColor( MAT_TELEPORT,		0xFFFF11FF );
+	MaterialSetColor( MAT_DANGER,		0xFFFF8080 );
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -380,7 +382,7 @@ func HandlerPlayerUpdate()
 	status = PlayerGet(P_STATUS);
 	if( ( status==STATUS_IDLE || status==STATUS_WALK ) && 
 		IsPlayerSafe() && IsPlayerStable() && 
-		PlayerGet(P_SAFE) &&
+		PlayerGet(P_SAFE)>0 &&
 		PlayerGet(P_LIFE)>0 )
 	{
 		// remember relevant info to use in case of a respawn event

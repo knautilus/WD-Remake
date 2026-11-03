@@ -2,6 +2,15 @@
 // when being replenished
 func PlayerLifeBarUpdate() 
 {
+	life = PlayerGet(P_LIFE);
+
+	if (life == 0)
+	{
+		PlayerSet(P_LIFEINC, 0);
+		PlayerSet(P_LIFEDEC, 0);
+		return;
+	}
+
 	lifeinc = PlayerGet(P_LIFEINC);
 	lifedec = PlayerGet(P_LIFEDEC);
 
@@ -17,17 +26,16 @@ func PlayerLifeBarUpdate()
 		return;
 	}
 
-	l = PlayerGet(P_LIFE);
-	if (l >= MAXLIFE)
+	if (life >= MAXLIFE)
 	{
 		lifeinc = 0;
 		PlayerSet(P_LIFEINC, lifeinc);
 		return;
 	}
 	
-	l += 1;
+	life += 1;
 	lifeinc -= 1;
-	PlayerSet(P_LIFE,l);
+	PlayerSet(P_LIFE,life);
 	
 	if (lifeinc <= 0)
 	{
@@ -35,32 +43,32 @@ func PlayerLifeBarUpdate()
 	}
 
 	PlayerSet(P_LIFEINC, lifeinc);
-	PlayLifeBarFX(l);
+	PlayLifeBarFX(life);
 }
 
 func PlayerLifeBarDeduct() 
 {
 	lifedec = PlayerGet(P_LIFEDEC);
 	lifedecStep = PlayerGet(P_LIFEDECSTEP); 
-	l = PlayerGet(P_LIFE);
+	life = PlayerGet(P_LIFE);
 	if (lifedecStep == 0)
 	{
 		lifedecStep = 1;
 	}
 
-	if (l == 0)
+	if (life == 0)
 	{
 		lifedec = 0;
 		PlayerSet(P_LIFEDEC, lifedec);
 		return;
 	}
 	
-	l -= lifedecStep;
-	if (l <= 0)
+	life -= lifedecStep;
+	if (life <= 0)
 	{
-		l = 0;
+		life = 0;
 	}
-	PlayerSet(P_LIFE, l);
+	PlayerSet(P_LIFE, life);
 
 	lifedec -= lifedecStep;
 	if (lifedec <= 0)
@@ -69,15 +77,15 @@ func PlayerLifeBarDeduct()
 	}
 	PlayerSet(P_LIFEDEC, lifedec);
 	
-	PlayLifeBarFX(l);
+	PlayLifeBarFX(life);
 }
 
 func PlayLifeBarFX( life )
 {
-	l2 = ((int)life/(MAXLIFE/40)) - 1;
-	if (l2 <= FX_LIFEBAR)
+	sample = ((int)life/(MAXLIFE/40)) - 1;
+	if (sample <= FX_LIFEBAR)
 	{
-		l2 = FX_LIFEBAR;
+		sample = FX_LIFEBAR;
 	}
-	SamplePlay(l2);
+	SamplePlay(sample);
 }
