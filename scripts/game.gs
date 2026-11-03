@@ -1689,9 +1689,11 @@ func UpdateRoom_0_5()
 	dragonStatus = BrushGet(dragonIdx, O_STATUS);
 	if (dragonStatus < 2)
 	{
+		// Update dragon breath
+		
 		fireIdx = ObjFind(354);
 		AIHomingShot(fireIdx);
-	
+		
 		// Animate dragon's eyes
 		
 		dragonEyesIdx = BrushFind(346);
@@ -1772,6 +1774,7 @@ func ActionDragon()
 	}
 }
 
+// Trigger dragon breath
 func CollideObject_352_1()
 {
 	dragonIdx = BrushFind(345);

@@ -43,7 +43,7 @@ func IsMaterialUnderPlayer( mat )
 /////////////////////////////////////////////////////////////////////////////////
 func IsPlayerSafe()
 {
-	matmask = (1<<MAT_AIR)|(1<<MAT_WATER)|(1<<MAT_CLOUD)|(1<<MAT_CLIMB)|(1<<MAT_WIND); // only those are allowed inside player's box
+	matmask = (1<<MAT_AIR)|(1<<MAT_WATER)|(1<<MAT_CLOUD)|(1<<MAT_CLIMB)|(1<<MAT_WIND)|(1<<MAT_LADDER); // only those are allowed inside player's box
 	return ( 0 == ( PlayerGet(P_MATINSIDE) & (~matmask) ) ); // no other materials are allowed
 }
 
