@@ -71,6 +71,7 @@
 #def	TXT_DEATH_FALL		"You hit the ground\ntoo hard!"
 #def	TXT_DEATH_SNAKE		"You're bitten by\na poisonous snake!"
 #def	TXT_DEATH_DRAGON	"You were burnt by\nthe dragon breath!"
+#def	TXT_DEATH_RAIN		"You were dissolved\nby acid raindrops!"
 
 #def	DLG_POGIE_1_D	"Gosh Pogie,\nthat really shook\nthe hut, are you ok?"
 #def	DLG_POGIE_2		"Squeak."

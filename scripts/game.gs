@@ -122,6 +122,7 @@ func PlayerDeathMessage( death )
 	if(death==DANGER_FALL)			return TXT_DEATH_FALL;
 	if(death==DANGER_SNAKE)			return TXT_DEATH_SNAKE;
 	if(death==DANGER_DRAGON)		return TXT_DEATH_DRAGON;
+	if(death==DANGER_RAIN)			return TXT_DEATH_RAIN;
 	if(death==-1)					return "";
 	// ...
 	return "YOU HAVE DIED!";		// default
@@ -1785,6 +1786,22 @@ func CollideObject_352_1()
 		fireIdx = ObjFind(354);
 		ObjSet(fireIdx,O_DISABLE,0);
 	}
+}
+
+func UpdateRoom_12_0()
+{
+	AIUpdateAcidRain(ObjFind(356), ObjFind(357));
+}
+
+func UpdateRoom_14_1()
+{
+	AIUpdateAcidRain(ObjFind(358), ObjFind(359));
+}
+
+func UpdateRoom_15_1()
+{
+	AIUpdateAcidRain(ObjFind(360), ObjFind(361));
+	AIUpdateAcidRain(ObjFind(362), ObjFind(363));
 }
 
 /////////////////////////////////////////////////////////////////////////////////

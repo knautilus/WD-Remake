@@ -336,6 +336,101 @@ func AIHomingShot( idx )
 	ObjSet(idx,O_Y,y);
 }
 
+func AIUpdateAcidRain(dripper, drip)
+{
+	if((dripper==-1)||(drip==-1)) return;
+	
+	frames = {0,1,2,3,4,5,6,5,6,7};
+	
+	dripperDelay = ObjGet(dripper,O_DELAY);
+	dripperStatus = ObjGet(dripper,O_STATUS);
+	framesCounter = ObjGet(dripper,O_USER)+1;
+	frameIndex = ObjGet(dripper,O_USER+1);
+	wait = ObjGet(dripper,O_USER+2);
+	
+	if (framesCounter % dripperDelay == 0)
+	{
+		framesCounter=0;
+		frameIndex++;
+		if (dripperStatus == 0)
+		{
+			if (frameIndex > 4)
+			{
+				ObjSet(dripper,O_STATUS,1);
+				ObjSet(dripper,O_USER+2,4+gs_rand(4));
+			}
+		}
+		else if (dripperStatus == 1)
+		{
+			if (frameIndex > 8)
+			{
+				if(ObjGet(drip,O_DISABLE)==0)
+				{
+					frameIndex = 5;
+				}
+				else
+				{
+					wait--;
+					if (wait > 0)
+					{
+						frameIndex = 5;
+						ObjSet(dripper,O_USER+2,wait);
+					}
+					else
+					{
+						ObjSet(drip,O_X,(ObjGet(dripper,O_X)+4));
+						ObjSet(drip,O_Y,(ObjGet(dripper,O_Y)+8));
+						ObjSet(drip,O_DISABLE,0);
+						ObjSet(dripper,O_STATUS,2);
+					}
+				}
+			}
+		}
+		else if (dripperStatus == 2)
+		{
+			if (frameIndex > 9)
+			{
+				ObjSet(dripper,O_STATUS,0);
+				frameIndex = 0;
+			}	
+		}
+	}
+	else
+	{
+		framesCounter++;
+	}
+
+	if (ObjGet(drip,O_DISABLE)==0)
+	{
+		if(IsUpdate(ObjGet(drip,O_DELAY)))
+		{
+			x = ObjGet(drip,O_X);
+			y = ObjGet(drip,O_Y); 
+			y=y+2;
+			ObjSet(drip, O_Y, y);
+			if(CheckAcidRainBB(x,y))
+			{
+				ObjSet(drip,O_DISABLE,1);
+			}
+		}
+	}
+	
+	ObjSet(dripper,O_USER,framesCounter);
+	ObjSet(dripper,O_USER+1,frameIndex);
+	ObjSet(dripper,O_FRAME,frames[frameIndex]);
+}
+
+func CheckAcidRainBB(x,y)
+{
+	rx = x - ( GameGet(G_ROOMX) * GameGet(G_ROOMW) );
+	ry = y - ( GameGet(G_ROOMY) * GameGet(G_ROOMH) );
+
+	mat = MaterialRead(rx,ry,8,8);
+	if(mat&(1<<MAT_BLOCK)) return 1;
+
+	return 0;
+}
+
 func AI_CheckCollision( idx )
 {
 	x1=0;y1=0;x2=0;y2=0;
