@@ -105,6 +105,58 @@ func AIUpdateSpider( idx )
 }
 
 /////////////////////////////////////////////////////////////////////////////////
+// IN: int; idx; object index
+// Rat AI
+// Moves left and right between two positions.
+// O_USER = leftmost x value
+// O_USER+1 = rightmost x value
+// O_USER+2 = movement delay
+// O_STATUS = direction 0=left, 1=right
+/////////////////////////////////////////////////////////////////////////////////
+func AIUpdateRat( idx )
+{
+	if(idx==-1) return;
+	if(ObjGet(idx,O_DISABLE)) return;
+	if(!IsUpdate(ObjGet(idx,O_USER+2))) return;
+	x = ObjGet(idx,O_X);
+	flipped = false;
+	
+	if(ObjGet(idx,O_STATUS)==0) // left
+	{
+		tx = ObjGet(idx,O_USER);
+		if(x>tx)
+			x-=1;
+		else
+		{
+			ObjSet(idx,O_STATUS,1);
+			flipped = true;
+		}
+	}
+	else // right
+	{
+		tx = ObjGet(idx,O_USER+1);
+		if(x<tx)
+			x+=1;
+		else
+		{
+			ObjSet(idx,O_STATUS,0);
+			flipped = true;
+		}
+	}
+	
+	if (flipped)
+	{
+		flip = ObjGet(idx,O_FLIP);
+		if (flip==0)
+			ObjSet(idx, O_FLIP, 1);
+		else
+			ObjSet(idx, O_FLIP, 0);
+	}
+	
+	ObjSet(idx,O_X,x);
+}
+
+/////////////////////////////////////////////////////////////////////////////////
 // IN: int; id; first bubble object's id
 // IN: int; count; maximum number of bubble objects, with ids starting from id, id+1, id+2, etc
 // IN: int; debit; the spawning debit delay factor, higher values means rare spawns, 0 means stopped
@@ -184,6 +236,18 @@ func AIUpdateBubbles( id, count, debit, speed, life )
 	}
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// IN: int; idx; object index
+// This is used to manage enemies that fly and bounce off of boundaries
+// O_USER+0 = horizontal moving speed (1-10)(O_SPEEDX)
+// O_USER+1 = vertical moving speed (1-10) (O_SPEEDY)
+// O_USER+2 = top boundary y coordinate (O_BOUNDTOP)
+// O_USER+3 = bottom boundary y coordinate (O_BOUNDBOTTOM)
+// O_USER+4 = left boundary x coordinate (O_BOUNDLEFT)
+// O_USER+5 = right boundary x coordinate (O_BOUNDRIGHT)
+// O_USER+6 = horizontal moving direction (-1 or 0 = left, 1 = right) (O_DIRX)
+// O_USER+7 = vertical moving direction (-1 or 0 = up, 1 = down) (O_DIRY)
+/////////////////////////////////////////////////////////////////////////////////
 func AIUpdateFly( idx )
 {
 	if(idx==-1)
@@ -247,9 +311,17 @@ func AIUpdateFly( idx )
 	}
 }
 
+/////////////////////////////////////////////////////////////////////////////////
+// IN: int; idx; object index
+// This is used for the movement of enemies on uneven surfaces
+// O_USER+0 = horizontal moving speed (1-10)(O_SPEEDX)
+// O_USER+4 = left boundary x coordinate (O_BOUNDLEFT)
+// O_USER+5 = right boundary x coordinate (O_BOUNDRIGHT)
+// O_USER+6 = horizontal moving direction (-1 or 0 = left, 1 = right) (O_DIRX)
+/////////////////////////////////////////////////////////////////////////////////
 func AIUpdateSnake( idx )
 {
-	if(idx==-1) return;
+	if (idx==-1) return;
 
 	speedx = MIN(10, MAX(1, ObjGet(idx,O_SPEEDX)));
 	delayx = 11-speedx;
@@ -265,7 +337,7 @@ func AIUpdateSnake( idx )
 	x = ObjGet(idx,O_X);
 	y = ObjGet(idx,O_Y);
 
-	if( AI_CheckWalkX( idx ) )
+	if (AI_CheckWalkX(idx))
 	{
 		x += dirx*CM_STEPX;
 		ObjSet(idx,O_X,x);
@@ -274,7 +346,7 @@ func AIUpdateSnake( idx )
 	snap = AI_CheckCollidersSnap( idx );
 
 	// stand check only if not already snapped to collider
-	if( !snap)
+	if (!snap)
 	{
 		h = AI_CheckFallY( idx ); // see if it can fall 
 		if(h>0) // if any space below then enter in fall
@@ -286,7 +358,7 @@ func AIUpdateSnake( idx )
 	// fix collision by rising object
 	AI_CheckCollision( idx );
 
-	if(x<=l||x>=r)
+	if (x<=l||x>=r)
 	{
 		ObjSet(idx,O_DIRX, dirx*-1);
 
@@ -325,7 +397,7 @@ func AIHomingShot( idx )
 	if(y<y2) { y+=speed; if(y>y2) y=y2; }
 	if(y>y2) { y-=speed; if(y<y2) y=y2; }
 
-	if(x==x2 && y==y2) // reached waypoint, reset position
+	if(x==x2 && y==y2) // reached player, reset position
 	{
 		x = ObjGet(start,O_X);
 		y = ObjGet(start,O_Y);
@@ -339,6 +411,8 @@ func AIHomingShot( idx )
 func AIUpdateAcidRain(dripper, drip)
 {
 	if((dripper==-1)||(drip==-1)) return;
+	
+	if(ObjGet(dripper,O_DISABLE)) return;
 	
 	frames = {0,1,2,3,4,5,6,5,6,7};
 	
@@ -364,20 +438,17 @@ func AIUpdateAcidRain(dripper, drip)
 		{
 			if (frameIndex > 8)
 			{
-				if(ObjGet(drip,O_DISABLE)==0)
-				{
-					frameIndex = 5;
-				}
-				else
+				frameIndex = 5;
+				if(ObjGet(drip,O_DISABLE)==1)
 				{
 					wait--;
 					if (wait > 0)
 					{
-						frameIndex = 5;
 						ObjSet(dripper,O_USER+2,wait);
 					}
 					else
 					{
+						frameIndex = 9;
 						ObjSet(drip,O_X,(ObjGet(dripper,O_X)+4));
 						ObjSet(drip,O_Y,(ObjGet(dripper,O_Y)+8));
 						ObjSet(drip,O_DISABLE,0);

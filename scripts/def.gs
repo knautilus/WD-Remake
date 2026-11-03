@@ -100,13 +100,13 @@
 #def O_BUBBLESPEED 	32	// bubble moving speed, set at spawn time, used in AIUpdateBubbles()
 #def O_BUBBLETIME 	33	// bubble life time, growing each cycle, used in AIUpdateBubbles()
 
-#def O_SPEEDX		32	// horizontal moving speed (1-10), used in AIUpdateFly()
+#def O_SPEEDX		32	// horizontal moving speed (1-10), used in AIUpdateFly(), AIUpdateSnake()
 #def O_SPEEDY		33	// vertical moving speed (1-10), used in AIUpdateFly()
 #def O_BOUNDTOP		34	// top boundary y coordinate, used in AIUpdateFly()
 #def O_BOUNDBOTTOM	35	// bottom boundary y coordinate, used in AIUpdateFly()
-#def O_BOUNDLEFT	36	// left boundary x coordinate, used in AIUpdateFly()
-#def O_BOUNDRIGHT	37	// right boundary x coordinate, used in AIUpdateFly()
-#def O_DIRX			38	// horizontal moving direction (-1 or 0 = left, 1 = right), used in AIUpdateFly()
+#def O_BOUNDLEFT	36	// left boundary x coordinate, used in AIUpdateFly(), AIUpdateSnake()
+#def O_BOUNDRIGHT	37	// right boundary x coordinate, used in AIUpdateFly(), AIUpdateSnake()
+#def O_DIRX			38	// horizontal moving direction (-1 or 0 = left, 1 = right), used in AIUpdateFly(), AIUpdateSnake()
 #def O_DIRY			39	// vertical moving direction (-1 or 0 = up, 1 = down), used in AIUpdateFly()
 #def O_HURT			40	// hurt level, used in Class=Hurt
 #def O_HURTDELAY	41	// hurt delay, used in Class=Hurt
@@ -142,6 +142,7 @@
 #def DANGER_POPPY       10
 #def DANGER_DRAGON      11
 #def DANGER_RAIN        12
+#def DANGER_RAT         13
 #def DANGER_OCEAN       98
 #def DANGER_FALL        99
 

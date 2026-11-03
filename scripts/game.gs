@@ -123,6 +123,7 @@ func PlayerDeathMessage( death )
 	if(death==DANGER_SNAKE)			return TXT_DEATH_SNAKE;
 	if(death==DANGER_DRAGON)		return TXT_DEATH_DRAGON;
 	if(death==DANGER_RAIN)			return TXT_DEATH_RAIN;
+	if(death==DANGER_RAT)			return TXT_DEATH_RAT;
 	if(death==-1)					return "";
 	// ...
 	return "YOU HAVE DIED!";		// default
@@ -1802,6 +1803,18 @@ func UpdateRoom_15_1()
 {
 	AIUpdateAcidRain(ObjFind(360), ObjFind(361));
 	AIUpdateAcidRain(ObjFind(362), ObjFind(363));
+}
+
+func UpdateRoom_1_4()
+{
+	ratIdx = ObjFind(364);
+	AIUpdateRat(ratIdx);
+}
+
+func UpdateRoom_0_4()
+{
+	ratIdx = ObjFind(365);
+	AIUpdateRat(ratIdx);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
