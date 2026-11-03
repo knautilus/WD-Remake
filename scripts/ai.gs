@@ -298,6 +298,44 @@ func AIUpdateSnake( idx )
 	}
 }
 
+func AIHomingShot( idx )
+{
+	if(idx==-1) return;
+
+	if(ObjGet(idx,O_DISABLE)) return;
+
+	startId = ObjGet(idx,O_TARGET);
+
+	start = ObjFind(startId);
+
+	if(start==-1) return;
+
+	speed = ObjGet(start,O_WAYPOINTMOVEDELAY);
+	flip = ObjGet(start,O_WAYPOINTFLIP);
+
+	x2 = PlayerGet(P_X);
+	y2 = PlayerGet(P_Y);
+
+	x = ObjGet(idx,O_X);
+	y = ObjGet(idx,O_Y);
+	ObjSet(idx,O_FLIP,flip);
+
+	if(x<x2) { x+=speed; if(x>x2) x=x2; }
+	if(x>x2) { x-=speed; if(x<x2) x=x2; }
+	if(y<y2) { y+=speed; if(y>y2) y=y2; }
+	if(y>y2) { y-=speed; if(y<y2) y=y2; }
+
+	if(x==x2 && y==y2) // reached waypoint, reset position
+	{
+		x = ObjGet(start,O_X);
+		y = ObjGet(start,O_Y);
+		ObjSet(idx,O_DISABLE,1);
+	}
+
+	ObjSet(idx,O_X,x);
+	ObjSet(idx,O_Y,y);
+}
+
 func AI_CheckCollision( idx )
 {
 	x1=0;y1=0;x2=0;y2=0;

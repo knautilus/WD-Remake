@@ -121,6 +121,7 @@ func PlayerDeathMessage( death )
 	if(death==DANGER_WATER)			return TXT_DEATH_WATER;
 	if(death==DANGER_FALL)			return TXT_DEATH_FALL;
 	if(death==DANGER_SNAKE)			return TXT_DEATH_SNAKE;
+	if(death==DANGER_DRAGON)		return TXT_DEATH_DRAGON;
 	if(death==-1)					return "";
 	// ...
 	return "YOU HAVE DIED!";		// default
@@ -1663,6 +1664,123 @@ func CollideObject_322_1()
 		ObjSet(exitIdx,O_STATUS,1);
 		ObjSet(doorIdx,O_STATUS,1);
 		GameCommand(CMD_REFRESH);
+	}
+}
+
+// Random color for dragon
+func CloseRoom_0_5()
+{
+	dragonIdx = BrushFind(345);
+	dragonMouthIdx = BrushFind(347);
+	rand = gs_rand(4);
+	dragonTile = 156 + rand;
+	dragonMouthTile = 160;
+	if (rand > 1)
+	{
+		dragonMouthTile++;
+	}
+	BrushSet(dragonIdx, O_TILE, dragonTile);
+	BrushSet(dragonMouthIdx, O_TILE, dragonMouthTile);
+}
+
+func UpdateRoom_0_5()
+{
+	dragonIdx = BrushFind(345);
+	dragonStatus = BrushGet(dragonIdx, O_STATUS);
+	if (dragonStatus < 2)
+	{
+		fireIdx = ObjFind(354);
+		AIHomingShot(fireIdx);
+	
+		// Animate dragon's eyes
+		
+		dragonEyesIdx = BrushFind(346);
+		delay = BrushGet(dragonEyesIdx, O_DELAY);
+		frames = {0,0,0,0,0,0,0,1,0,1};
+		newFrameIndex = (GameFrame() % (sizeof(frames) * delay)) / delay;
+		BrushSet(dragonEyesIdx, O_FRAME, frames[newFrameIndex]);
+		
+		if (dragonStatus == 1)
+		{
+			// Animate dragon's mouth
+			
+			dragonMouthIdx = BrushFind(347);
+			delay = BrushGet(dragonMouthIdx, O_DELAY);
+			frameCounter = BrushGet(dragonMouthIdx, O_USER);
+			newFrameIndex = 0;
+			if (frameCounter < delay)
+			{
+				newFrameIndex = 1;
+				frameCounter++;
+			}
+			else
+			{
+				frameCounter = 0;
+				BrushSet(dragonIdx, O_STATUS, 0);
+			}
+			BrushSet(dragonMouthIdx, O_USER, frameCounter);
+			BrushSet(dragonMouthIdx, O_FRAME, newFrameIndex);
+		}
+	}
+	else if (dragonStatus == 2)
+	{
+		// Animate sleeping dragon's mouth
+		
+		dragonSleepMouthIdx = BrushFind(349);
+		delay = BrushGet(dragonSleepMouthIdx, O_DELAY);
+		frames = {0,1};
+		newFrameIndex = (GameFrame() % (sizeof(frames) * delay)) / delay;
+		BrushSet(dragonSleepMouthIdx, O_FRAME, frames[newFrameIndex]);
+	}
+}
+
+func ActionObject_350()
+{
+	ActionDragon();
+}
+
+func ActionObject_355()
+{
+	ActionDragon();
+}
+
+func ActionDragon()
+{
+	if (TryUseItem(126, 1) == 1)
+	{
+		vaporIdx = ObjFind(351);
+	
+		ObjSet(vaporIdx, O_DISABLE, 0);
+		ObjPlayAnimFrames(vaporIdx, {0,1,2,3,2,1,0,1,2,3,2,1,0});
+		ObjSet(vaporIdx, O_DISABLE, 1);
+	
+		Message0(TXT_SLEEPING);
+	
+		dragonIdx = BrushFind(345);
+		dragonEyesIdx = BrushFind(346);
+		dragonMouthIdx = BrushFind(347);
+		BrushSet(dragonIdx, O_DRAW, 0);
+		BrushSet(dragonEyesIdx, O_DRAW, 0);
+		BrushSet(dragonMouthIdx, O_DRAW, 0);
+		
+		dragonSleepIdx = BrushFind(348);
+		dragonSleepMouthIdx = BrushFind(349);
+		BrushSet(dragonSleepIdx, O_DRAW, 3);
+		BrushSet(dragonSleepMouthIdx, O_DRAW, 3);
+		
+		BrushSet(dragonIdx, O_STATUS, 2);
+	}
+}
+
+func CollideObject_352_1()
+{
+	dragonIdx = BrushFind(345);
+	dragonStatus = BrushGet(dragonIdx, O_STATUS);
+	if (dragonStatus == 0)
+	{
+		BrushSet(dragonIdx, O_STATUS, 1);
+		fireIdx = ObjFind(354);
+		ObjSet(fireIdx,O_DISABLE,0);
 	}
 }
 

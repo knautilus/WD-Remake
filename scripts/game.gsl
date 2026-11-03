@@ -60,6 +60,7 @@
 #def	TXT_BOULDER		"You smash the\nboulder to rubble."
 #def	TXT_EYE			"You plug the eye of\nthe tiger back into\nit's socket and it's\nmouth opens"
 #def	TXT_TUNNEL_DOOR_D	"Hey, it opens. I wonder\nwhere it leads?"	
+#def	TXT_SLEEPING		"The sleeping potion\nsmashes releasing\na potent cloud\nof vapour."
 
 #def	TXT_DEATH_BAT		"You were killed\nby a bat"
 #def	TXT_DEATH_SPIDER	"You're bitten by\na spider!"
@@ -69,6 +70,7 @@
 #def	TXT_DEATH_WATER		"You fell in the\nwater and drowned!"
 #def	TXT_DEATH_FALL		"You hit the ground\ntoo hard!"
 #def	TXT_DEATH_SNAKE		"You're bitten by\na poisonous snake!"
+#def	TXT_DEATH_DRAGON	"You were burnt by\nthe dragon breath!"
 
 #def	DLG_POGIE_1_D	"Gosh Pogie,\nthat really shook\nthe hut, are you ok?"
 #def	DLG_POGIE_2		"Squeak."

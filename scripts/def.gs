@@ -139,15 +139,8 @@
 #def DANGER_SPIDER      8
 #def DANGER_FISH        9
 #def DANGER_POPPY       10
-#def DANGER_LAVA        11
+#def DANGER_DRAGON      11
 #def DANGER_RAIN        12
-#def DANGER_ACIDRAIN    13
-#def DANGER_VAMPIRE     14
-#def DANGER_DRAGON      15
-#def DANGER_SWAMP       16
-#def DANGER_MAGICBOLT   17
-#def DANGER_EAGLE       18
-#def DANGER_MAGICWALL   19
 #def DANGER_OCEAN       98
 #def DANGER_FALL        99
 
