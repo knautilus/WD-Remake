@@ -1812,10 +1812,88 @@ func UpdateRoom_1_4()
 	AIUpdateRat(ratIdx);
 }
 
+func UpdateRoom_0_3()
+{
+	batIdx = ObjFind(366);
+	AIUpdateFly(batIdx);
+	batIdx = ObjFind(367);
+	AIUpdateFly(batIdx);
+}
+
+// Hall of dreaded doors
 func UpdateRoom_0_4()
 {
+	gateIdx = ObjFind(368);
+	target = ObjGet(gateIdx, O_TARGET);
+	if (target == 0)
+	{
+		ObjSet(gateIdx, O_CLASS, CLASS_NONE);
+	}
+	AIUpdateTrain(gateIdx);
+	
 	ratIdx = ObjFind(365);
 	AIUpdateRat(ratIdx);
+}
+
+// Right lever
+func ActionObject_373()
+{
+	gateIdx = ObjFind(368);
+	wallIdx = BrushFind(375);
+	lastTarget = ObjGet(gateIdx, O_USER);
+	if (lastTarget == 369)
+	{
+		MoveGate(370);
+	}
+	else if (lastTarget == 370)
+	{
+		MoveGate(369);
+	}
+	else if (lastTarget == 371)
+	{
+		MoveGate(370);
+	}
+	else if (lastTarget == 372)
+	{
+		MoveGate(369);
+	}
+}
+
+// Left lever
+func ActionObject_374()
+{
+	gateIdx = ObjFind(368);
+	wallIdx = BrushFind(375);
+	lastTarget = ObjGet(gateIdx, O_USER);
+	if (lastTarget == 369)
+	{
+		MoveGate(370);
+	}
+	else if (lastTarget == 370)
+	{
+		MoveGate(371);
+	}
+	else if (lastTarget == 371)
+	{
+		MoveGate(372);
+	}
+	else if (lastTarget == 372)
+	{
+		MoveGate(369);
+	}
+}
+
+func MoveGate(waypointId)
+{
+	gateIdx = ObjFind(368);
+	wallIdx = BrushFind(375);
+	ObjSet(gateIdx, O_TARGET, waypointId);
+	ObjSet(gateIdx, O_USER, waypointId);
+	ObjSet(gateIdx, O_CLASS, CLASS_KILL);
+	waypointIdx = ObjFind(waypointId);
+	waypointY = ObjGet(waypointIdx, O_Y);
+	BrushSet(wallIdx, B_Y, waypointY + 88);
+	GameCommand(CMD_REFRESH);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
