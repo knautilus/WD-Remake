@@ -134,7 +134,7 @@
 #def DANGER_DEFAULT     1
 #def DANGER_WATER       2
 #def DANGER_FIRE        3
-#def DANGER_SPIKES      4
+#def DANGER_GATE        4
 #def DANGER_SNAKE       5
 #def DANGER_BAT         6
 #def DANGER_BIRD        7

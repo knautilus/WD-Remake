@@ -124,6 +124,7 @@ func PlayerDeathMessage( death )
 	if(death==DANGER_DRAGON)		return TXT_DEATH_DRAGON;
 	if(death==DANGER_RAIN)			return TXT_DEATH_RAIN;
 	if(death==DANGER_RAT)			return TXT_DEATH_RAT;
+	if(death==DANGER_GATE)			return TXT_DEATH_GATE;
 	if(death==-1)					return "";
 	// ...
 	return "YOU HAVE DIED!";		// default
@@ -1075,16 +1076,38 @@ func ActionObject_301()
 func ActionObject_284()
 {
 	leverIdx = ObjFind(284);
+	leverStatus = ObjGet(leverIdx,O_STATUS);
 
-	useItemResult = TryUseItem2(110, 1);
-	if (useItemResult == 1)
+	if (leverStatus == 0)
 	{
-		ObjSet(leverIdx,O_STATUS,1);
-		ObjSet(leverIdx,O_CLASS,0);
+		useItemResult = TryUseItem2(110, 1);
+		if (useItemResult == 1)
+		{
+			ObjSet(leverIdx,O_STATUS,1);
+		}
+		else if (useItemResult == -1)
+		{
+			OpenDialogMessage(TXT_LEVER, COLOR_RED);
+		}
 	}
-	else if (useItemResult == -1)
+	else if (leverStatus == 1)
 	{
-		OpenDialogMessage(TXT_LEVER, COLOR_RED);
+		waypointIdx = ObjFind(294);
+		ObjSet(waypointIdx,O_TARGET,0);
+		ObjSet(leverIdx,O_STATUS,2);
+		ObjSet(leverIdx,O_FRAME,0);
+	}
+	else if (leverStatus == 2)
+	{
+		bridge1Idx = ObjFind(288);
+		if (ObjGet(bridge1Idx, O_TARGET) == 0)
+		{
+			waypointIdx = ObjFind(294);
+			ObjSet(bridge1Idx,O_TARGET,289);
+			ObjSet(waypointIdx,O_TARGET,289);
+			ObjSet(leverIdx,O_STATUS,1);
+			ObjSet(leverIdx,O_FRAME,1);
+		}
 	}
 }
 
@@ -1093,7 +1116,7 @@ func UpdateRoom_7_5()
 {
 	leverIdx = ObjFind(284);
 
-	if (ObjGet(leverIdx, O_STATUS) != 1)
+	if (ObjGet(leverIdx, O_STATUS) == 0)
 	{
 		return;
 	}
@@ -1126,6 +1149,13 @@ func UpdateRoom_7_5()
 		ObjSet(bridge2Idx, O_TARGET, 298);
 		ObjSet(bridge3Idx, O_TARGET, 298);
 	}
+}
+
+func CollideObject_376_1()
+{
+	respawnIdx = ObjFind(377);
+	PlayerSet(P_XSAFE,ObjGet(respawnIdx,O_X));
+	PlayerSet(P_YSAFE,ObjGet(respawnIdx,O_Y));
 }
 
 func UpdateRoom_18_6()
