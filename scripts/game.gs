@@ -1857,7 +1857,10 @@ func UpdateRoom_0_4()
 	target = ObjGet(gateIdx, O_TARGET);
 	if (target == 0)
 	{
-		ObjSet(gateIdx, O_CLASS, CLASS_NONE);
+		if (ObjGet(gateIdx, O_CLASS) != CLASS_NONE)
+		{
+			ObjSet(gateIdx, O_CLASS, CLASS_NONE);
+		}
 	}
 	AIUpdateTrain(gateIdx);
 	
@@ -1869,21 +1872,29 @@ func UpdateRoom_0_4()
 func ActionObject_373()
 {
 	gateIdx = ObjFind(368);
-	wallIdx = BrushFind(375);
-	lastTarget = ObjGet(gateIdx, O_USER);
-	if (lastTarget == 369)
+	if (ObjGet(gateIdx,O_TARGET)!=0)
+	{
+		return;
+	}
+	
+	leverIdx = ObjFind(373);
+	frame = ObjGet(leverIdx, O_FRAME);
+	ObjSet(leverIdx, O_FRAME, !frame);
+	
+	recentTarget = ObjGet(gateIdx, O_RECENTTARGET);
+	if (recentTarget == 369)
 	{
 		MoveGate(370);
 	}
-	else if (lastTarget == 370)
+	else if (recentTarget == 370)
 	{
 		MoveGate(369);
 	}
-	else if (lastTarget == 371)
+	else if (recentTarget == 371)
 	{
 		MoveGate(370);
 	}
-	else if (lastTarget == 372)
+	else if (recentTarget == 372)
 	{
 		MoveGate(369);
 	}
@@ -1893,21 +1904,29 @@ func ActionObject_373()
 func ActionObject_374()
 {
 	gateIdx = ObjFind(368);
-	wallIdx = BrushFind(375);
-	lastTarget = ObjGet(gateIdx, O_USER);
-	if (lastTarget == 369)
+	if (ObjGet(gateIdx,O_TARGET)!=0)
+	{
+		return;
+	}
+	
+	leverIdx = ObjFind(374);
+	frame = ObjGet(leverIdx, O_FRAME);
+	ObjSet(leverIdx, O_FRAME, !frame);
+
+	recentTarget = ObjGet(gateIdx, O_RECENTTARGET);
+	if (recentTarget == 369)
 	{
 		MoveGate(370);
 	}
-	else if (lastTarget == 370)
+	else if (recentTarget == 370)
 	{
 		MoveGate(371);
 	}
-	else if (lastTarget == 371)
+	else if (recentTarget == 371)
 	{
 		MoveGate(372);
 	}
-	else if (lastTarget == 372)
+	else if (recentTarget == 372)
 	{
 		MoveGate(369);
 	}
@@ -1918,12 +1937,40 @@ func MoveGate(waypointId)
 	gateIdx = ObjFind(368);
 	wallIdx = BrushFind(375);
 	ObjSet(gateIdx, O_TARGET, waypointId);
-	ObjSet(gateIdx, O_USER, waypointId);
+	ObjSet(gateIdx, O_RECENTTARGET, waypointId);
 	ObjSet(gateIdx, O_CLASS, CLASS_KILL);
 	waypointIdx = ObjFind(waypointId);
 	waypointY = ObjGet(waypointIdx, O_Y);
 	BrushSet(wallIdx, B_Y, waypointY + 88);
 	GameCommand(CMD_REFRESH);
+}
+
+// Trap
+func CollideObject_379_1()
+{
+	TriggerTrap();
+}
+
+func CollideObject_379_2()
+{
+	TriggerTrap();
+}
+
+func TriggerTrap()
+{
+	trapIdx = BrushFind(378);
+	trapStatus = BrushGet(trapIdx, O_STATUS);
+	if (trapStatus == 0)
+	{
+		BrushSet(trapIdx, O_STATUS, 1);
+		WaitFrames(8);
+		BrushSet(trapIdx, B_DRAW, 1);
+		GameCommand(CMD_REFRESH);
+		BrushPlayAnimFrames( trapIdx, {1,2,2,2,2,1,0} );
+		BrushSet(trapIdx, B_DRAW, 3);
+		GameCommand(CMD_REFRESH);
+		BrushSet(trapIdx, O_STATUS, 0);
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////////

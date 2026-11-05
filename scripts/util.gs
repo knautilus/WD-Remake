@@ -185,6 +185,17 @@ func ObjPlayAnimFrames( idx, frames )
 	}
 }
 
+func BrushPlayAnimFrames( idx, frames )
+{
+	BrushSet( idx, O_ANIM, 0 );
+	delay = BrushGet( idx, O_DELAY );
+	for(i=0;i<sizeof(frames);i++)
+	{
+		BrushSet( idx, O_FRAME, frames[i] );
+		WaitFrames(delay);
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 // IN: int; frames; number of game cycles to rumble
 // Request rumble for a number of frames

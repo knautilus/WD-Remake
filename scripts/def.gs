@@ -113,6 +113,8 @@
 #def O_HURTDELAY	41	// hurt delay, used in Class=Hurt
 #def O_LIFEDECSTEP	42	// hurt step, used in Class=Hurt
 
+#def O_RECENTTARGET	32	// recent target of moving portcullis
+
 // player variables starting from P_USER=64 up to P_MAX=128
 #def P_LIFEINC		64
 #def P_LIFEDEC		65
