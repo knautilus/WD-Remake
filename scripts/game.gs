@@ -1287,6 +1287,7 @@ func ActionObject_305()
 			Message1(DLG_DORA_42_D);
 			spellIdx = ObjFind(131);
 			ObjSet(spellIdx, O_DISABLE, 0);
+			ObjSet(doraIdx, O_TILE, 191);
 			ObjSet(doraIdx, O_STATUS, 4);
 		}
 		else if (useItemResult == -1)
