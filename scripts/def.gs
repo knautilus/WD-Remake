@@ -53,7 +53,8 @@
 #def MAT_LADDER		10			// ladder; player can climb
 #def MAT_DOOR		11			// door; player can teleport on action
 #def MAT_TELEPORT	12			// teleport; player can teleport on collide
-#def MAT_DANGER		13			// player cannot respawn here
+#def MAT_GATE		13			// animated door; player can teleport on action
+#def MAT_DANGER		14			// player cannot respawn here
 
 // objects classes
 #def CLASS_NONE		0			// default
