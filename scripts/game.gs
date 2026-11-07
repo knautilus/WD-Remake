@@ -81,6 +81,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(128), OBJ_128);
 	ObjSetName(ObjFind(129), OBJ_129);
 	ObjSetName(ObjFind(130), OBJ_130);
+	ObjSetName(ObjFind(131), OBJ_131);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1276,17 +1277,31 @@ func ActionObject_305()
 		useItemResult = TryUseItem2(127, 1);
 		if (useItemResult == 1)
 		{
-			//Message1(DLG_DORA_27_D);
-			//Message2(DLG_DORA_28);
-			//spellIdx = ObjFind(128);
-			//ObjSet(spellIdx, O_DISABLE, 0);
-			//ObjSet(doraIdx, O_STATUS, 4);
+			Message1(DLG_DORA_35_D);
+			Message2(DLG_DORA_36);
+			Message1(DLG_DORA_37_D);
+			Message2(DLG_DORA_38);
+			Message1(DLG_DORA_39_D);
+			Message2(DLG_DORA_40);
+			Message2(DLG_DORA_41);
+			Message1(DLG_DORA_42_D);
+			spellIdx = ObjFind(131);
+			ObjSet(spellIdx, O_DISABLE, 0);
+			ObjSet(doraIdx, O_STATUS, 4);
 		}
 		else if (useItemResult == -1)
 		{
 			Message2(DLG_DORA_33);
 			Message1(DLG_DORA_34_D);
 		}
+	}
+	else if (doraStatus==4)
+	{
+		Message2(DLG_DORA_43);
+		Message1(DLG_DORA_44_D);
+		Message2(DLG_DORA_45);
+		Message1(DLG_DORA_46_D);
+		Message2(DLG_DORA_47);
 	}
 }
 

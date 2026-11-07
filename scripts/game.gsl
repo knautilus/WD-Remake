@@ -36,6 +36,7 @@
 #def	OBJ_128			"A pickaxe"
 #def	OBJ_129			"Eye of the tiger"
 #def	OBJ_130			"A red herring"
+#def	OBJ_131			"A spellbook page"
 
 // Dialogs
 
@@ -345,6 +346,21 @@
 
 #def	DLG_DORA_33		"That was quick."
 #def	DLG_DORA_34_D	"I've not done it yet...\nBut I have a plan. Smash\nthe magic sleeping potion\nnear the dragon."
+
+#def	DLG_DORA_35_D	"Dragon defeated - well\nsleeping and here's\nyour magic staff."
+#def	DLG_DORA_36		"Wonderful Dizzy. Although\nI think he'll be dizzy\nin the morning."
+#def	DLG_DORA_37_D	"Something I've felt all\nmy life, and I've not\nbeen on the poppies."
+#def	DLG_DORA_38		"I wish there was\nsomething I could do\nfor you in return."
+#def	DLG_DORA_39_D	"Well, I was wondering if\nyou have any spare spells?\nI'm particularly interested\nin one that brings inanimate\nobjects to life."
+#def	DLG_DORA_40		"Who isn't! I've had so mush\nfun with that one. One of\nmy favourites. I know it\noff by heart so you can\nhave the page."
+#def	DLG_DORA_41		"Mind you, it'll require\na magic wand."
+#def	DLG_DORA_42_D	"Oh, I think I've got\nthat covered. Thanks."
+
+#def	DLG_DORA_43		"How are your\nadventures going?"
+#def	DLG_DORA_44_D	"Pretty good. It's amazing\nhow many people around\nhere need my help."
+#def	DLG_DORA_45		"Well, I think they've been\nstoring them up for you.\nIt's been a long time\nsince they last met an\nheroic adventurer."
+#def	DLG_DORA_46_D	"Anyway, I think I'm almost\ndone now. Everyone here\nseems happy now and I hope\nto be going home with\nPogie soon."
+#def	DLG_DORA_47		"Good luck."
 
 #def	DLG_DYLAN_1		"Roar! Come any closer\nand I'll rip you to pieces!\nRoar!!!"
 #def	DLG_DYLAN_2_D	"Whoa... Calm down! I mean\nyou no harm. I'm trying to\nfind my pet fluffle\nand my way home."
