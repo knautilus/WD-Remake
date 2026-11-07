@@ -346,16 +346,26 @@ func EnterGate( idx )
 	gateIdx = BrushFind(ObjGet(idx, O_USER));
 	gate2Idx = BrushFind(ObjGet(targetIdx, O_USER));
 	if(targetIdx==-1 || gateIdx==-1 || gate2Idx==-1) return;
-	PlayerPlayAnimFrames(PTILE_TURN,{0,1,2,3,4});
+
+	PlayerEnterScripted();
+	PlayerPlayTurnBack();
+
+	PlayerSet(P_TILE, PTILE_IDLE_B);
+	PlayerSet(P_FRAME, 0);
+	PlayerSet(P_ANIM, 2);
+
 	BrushPlayAnimFrames(gateIdx,{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20});
+
 	PlayerSet(P_DISABLE, 1);
-	PlayerSet(P_STATUS, STATUS_SCRIPTED);
-	PlayerSet(P_TILE, 0); 
+	PlayerSet(P_TILE, 0);
 	PlayerSetPos(ObjGet(targetIdx,O_X)+ObjGet(targetIdx,O_W)/2, ObjGet(targetIdx,O_Y)+11);
+
 	BrushPlayAnimFrames(gateIdx,{20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0});
 	BrushPlayAnimFrames(gate2Idx,{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20});
+
 	PlayerSet(P_DISABLE, 0);
 	PlayerEnterIdle();
+
 	BrushPlayAnimFrames(gate2Idx,{20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0});
 }
 

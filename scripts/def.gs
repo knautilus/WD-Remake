@@ -35,6 +35,7 @@
 #def PTILE_TURN		24
 #def PTILE_CLIMB	25
 #def PTILE_SIT		26
+#def PTILE_IDLE_B	27
 
 #def EMOTION_NOAIR1	6			// player's emotion offset for no air1
 #def EMOTION_NOAIR2	7			// player's emotion offset for no air2

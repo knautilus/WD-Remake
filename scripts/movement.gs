@@ -465,8 +465,11 @@ func CM_UpdateFall()
 
 func CM_UpdateScripted()
 {
-	if(PlayerGet(P_ANIM)!=0) 
-		PlayerSet(P_FRAME, PlayerGet(P_FRAME)+1);
+	if(PlayerGet(P_ANIM)==0)
+	{
+		return;
+	}
+	UpdatePlayerFrame();
 }
 
 /////////////////////////////////////////////////////////////////////////////////
