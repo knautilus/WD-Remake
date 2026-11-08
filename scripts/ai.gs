@@ -477,6 +477,7 @@ func AIUpdateAcidRain(dripper, drip)
 			if(CheckAcidRainBB(x,y))
 			{
 				ObjSet(drip,O_DISABLE,1);
+				SamplePlay(FX_RAIN);
 			}
 		}
 	}
