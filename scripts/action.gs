@@ -178,6 +178,34 @@ func UseObject( idx )
 	DropObject(idx);
 }
 
+func UseItem(idx, rightItemId, removeItem, commentChoice)
+{
+	handleIdx = ObjFind(rightItemId);
+	if (idx==-1 || handleIdx==-1)
+		return 0;
+	
+	if (idx==handleIdx)
+	{
+		if (removeItem == 1)
+		{
+			InventorySub(idx);
+		}
+		return 1;
+	}
+	else
+	{
+		if (commentChoice == 1)
+		{
+			WrongItemDialog();
+		}
+		else
+		{
+			DropObject(idxobj);
+		}
+		return 0;
+	}
+}
+
 func TryUseItem( itemId, removeItem )
 {
 	handleIdx = ObjFind(itemId);
@@ -326,9 +354,14 @@ func ActionObject( idx )
 		}
 	}
 
-	// open inventory to use/drop something
-	idx2 = OpenDialogInventory();
-	if(idx2!=-1) UseObject(idx2);
+	ActionItem();
+}
+
+// open inventory to use/drop something
+func ActionItem()
+{
+	idx = OpenDialogInventory();
+	if(idx!=-1) UseObject(idx);
 }
 
 func EnterDoor( idx )
