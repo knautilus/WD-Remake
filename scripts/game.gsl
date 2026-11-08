@@ -37,6 +37,7 @@
 #def	OBJ_129			"Eye of the tiger"
 #def	OBJ_130			"A red herring"
 #def	OBJ_131			"A spellbook page"
+#def	OBJ_132			"A bitcoin"
 
 // Dialogs
 
@@ -287,6 +288,23 @@
 #def	DLG_DONKEY_12_D	"Maybe they were playing\n'nail the plank on\nthe donkey'?"
 #def	DLG_DONKEY_13	"Not funny.\nCan you help me?"
 #def	DLG_DONKEY_14_D	"I don't know,\nbut I'll try."
+
+#def	DLG_DONKEY_15_D	"Ok, I think this\nmight work. Now I've\nnot done this before\nso wish me luck!"
+#def	DLG_DONKEY_16	"Oh great. I'll\nbe a guinea pig?"
+#def	DLG_DONKEY_17_D	"No... I don't know that\nspell. Just this spell\nto change your leg back."
+#def	DLG_DONKEY_18	"Go ahead. I'll close\nmy eyes and wish."
+#def	DLG_DONKEY_19_D	"Now listen wand... turn\nthis wood to flesh with\nan alacazam, an alacazoo\nand an alacazizz."
+#def	DLG_DONKEY_20	"Woooow!!!"
+#def	DLG_DONKEY_21_D	"What?!"
+#def	DLG_DONKEY_22	"Looks like you're\nrubbish at spells,\nbut you'd be great\nat scrabble!"
+#def	DLG_DONKEY_23	"Oh no wait...\nSomething's happening..."
+#def	DLG_DONKEY_24_D	"Wow! It actually worked!"
+#def	DLG_DONKEY_25	"Wow!!! It worked!!!\nHere's a payment for\nyour good deed. See ya!"
+
+#def	DLG_DONKEY_26_D	"Try and stay off\nthe booze and out\nof trouble."
+#def	DLG_DONKEY_27	"Ok, I think I'm going\nto learn some magic\nand become a wizard!"
+#def	DLG_DONKEY_28_D	"Really?"
+#def	DLG_DONKEY_29	"Really, really!"
 
 #def	DLG_JESTER_1_D	"Hello jester. Your\nclothes say happy, but\nyour face says sad?"
 #def	DLG_JESTER_2	"The wizard wants\nme no more,\nhe finds fun\nthrough another door."

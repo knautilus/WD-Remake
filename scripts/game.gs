@@ -82,6 +82,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(129), OBJ_129);
 	ObjSetName(ObjFind(130), OBJ_130);
 	ObjSetName(ObjFind(131), OBJ_131);
+	ObjSetName(ObjFind(132), OBJ_132);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1069,7 +1070,49 @@ func ActionObject_301()
 	}
 	else if (donkeyStatus==2)
 	{
-		// todo: check inventory for magic wand
+		println("status 2");
+		useItemResult = TryUseItem(119, 0);
+		if (useItemResult == 1)
+		{
+			println("wand used");
+			spellIdx = ObjFind(131);
+			if (InventoryFind(spellIdx)!=-1)
+			{
+				println("spell found");
+				InventorySub(spellIdx);
+				Message1(DLG_DONKEY_15_D);
+				Message2(DLG_DONKEY_16);
+				Message1(DLG_DONKEY_17_D);
+				Message2(DLG_DONKEY_18);
+				Message1(DLG_DONKEY_19_D);
+				Message2(DLG_DONKEY_20);
+				Message1(DLG_DONKEY_21_D);
+				Message2(DLG_DONKEY_22);
+				Message2(DLG_DONKEY_23);
+				Message1(DLG_DONKEY_24_D);
+				Message2(DLG_DONKEY_25);
+				bitcoinIdx = ObjFind(132);
+				ObjSet(bitcoinIdx, O_DISABLE, 0);
+				coinIdx = ObjFind(397);
+				ObjSet(coinIdx, O_DISABLE, 0);
+				ObjSet(donkeyIdx, O_STATUS, 3);
+			}
+			else
+			{
+				println("spell not found");
+				wandIdx = ObjFind(119);
+				DropObject(wandIdx);
+			}
+		}
+	}
+	else if (donkeyStatus==3)
+	{
+		Message1(DLG_DONKEY_26_D);
+		Message2(DLG_DONKEY_27);
+		Message1(DLG_DONKEY_28_D);
+		Message2(DLG_DONKEY_29);
+		ObjSet(donkeyIdx, O_STATUS, 4);
+		ObjSet(donkeyIdx, O_CLASS, 0);
 	}
 }
 
