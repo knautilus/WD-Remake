@@ -489,8 +489,7 @@ func ActionObject_273()
 // Yellow gate
 func ActionObject_218()
 {
-	keyIdx = ObjFind(101);
-	if (InventoryFind(keyIdx) != -1)
+	if (InventoryHasItem(101))
 	{
 		ActionItem();
 	}
@@ -503,7 +502,7 @@ func ActionObject_218()
 
 func UseObject_218(idx)
 {
-	if (UseItem(idx, 101, 1, 1) == 1)
+	if (TryUseItem(idx, 101, 1, 1))
 	{
 		gateIdx = ObjFind(218);
 		leftLeafIdx = BrushFind(219);
@@ -532,8 +531,7 @@ func UpdateRoom_16_4()
 // Red gate
 func ActionObject_229()
 {
-	keyIdx = ObjFind(104);
-	if (InventoryFind(keyIdx) != -1)
+	if (InventoryHasItem(104))
 	{
 		ActionItem();
 	}
@@ -546,7 +544,7 @@ func ActionObject_229()
 
 func UseObject_229(idx)
 {
-	if (UseItem(idx, 104, 1, 1) == 1)
+	if (TryUseItem(idx, 104, 1, 1))
 	{
 		gateIdx = ObjFind(229);
 		leftLeafIdx = BrushFind(227);
@@ -561,7 +559,7 @@ func UseObject_229(idx)
 // Signpost
 func UseObject_262(idx)
 {
-	if (UseItem(idx, 107, 1, 0) == 1)
+	if (TryUseItem(idx, 107, 1, 0))
 	{
 		Message0(TXT_SIGNPOST);
 		signTopIdx = BrushFind(263);
@@ -622,7 +620,7 @@ func ActionObject_236()
 		return;
 	}
 
-	if(InventoryFind(ObjFind(102)) != -1)
+	if (InventoryHasItem(102))
 	{
 		ActionItem();
 	}
@@ -637,7 +635,7 @@ func ActionObject_236()
 
 func UseObject_236(idx)
 {
-	if (UseItem(idx, 102, 1, 1) == 1)
+	if (TryUseItem(idx, 102, 1, 1))
 	{
 		Message1(DLG_DOZY_13_D);
 		Message2(DLG_DOZY_14);
@@ -666,7 +664,7 @@ func ActionObject_237()
 	dozyStatus = ObjGet(dozyIdx,O_STATUS);
 	if (dozyStatus == 0)
 	{
-		if (InventoryFind(ObjFind(116)) != -1)
+		if (InventoryHasItem(116))
 		{
 			ActionItem();
 		}
@@ -687,7 +685,7 @@ func ActionObject_237()
 
 func UseObject_237(idx)
 {
-	if (UseItem(idx, 116, 1, 1) == 1)
+	if (TryUseItem(idx, 116, 1, 1))
 	{
 		Message1(DLG_DOZY_29_D);
 		Message1(DLG_DOZY_30_D);
@@ -744,7 +742,7 @@ func ActionObject_253()
 	}
 	else if (denzilStatus==1)
 	{
-		if (InventoryFind(ObjFind(105)) != -1)
+		if (InventoryHasItem(105))
 		{
 			ActionItem();
 		}
@@ -765,8 +763,7 @@ func ActionObject_253()
 
 func UseObject_253(idx)
 {
-	useItemResult = UseItem(idx, 105, 1, 1);
-	if (useItemResult == 1)
+	if (TryUseItem(idx, 105, 1, 1))
 	{
 		Message1(DLG_DENZIL_11_D);
 		Message2(DLG_DENZIL_12);
@@ -843,7 +840,7 @@ func CollideObject_266_2()
 
 		bandIdx = ObjFind(106);
 
-		if (roomStatus == 0 || InventoryFind(bandIdx)!=-1)
+		if (roomStatus == 0 || InventoryFind(bandIdx) != -1)
 		{
 			Message2(DLG_TINKER_1);
 			Message2(DLG_TINKER_2);
@@ -851,7 +848,7 @@ func CollideObject_266_2()
 			RoomSet(18,4,R_STATUS,1);
 			WaitFrames(8);
 
-			if (InventoryFind(bandIdx)!=-1)
+			if (InventoryFind(bandIdx) != -1)
 			{
 				InventorySub(bandIdx);
 				Message1(DLG_TINKER_4_D);
@@ -869,7 +866,7 @@ func CollideObject_266_2()
 
 		bellIdx = ObjFind(113);
 
-		if (roomStatus == 0 || InventoryFind(bellIdx)!=-1)
+		if (roomStatus == 0 || InventoryFind(bellIdx) != -1)
 		{
 			Message2(DLG_TINKER_1);
 			Message2(DLG_TINKER_6);
@@ -950,18 +947,11 @@ func ActionObject_268()
 	}
 	else if (tinkerStatus == 6)
 	{
-		useItemResult = TryUseItem2(120, 1);
-		if (useItemResult == 1)
+		if (InventoryHasItem(120))
 		{
-			Message1(DLG_TINKER_15_D);
-			Message2(DLG_TINKER_16);
-			ticketIdx = ObjFind(123);
-			ObjSet(ticketIdx, O_DISABLE, 0);
-			coinIdx = ObjFind(330);
-			ObjSet(coinIdx, O_DISABLE, 0);
-			ObjSet(tinkerIdx, O_STATUS, 7);
+			ActionItem();
 		}
-		else if (useItemResult == -1)
+		else
 		{
 			Message2(DLG_TINKER_12);
 			Message2(DLG_TINKER_13);
@@ -977,18 +967,11 @@ func ActionObject_268()
 	}
 	else if (tinkerStatus == 8)
 	{
-		useItemResult = TryUseItem2(122, 1);
-		if (useItemResult == 1)
+		if (InventoryHasItem(122))
 		{
-			Message1(DLG_TINKER_19_D);
-			Message2(DLG_TINKER_20);
-			keyIdx = ObjFind(124);
-			ObjSet(keyIdx, O_DISABLE, 0);
-			coinIdx = ObjFind(331);
-			ObjSet(coinIdx, O_DISABLE, 0);
-			ObjSet(tinkerIdx, O_STATUS, 9);
+			ActionItem();
 		}
-		else if (useItemResult == -1)
+		else
 		{
 			Message2(DLG_TINKER_12);
 			Message2(DLG_TINKER_17);
@@ -1004,18 +987,11 @@ func ActionObject_268()
 	}
 	else if (tinkerStatus == 10)
 	{
-		useItemResult = TryUseItem2(125, 1);
-		if (useItemResult == 1)
+		if (InventoryHasItem(125))
 		{
-			Message1(DLG_TINKER_23_D);
-			Message2(DLG_TINKER_24);
-			pickaxeIdx = ObjFind(128);
-			ObjSet(pickaxeIdx, O_DISABLE, 0);
-			coinIdx = ObjFind(335);
-			ObjSet(coinIdx, O_DISABLE, 0);
-			ObjSet(tinkerIdx, O_STATUS, 11);
+			ActionItem();
 		}
-		else if (useItemResult == -1)
+		else
 		{
 			Message2(DLG_TINKER_12);
 			Message2(DLG_TINKER_21);
@@ -1031,8 +1007,65 @@ func ActionObject_268()
 	}
 	else if (tinkerStatus == 13)
 	{
-		useItemResult = TryUseItem2(129, 1);
-		if (useItemResult == 1)
+		if (InventoryHasItem(129))
+		{
+			ActionItem();
+		}
+		else
+		{
+			Message2(DLG_TINKER_12);
+			Message2(DLG_TINKER_25);
+			Message1(DLG_TINKER_26_D);
+		}
+	}
+}
+
+func UseObject_268(idx)
+{
+	tinkerIdx = ObjFind(268);
+	tinkerStatus = ObjGet(tinkerIdx, O_STATUS);
+	if (tinkerStatus == 6)
+	{
+		if (TryUseItem(idx, 120, 1, 1))
+		{
+			Message1(DLG_TINKER_15_D);
+			Message2(DLG_TINKER_16);
+			ticketIdx = ObjFind(123);
+			ObjSet(ticketIdx, O_DISABLE, 0);
+			coinIdx = ObjFind(330);
+			ObjSet(coinIdx, O_DISABLE, 0);
+			ObjSet(tinkerIdx, O_STATUS, 7);
+		}
+	}
+	else if (tinkerStatus == 8)
+	{
+		if (TryUseItem(idx, 122, 1, 1))
+		{
+			Message1(DLG_TINKER_19_D);
+			Message2(DLG_TINKER_20);
+			keyIdx = ObjFind(124);
+			ObjSet(keyIdx, O_DISABLE, 0);
+			coinIdx = ObjFind(331);
+			ObjSet(coinIdx, O_DISABLE, 0);
+			ObjSet(tinkerIdx, O_STATUS, 9);
+		}
+	}
+	else if (tinkerStatus == 10)
+	{
+		if (TryUseItem(idx, 125, 1, 1))
+		{
+			Message1(DLG_TINKER_23_D);
+			Message2(DLG_TINKER_24);
+			pickaxeIdx = ObjFind(128);
+			ObjSet(pickaxeIdx, O_DISABLE, 0);
+			coinIdx = ObjFind(335);
+			ObjSet(coinIdx, O_DISABLE, 0);
+			ObjSet(tinkerIdx, O_STATUS, 11);
+		}
+	}
+	else if (tinkerStatus == 13)
+	{
+		if (TryUseItem(idx, 129, 1, 1))
 		{
 			//Message1(DLG_TINKER_19_D);
 			//Message2(DLG_TINKER_20);
@@ -1041,12 +1074,6 @@ func ActionObject_268()
 			//coinIdx = ObjFind(335);
 			//ObjSet(coinIdx, O_DISABLE, 0);
 			ObjSet(tinkerIdx, O_STATUS, 14);
-		}
-		else if (useItemResult == -1)
-		{
-			Message2(DLG_TINKER_12);
-			Message2(DLG_TINKER_25);
-			Message1(DLG_TINKER_26_D);
 		}
 	}
 }
@@ -1112,40 +1139,7 @@ func ActionObject_301()
 	}
 	else if (donkeyStatus==2)
 	{
-		println("status 2");
-		useItemResult = TryUseItem(119, 0);
-		if (useItemResult == 1)
-		{
-			println("wand used");
-			spellIdx = ObjFind(131);
-			if (InventoryFind(spellIdx)!=-1)
-			{
-				println("spell found");
-				InventorySub(spellIdx);
-				Message1(DLG_DONKEY_15_D);
-				Message2(DLG_DONKEY_16);
-				Message1(DLG_DONKEY_17_D);
-				Message2(DLG_DONKEY_18);
-				Message1(DLG_DONKEY_19_D);
-				Message2(DLG_DONKEY_20);
-				Message1(DLG_DONKEY_21_D);
-				Message2(DLG_DONKEY_22);
-				Message2(DLG_DONKEY_23);
-				Message1(DLG_DONKEY_24_D);
-				Message2(DLG_DONKEY_25);
-				bitcoinIdx = ObjFind(132);
-				ObjSet(bitcoinIdx, O_DISABLE, 0);
-				coinIdx = ObjFind(397);
-				ObjSet(coinIdx, O_DISABLE, 0);
-				ObjSet(donkeyIdx, O_STATUS, 3);
-			}
-			else
-			{
-				println("spell not found");
-				wandIdx = ObjFind(119);
-				DropObject(wandIdx);
-			}
-		}
+		ActionItem();
 	}
 	else if (donkeyStatus==3)
 	{
@@ -1158,6 +1152,40 @@ func ActionObject_301()
 	}
 }
 
+func UseObject_301(idx)
+{
+	if (TryUseItem(idx, 119, 0, 0))
+	{
+		spellIdx = ObjFind(131);
+		if (InventoryFind(spellIdx)!=-1)
+		{
+			InventorySub(spellIdx);
+			Message1(DLG_DONKEY_15_D);
+			Message2(DLG_DONKEY_16);
+			Message1(DLG_DONKEY_17_D);
+			Message2(DLG_DONKEY_18);
+			Message1(DLG_DONKEY_19_D);
+			Message2(DLG_DONKEY_20);
+			Message1(DLG_DONKEY_21_D);
+			Message2(DLG_DONKEY_22);
+			Message2(DLG_DONKEY_23);
+			Message1(DLG_DONKEY_24_D);
+			Message2(DLG_DONKEY_25);
+			bitcoinIdx = ObjFind(132);
+			ObjSet(bitcoinIdx, O_DISABLE, 0);
+			coinIdx = ObjFind(397);
+			ObjSet(coinIdx, O_DISABLE, 0);
+			donkeyIdx = ObjFind(301);
+			ObjSet(donkeyIdx, O_FRAME, 1);
+			ObjSet(donkeyIdx, O_STATUS, 3);
+		}
+		else
+		{
+			DropObject(idx);
+		}
+	}
+}
+
 // Bridge lever
 func ActionObject_284()
 {
@@ -1166,12 +1194,11 @@ func ActionObject_284()
 
 	if (leverStatus == 0)
 	{
-		useItemResult = TryUseItem2(110, 1);
-		if (useItemResult == 1)
+		if (InventoryHasItem(110))
 		{
-			ObjSet(leverIdx,O_STATUS,1);
+			ActionItem();
 		}
-		else if (useItemResult == -1)
+		else
 		{
 			OpenDialogMessage(TXT_LEVER, COLOR_RED);
 		}
@@ -1193,6 +1220,19 @@ func ActionObject_284()
 			ObjSet(waypointIdx,O_TARGET,289);
 			ObjSet(leverIdx,O_STATUS,1);
 			ObjSet(leverIdx,O_FRAME,1);
+		}
+	}
+}
+
+func UseObject_284(idx)
+{
+	leverIdx = ObjFind(284);
+	leverStatus = ObjGet(leverIdx,O_STATUS);
+	if (leverStatus == 0)
+	{
+		if (TryUseItem(idx, 110, 1, 1))
+		{
+			ObjSet(leverIdx,O_STATUS,1);
 		}
 	}
 }
@@ -1266,8 +1306,29 @@ func ActionObject_304()
 	}
 	else if (jesterStatus==1)
 	{
-		useItemResult = TryUseItem2(121, 1);
-		if (useItemResult == 1)
+		if (InventoryHasItem(121))
+		{
+			ActionItem();
+		}
+		else
+		{
+			Message2(DLG_JESTER_6);
+			Message1(DLG_JESTER_7_D);
+		}
+	}
+	else if (jesterStatus==2)
+	{
+		Message2(DLG_JESTER_15);
+	}
+}
+
+func UseObject_304(idx)
+{
+	jesterIdx = ObjFind(304);
+	jesterStatus = ObjGet(jesterIdx,O_STATUS);
+	if (jesterStatus==1)
+	{
+		if (TryUseItem(idx, 121, 1, 1))
 		{
 			Message1(DLG_JESTER_8_D);
 			Message2(DLG_JESTER_9);
@@ -1280,15 +1341,6 @@ func ActionObject_304()
 			ObjSet(diceIdx, O_DISABLE, 0);
 			ObjSet(jesterIdx, O_STATUS, 2);
 		}
-		else if (useItemResult == -1)
-		{
-			Message2(DLG_JESTER_6);
-			Message1(DLG_JESTER_7_D);
-		}
-	}
-	else if (jesterStatus==2)
-	{
-		Message2(DLG_JESTER_15);
 	}
 }
 
@@ -1338,7 +1390,7 @@ func ActionObject_305()
 	}
 	else if (doraStatus==2)
 	{
-		if (InventoryFind(ObjFind(109)) != -1)
+		if (InventoryHasItem(109))
 		{
 			ActionItem();
 		}
@@ -1350,7 +1402,7 @@ func ActionObject_305()
 	}
 	else if (doraStatus==3)
 	{
-		if (InventoryFind(ObjFind(127)) != -1)
+		if (InventoryHasItem(127))
 		{
 			ActionItem();
 		}
@@ -1376,7 +1428,7 @@ func UseObject_305(idx)
 	doraStatus = ObjGet(doraIdx,O_STATUS);
 	if (doraStatus == 2)
 	{
-		if (UseItem(idx, 109, 1, 1) == 1)
+		if (TryUseItem(idx, 109, 1, 1))
 		{
 			Message1(DLG_DORA_27_D);
 			Message2(DLG_DORA_28);
@@ -1391,7 +1443,7 @@ func UseObject_305(idx)
 	}
 	else if (doraStatus == 3)
 	{
-		if (UseItem(idx, 127, 1, 1) == 1)
+		if (TryUseItem(idx, 127, 1, 1))
 		{
 			Message1(DLG_DORA_35_D);
 			Message2(DLG_DORA_36);
@@ -1421,7 +1473,7 @@ func UseObject_308(idx)
 
 func ActionWaterfall(idx)
 {
-	if (UseItem(idx, 108, 1) == 1)
+	if (TryUseItem(idx, 108, 1))
 	{
 		Message0(TXT_WATERFALL);
 		fullBucketIdx = ObjFind(114);
@@ -1507,20 +1559,11 @@ func ActionObject_344()
 	}
 	else if (daisyStatus==1)
 	{
-		useItemResult = TryUseItem2(117, 1);
-		if (useItemResult == 1)
+		if (InventoryHasItem(117))
 		{
-			Message1(DLG_DAISY_16_D);
-			Message2(DLG_DAISY_17);
-			Message1(DLG_DAISY_18_D);
-			Message2(DLG_DAISY_19);
-			Message1(DLG_DAISY_20_D);
-			Message2(DLG_DAISY_21);
-			wandIdx = ObjFind(119);
-			ObjSet(wandIdx, O_DISABLE, 0);
-			ObjSet(daisyIdx, O_STATUS, 2);
+			ActionItem();
 		}
-		else if (useItemResult == -1)
+		else
 		{
 			Message2(DLG_DAISY_11);
 			Message1(DLG_DAISY_12_D);
@@ -1536,6 +1579,27 @@ func ActionObject_344()
 		Message2(DLG_DAISY_23);
 		Message1(DLG_DAISY_24_D);
 		// else
+	}
+}
+
+func UseObject_344(idx)
+{
+	daisyIdx = ObjFind(344);
+	daisyStatus = ObjGet(daisyIdx,O_STATUS);
+	if (daisyStatus==1)
+	{
+		if (TryUseItem(idx, 117, 1, 1))
+		{
+			Message1(DLG_DAISY_16_D);
+			Message2(DLG_DAISY_17);
+			Message1(DLG_DAISY_18_D);
+			Message2(DLG_DAISY_19);
+			Message1(DLG_DAISY_20_D);
+			Message2(DLG_DAISY_21);
+			wandIdx = ObjFind(119);
+			ObjSet(wandIdx, O_DISABLE, 0);
+			ObjSet(daisyIdx, O_STATUS, 2);
+		}
 	}
 }
 
@@ -1562,27 +1626,9 @@ func ActionObject_323()
 	}
 	else if (specStatus == 1)
 	{
-		crashIdx = ObjFind(112);
-		zzapIdx = ObjFind(115);
-		if (InventoryFind(crashIdx)!=-1 || InventoryFind(zzapIdx)!=-1)
+		if (InventoryHasItem(112) || InventoryHasItem(115))
 		{
-			idxobj = OpenDialogInventory();
-			if (idxobj==crashIdx)
-			{
-				InventorySub(idxobj);
-				Message1(DLG_SPEC_9_D);
-				Message2(DLG_SPEC_10, COLOR_YELLOW);
-				ObjSet(specIdx, O_STATUS, 2);
-			}
-			else if (idxobj==zzapIdx)
-			{
-				Message1(DLG_SPEC_7_D);
-				Message2(DLG_SPEC_8, COLOR_YELLOW);
-			}
-			else
-			{
-				WrongItemDialog();
-			}
+			ActionItem();
 		}
 		else
 		{
@@ -1594,6 +1640,32 @@ func ActionObject_323()
 	else if (specStatus == 2)
 	{
 		Message2(DLG_SPEC_11, COLOR_YELLOW);
+	}
+}
+
+func UseObject_323(idx)
+{
+	specIdx = ObjFind(323);
+	specStatus = ObjGet(specIdx,O_STATUS);
+
+	if (specStatus == 1)
+	{
+		if (idx==ObjFind(112))
+		{
+			InventorySub(idx);
+			Message1(DLG_SPEC_9_D);
+			Message2(DLG_SPEC_10, COLOR_YELLOW);
+			ObjSet(specIdx, O_STATUS, 2);
+		}
+		else if (idx==ObjFind(115))
+		{
+			Message1(DLG_SPEC_7_D);
+			Message2(DLG_SPEC_8, COLOR_YELLOW);
+		}
+		else
+		{
+			WrongItemDialog();
+		}
 	}
 }
 
@@ -1609,27 +1681,9 @@ func ActionObject_324()
 	}
 	else if (commStatus == 1)
 	{
-		crashIdx = ObjFind(112);
-		zzapIdx = ObjFind(115);
-		if (InventoryFind(crashIdx)!=-1 || InventoryFind(zzapIdx)!=-1)
+		if (InventoryHasItem(112) || InventoryHasItem(115))
 		{
-			idxobj = OpenDialogInventory();
-			if (idxobj==zzapIdx)
-			{
-				InventorySub(idxobj);
-				Message1(DLG_COMM_11_D);
-				Message2(DLG_COMM_12);
-				ObjSet(commIdx, O_STATUS, 2);
-			}
-			else if (idxobj==crashIdx)
-			{
-				Message1(DLG_COMM_9_D);
-				Message2(DLG_COMM_10);
-			}
-			else
-			{
-				WrongItemDialog();
-			}
+			ActionItem();
 		}
 		else
 		{
@@ -1640,6 +1694,32 @@ func ActionObject_324()
 	else if (commStatus == 2)
 	{
 		Message2(DLG_COMM_13);
+	}
+}
+
+func UseObject_324(idx)
+{
+	commIdx = ObjFind(324);
+	commStatus = ObjGet(commIdx,O_STATUS);
+
+	if (commStatus == 1)
+	{
+		if (idx==ObjFind(115))
+		{
+			InventorySub(idx);
+			Message1(DLG_COMM_11_D);
+			Message2(DLG_COMM_12);
+			ObjSet(commIdx, O_STATUS, 2);
+		}
+		else if (idx==ObjFind(112))
+		{
+			Message1(DLG_COMM_9_D);
+			Message2(DLG_COMM_10);
+		}
+		else
+		{
+			WrongItemDialog();
+		}
 	}
 }
 
@@ -1720,27 +1800,35 @@ func ActionObject_325()
 	}
 	else if (doorStatus == 2)
 	{
-		useItemResult = TryUseItem2(118, 1);
-		if (useItemResult == 1)
+		if (InventoryHasItem(118))
 		{
-			Message0(TXT_EMERALD_DOOR_2);
-			ObjSet(doorIdx, O_STATUS, 3);
-			leftLeafIdx = BrushFind(326);
-			rightLeafIdx = BrushFind(327);
-			BrushSet(leftLeafIdx, O_MAP, BrushGet(leftLeafIdx, O_MAP)-16);
-			BrushSet(leftLeafIdx, O_MAP+2, BrushGet(leftLeafIdx, O_MAP+2)-16);
-			BrushSet(leftLeafIdx, O_X, BrushGet(leftLeafIdx, O_X)-8);
-			BrushSet(rightLeafIdx, O_MAP, BrushGet(rightLeafIdx, O_MAP)+16);
-			BrushSet(rightLeafIdx, O_MAP+2, BrushGet(rightLeafIdx, O_MAP+2)+16);
-			BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
-			ObjSet(doorIdx, O_STATUS, 3);
-			ObjSet(doorIdx, O_MATERIAL, MAT_DOOR);
-			GameCommand(CMD_REFRESH);
+			ActionItem();
 		}
-		else if (useItemResult == -1)
+		else
 		{
 			Message0(TXT_EMERALD_DOOR);
 		}
+	}
+}
+
+func UseObject_325(idx)
+{
+	if (TryUseItem(idx, 118, 1, 1))
+	{
+		doorIdx = ObjFind(325);
+		Message0(TXT_EMERALD_DOOR_2);
+		ObjSet(doorIdx, O_STATUS, 3);
+		leftLeafIdx = BrushFind(326);
+		rightLeafIdx = BrushFind(327);
+		BrushSet(leftLeafIdx, O_MAP, BrushGet(leftLeafIdx, O_MAP)-16);
+		BrushSet(leftLeafIdx, O_MAP+2, BrushGet(leftLeafIdx, O_MAP+2)-16);
+		BrushSet(leftLeafIdx, O_X, BrushGet(leftLeafIdx, O_X)-8);
+		BrushSet(rightLeafIdx, O_MAP, BrushGet(rightLeafIdx, O_MAP)+16);
+		BrushSet(rightLeafIdx, O_MAP+2, BrushGet(rightLeafIdx, O_MAP+2)+16);
+		BrushSet(rightLeafIdx, O_X, BrushGet(rightLeafIdx, O_X)+8);
+		ObjSet(doorIdx, O_STATUS, 3);
+		ObjSet(doorIdx, O_MATERIAL, MAT_DOOR);
+		GameCommand(CMD_REFRESH);
 	}
 }
 
@@ -1757,24 +1845,32 @@ func ActionObject_333()
 	doorStatus = ObjGet(doorIdx,O_STATUS);
 	if (doorStatus==0)
 	{
-		useItemResult = TryUseItem2(105, 0);
-		if (useItemResult == 1)
+		if (InventoryHasItem(105))
 		{
-			ObjSet(doorIdx, O_STATUS, 1);
-			ObjSet(doorIdx, O_MATERIAL, MAT_DOOR);
-			GameCommand(CMD_REFRESH);
+			ActionItem();
 		}
-		else if (useItemResult == -1)
+		else
 		{
 			Message0(TXT_SECRET_DOOR);
 		}
 	}
 }
 
+func UseObject_333(idx)
+{
+	if (TryUseItem(idx, 105, 0, 1))
+	{
+		doorIdx = ObjFind(333);
+		ObjSet(doorIdx, O_STATUS, 1);
+		ObjSet(doorIdx, O_MATERIAL, MAT_DOOR);
+		GameCommand(CMD_REFRESH);
+	}
+}
+
 // Boulder
 func UseObject_338(idx)
 {
-	if (UseItem(idx, 128, 1) == 1)
+	if (TryUseItem(idx, 128, 1))
 	{
 		Message0(TXT_BOULDER);
 		boulderIdx = BrushFind(336);
@@ -1788,7 +1884,7 @@ func UseObject_338(idx)
 // Tiger
 func UseObject_341(idx)
 {
-	if (UseItem(idx, 129, 1, 1) == 1)
+	if (TryUseItem(idx, 129, 1, 1))
 	{
 		doorIdx = ObjFind(341);
 		Message0(TXT_EYE);
@@ -1900,7 +1996,7 @@ func UseObject_355(idx)
 
 func ActionDragon(idx)
 {
-	if (UseItem(idx, 126, 1) == 1)
+	if (TryUseItem(idx, 126, 1))
 	{
 		vaporIdx = ObjFind(351);
 	
