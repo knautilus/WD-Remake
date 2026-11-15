@@ -315,6 +315,12 @@ func ActionItem()
 	if(idx!=-1) UseObject(idx);
 }
 
+func ClosedDoor()
+{
+	PlayerPlayTurnBackForth();
+	PlayerEnterIdle();
+}
+
 func EnterDoor( idx )
 {
 	targetIdx = ObjFind(ObjGet(idx, O_TARGET));

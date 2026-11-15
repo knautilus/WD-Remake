@@ -38,6 +38,7 @@
 #def	OBJ_130			"A red herring"
 #def	OBJ_131			"A spellbook page"
 #def	OBJ_132			"A bitcoin"
+#def	OBJ_133			"Pirate's cutlass"
 
 // Dialogs
 
@@ -401,6 +402,41 @@
 #def	DLG_DYLAN_18	"That's easy for you to say,\nyou're a great boxer."
 #def	DLG_DYLAN_19_D	"And you're a lion!\nDon't worry I'll try help."
 #def	DLG_DYLAN_20	"Oh, thank you."
+
+#def	DLG_PIRATE_1	"Oi! Matey, I ain't seen\nlikes of ya before."
+#def	DLG_PIRATE_2_D	"Er. No, I'm new\naround here."
+#def	DLG_PIRATE_3	"Arrr. Why are ya here?"
+#def	DLG_PIRATE_4_D	"I'm well... Looking for\nstuff. I need to rescue\nmy pet and find a way home."
+#def	DLG_PIRATE_5	"Ya ain't with... Narrr, ya\nlook too artless for that.\nWhat ya looking for? I got\nall kinds o' loot."
+#def	DLG_PIRATE_6_D	"Well, um... A nice cutlass\nlike yours would be useful."
+#def	DLG_PIRATE_7	"Sure. I can get ya that.\n'ow will you be paying?"
+#def	DLG_PIRATE_8_D	"On account?"
+#def	DLG_PIRATE_9	"I wasn't born yesterday!\nI take cash, amex,\nvisa or bitcoin."
+#def	DLG_PIRATE_10_D	"Ok, I'll have to get\nback to you on that."
+
+#def	DLG_PIRATE_11_D	"I'm having difficulty\non the payment front."
+#def	DLG_PIRATE_12	"Arrr. Not really\nmy problem."
+#def	DLG_PIRATE_13_D	"No, I guess so. But is\nthere anything else\nyou'd take?"
+#def	DLG_PIRATE_14	"Not really. I can get\neverything I want online\nwith the dark web."
+#def	DLG_PIRATE_15_D	"Online? Dark who?"
+#def	DLG_PIRATE_16	"Oh, yarrrr. You'd be\namazed what you can\nbuy with bitcoin."
+#def	DLG_PIRATE_17_D	"Ok. Not sure\nI understand."
+
+#def	DLG_PIRATE_18_D	"Hello again mr pirate."
+#def	DLG_PIRATE_19	"Arrr. Ya got payment?"
+#def	DLG_PIRATE_20_D	"Well yes I do...\n1 bitcoin, here you go."
+#def	DLG_PIRATE_21	"Um... Ya know I only\naccept 8 bitcoins don't ya?\nYou know - pieces of 8."
+#def	DLG_PIRATE_22_D	"What?"
+#def	DLG_PIRATE_23	"Off ya go and\nfind me 7 more!"
+#def	DLG_PIRATE_24_D	"But that was pretty\ntricky. I've searched\nalmost everywhere."
+#def	DLG_PIRATE_25	"Arrrrr. Just pulling\nya leg. Arr har har."
+#def	DLG_PIRATE_26_D	"Is that what happened\nto you? Somebody pulled\nyour leg... too hard!"
+#def	DLG_PIRATE_27	"Don't get cocky with me.\nTake ya cutlass\nand be gone."
+
+#def	DLG_PIRATE_28_D	"Have you got\nmore loot?"
+#def	DLG_PIRATE_29	"Arrr. 'course I got more.\nYa got more bitcoin?"
+#def	DLG_PIRATE_30_D	"No. Sorry."
+#def	DLG_PIRATE_31	"Well don't come\nbothering me,\n'til ya have."
 
 #def	DLG_SPECCOMM_1_S	"You look clover.\nYou tell him..."
 #def	DLG_SPECCOMM_2_D	"Tell him what?"

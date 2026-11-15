@@ -83,6 +83,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(130), OBJ_130);
 	ObjSetName(ObjFind(131), OBJ_131);
 	ObjSetName(ObjFind(132), OBJ_132);
+	ObjSetName(ObjFind(133), OBJ_133);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -482,8 +483,7 @@ func ActionObject_217()
 // Closed hut
 func ActionObject_273()
 {
-	PlayerPlayTurnBackForth();
-	PlayerEnterIdle();
+	ClosedDoor();
 }
 
 // Yellow gate
@@ -2185,6 +2185,98 @@ func TriggerTrap()
 		BrushSet(trapIdx, B_DRAW, 3);
 		GameCommand(CMD_REFRESH);
 		BrushSet(trapIdx, O_STATUS, 0);
+	}
+}
+
+// Closed tavern doors
+func ActionObject_400()
+{
+	ClosedDoor();
+}
+
+// Closed tavern doors
+func ActionObject_401()
+{
+	ClosedDoor();
+}
+
+// Closed tavern doors
+func ActionObject_402()
+{
+	ClosedDoor();
+}
+
+// Pirate first dialog
+func CollideObject_403_1()
+{
+	pirateIdx = ObjFind(404);
+	pirateStatus = ObjGet(pirateIdx,O_STATUS);
+	if (pirateStatus==0)
+	{
+		Message2(DLG_PIRATE_1);
+		Message1(DLG_PIRATE_2_D);
+		Message2(DLG_PIRATE_3);
+		Message1(DLG_PIRATE_4_D);
+		Message2(DLG_PIRATE_5);
+		Message1(DLG_PIRATE_6_D);
+		Message2(DLG_PIRATE_7);
+		Message1(DLG_PIRATE_8_D);
+		Message2(DLG_PIRATE_9);
+		Message1(DLG_PIRATE_10_D);
+		ObjSet(pirateIdx,O_STATUS,1);
+	}
+}
+
+func ActionObject_404()
+{
+	pirateIdx = ObjFind(404);
+	pirateStatus = ObjGet(pirateIdx,O_STATUS);
+	if (pirateStatus==1)
+	{
+		if (InventoryHasItem(132))
+		{
+			ActionItem();
+		}
+		else
+		{
+			Message1(DLG_PIRATE_11_D);
+			Message2(DLG_PIRATE_12);
+			Message1(DLG_PIRATE_13_D);
+			Message2(DLG_PIRATE_14);
+			Message1(DLG_PIRATE_15_D);
+			Message2(DLG_PIRATE_16);
+			Message1(DLG_PIRATE_17_D);
+		}
+	}
+	else if (pirateStatus==2)
+	{
+		Message1(DLG_PIRATE_28_D);
+		Message2(DLG_PIRATE_29);
+		Message1(DLG_PIRATE_30_D);
+		Message2(DLG_PIRATE_31);
+	}
+}
+
+func UseObject_404(idx)
+{
+	pirateIdx = ObjFind(404);
+	pirateStatus = ObjGet(pirateIdx,O_STATUS);
+	if (pirateStatus==1)
+	{
+		if (TryUseItem(idx, 132, 1, 1))
+		{
+			Message1(DLG_PIRATE_18_D);
+			Message2(DLG_PIRATE_19);
+			Message1(DLG_PIRATE_20_D);
+			Message2(DLG_PIRATE_21);
+			Message1(DLG_PIRATE_22_D);
+			Message2(DLG_PIRATE_23);
+			Message1(DLG_PIRATE_24_D);
+			Message2(DLG_PIRATE_25);
+			Message1(DLG_PIRATE_26_D);
+			Message2(DLG_PIRATE_27);
+			ObjSet(pirateIdx,O_STATUS,2);
+		}
 	}
 }
 
