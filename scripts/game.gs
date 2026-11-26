@@ -2280,4 +2280,65 @@ func UseObject_404(idx)
 	}
 }
 
+// Closed house on bay
+func ActionObject_405()
+{
+	ClosedDoor();
+}
+
+// Inside the toy shop
+func CollideObject_410_1()
+{
+	shopIdx = ObjFind(408);
+	shopStatus = ObjGet(shopIdx, O_STATUS);
+	if (shopStatus == 0)
+	{
+		WaitFrames(48);
+		smokeIdx = ObjFind(409);
+		ObjSet(smokeIdx, O_DISABLE, 0);
+		ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
+		ObjSet(smokeIdx, O_DISABLE, 1);
+		ObjSet(shopIdx, O_DISABLE, 0);
+		
+		Message0(DLG_SHOP_1);
+
+		WaitFrames(48);
+
+		Message2(DLG_SHOP_2);
+		Message1(DLG_SHOP_3_D);
+		Message2(DLG_SHOP_4);
+		Message2(DLG_SHOP_5);
+		Message1(DLG_SHOP_6_D);
+		Message2(DLG_SHOP_7);
+		Message1(DLG_SHOP_8_D);
+		Message2(DLG_SHOP_9);
+		Message1(DLG_SHOP_10_D);
+		Message2(DLG_SHOP_11);
+		Message1(DLG_SHOP_12_D);
+		Message2(DLG_SHOP_13);
+		Message1(DLG_SHOP_14_D);
+		Message2(DLG_SHOP_15);
+		Message1(DLG_SHOP_16_D);
+		Message2(DLG_SHOP_17);
+		Message1(DLG_SHOP_18_D);
+		Message2(DLG_SHOP_19);
+		Message1(DLG_SHOP_20_D);
+		Message2(DLG_SHOP_21);
+		Message1(DLG_SHOP_22_D);
+		Message2(DLG_SHOP_23);
+		Message1(DLG_SHOP_24_D);
+
+		WaitFrames(48);
+		
+		Message0(DLG_SHOP_25);
+
+		ObjSet(shopIdx, O_DISABLE, 1);
+		ObjSet(smokeIdx, O_DISABLE, 0);
+		ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
+		ObjSet(smokeIdx, O_DISABLE, 1);
+		
+		ObjSet(shopIdx, O_STATUS, 1);
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////
