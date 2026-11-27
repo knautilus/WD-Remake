@@ -84,6 +84,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(131), OBJ_131);
 	ObjSetName(ObjFind(132), OBJ_132);
 	ObjSetName(ObjFind(133), OBJ_133);
+	ObjSetName(ObjFind(134), OBJ_134);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -2275,6 +2276,8 @@ func UseObject_404(idx)
 			Message2(DLG_PIRATE_25);
 			Message1(DLG_PIRATE_26_D);
 			Message2(DLG_PIRATE_27);
+			cutlassIdx = ObjFind(133);
+			ObjSet(cutlassIdx, O_DISABLE, 0);
 			ObjSet(pirateIdx,O_STATUS,2);
 		}
 	}
@@ -2287,20 +2290,23 @@ func ActionObject_405()
 }
 
 // Inside the toy shop
+func OpenRoom_9_6()
+{
+	shopIdx = ObjFind(408);
+	shopStatus = ObjGet(shopIdx, O_STATUS);
+	if (shopStatus == 1)
+	{
+		ObjSet(shopIdx, O_STATUS, 2);
+	}
+}
+
 func CollideObject_410_1()
 {
 	shopIdx = ObjFind(408);
 	shopStatus = ObjGet(shopIdx, O_STATUS);
 	if (shopStatus == 0)
 	{
-		WaitFrames(48);
-		smokeIdx = ObjFind(409);
-		ObjSet(smokeIdx, O_DISABLE, 0);
-		ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
-		ObjSet(smokeIdx, O_DISABLE, 1);
-		ObjSet(shopIdx, O_DISABLE, 0);
-		
-		Message0(DLG_SHOP_1);
+		ShopKeeperAppears();
 
 		WaitFrames(48);
 
@@ -2328,17 +2334,61 @@ func CollideObject_410_1()
 		Message2(DLG_SHOP_23);
 		Message1(DLG_SHOP_24_D);
 
-		WaitFrames(48);
-		
-		Message0(DLG_SHOP_25);
+		ShopKeeperDisappears();
 
-		ObjSet(shopIdx, O_DISABLE, 1);
-		ObjSet(smokeIdx, O_DISABLE, 0);
-		ObjPlayAnimFrames( smokeIdx, {0,1,2,3,2,1,0} );
-		ObjSet(smokeIdx, O_DISABLE, 1);
-		
 		ObjSet(shopIdx, O_STATUS, 1);
 	}
+	else if (shopStatus == 2)
+	{
+		ticketIdx = ObjFind(123);
+
+		if (InventoryFind(ticketIdx) != -1)
+		{
+			ShopKeeperAppears();
+
+			WaitFrames(48);
+
+			InventorySub(ticketIdx);
+			Message1(DLG_SHOP_26_D);
+			Message2(DLG_SHOP_27);
+			Message1(DLG_SHOP_28_D);
+			
+			pacmanIdx = ObjFind(134);
+			ObjSet(pacmanIdx, O_DISABLE, 0);
+
+			ShopKeeperDisappears();
+
+			ObjSet(shopIdx, O_STATUS, 3);
+		}
+	}
+}
+
+func ShopKeeperAppears()
+{
+	WaitFrames(48);
+
+	shopIdx = ObjFind(408);	
+	smokeIdx = ObjFind(409);
+	ObjSet(smokeIdx, O_DISABLE, 0);
+	ObjPlayAnimFrames(smokeIdx, {0,1,2,3,2,1,0,1,2,3,2,1,0});
+	ObjSet(smokeIdx, O_DISABLE, 1);
+	ObjSet(shopIdx, O_DISABLE, 0);
+
+	Message0(DLG_SHOP_1);
+}
+
+func ShopKeeperDisappears()
+{
+	WaitFrames(48);
+
+	Message0(DLG_SHOP_25);
+
+	shopIdx = ObjFind(408);
+	smokeIdx = ObjFind(409);
+	ObjSet(shopIdx, O_DISABLE, 1);
+	ObjSet(smokeIdx, O_DISABLE, 0);
+	ObjPlayAnimFrames(smokeIdx, {0,1,2,3,2,1,0,1,2,3,2,1,0});
+	ObjSet(smokeIdx, O_DISABLE, 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
