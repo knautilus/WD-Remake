@@ -86,6 +86,7 @@ func ObjectsSetNames()
 	ObjSetName(ObjFind(133), OBJ_133);
 	ObjSetName(ObjFind(134), OBJ_134);
 	ObjSetName(ObjFind(135), OBJ_135);
+	ObjSetName(ObjFind(136), OBJ_136);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1182,6 +1183,8 @@ func UseObject_301(idx)
 			ObjSet(bitcoinIdx, O_DISABLE, 0);
 			coinIdx = ObjFind(397);
 			ObjSet(coinIdx, O_DISABLE, 0);
+			daisyIdx = ObjFind(344);
+			ObjSet(daisyIdx, O_STATUS, 3);
 			donkeyIdx = ObjFind(301);
 			ObjSet(donkeyIdx, O_FRAME, 1);
 			ObjSet(donkeyIdx, O_STATUS, 3);
@@ -1581,11 +1584,26 @@ func ActionObject_344()
 	}
 	else if (daisyStatus==2)
 	{
-		// if no wand in inventory
 		Message1(DLG_DAISY_22_D);
 		Message2(DLG_DAISY_23);
 		Message1(DLG_DAISY_24_D);
-		// else
+	}
+	else if (daisyStatus==3)
+	{
+		if (InventoryHasItem(119))
+		{
+			ActionItem();
+		}
+		else
+		{
+			Message1(DLG_DAISY_22_D);
+			Message2(DLG_DAISY_23);
+			Message1(DLG_DAISY_24_D);
+		}
+	}
+	else if (daisyStatus==4)
+	{
+		Message2(DLG_DAISY_27);
 	}
 }
 
@@ -1606,6 +1624,19 @@ func UseObject_344(idx)
 			wandIdx = ObjFind(119);
 			ObjSet(wandIdx, O_DISABLE, 0);
 			ObjSet(daisyIdx, O_STATUS, 2);
+		}
+	}
+	else if (daisyStatus==3)
+	{
+		if (TryUseItem(idx, 119, 1, 1))
+		{
+			Message1(DLG_DAISY_25_D);
+			Message2(DLG_DAISY_26);
+			keyIdx = ObjFind(136);
+			ObjSet(keyIdx, O_DISABLE, 0);
+			ObjSet(daisyIdx, O_TILE, 171);
+			ObjSet(daisyIdx, O_DELAY, 5);
+			ObjSet(daisyIdx, O_STATUS, 4);
 		}
 	}
 }

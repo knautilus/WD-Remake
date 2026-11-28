@@ -41,6 +41,7 @@
 #def	OBJ_133			"Pirate's cutlass"
 #def	OBJ_134			"A pacman toy"
 #def	OBJ_135			"Parchment paper"
+#def	OBJ_136			"A clockwork key"
 
 // Dialogs
 
@@ -146,6 +147,11 @@
 #def	DLG_DAISY_22_D	"Me again!"
 #def	DLG_DAISY_23	"Don't forget to return my\nwand after you've used it."
 #def	DLG_DAISY_24_D	"I won't. Bye."
+
+#def	DLG_DAISY_25_D	"Well that worked a charm!\nThank you for lending\nme your magic wand."
+#def	DLG_DAISY_26	"You're an honest little\negg. Here's a small gift\nI promised you. It looks\nuseful, but I'm not sure\nwhat for."
+
+#def	DLG_DAISY_27	"It's nice to see you again,\nbut I can't help to\nyou any more."
 
 #def	DLG_WITCH_1		"Arh!!! Who did this?"
 #def	DLG_WITCH_2_M	"I think it was\na freak accident!"
