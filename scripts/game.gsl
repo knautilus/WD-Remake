@@ -40,6 +40,7 @@
 #def	OBJ_132			"A bitcoin"
 #def	OBJ_133			"Pirate's cutlass"
 #def	OBJ_134			"A pacman toy"
+#def	OBJ_135			"Parchment paper"
 
 // Dialogs
 
@@ -241,6 +242,12 @@
 
 #def	DLG_TINKER_25	"The pizza that\neats itself."
 #def	DLG_TINKER_26_D	"Um... That's a tough one.\nI'll see what I can find."
+
+#def	DLG_TINKER_27_D	"I have it. Pacman, was\ndesigned to look like\na pizza, but eats in\nthe game to win."
+#def	DLG_TINKER_28	"Congratulations\nand for that,\nI present you some\nparchment paper."
+
+#def	DLG_TINKER_29_D	"Hello again. Any more\nriddles or any more gifts?"
+#def	DLG_TINKER_30	"No more riddles have I,\nso you are free to pass by."
 
 #def	DLG_DENZIL_1	"Help! Won't you\nplease, please\nhelp me now?"
 #def	DLG_DENZIL_2_D	"I'm sorry? Are you\ntalking to me?"
