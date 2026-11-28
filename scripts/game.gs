@@ -2428,4 +2428,72 @@ func ShopKeeperDisappears()
 	ObjSet(smokeIdx, O_DISABLE, 1);
 }
 
+// Grand Dizzy dialogs
+func ActionObject_329()
+{
+	granddIdx = ObjFind(329);
+	granddStatus = ObjGet(granddIdx,O_STATUS);
+	if (granddStatus==0)
+	{
+		Message1(DLG_GRANDD_1_D);
+		Message1(DLG_GRANDD_2_D);
+		Message1(DLG_GRANDD_3_D);
+		ObjSet(granddIdx, O_STATUS, 1);
+	}
+	else if (granddStatus==1)
+	{
+		if (InventoryHasItem(136))
+		{
+			ActionItem();
+		}
+		else
+		{
+			Message1(DLG_GRANDD_1_D);
+			Message1(DLG_GRANDD_2_D);
+			Message1(DLG_GRANDD_3_D);
+		}
+	}
+	else if (granddStatus==2)
+	{
+		Message2(DLG_GRANDD_6);
+		Message1(DLG_GRANDD_7_D);
+		Message2(DLG_GRANDD_8);
+		Message1(DLG_GRANDD_9_D);
+		Message2(DLG_GRANDD_10);
+		Message1(DLG_GRANDD_11_D);
+		Message2(DLG_GRANDD_12);
+		Message1(DLG_GRANDD_13_D);
+		ObjSet(granddIdx, O_STATUS, 3);
+	}
+	else if (granddStatus==3)
+	{
+		Message1(DLG_GRANDD_14_D);
+		Message2(DLG_GRANDD_15);
+		Message1(DLG_GRANDD_16_D);
+		Message2(DLG_GRANDD_17);
+		Message1(DLG_GRANDD_18_D);
+		Message2(DLG_GRANDD_19);
+		Message1(DLG_GRANDD_20_D);
+	}
+}
+
+func UseObject_329(idx)
+{
+	granddIdx = ObjFind(329);
+	granddStatus = ObjGet(granddIdx,O_STATUS);
+	if (granddStatus==1)
+	{
+		if (TryUseItem(idx, 136, 1, 1))
+		{
+			Message1(DLG_GRANDD_4_D);
+			Message0(DLG_GRANDD_5);
+			ObjSet(granddIdx, O_ANIM, 2);
+			ObjSet(granddIdx, O_STATUS, 2);
+			mouthIdx = BrushFind(412);
+			BrushSet(mouthIdx, B_DRAW, 1);
+			GameCommand(CMD_REFRESH);
+		}
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////////

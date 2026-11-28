@@ -535,6 +535,30 @@
 
 #def	DLG_COMM_13		"Go away. I'm busy."
 
+#def	DLG_GRANDD_1_D	"Hey there old timer!"
+#def	DLG_GRANDD_2_D	"Hello?!!!"
+#def	DLG_GRANDD_3_D	"Um... Seems to be broken\ndown or something?"
+
+#def	DLG_GRANDD_4_D	"I think this may help.\nLet me just wind you up!"
+#def	DLG_GRANDD_5	"Click.. Click..\nClick. Pop!"
+
+#def	DLG_GRANDD_6	"Arh, um... What's this\nI see before me? Is it\na talking egg?"
+#def	DLG_GRANDD_7_D	"No, I've just got\na large head."
+#def	DLG_GRANDD_8	"Large bed? Let me tell you,\nback in the war we dreamt\nof large beds. A hammock\nwas the best we ever got."
+#def	DLG_GRANDD_9_D	"Why are we talking\nabout beds and war?"
+#def	DLG_GRANDD_10	"Heads of war? We didn't\nwait for them, oh no.\nI didn't win this Medal\nof Courage waiting for\nheads of war you know."
+#def	DLG_GRANDD_11_D	"I'm not sure where this\nconversation is going?"
+#def	DLG_GRANDD_12	"Not sure where you're going?\nI'd talk to the Great Wizard\nof Oz if i were you."
+#def	DLG_GRANDD_13_D	"Thank you, I'll do that."
+
+#def	DLG_GRANDD_14_D	"Hello again."
+#def	DLG_GRANDD_15	"Oh, no. I'm TikTok.\nNot seen Agane since\nThe Great War."
+#def	DLG_GRANDD_16_D	"I think you are quite\npossibly the first Robot\nI've ever come across,\nmaybe the first Robot ever?"
+#def	DLG_GRANDD_17	"First Robert? What's up\nwith you man? There are\nthousands of Roberts,\nalthough some go by\nthe name Bob. Did I\ntell you..."
+#def	DLG_GRANDD_18_D	"Well it's good to know\nit's not just Siri, Alexa\nand Cortana that need some\nbugs ironed out."
+#def	DLG_GRANDD_19	"Bugs, you think I've got\nbugs? I assure you, any\nbugs inside me soon get\ncrushed and roasted\nby my gears."
+#def	DLG_GRANDD_20_D	"I'm sure. I must be on my\nway now. Can't stand around\ntalking all day. Places to\nvisit, tasks to complete,\npeople to help."
+
 #def	DLG_THEO_1		"I am the great wizard of Oz.\nWho are you, and why do\nyou seek me?"
 #def	DLG_THEO_2_D	"I am Dizzy, and I want to\nfind my pet and return home.\nI have come to you for help."
 #def	DLG_THEO_3		"Where did you get\nthose red boots?"
